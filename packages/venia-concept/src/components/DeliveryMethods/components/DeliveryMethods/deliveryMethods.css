@@ -1,0 +1,8 @@
+.root {
+    composes: section from '../../../ProductFullDetail/productFullDetail.css';
+}
+
+.header{
+    composes: sectionTitle from '../../../ProductFullDetail/productFullDetail.css';
+    justify-content: left;
+}

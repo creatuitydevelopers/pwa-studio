@@ -1,0 +1,24 @@
+.root {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid rgb(var(--rk--color__gray-3));
+    padding: 10px 0; 
+}
+
+.item {
+    padding: 0 20px;
+    margin: 5px 0;
+    border-left: 1px solid rgb(var(--rk--color__gray-3));
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.item:first-child {
+    border-left: none;
+}
+
+.active {
+    composes: item;
+    font-weight: bold;
+}

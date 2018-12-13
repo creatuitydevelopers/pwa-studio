@@ -1,0 +1,13 @@
+.title {
+    align-items: center;
+    color: rgb(var(--rk--color__red));
+    display: inline-flex;
+    font-size: 1rem;
+    font-weight: bold;
+    justify-self: center;
+    text-transform: uppercase;
+}
+
+.title > *{
+    cursor: pointer;
+}

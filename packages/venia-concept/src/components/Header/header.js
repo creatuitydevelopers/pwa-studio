@@ -6,8 +6,10 @@ import classify from 'src/classify';
 import Icon from 'src/components/Icon';
 import CartTrigger from './cartTrigger';
 import NavTrigger from './navTrigger';
+import StoreWidgetTrigger from './storeWidgetTrigger';
 import defaultClasses from './header.css';
-import logo from './logo.svg';
+import logo from './logo.png';
+import {StoreWidgetHeaderLabel} from "src/components/StoreWidget";
 
 class Header extends Component {
     static propTypes = {
@@ -33,9 +35,9 @@ class Header extends Component {
                         <img
                             className={classes.logo}
                             src={logo}
-                            height="24"
-                            alt="Venia"
-                            title="Venia"
+                            height="40"
+                            alt="RuralKing"
+                            title="RuralKing"
                         />
                     </Link>
                     <div className={classes.primaryActions}>
@@ -44,6 +46,9 @@ class Header extends Component {
                         </NavTrigger>
                     </div>
                     <div className={classes.secondaryActions}>
+                        <StoreWidgetTrigger>
+                            <StoreWidgetHeaderLabel/>
+                        </StoreWidgetTrigger>
                         <button className={classes.searchTrigger}>
                             <Icon name="search" />
                         </button>

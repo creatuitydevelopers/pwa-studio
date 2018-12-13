@@ -1,0 +1,115 @@
+.root {
+    align-content: start;
+    background-color: white;
+    bottom: 0;
+    box-shadow: -1px 0 rgb(var(--venia-border));
+    display: grid;
+    grid-template-rows: min-content 1fr auto auto;
+    opacity: 0;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translate3d(100%, 0, 0);
+    transition-duration: 192ms;
+    transition-property: opacity, transform, visibility;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    visibility: hidden;
+    width: 360px;
+    z-index: 4;
+}
+
+.header {
+    align-content: center;
+    background-color: rgb(var(--venia-grey));
+    box-shadow: 0 1px rgb(var(--venia-border));
+    display: grid;
+    grid-auto-columns: 3.5rem;
+    grid-auto-flow: column;
+    grid-auto-rows: 3.5rem;
+    grid-template-columns: 3.5rem 1fr 3.5rem;
+    height: 3.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.body {
+    overflow-y: auto;
+    position: relative;
+}
+
+.footer {
+    border-top: 1px solid rgb(var(--venia-border));
+    position: sticky;
+    bottom: 0;
+}
+
+.actionBar {
+    align-items: center;
+    background-color: white;
+    display: flex;
+    height: auto;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+}
+
+
+.actionBar button {
+    width: calc(50% - 5px);
+}
+
+.noStoresFound {
+    composes: noItems from 'src/components/RkStore/List/list.css';
+}
+
+
+/* state: open */
+
+.root_open {
+    composes: root;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition-duration: 224ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    visibility: visible;
+}
+
+
+/* keyframes */
+
+@keyframes slidein {
+    from {
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideout {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
+@keyframes slideinSide {
+    from {
+        transform: translate3d(-100%, 0, 0);
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideoutSide {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(-100%, 0, 0);
+    }
+}

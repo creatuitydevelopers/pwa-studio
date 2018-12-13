@@ -1,0 +1,85 @@
+.root {
+    composes: root from '../DefaultOption/defualtOption.css';
+}
+
+.label {
+    composes: label from '../DefaultOption/defualtOption.css';
+}
+
+.radioInput {
+    composes: radioInput from '../DefaultOption/defualtOption.css';
+}
+
+.title {
+    composes: title from '../DefaultOption/defualtOption.css';
+}
+
+.badge {
+    composes: badge from '../DefaultOption/defualtOption.css';
+}
+
+.details {
+    composes: details from '../DefaultOption/defualtOption.css';
+}
+
+.pinIcon {
+    position: relative;
+    top: 6px;
+    margin-right: 5px;
+}
+
+.positiveMessage {
+    composes: positiveMessage from '../DefaultOption/defualtOption.css';
+}
+
+.alertMessage {
+    composes: alertMessage from '../DefaultOption/defualtOption.css';
+}
+
+.separator {
+    display: inline-block;
+    margin: 0 7px;
+    color: rgb(var(--rk--color__blue));
+    opacity: .4;
+}
+
+.selectStoreButton {
+    color: rgb(var(--rk--color__gray));
+    text-decoration: underline;
+}
+
+.storeName {
+
+}
+
+.modal {
+    max-width: 768px;
+    width: 100%;
+}
+
+.modalHeader {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 30px 20px 0;
+
+}
+
+@media (max-width: 640px) {
+    .availabilityInStore,
+    .noAvailabilityInStore {
+        display: block;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    .pinIcon {
+        float: left;
+    }
+
+    .storeName {
+        display: block;
+        line-height: 36px;
+    }
+}

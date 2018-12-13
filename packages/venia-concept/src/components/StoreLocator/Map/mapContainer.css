@@ -1,0 +1,4 @@
+.infoWindowButtons {
+    display: flex;
+    flex-direction: column;
+}

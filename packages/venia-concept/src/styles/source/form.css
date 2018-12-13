@@ -1,0 +1,62 @@
+
+/* Form inputs*/
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="search"],
+input[type="number"],
+input[type="datetime"],
+input[type="email"],
+input[type="text"],
+textarea,
+select {
+    align-items: center;
+    border: 1px solid rgb(var(--rk--color__gray-2));
+    display: flex;
+    box-shadow: none;
+    padding: 8px;
+    width: 100%;
+    min-width: 100px;
+    font-size: 18px;
+    font-weight: 400;
+    background: rgba(var(--rk--color__gray-6));
+    border-radius: 0.2em;
+    color: rgb(var(--venia-grey-dark));
+}
+
+input[type="text"]:not([disabled]):focus,
+input[type="password"]:not([disabled]):focus,
+input[type="url"]:not([disabled]):focus,
+input[type="tel"]:not([disabled]):focus,
+input[type="search"]:not([disabled]):focus,
+input[type="number"]:not([disabled]):focus,
+input[type="datetime"]:not([disabled]):focus,
+input[type="email"]:not([disabled]):focus,
+input[type="text"]:not([disabled]):focus,
+textarea:not([disabled]):focus,
+select:not([disabled]):focus{
+    box-shadow: 0 0 5px rgb(var(--venia-grey-dark));
+    outline:none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="search"],
+input[type="number"],
+input[type="datetime"],
+input[type="email"],
+select {
+    height: 42px;
+
+}
+
+input[type="file"]{
+    width: 100%;
+}
+
+select {
+    cursor: pointer;
+}

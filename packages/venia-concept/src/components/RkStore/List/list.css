@@ -1,0 +1,33 @@
+.root {
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 15px;
+    margin: 15px;
+}
+
+.row {
+    grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+}
+
+.column {
+
+}
+
+.noItems{
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(var(--rk--color__red));
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+@media(max-width: 420px) {
+    .row {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+}

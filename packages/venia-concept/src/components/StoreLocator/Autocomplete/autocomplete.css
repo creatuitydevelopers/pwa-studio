@@ -1,0 +1,45 @@
+.actionBar{
+    position: relative;
+}
+
+.autocompleteDropdownContainerOpen {
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+    background: #fff;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: rgb(var(--rk--color__gray-2))
+}
+
+.autocompleteDropdownContainerOpen.above{
+    bottom: 40px;
+    border: 1px solid #ccc;
+}
+
+.autocompleteDropdownContainerClosed{
+
+}
+
+.suggestionItem {
+    background-color: #fff;
+    cursor: pointer; 
+    padding: 5px 10px;
+    border-bottom: 1px solid rgb(var(--rk--color__gray-2));
+}
+
+.suggestionItemActive {
+    composes: suggestionItem;
+    background: rgb(var(--rk--color__gray-6));
+}
+
+.locationIcon {
+    padding: 0;
+    font-size: 15px;
+    display: inline-block;
+    margin-right: 7px;
+    position: relative;
+    top: 2px;
+    color: rgb(var(--rk--color__gray-2));
+}
+

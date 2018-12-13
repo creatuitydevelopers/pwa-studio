@@ -1,0 +1,19 @@
+.root {
+   position: relative;
+}
+
+.autocompleteContainer {
+   margin-top: 30px;
+   position: relative;
+}
+
+.mapContainer {
+   position: relative;
+   height: 600px;
+}
+
+@media (max-width: 560px) {
+   .mapContainer {
+      height: auto;
+   }
+}

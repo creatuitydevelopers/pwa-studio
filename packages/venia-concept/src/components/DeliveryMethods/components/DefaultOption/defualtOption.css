@@ -1,0 +1,92 @@
+.root{
+    display: block;
+    padding: 25px 15px 25px 65px;
+    margin-bottom: 10px;
+    background-color: rgb(var(--rk--color__gray-7));
+}
+
+.label{
+    position: relative;
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.radioInput{
+    position: absolute;
+    margin: -1px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+}
+
+.title{
+    position: relative;
+    padding-left: 30px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 22px;
+    color: rgb(var(--rk--color__gray));
+}
+
+.title:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(var(--rk--color__gray-1));
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.title:after{
+    content:""
+}
+
+.radioInput:checked + .title:after{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    background: rgb(var(--rk--color__red));
+    border-radius: 50%;
+}
+
+.badge{
+    position: relative;
+    top: -1px;
+    padding: 4px 22px;
+    margin-right: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgb(var(--rk--color__blue));
+}
+
+.details{
+    padding-left: 30px;
+    font-size: 18px;
+    line-height: 25px;
+    color: rgb(var(--rk--color__gray));
+
+}
+
+.alertMessage{
+    color: rgb(var(--rk--color__red));
+}
+
+.positiveMessage{
+    color: rgb(var(--rk--color__green));
+}
+
+@media (max-width: 640px) {
+    .root{
+        padding: 25px 25px;
+    }
+}

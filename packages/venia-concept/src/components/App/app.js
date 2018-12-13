@@ -4,8 +4,10 @@ import { bool, func, shape, string } from 'prop-types';
 import classify from 'src/classify';
 import Main from 'src/components/Main';
 import Mask from 'src/components/Mask';
+import {Helmet} from "react-helmet";
 import MiniCart from 'src/components/MiniCart';
 import Navigation from 'src/components/Navigation';
+import StoreWidget from 'src/components/StoreWidget';
 import OnlineIndicator from 'src/components/OnlineIndicator';
 import defaultClasses from './app.css';
 import renderRoutes from './renderRoutes';
@@ -38,10 +40,14 @@ class App extends Component {
         const { drawer, overlay } = app;
         const navIsOpen = drawer === 'nav';
         const cartIsOpen = drawer === 'cart';
+        const storeWidgetIsOpen = drawer === 'storeWidget';
         const className = overlay ? classes.root_masked : classes.root;
 
         return (
             <div className={className}>
+                <Helmet>
+                    <link rel="stylesheet" href="https://use.typekit.net/uca6omh.css" />
+                </Helmet>
                 <Main isMasked={overlay}>
                     {onlineIndicator}
                     {renderRoutes()}
@@ -49,6 +55,7 @@ class App extends Component {
                 <Mask isActive={overlay} dismiss={closeDrawer} />
                 <Navigation isOpen={navIsOpen} />
                 <MiniCart isOpen={cartIsOpen} />
+                <StoreWidget isOpen={storeWidgetIsOpen} />
             </div>
         );
     }

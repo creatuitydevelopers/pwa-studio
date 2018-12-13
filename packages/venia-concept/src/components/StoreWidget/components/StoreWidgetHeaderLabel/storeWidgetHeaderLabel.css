@@ -1,0 +1,22 @@
+.icon {
+    width: 3rem;
+}
+
+.label {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .label {
+        line-height: 2rem;
+        width: calc(100% - 3rem);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+    }
+
+    .label > * {
+        margin: 0;
+    }
+}

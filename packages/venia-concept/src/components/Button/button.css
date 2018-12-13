@@ -1,18 +1,18 @@
 .root {
     composes: root from '../clickable.css';
-    background-color: white;
-    border: 1px solid currentColor;
-    border-radius: 1.5rem;
-    color: rgb(var(--venia-teal));
-    font-size: 0.875rem;
-    height: 3rem;
+    height: 2.5rem;
     min-width: 8.75rem;
     padding: 0 1.5rem;
+    font-size: 0.875rem;
+    font-family: var(--venia-font);
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: .2rem;
+    cursor: pointer;
     transition: opacity 256ms linear;
-}
-
-.root:hover {
-    background-color: rgb(var(--venia-teal-alt));
+    touch-action: manipulation;
+    -webkit-appearance: none;
 }
 
 .root[disabled] {
@@ -31,3 +31,52 @@
     justify-content: center;
     justify-items: center;
 }
+
+/*** Sizes ***/
+.small {
+    height: 2rem;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+}
+
+.medium {
+    
+}
+
+.big {
+    height: 3.5rem;
+}
+
+/*** Genre ***/
+.primary{
+    background-color: rgb(var(--rk--color__red));
+    border: 1px solid rgb(var(--rk--color__red));
+    color: white;
+}
+
+.primary:hover {
+    background-color: rgb(var(--rk--color__red-alt));
+}
+
+.secondary{
+    background-color: rgb(var(--venia-grey));
+    border: 1px solid currentColor;
+    color: white;
+}
+
+.secondary:hover {
+    background-color: rgb(var(--venia-grey-dark));
+}
+
+.empty {
+    background-color: transparent;
+    border: 1px solid currentColor;
+    color: rgb(var(--rk--color__gray));
+}
+
+.empty:hover {
+    background-color: rgb(var(--rk--color__gray));
+    border-color: rgb(var(--rk--color__gray));
+    color: white;
+}
+.asLink{}

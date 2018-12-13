@@ -1,0 +1,58 @@
+.root {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    padding: 25px;
+    margin: 0;
+    max-width: 426px;
+    background: #fff;
+    border: none;
+    transition: all .5s;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+}
+
+
+.rootClosed {
+    composes: root;
+    padding: 15px 10px;
+}
+
+.header {
+    padding-right: 30px;
+    margin: 0 0 15px;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: rgb(var(--rk--color__red));
+}
+
+.headerTitle {
+    font-weight: bold;
+}
+
+.header > button {
+    min-width: 20px;
+    padding: 0;
+    height: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+}
+
+.rootClosed .header > button {
+    top: 11px;
+    right: 13px;
+}
+
+@media (max-width: 560px) {
+    .root {
+        position: static;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .header > button {
+        display: none;
+    }
+ }

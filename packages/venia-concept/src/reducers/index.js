@@ -8,6 +8,7 @@ import directory from './directory';
 import user from './user';
 import checkoutReceipt from './checkoutReceipt';
 import purchaseHistory from './purchaseHistory';
+import store from './store';
 
 export default combineReducers({
     app,
@@ -17,5 +18,6 @@ export default combineReducers({
     directory,
     user,
     checkoutReceipt,
-    purchaseHistory
+    purchaseHistory,
+    store
 });

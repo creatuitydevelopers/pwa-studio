@@ -1,0 +1,44 @@
+.content {
+    padding: 0 10px 10px;
+}
+
+.content p {
+    margin: 15px 0;
+    padding: 0 10px;
+}
+
+.sticky {
+    background: white;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.buttonSticky {
+    display: block;
+    background: rgb(var(--rk--color__red));
+    border: 1px solid rgb(var(--rk--color__red));
+    border-radius: 2px;
+    color: white;
+    width: calc(50% - 5px);
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 25px;
+}
+
+.buttonSticky:hover {
+    background: rgb(var(--rk--color__red-alt));
+    border: 1px solid rgb(var(--rk--color__red-alt));
+}
+
+.detailsHeading {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgb(var(--venia-border));
+}
+
+.storeDetails {
+    margin-top: 10px;
+}

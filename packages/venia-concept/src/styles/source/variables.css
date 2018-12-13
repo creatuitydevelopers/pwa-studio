@@ -1,0 +1,31 @@
+
+html {
+    /*Venia global variables*/
+    --venia-border: 224, 224, 224;
+    --venia-font: korolev, -apple-system, BlinkMacSystemFont, sans-serif;
+    --venia-grey: 224, 224, 224;
+    --venia-grey-dark: 85, 98, 112;
+    --venia-teal: 169, 0, 0;
+    --venia-teal-alt: 118, 0, 0;
+    --venia-text: 85, 98, 112;
+    --venia-text-alt: 117, 117, 117;
+    --venia-text-hint: 158, 158, 158;
+    --venia-text-spot: 255, 99, 51;
+    --theme-green: 0, 170, 48;
+
+    /*RK global variables*/
+    --rk--color__green: 0, 170, 48;
+    --rk--color__gray: 85, 98, 112;
+    --rk--color__blue: 12, 78, 119;
+    --rk--color__red: 169, 0, 0;
+    --rk--color__red-alt: 118, 0, 0;
+    --rk--color__red-2: 198, 25, 61;
+    --rk--color__yellow: 255, 192, 55;
+    --rk--color__gray-1: 170, 177, 184;
+    --rk--color__gray-2: 204, 204, 204;
+    --rk--color__gray-3: 221, 224, 226;
+    --rk--color__gray-4: 230, 232, 234;
+    --rk--color__gray-5: 228, 232, 235;
+    --rk--color__gray-6: 243, 243, 243;
+    --rk--color__gray-7: 241, 245, 245;
+}

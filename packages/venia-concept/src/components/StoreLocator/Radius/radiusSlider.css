@@ -1,0 +1,110 @@
+
+.root {
+    position: relative;
+    --track-color: var(--venia-grey);
+    --thumb-color: var(--rk--color__red);
+}
+
+.root input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+.root input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: -6px;
+}
+
+.root input[type=range]:focus {
+    outline: none;
+}
+
+.root input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+
+    /* Hides the slider so custom styles can be added */
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+.root input[type=range]::-webkit-slider-thumb {
+    height: 20px;
+    width: 8px;
+    border-radius: 3px;
+    background: rgb(var(--thumb-color));
+    cursor: pointer;
+}
+
+/* All the same stuff for Firefox */
+.root input[type=range]::-moz-range-thumb {
+    height: 20px;
+    width: 8px;
+    border-radius: 3px;
+    background: rgb(var(--thumb-color));
+    cursor: pointer;
+}
+
+/* All the same stuff for IE */
+.root input[type=range]::-ms-thumb {
+    height: 20px;
+    width: 8px;
+    border-radius: 3px;
+    background: rgb(var(--thumb-color));
+    cursor: pointer;
+}
+
+.root input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: rgb(var(--track-color));
+    border-radius: 3px;
+}
+
+.root input[type=range]:focus::-webkit-slider-runnable-track {
+    background: rgb(var(--track-color));
+}
+
+.root input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: rgb(var(--track-color));
+    border-radius: 3px;
+}
+
+.root input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+
+.root input[type=range]::-ms-fill-lower {
+    background: rgb(var(--track-color));
+    border-radius: 3px;
+}
+
+.root input[type=range]:focus::-ms-fill-lower {
+    background: rgb(var(--track-color));
+}
+
+.root input[type=range]::-ms-fill-upper {
+    background: rgb(var(--track-color));
+    border-radius: 3px;
+}
+
+.root input[type=range]:focus::-ms-fill-upper {
+    background: rgb(var(--track-color));
+}
+
+.label {
+    margin-top: 5px;
+    display: inline-block;
+}

@@ -97,7 +97,7 @@ module.exports = async function(env) {
                     ]
                 },
                 {
-                    test: /\.(jpg|svg)$/,
+                    test: /\.(jpg|png|svg)$/,
                     use: [
                         {
                             loader: 'file-loader',
@@ -116,6 +116,9 @@ module.exports = async function(env) {
             await makeMagentoRootComponentsPlugin({
                 rootComponentsDirs,
                 context: __dirname
+            }),
+            new webpack.DefinePlugin({
+                "GOOGLE_MAPS_API_KEY": JSON.stringify(validEnv.GOOGLE_MAPS_API_KEY)
             }),
             new webpack.DefinePlugin({
                 'process.env': {

@@ -1,0 +1,23 @@
+.root {
+    composes: root from '../../Button/button.css';
+    background: rgb(var(--rk--color__green));
+    color: white;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+}
+
+.content svg {
+    margin-right: 3px;
+    font-size: 20px;
+}
+
+.small {
+    composes: small from '../../Button/button.css';
+}
+
+.big {
+    composes: big from '../../Button/button.css';
+}

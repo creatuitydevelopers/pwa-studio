@@ -1,0 +1,66 @@
+.root {
+    position: relative;
+    background: #fff;
+}
+
+.root.rootStoreLocator > div:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.root.rootStoreLocator > .actions > *:not(:last-child) {
+    margin-right: 10px;
+}
+
+.root.rootStoreWidget {
+    padding: 10px;
+}
+
+
+
+
+.root.rootDeliveryMethods {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.root.rootDeliveryMethods > * {
+    width: 33.333%;
+}
+
+
+.root.rootDeliveryMethods > *:not(:last-child) {
+    padding: 0 10px 0 0;
+}
+
+.root.rootDeliveryMethods > *:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 640px) {
+    .root.rootStoreLocator > *:last-child {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .root.rootStoreLocator > .actions > *:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .root.rootDeliveryMethods {
+        flex-direction: column;
+    }
+
+    .root.rootDeliveryMethods > * {
+        width: 100%;
+    }
+
+    .root.rootDeliveryMethods > *:not(:last-child) {
+        margin-bottom: 10px;
+        padding: 0;
+    }
+}
+
