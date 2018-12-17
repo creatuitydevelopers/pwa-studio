@@ -131,8 +131,10 @@ class SearchForm extends React.Component {
 
         return (
             <div className={rootClassName.join(' ')}>
-                <Autocomplete handleSelect={this.handlePlaceSelect} handleChange={this.handlePlaceChange}
-                              value={this.state.searchText}/>
+                <Autocomplete handleSelect={this.handlePlaceSelect}
+                              handleChange={this.handlePlaceChange}
+                              value={this.state.searchText}
+                              suggestionDisplayMode={destination === STOREWIDGET_DEST ? `above`: `below`}/>
                 {!!showRange && this.rangeContent}
                 {destination !== STOREWIDGET_DEST &&
                     <div className={classes.actions}>

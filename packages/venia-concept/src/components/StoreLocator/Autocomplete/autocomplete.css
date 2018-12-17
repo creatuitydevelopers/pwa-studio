@@ -17,6 +17,9 @@
     border: 1px solid #ccc;
 }
 
+.autocompleteDropdownContainerOpen.below{
+}
+
 .autocompleteDropdownContainerClosed{
 
 }

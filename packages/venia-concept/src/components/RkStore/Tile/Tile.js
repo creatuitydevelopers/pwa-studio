@@ -2,6 +2,7 @@ import React from 'react';
 import classify from 'src/classify';
 import defaultClasses from './tile.css';
 import { Title, Info, ChooseStoreButton, StoreDetailsButton } from 'src/components/RkStore';
+import {Link} from "react-router-dom";
 
 const Tile = (props) => {
     const { 
@@ -22,10 +23,10 @@ const Tile = (props) => {
 
     return (
         <div className={classNames.join(' ')}>
-            <div className={classes.title}>
+            <Link to={`/storelocator/${store.rewrite_request_path}`} className={classes.title}>
                 {displayNumber && <span className={classes.storeNumber}>{store.store_number}</span>}
                 <Title store={store} />
-            </div>
+            </Link>
             <div className={classes.photo}>
                 <img src={store.baseimage} />
             </div>
