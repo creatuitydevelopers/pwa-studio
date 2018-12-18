@@ -6,9 +6,11 @@ import classify from 'src/classify';
 import defaultClasses from './mapContainer.css';
 import markerIcon from 'src/components/StoreLocator/marker.png';
 import markerActiveIcon from 'src/components/StoreLocator/markerActive.png';
+import {Link} from "react-router-dom";
 
 const mapHeight = '600px';
 const metersInMile = 1609.34;
+
 
 class MapContainer extends React.Component {
 
@@ -69,11 +71,13 @@ class MapContainer extends React.Component {
 
         return selectedStore ? 
             <React.Fragment>
+                <a href={`/storelocator/${store.rewrite_request_path}`}>
                     <StoreTitle store={selectedStore} />
-                    <Info store={selectedStore} />
-                    <div id="storeButtons" className={classes.infoWindowButtons}>
-                        {this.StoreButtons}
-                    </div>
+                </a>
+                <Info store={selectedStore} />
+                <div id="storeButtons" className={classes.infoWindowButtons}>
+                    {this.StoreButtons}
+                </div>
             </React.Fragment>
             : <React.Fragment/>
     }
@@ -104,7 +108,7 @@ class MapContainer extends React.Component {
     }
 
     render() {
-        const {latitude, longitude, radiusLatitude, radiusLongitude, radius, address} = this.props;
+        const {classes, latitude, longitude, radiusLatitude, radiusLongitude, radius, address} = this.props;
         const { zoom } = this.props;
         const radiusMiles = radius * metersInMile;
         const position = { lat: radiusLatitude, lng: radiusLongitude };

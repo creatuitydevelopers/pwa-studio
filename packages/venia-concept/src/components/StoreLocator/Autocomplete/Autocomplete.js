@@ -17,7 +17,7 @@ const LocatorAutocomplete = (props) => {
     const searchOptions = {
         types: ['(regions)'],
         componentRestrictions: { country: "us" }
-    }
+    };
 
     return (
         <Autocomplete

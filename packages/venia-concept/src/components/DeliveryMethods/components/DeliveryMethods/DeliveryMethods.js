@@ -40,7 +40,7 @@ class DeliveryMethods extends Component {
         return (
             <section className={classes.root}>
                 <h2 className={classes.header}>
-                    <span>DeliveryMethods</span>
+                    <span>Delivery Methods</span>
                 </h2>
                 {!!currentStore
                     ? <DeliveryMethodsList

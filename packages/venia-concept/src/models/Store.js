@@ -12,7 +12,6 @@ export const isCurrentStore = (store, currentStore) => {
 }
 
 export const findStoresWithinRadius = ({stores, currentLocation, radius, radiusUnit = 'mi'}) => {
-    console.log(currentLocation, radius, radiusUnit);
 
     return stores.filter(store => {
         const distanceInMiles = geolib.convertUnit(radiusUnit, geolib.getDistance(

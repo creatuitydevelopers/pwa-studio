@@ -56,6 +56,7 @@ class StoreLocator extends React.Component {
             this.setState({...initialState});
             return;
         }
+
         geocodeByAddress(selected)
             .then(res => getLatLng(res[0]))
             .then(({ lat, lng }) => {
