@@ -8,6 +8,9 @@ import Button from 'src/components/Button';
 import Carousel from 'src/components/ProductImageCarousel';
 import Quantity from 'src/components/ProductQuantity';
 import RichText from 'src/components/RichText';
+import DeliveryMethods from 'src/components/DeliveryMethods';
+import {SingleRating} from "src/components/Review";
+
 import defaultClasses from './productFullDetail.css';
 
 const Options = React.lazy(() => import('../ProductOptions'));
@@ -59,7 +62,7 @@ class ProductFullDetail extends Component {
 
         // if this is a simple product, do nothing
         if (!Array.isArray(configurable_options)) {
-            return;
+            return {};
         }
 
         // otherwise, cache attribute codes to avoid lookup cost later
@@ -73,10 +76,17 @@ class ProductFullDetail extends Component {
     state = {
         optionCodes: new Map(),
         optionSelections: new Map(),
-        quantity: 1
+        quantity: 1,
+        deliveryMethodType: null,
+        deliveryMethodStore: null
     };
 
     setQuantity = quantity => this.setState({ quantity });
+
+    setDeliveryMethod = (type, store) => {
+        console.log(type, store);
+        this.setState({deliveryMethodType: type, deliveryMethodStore: store});
+    }
 
     addToCart = () => {
         const { props, state } = this;
@@ -91,7 +101,11 @@ class ProductFullDetail extends Component {
         const payload = {
             item: product,
             productType,
-            quantity
+            quantity,
+            delivery_method: {
+                type: state.deliveryMethodType,
+                store: state.deliveryMethodStore
+            }
         };
 
         if (productType === 'ConfigurableProduct') {
@@ -100,8 +114,13 @@ class ProductFullDetail extends Component {
                 option_value: value
             }));
 
+            console.log(optionSelections);
+            console.log(options);
+            console.log(variants);
+
             const item = variants.find(({ product: variant }) => {
                 for (const [id, value] of optionSelections) {
+
                     const code = optionCodes.get(id);
 
                     if (variant[code] !== value) {
@@ -111,6 +130,8 @@ class ProductFullDetail extends Component {
 
                 return true;
             });
+
+            console.log(item);
 
             Object.assign(payload, {
                 options,
@@ -171,11 +192,18 @@ class ProductFullDetail extends Component {
                             value={regularPrice.amount.value}
                         />
                     </p>
+                    <SingleRating item={product}/>
                 </section>
                 <section className={classes.imageCarousel}>
                     <Carousel images={product.media_gallery_entries} />
                 </section>
                 <section className={classes.options}>{productOptions}</section>
+                <DeliveryMethods
+                    product={product}
+                    defaultMethod={this.state.deliveryMethodType}
+                    selectedStore={this.state.deliveryMethodStore}
+                    onChange={this.setDeliveryMethod}
+                />
                 <section className={classes.quantity}>
                     <h2 className={classes.quantityTitle}>
                         <span>Quantity</span>

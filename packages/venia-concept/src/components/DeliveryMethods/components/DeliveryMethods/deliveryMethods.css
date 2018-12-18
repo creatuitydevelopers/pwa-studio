@@ -1,5 +1,6 @@
 .root {
     composes: section from '../../../ProductFullDetail/productFullDetail.css';
+    grid-area: deliveryMethod;
 }
 
 .header{

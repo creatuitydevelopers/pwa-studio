@@ -26,11 +26,18 @@ class DeliveryMethods extends Component {
     };
 
     async componentDidMount() {
-        const {default: methods} = await import('src/__mocks__/delivertMethods/methods');
-        this.setState({
-            methods,
-            isLoading: false
-        });
+        const {product} = this.props;
+        await fetch(`/rest/V1/delivery-method/product-delivery-methods/${product.id}`)
+            .then(response => {
+                return response.json()
+            })
+            .then(methods => {
+                console.log(methods);
+                this.setState({
+                    methods,
+                    isLoading: false
+                })
+            });
     };
 
     render() {
