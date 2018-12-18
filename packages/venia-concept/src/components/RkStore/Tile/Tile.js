@@ -28,7 +28,7 @@ const Tile = (props) => {
                 <Title store={store} />
             </Link>
             <div className={classes.photo}>
-                <img src={store.baseimage} />
+                {store.baseimage && <img src={`https://ruralking.com/media/${store.baseimage}`} />}
             </div>
             <Info store={store} className={classes.info} />
             <div className={classes.storeButtons}>

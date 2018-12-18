@@ -55,10 +55,11 @@ class Tree extends Component {
                     const leaves = children.map(node => {
                         const { children_count } = node;
                         const isLeaf = children_count == 0;
+
                         const elementProps = {
                             nodeId: node.id,
                             name: node.name,
-                            urlPath: node.url_path,
+                            urlPath: node.url_key,
                             path: node.path
                         };
 

@@ -16,10 +16,12 @@ export function makePathPrepender(prefix) {
     };
 }
 
-const mediaPath = '/media/catalog/';
+const mediaPath = 'https://ruralking.com/media/catalog/';
 
-export const makeProductMediaPath = makePathPrepender(mediaPath + '/product/');
+
+
+export const makeProductMediaPath = makePathPrepender(mediaPath + 'product/');
 
 export const makeCategoryMediaPath = makePathPrepender(
-    mediaPath + '/category/'
+    mediaPath + 'category/'
 );

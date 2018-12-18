@@ -46,6 +46,8 @@
 .photo img {
     max-width: 100%;
     grid-area: photo;
+    max-height: 135px;
+    float: right;
 }
 
 .storeNumber {

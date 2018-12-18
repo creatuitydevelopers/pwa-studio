@@ -45,8 +45,6 @@ const query = gql`
                     }
                     variants {
                         product {
-                            fashion_color
-                            fashion_size
                             id
                             media_gallery_entries {
                                 disabled

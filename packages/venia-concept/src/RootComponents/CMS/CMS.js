@@ -5,7 +5,8 @@ import StoreLocator from '../../components/StoreLocator/StoreLocator';
 
 export default class CMS extends Component {
     render() {
-        return  <StoreLocator />
+        return <p>Home Page</p>
+        // return  <StoreLocator />
         // return <CategoryList title="Shop by category" id={2} />;
     }
 }

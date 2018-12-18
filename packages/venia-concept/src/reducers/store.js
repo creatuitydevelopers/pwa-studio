@@ -33,17 +33,6 @@ const reducerMap = {
             currentStore: payload
         }
     },
-
-    [actions.getCurrentStore.receive]: (state, {payload, error}) => {
-        if (error) {
-            return state;
-        }
-
-        return {
-            ...state,
-            currentStore: payload
-        }
-    }
 };
 
 export default handleActions(reducerMap, initialState);

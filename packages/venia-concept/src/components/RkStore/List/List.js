@@ -7,7 +7,7 @@ import {compose} from "redux";
 
 const withNoData= (Component) => (props) =>
     !Array.isArray(props.stores) || !props.stores.length
-        ? <p className={props.classes.noItems}>No items found</p>
+        ? <p className={props.classes.noItems}>No stores found</p>
         : <Component {...props} />
 
 const StoreList = (props) => {
