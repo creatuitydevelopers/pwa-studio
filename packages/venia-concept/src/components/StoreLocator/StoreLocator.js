@@ -23,6 +23,7 @@ const initialState = {
     longitude: -83.9315079,
     selectedPlace: {},
     zoom: 5,
+    allStores: [],
     isGeocoding: false
 }
 
@@ -186,16 +187,15 @@ class StoreLocator extends React.Component {
 }
 
 const mapStateToProps = ({ store }) => {
-    const { currentStore, allStores } = store;
+    const { currentStore } = store;
     return {
-        currentStore,
-        allStores
+        currentStore
     };
 };
 
 const mapDispatchToProps = {
-    setCurrentStore,
-    getAllStores
+    getAllStores,
+    setCurrentStore
 };
 
 export default compose(

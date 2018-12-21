@@ -8,6 +8,7 @@ import Button from 'src/components/Button';
 import {StoresList, Title} from 'src/components/RkStore';
 import { SearchForm } from 'src/components/StoreLocator';
 import {Header, StoreDetails} from 'src/components/StoreWidget';
+import {Link} from 'react-router-dom';
 
 import { findStoresWithinRadius } from 'src/models/Store';
 import defaultClasses from './storeWidget.css';
@@ -141,7 +142,9 @@ class StoreWidget extends PureComponent {
         const { classes } = this.props;
         return (
             <div className={classes.actionBar}>
-                <Button type="button">View All</Button>
+                <Link to={`/\storelocator`}>
+                    <Button type="button">View All</Button>
+                </Link>
                 {this.state.isFindAnotherVisible && <Button type="button" disabled={!this.isUserLocationSet()} onClick={() => this.onSearchLocation()}>Search</Button>}
                 {!this.state.isFindAnotherVisible && <Button type="button" onClick={this.onFindAnother}>Find Another</Button>}
             </div>
