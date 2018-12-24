@@ -187,8 +187,9 @@ class StoreLocator extends React.Component {
 }
 
 const mapStateToProps = ({ store }) => {
-    const { currentStore } = store;
+    const { currentStore, allStores } = store;
     return {
+        allStores,
         currentStore
     };
 };

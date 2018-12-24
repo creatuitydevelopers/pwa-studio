@@ -23,7 +23,7 @@ const Tile = (props) => {
 
     return (
         <div className={classNames.join(' ')}>
-            <Link to={`/storelocator/${store.rewrite_request_path}`} className={classes.title}>
+            <Link to={`/${store.rewrite_request_path}`} className={classes.title}>
                 {displayNumber && <span className={classes.storeNumber}>{store.store_number}</span>}
                 <Title store={store} />
             </Link>

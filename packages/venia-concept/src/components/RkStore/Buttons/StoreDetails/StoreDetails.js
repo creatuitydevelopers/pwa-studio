@@ -15,9 +15,9 @@ const StoreDetailsButton = (props) => {
         :
         <Button type="button" genre="empty" size={size} {...rest}>
             { useStandardLink ?
-                <a href={`/storelocator/${store.rewrite_request_path}`}>{title}</a>
+                <a href={`/${store.rewrite_request_path}`}>{title}</a>
                 :
-                <Link to={`/storelocator/${store.rewrite_request_path}`}>{title}</Link>
+                <Link to={`/${store.rewrite_request_path}`}>{title}</Link>
             }
         </Button>
 }
