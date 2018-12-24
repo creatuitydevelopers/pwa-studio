@@ -15,7 +15,7 @@ const ChooseStore = (props) => {
         setCurrentStore(store);
         onSelectStore(store);
     }
-
+    
     return isCurrent ? <MyStoreBadge size={size} /> : <Button type="button" onClick={handleClick} size={size} {...rest}>{content}</Button>
 }
 

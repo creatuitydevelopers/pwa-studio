@@ -66,7 +66,7 @@ resource:
           model: product
           template: './templates/product-shell.mst'
     - matches: urlResolver.type
-      pattern: 'STORE_LOCATOR_DETAILS'
+      pattern: 'STORELOCATOR_DETAILS'
       use:
         inline:
           model: storelocator

@@ -1,7 +1,7 @@
 /**
  * @RootComponent
  * description = 'Store Locator Page'
- * pageTypes = STORE_LOCATOR_DETAILS
+ * pageTypes = STORELOCATOR_DETAILS
  */
 
 export { default } from './StoreDetails'; 

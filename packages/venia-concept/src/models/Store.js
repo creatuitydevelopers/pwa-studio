@@ -8,7 +8,7 @@ export const getScheduleForToday = ({schedule}) => {
 }
 
 export const isCurrentStore = (store, currentStore) => {
-    return store.storelocator_id === currentStore.storelocator_id;
+    return parseFloat(store.storelocator_id) === parseFloat(currentStore.storelocator_id);
 }
 
 export const findStoresWithinRadius = ({stores, currentLocation, radius, radiusUnit = 'mi'}) => {

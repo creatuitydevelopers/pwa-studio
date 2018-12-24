@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'src/components/Button';
 import { Link } from 'react-router-dom';
 import { shape, string, bool, any } from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 const defaultSize = null;
 
