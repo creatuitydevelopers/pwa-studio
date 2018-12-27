@@ -3,6 +3,10 @@
     margin: 0 auto;
 }
 
+.root h3 {
+    text-align: center;
+}
+
 .header {
     height: 350px;
     position: relative;

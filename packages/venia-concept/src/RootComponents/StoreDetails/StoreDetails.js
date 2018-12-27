@@ -19,6 +19,7 @@ const query = gql`
             store_manager
             state
             phone
+            email
             zipcode
             baseimage
             rewrite_request_path
