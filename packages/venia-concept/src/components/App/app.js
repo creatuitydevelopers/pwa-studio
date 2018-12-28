@@ -53,7 +53,7 @@ class App extends Component {
                     {renderRoutes()}
                 </Main>
                 <Mask isActive={overlay} dismiss={closeDrawer} />
-                <Navigation isOpen={navIsOpen} />
+                {/* <Navigation isOpen={navIsOpen} /> */}
                 <MiniCart isOpen={cartIsOpen} />
                 <StoreWidget isOpen={storeWidgetIsOpen} />
             </div>

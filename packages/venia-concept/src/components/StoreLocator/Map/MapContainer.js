@@ -39,7 +39,7 @@ class MapContainer extends React.Component {
         });
     }
 
-    onInfoWindowOpen() {
+    onInfoWindowOpen = () => {
         const buttons = this.StoreButtons;
         ReactDOM.render(React.Children.only(buttons), document.getElementById("storeButtons"));
     }
@@ -108,7 +108,7 @@ class MapContainer extends React.Component {
     }
 
     render() {
-        const {classes, latitude, longitude, radiusLatitude, radiusLongitude, radius, address} = this.props;
+        const {latitude, longitude, radiusLatitude, radiusLongitude, radius, address} = this.props;
         const { zoom } = this.props;
         const radiusMiles = radius * metersInMile;
         const position = { lat: radiusLatitude, lng: radiusLongitude };
