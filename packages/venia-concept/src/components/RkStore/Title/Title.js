@@ -3,12 +3,12 @@ import classify from 'src/classify';
 import defaultClasses from './title.css';
 import { shape, string, object } from 'prop-types';
 
-const Title = ({ classes, store, style = {}, tag = `h3`}) => {
+const Title = ({ classes, store, style = {}, tag = `h3`, ...rest}) => {
     const { city, state } = store;
 
     const title = React.createElement(
         tag,
-        { className: classes.root, style: style },
+        { className: classes.root, style: style, ...rest },
         city,
         ", ",
         state

@@ -9,7 +9,6 @@ import Button from 'src/components/Button';
 import {StoresList, Title} from 'src/components/RkStore';
 import { SearchForm } from 'src/components/StoreLocator';
 import {Header, StoreDetails} from 'src/components/StoreWidget';
-import {Link} from 'react-router-dom';
 
 import { findStoresWithinRadius } from 'src/models/Store';
 import defaultClasses from './storeWidget.css';
@@ -138,7 +137,7 @@ class StoreWidget extends PureComponent {
     }
 
     handleTitleClick = () => {
-        const { currentStore } = this.props
+        const { currentStore } = this.props;
         if (currentStore && this.state.isFindAnotherVisible) {
             return this.hideFindAnother();
         }
