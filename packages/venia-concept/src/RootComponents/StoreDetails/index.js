@@ -4,4 +4,4 @@
  * pageTypes = STORELOCATOR_DETAILS
  */
 
-export { default } from './StoreDetails'; 
+export { default } from './StoreDetails';

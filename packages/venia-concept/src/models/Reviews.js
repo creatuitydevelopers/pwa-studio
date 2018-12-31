@@ -3,13 +3,17 @@ export const getRatingsForProducts = (reviews, showAverage, placeholder) => {
         return [];
     }
 
-    return reviews.Results.map((results) => {
+    return reviews.Results.map(results => {
         return {
             productId: results.ProductStatistics.ProductId,
-            avgRating: results.ProductStatistics.NativeReviewStatistics.AverageOverallRating,
-            overallRating: results.ProductStatistics.NativeReviewStatistics.OverallRatingRange,
+            avgRating:
+                results.ProductStatistics.NativeReviewStatistics
+                    .AverageOverallRating,
+            overallRating:
+                results.ProductStatistics.NativeReviewStatistics
+                    .OverallRatingRange,
             showAverage: showAverage,
             placeHolder: placeholder
-        }
+        };
     });
 };

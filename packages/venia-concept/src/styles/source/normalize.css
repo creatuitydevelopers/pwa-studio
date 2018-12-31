@@ -4,7 +4,7 @@
 
 *:hover,
 *:active,
-*:focus{
+*:focus {
     outline: none;
 }
 
@@ -37,7 +37,7 @@ dt {
     margin: 0;
 }
 
-button{
+button {
     background: none;
     border: 0;
 }

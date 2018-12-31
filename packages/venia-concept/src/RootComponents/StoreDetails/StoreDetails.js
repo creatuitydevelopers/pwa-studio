@@ -8,7 +8,7 @@ import { DetailsPage } from 'src/components/RkStore';
 import getUrlKey from 'src/util/getUrlKey';
 
 const query = gql`
-    query storeLocator($urlKey: String){
+    query storeLocator($urlKey: String) {
         storeLocator(rewrite_request_path: $urlKey) {
             storelocator_id
             store_number
@@ -34,33 +34,29 @@ const query = gql`
 `;
 
 class StoreDetails extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             currentStore: props.currentStore
-        }
+        };
     }
 
     render() {
-        const {currentStore, setCurrentStore} = this.props;
+        const { currentStore, setCurrentStore } = this.props;
 
         return (
-            <Query
-                query={query}
-                variables={{ urlKey: getUrlKey() }}
-            >
+            <Query query={query} variables={{ urlKey: getUrlKey() }}>
                 {({ loading, error, data }) => {
                     if (error) return <div>Data Fetch Error</div>;
                     if (loading) return <div>Fetching Data</div>;
 
                     const store = data.storeLocator[0];
-                    
+
                     return (
-                        <DetailsPage 
+                        <DetailsPage
                             store={store}
-                            currentStore={currentStore} 
-                            setCurrentStore={setCurrentStore} 
+                            currentStore={currentStore}
+                            setCurrentStore={setCurrentStore}
                         />
                     );
                 }}

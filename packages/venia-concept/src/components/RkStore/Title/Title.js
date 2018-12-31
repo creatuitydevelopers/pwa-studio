@@ -3,19 +3,19 @@ import classify from 'src/classify';
 import defaultClasses from './title.css';
 import { shape, string, object } from 'prop-types';
 
-const Title = ({ classes, store, style = {}, tag = `h3`, ...rest}) => {
+const Title = ({ classes, store, style = {}, tag = `h3`, ...rest }) => {
     const { city, state } = store;
 
     const title = React.createElement(
         tag,
         { className: classes.root, style: style, ...rest },
         city,
-        ", ",
+        ', ',
         state
     );
 
     return title;
-}
+};
 
 Title.propTypes = {
     store: shape({
@@ -26,6 +26,6 @@ Title.propTypes = {
     classes: shape({
         root: string
     })
-}
+};
 
 export default classify(defaultClasses)(Title);

@@ -9,7 +9,7 @@ import defaultClasses from './storeLocator.css';
 import { MapContainer, Filters } from 'src/components/StoreLocator';
 import WindowDimensions from 'src/components/Utils/WindowDimensions';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { SearchPopup, SearchForm } from "src/components/StoreLocator";
+import { SearchPopup, SearchForm } from 'src/components/StoreLocator';
 
 export const mobileViewport = 560;
 const searchRadiusUnit = 'mi';
@@ -24,14 +24,13 @@ const initialState = {
     selectedPlace: {},
     zoom: 5,
     isGeocoding: false
-}
+};
 
 class StoreLocator extends React.Component {
-
     state = {
         allStores: this.props.allStores,
         ...initialState
-    }
+    };
 
     async componentDidMount() {
         !this.props.allStores ? await getAllStores() : null;
@@ -41,22 +40,22 @@ class StoreLocator extends React.Component {
         if (this.props.allStores && !this.state.allStores) {
             this.setState({
                 allStores: this.props.allStores
-            })
+            });
         }
     }
 
-    handleRadiusChange = (radius) => {
-        if(!!this.state.address) {
+    handleRadiusChange = radius => {
+        if (!!this.state.address) {
             this.setState({ radius });
         }
-    }
+    };
 
     handleDetailsClick = () => {
-        window.scrollTo(0,0);
-    }
+        window.scrollTo(0, 0);
+    };
 
     handlePlaceSelect = selected => {
-        if(!selected) {
+        if (!selected) {
             this.setState({
                 ...initialState
             });
@@ -79,29 +78,35 @@ class StoreLocator extends React.Component {
             .catch(error => {
                 this.setState({ isGeocoding: false });
             });
-    }
+    };
 
-    handleFilter = (stores) => {
+    handleFilter = stores => {
         this.setState({
             allStores: stores
-        })
-    }
+        });
+    };
 
     get Filters() {
         const { allStores } = this.state;
-        return !!allStores &&
-            <WindowDimensions>
-                {({ width }) => {
-                    if (width > mobileViewport) {
-                        return <Filters
-                            stores={this.props.allStores}
-                            filterList={`tags`}
-                            onFilter={this.handleFilter} />
-                    } else {
-                        return <React.Fragment />
-                    }
-                }}
-            </WindowDimensions>
+        return (
+            !!allStores && (
+                <WindowDimensions>
+                    {({ width }) => {
+                        if (width > mobileViewport) {
+                            return (
+                                <Filters
+                                    stores={this.props.allStores}
+                                    filterList={`tags`}
+                                    onFilter={this.handleFilter}
+                                />
+                            );
+                        } else {
+                            return <React.Fragment />;
+                        }
+                    }}
+                </WindowDimensions>
+            )
+        );
     }
 
     get StoresList() {
@@ -114,66 +119,94 @@ class StoreLocator extends React.Component {
             return <h1> ... Loading stores .... </h1>;
         }
 
-        if (!address || (!this.state.radiusLatitude || !this.state.radiusLongitude)) {
+        if (
+            !address ||
+            (!this.state.radiusLatitude || !this.state.radiusLongitude)
+        ) {
             stores = allStores;
         } else {
             stores = findStoresWithinRadius({
                 stores: allStores,
-                currentLocation: { latitude: this.state.radiusLatitude, longitude: this.state.radiusLongitude },
+                currentLocation: {
+                    latitude: this.state.radiusLatitude,
+                    longitude: this.state.radiusLongitude
+                },
                 radius: this.state.radius,
                 radiusUnit: searchRadiusUnit
             });
         }
 
-        return <StoresList
-            stores={stores}
-            onDetailsClick={this.handleDetailsClick}
-            currentStore={currentStore}
-            setCurrentStore={setCurrentStore}
-            displayNumber={true}
-            direction={`row`} />
+        return (
+            <StoresList
+                stores={stores}
+                onDetailsClick={this.handleDetailsClick}
+                currentStore={currentStore}
+                setCurrentStore={setCurrentStore}
+                displayNumber={true}
+                direction={`row`}
+            />
+        );
     }
 
     get Map() {
-        const { allStores, radius,radiusLatitude ,radiusLongitude, latitude, longitude, selectedPlace, address,zoom } = this.state;
+        const {
+            allStores,
+            radius,
+            radiusLatitude,
+            radiusLongitude,
+            latitude,
+            longitude,
+            selectedPlace,
+            address,
+            zoom
+        } = this.state;
         const { currentStore, setCurrentStore } = this.props;
-    
-        return allStores ?
+
+        return allStores ? (
             <WindowDimensions>
                 {({ width }) => {
                     if (width > mobileViewport) {
-                        return <MapContainer
-                            allStores={allStores}
-                            currentStore={currentStore}
-                            setCurrentStore={setCurrentStore}
-                            radius={radius}
-                            latitude={latitude}
-                            longitude={longitude}
-                            address={address}
-                            zoom={zoom}
-                            selectedPlace={selectedPlace}
-                            radiusLatitude={radiusLatitude}
-                            radiusLongitude={radiusLongitude}
-                        />
+                        return (
+                            <MapContainer
+                                allStores={allStores}
+                                currentStore={currentStore}
+                                setCurrentStore={setCurrentStore}
+                                radius={radius}
+                                latitude={latitude}
+                                longitude={longitude}
+                                address={address}
+                                zoom={zoom}
+                                selectedPlace={selectedPlace}
+                                radiusLatitude={radiusLatitude}
+                                radiusLongitude={radiusLongitude}
+                            />
+                        );
                     } else {
-                        return <React.Fragment />
+                        return <React.Fragment />;
                     }
                 }}
             </WindowDimensions>
-            :
+        ) : (
             <React.Fragment />
+        );
     }
 
     render() {
-        const { Map, StoresList, Filters, handleRadiusChange,handlePlaceSelect, state, props } = this;
+        const {
+            Map,
+            StoresList,
+            Filters,
+            handleRadiusChange,
+            handlePlaceSelect,
+            state,
+            props
+        } = this;
         const { classes } = props;
-        const {radius} = state;
+        const { radius } = state;
 
         return (
             <div className={classes.root}>
-                <div className={classes.mapContainer}>
-                    {Map}
-                </div>
+                <div className={classes.mapContainer}>{Map}</div>
                 <SearchPopup>
                     <SearchForm
                         radius={radius}
@@ -181,14 +214,10 @@ class StoreLocator extends React.Component {
                         handlePlaceSelect={handlePlaceSelect}
                     />
                 </SearchPopup>
-                <div className={classes.filters}>
-                    {Filters}
-                </div>
-                <div className={classes.storeListContainer}>
-                    {StoresList}
-                </div>
+                <div className={classes.filters}>{Filters}</div>
+                <div className={classes.storeListContainer}>{StoresList}</div>
             </div>
-        )
+        );
     }
 }
 

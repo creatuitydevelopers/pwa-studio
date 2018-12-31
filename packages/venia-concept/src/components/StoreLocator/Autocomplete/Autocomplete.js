@@ -9,14 +9,18 @@ const inputPlaceholder = 'Enter ZIP or City ...';
 const DISPLAY_MODE_ABOVE = 'above';
 const DISPLAY_MODE_BELOW = 'below';
 
-
-const LocatorAutocomplete = (props) => {
-
-    const { classes, handleSelect, handleChange, value, suggestionDisplayMode } = props;
+const LocatorAutocomplete = props => {
+    const {
+        classes,
+        handleSelect,
+        handleChange,
+        value,
+        suggestionDisplayMode
+    } = props;
 
     const searchOptions = {
         types: ['(regions)'],
-        componentRestrictions: { country: "us" }
+        componentRestrictions: { country: 'us' }
     };
 
     return (
@@ -26,16 +30,27 @@ const LocatorAutocomplete = (props) => {
             onSelect={handleSelect}
             searchOptions={searchOptions}
         >
-            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+            {({
+                getInputProps,
+                suggestions,
+                getSuggestionItemProps,
+                loading
+            }) => (
                 <div className={classes.actionBar}>
                     <input
                         autoFocus={true}
                         {...getInputProps({
                             placeholder: inputPlaceholder,
-                            className: classes.locationSearchInput,
+                            className: classes.locationSearchInput
                         })}
                     />
-                    <div className={`${classes[suggestionDisplayMode]} ${suggestions.length > 0 || !!loading ? classes.autocompleteDropdownContainerOpen : classes.autocompleteDropdownContainerClosed}`}>
+                    <div
+                        className={`${classes[suggestionDisplayMode]} ${
+                            suggestions.length > 0 || !!loading
+                                ? classes.autocompleteDropdownContainerOpen
+                                : classes.autocompleteDropdownContainerClosed
+                        }`}
+                    >
                         {suggestions.map(suggestion => {
                             const className = suggestion.active
                                 ? classes.suggestionItemActive
@@ -47,7 +62,9 @@ const LocatorAutocomplete = (props) => {
                                         className
                                     })}
                                 >
-                                    <IoIosPin className={classes.locationIcon} />
+                                    <IoIosPin
+                                        className={classes.locationIcon}
+                                    />
                                     <span>{suggestion.description}</span>
                                 </div>
                             );
@@ -56,8 +73,8 @@ const LocatorAutocomplete = (props) => {
                 </div>
             )}
         </Autocomplete>
-    )
-}
+    );
+};
 
 LocatorAutocomplete.propTypes = {
     classes: shape({
@@ -71,13 +88,11 @@ LocatorAutocomplete.propTypes = {
     value: string,
     handleSelect: func,
     handleChange: func,
-    suggestionDisplayMode: oneOf([
-        DISPLAY_MODE_BELOW, DISPLAY_MODE_ABOVE
-    ])
-}
+    suggestionDisplayMode: oneOf([DISPLAY_MODE_BELOW, DISPLAY_MODE_ABOVE])
+};
 
 LocatorAutocomplete.defaultProps = {
     suggestionDisplayMode: DISPLAY_MODE_BELOW
 };
 
-export default classify(defaultClasses)(LocatorAutocomplete)
+export default classify(defaultClasses)(LocatorAutocomplete);

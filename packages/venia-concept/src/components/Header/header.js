@@ -9,7 +9,7 @@ import NavTrigger from './navTrigger';
 import StoreWidgetTrigger from './storeWidgetTrigger';
 import defaultClasses from './header.css';
 import logo from './logo.png';
-import {StoreWidgetHeaderLabel} from "src/components/StoreWidget";
+import { StoreWidgetHeaderLabel } from 'src/components/StoreWidget';
 
 import SearchTrigger from './searchTrigger';
 const SearchBar = React.lazy(() => import('src/components/SearchBar'));

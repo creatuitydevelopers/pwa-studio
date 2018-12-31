@@ -23,7 +23,7 @@ const reducerMap = {
         };
     },
 
-    [actions.setCurrentStore.receive]: (state, {payload, error}) => {
+    [actions.setCurrentStore.receive]: (state, { payload, error }) => {
         if (error) {
             return state;
         }
@@ -31,10 +31,8 @@ const reducerMap = {
         return {
             ...state,
             currentStore: payload
-        }
-    },
+        };
+    }
 };
 
 export default handleActions(reducerMap, initialState);
-
-

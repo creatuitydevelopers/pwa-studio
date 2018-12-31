@@ -7,7 +7,6 @@ import classify from 'src/classify';
 import { toggleDrawer } from 'src/actions/app';
 import defaultClasses from './storeWidgetTrigger.css';
 
-
 class Trigger extends Component {
     static propTypes = {
         children: PropTypes.node,

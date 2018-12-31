@@ -8,6 +8,6 @@
     text-transform: uppercase;
 }
 
-.title > *{
+.title > * {
     cursor: pointer;
 }

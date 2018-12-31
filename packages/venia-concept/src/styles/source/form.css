@@ -1,14 +1,13 @@
-
 /* Form inputs*/
-input[type="text"],
-input[type="password"],
-input[type="url"],
-input[type="tel"],
-input[type="search"],
-input[type="number"],
-input[type="datetime"],
-input[type="email"],
-input[type="text"],
+input[type='text'],
+input[type='password'],
+input[type='url'],
+input[type='tel'],
+input[type='search'],
+input[type='number'],
+input[type='datetime'],
+input[type='email'],
+input[type='text'],
 textarea,
 select {
     align-items: center;
@@ -25,35 +24,34 @@ select {
     color: rgb(var(--venia-grey-dark));
 }
 
-input[type="text"]:not([disabled]):focus,
-input[type="password"]:not([disabled]):focus,
-input[type="url"]:not([disabled]):focus,
-input[type="tel"]:not([disabled]):focus,
-input[type="search"]:not([disabled]):focus,
-input[type="number"]:not([disabled]):focus,
-input[type="datetime"]:not([disabled]):focus,
-input[type="email"]:not([disabled]):focus,
-input[type="text"]:not([disabled]):focus,
+input[type='text']:not([disabled]):focus,
+input[type='password']:not([disabled]):focus,
+input[type='url']:not([disabled]):focus,
+input[type='tel']:not([disabled]):focus,
+input[type='search']:not([disabled]):focus,
+input[type='number']:not([disabled]):focus,
+input[type='datetime']:not([disabled]):focus,
+input[type='email']:not([disabled]):focus,
+input[type='text']:not([disabled]):focus,
 textarea:not([disabled]):focus,
-select:not([disabled]):focus{
+select:not([disabled]):focus {
     box-shadow: 0 0 5px rgb(var(--venia-grey-dark));
-    outline:none;
+    outline: none;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="url"],
-input[type="tel"],
-input[type="search"],
-input[type="number"],
-input[type="datetime"],
-input[type="email"],
+input[type='text'],
+input[type='password'],
+input[type='url'],
+input[type='tel'],
+input[type='search'],
+input[type='number'],
+input[type='datetime'],
+input[type='email'],
 select {
     height: 42px;
-
 }
 
-input[type="file"]{
+input[type='file'] {
     width: 100%;
 }
 

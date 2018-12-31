@@ -1,2 +1,1 @@
-export { default as StoreDetails} from './StoreDetails';
-
+export { default as StoreDetails } from './StoreDetails';

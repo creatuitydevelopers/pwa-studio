@@ -5,10 +5,8 @@ const mapStateToProps = ({ store }) => {
     const { currentStore } = store;
 
     return {
-        currentStore,
+        currentStore
     };
 };
 
-export default connect(
-    mapStateToProps,
-)(DeliveryMethods);
+export default connect(mapStateToProps)(DeliveryMethods);

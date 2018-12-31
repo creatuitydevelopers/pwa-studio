@@ -118,7 +118,9 @@ module.exports = async function(env) {
                 context: __dirname
             }),
             new webpack.DefinePlugin({
-                "GOOGLE_MAPS_API_KEY": JSON.stringify(validEnv.GOOGLE_MAPS_API_KEY)
+                GOOGLE_MAPS_API_KEY: JSON.stringify(
+                    validEnv.GOOGLE_MAPS_API_KEY
+                )
             }),
             new webpack.DefinePlugin({
                 'process.env': {

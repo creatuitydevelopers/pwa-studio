@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { compose } from 'redux';
 
 import DefaultOption from 'src/components/DeliveryMethods/components/DefaultOption';
@@ -8,20 +8,28 @@ import PlaceholderOption from 'src/components/DeliveryMethods/components/Placeho
 
 const emptyData = Array.from({ length: 2 }).fill(null);
 
-const withLoading = (Component) => (props) =>
-    !!props.isLoading
-        ? <Component {...props} methods={emptyData}/>
-        : <Component {...props}/>
+const withLoading = Component => props =>
+    !!props.isLoading ? (
+        <Component {...props} methods={emptyData} />
+    ) : (
+        <Component {...props} />
+    );
 
-const withNoData= (Component) => (props) =>
-    !Array.isArray(props.methods) || !props.methods.length
-        ? <div>
+const withNoData = Component => props =>
+    !Array.isArray(props.methods) || !props.methods.length ? (
+        <div>
             <p>No delivery methods found</p>
         </div>
-        :  <Component {...props}/>
+    ) : (
+        <Component {...props} />
+    );
 
-function DeliveryMethodsList({defaultMethod, selectedStore, onChange, methods}) {
-
+function DeliveryMethodsList({
+    defaultMethod,
+    selectedStore,
+    onChange,
+    methods
+}) {
     const optionsMap = {
         default: DefaultOption,
         sts: StsOption,
@@ -31,20 +39,30 @@ function DeliveryMethodsList({defaultMethod, selectedStore, onChange, methods}) 
     return (
         <ul>
             {methods.map((method, index) => {
-                    if (!method || !method.type || !optionsMap[method.type]) {
-                        return <PlaceholderOption key={index}/>;
-                    }
-                    const OptionTagName = optionsMap[method.type];
-
-                    return <OptionTagName key={index}
-                                          isChecked={defaultMethod ? defaultMethod == method.type : !index}
-                                          methodInfo={method.data}
-                                          selectedStore={selectedStore}
-                                          onChange={onChange}/>
+                if (!method || !method.type || !optionsMap[method.type]) {
+                    return <PlaceholderOption key={index} />;
                 }
-            )}
+                const OptionTagName = optionsMap[method.type];
+
+                return (
+                    <OptionTagName
+                        key={index}
+                        isChecked={
+                            defaultMethod
+                                ? defaultMethod == method.type
+                                : !index
+                        }
+                        methodInfo={method.data}
+                        selectedStore={selectedStore}
+                        onChange={onChange}
+                    />
+                );
+            })}
         </ul>
-    )
+    );
 }
 
-export default compose(withLoading, withNoData)(DeliveryMethodsList);
+export default compose(
+    withLoading,
+    withNoData
+)(DeliveryMethodsList);

@@ -1,27 +1,27 @@
-.root{
+.root {
     display: block;
     padding: 25px 15px 25px 65px;
     margin-bottom: 10px;
     background-color: rgb(var(--rk--color__gray-7));
 }
 
-.label{
+.label {
     position: relative;
     display: block;
     margin-bottom: 5px;
     cursor: pointer;
 }
 
-.radioInput{
+.radioInput {
     position: absolute;
     margin: -1px;
     width: 0;
     height: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
 }
 
-.title{
+.title {
     position: relative;
     padding-left: 30px;
     display: inline-block;
@@ -31,8 +31,8 @@
     color: rgb(var(--rk--color__gray));
 }
 
-.title:before{
-    content: "";
+.title:before {
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
@@ -43,11 +43,11 @@
     box-sizing: border-box;
 }
 
-.title:after{
-    content:""
+.title:after {
+    content: '';
 }
 
-.radioInput:checked + .title:after{
+.radioInput:checked + .title:after {
     position: absolute;
     top: 5px;
     left: 5px;
@@ -57,7 +57,7 @@
     border-radius: 50%;
 }
 
-.badge{
+.badge {
     position: relative;
     top: -1px;
     padding: 4px 22px;
@@ -69,24 +69,23 @@
     background: rgb(var(--rk--color__blue));
 }
 
-.details{
+.details {
     padding-left: 30px;
     font-size: 18px;
     line-height: 25px;
     color: rgb(var(--rk--color__gray));
-
 }
 
-.alertMessage{
+.alertMessage {
     color: rgb(var(--rk--color__red));
 }
 
-.positiveMessage{
+.positiveMessage {
     color: rgb(var(--rk--color__green));
 }
 
 @media (max-width: 640px) {
-    .root{
+    .root {
         padding: 25px 25px;
     }
 }

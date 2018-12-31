@@ -1,26 +1,25 @@
-
 .root {
     position: relative;
     --track-color: var(--venia-grey);
     --thumb-color: var(--rk--color__red);
 }
 
-.root input[type=range] {
+.root input[type='range'] {
     -webkit-appearance: none;
     width: 100%;
     background: transparent;
 }
 
-.root input[type=range]::-webkit-slider-thumb {
+.root input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     margin-top: -6px;
 }
 
-.root input[type=range]:focus {
+.root input[type='range']:focus {
     outline: none;
 }
 
-.root input[type=range]::-ms-track {
+.root input[type='range']::-ms-track {
     width: 100%;
     cursor: pointer;
 
@@ -30,7 +29,7 @@
     color: transparent;
 }
 
-.root input[type=range]::-webkit-slider-thumb {
+.root input[type='range']::-webkit-slider-thumb {
     height: 20px;
     width: 8px;
     border-radius: 3px;
@@ -39,7 +38,7 @@
 }
 
 /* All the same stuff for Firefox */
-.root input[type=range]::-moz-range-thumb {
+.root input[type='range']::-moz-range-thumb {
     height: 20px;
     width: 8px;
     border-radius: 3px;
@@ -48,7 +47,7 @@
 }
 
 /* All the same stuff for IE */
-.root input[type=range]::-ms-thumb {
+.root input[type='range']::-ms-thumb {
     height: 20px;
     width: 8px;
     border-radius: 3px;
@@ -56,7 +55,7 @@
     cursor: pointer;
 }
 
-.root input[type=range]::-webkit-slider-runnable-track {
+.root input[type='range']::-webkit-slider-runnable-track {
     width: 100%;
     height: 8.4px;
     cursor: pointer;
@@ -64,11 +63,11 @@
     border-radius: 3px;
 }
 
-.root input[type=range]:focus::-webkit-slider-runnable-track {
+.root input[type='range']:focus::-webkit-slider-runnable-track {
     background: rgb(var(--track-color));
 }
 
-.root input[type=range]::-moz-range-track {
+.root input[type='range']::-moz-range-track {
     width: 100%;
     height: 8.4px;
     cursor: pointer;
@@ -76,7 +75,7 @@
     border-radius: 3px;
 }
 
-.root input[type=range]::-ms-track {
+.root input[type='range']::-ms-track {
     width: 100%;
     height: 8.4px;
     cursor: pointer;
@@ -86,21 +85,21 @@
     color: transparent;
 }
 
-.root input[type=range]::-ms-fill-lower {
+.root input[type='range']::-ms-fill-lower {
     background: rgb(var(--track-color));
     border-radius: 3px;
 }
 
-.root input[type=range]:focus::-ms-fill-lower {
+.root input[type='range']:focus::-ms-fill-lower {
     background: rgb(var(--track-color));
 }
 
-.root input[type=range]::-ms-fill-upper {
+.root input[type='range']::-ms-fill-upper {
     background: rgb(var(--track-color));
     border-radius: 3px;
 }
 
-.root input[type=range]:focus::-ms-fill-upper {
+.root input[type='range']:focus::-ms-fill-upper {
     background: rgb(var(--track-color));
 }
 
