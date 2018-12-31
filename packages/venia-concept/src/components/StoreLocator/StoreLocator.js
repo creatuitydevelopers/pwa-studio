@@ -23,15 +23,14 @@ const initialState = {
     longitude: -83.9315079,
     selectedPlace: {},
     zoom: 5,
-    allStores: [],
     isGeocoding: false
 }
 
 class StoreLocator extends React.Component {
 
     state = {
-        ...initialState,
-        allStores: this.props.allStores
+        allStores: this.props.allStores,
+        ...initialState
     }
 
     async componentDidMount() {
@@ -52,9 +51,15 @@ class StoreLocator extends React.Component {
         }
     }
 
+    handleDetailsClick = () => {
+        window.scrollTo(0,0);
+    }
+
     handlePlaceSelect = selected => {
         if(!selected) {
-            this.setState({...initialState});
+            this.setState({
+                ...initialState
+            });
             return;
         }
 
@@ -122,6 +127,7 @@ class StoreLocator extends React.Component {
 
         return <StoresList
             stores={stores}
+            onDetailsClick={this.handleDetailsClick}
             currentStore={currentStore}
             setCurrentStore={setCurrentStore}
             displayNumber={true}

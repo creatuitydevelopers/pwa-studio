@@ -19,6 +19,7 @@ const StoreList = (props) => {
         onSelectStore,
         setCurrentStore,
         direction,
+        onDetailsClick,
         ...rest
     } = props;
 
@@ -33,6 +34,7 @@ const StoreList = (props) => {
                 stores.map((singleStore) =>
                     <Tile
                         key={singleStore.storelocator_id}
+                        onDetailsClick={onDetailsClick}
                         onSelectStore={onSelectStore}
                         displayNumber={displayNumber}
                         currentStore={currentStore}

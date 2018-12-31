@@ -12,7 +12,8 @@ const Tile = (props) => {
         currentStore, 
         onSelectStore, 
         displayNumber,
-        direction
+        direction,
+        onDetailsClick
     } = props;
 
     let classNames = [classes.root];
@@ -32,7 +33,7 @@ const Tile = (props) => {
             </div>
             <Info store={store} className={classes.info} />
             <div className={classes.storeButtons}>
-                <StoreDetailsButton store={store} size={`small`} />
+                <StoreDetailsButton store={store} size={`small`} onClick={onDetailsClick} />
                 <ChooseStoreButton store={store} currentStore={currentStore} setCurrentStore={setCurrentStore} onSelectStore={onSelectStore}  size={`small`} />
             </div>
         </div>

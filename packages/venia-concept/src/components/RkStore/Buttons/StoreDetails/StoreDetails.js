@@ -7,20 +7,19 @@ import { withRouter } from 'react-router-dom';
 const defaultSize = null;
 
 const StoreDetailsButton = (props) => {
-    const { store, title, children, size, useStandardLink,  ...rest } = props;
+    const { store, title, children,history,  size, useStandardLink, onClick = function(){} } = props;
+
+    const handleClick = () => {
+        history.push(`\/${store.rewrite_request_path}`);
+        onClick();
+    }
     
-    return children ? 
-        <Button type="button" genre="empty" size={size} {...rest}>
-            {children}
-        </Button>
-        :
-        <Button type="button" genre="empty" size={size} {...rest}>
-            { useStandardLink ?
-                <a href={`/${store.rewrite_request_path}`}>{title}</a>
-                :
-                <Link to={`/${store.rewrite_request_path}`}>{title}</Link>
-            }
-        </Button>
+    return (
+        <Button type="button" genre="empty" size={size} onClick={handleClick}>
+            {title}
+        </Button> 
+    )
+        
 }
 
 StoreDetailsButton.propTypes = {
@@ -36,4 +35,4 @@ StoreDetailsButton.defaultProps = {
     size: defaultSize
 }
 
-export default StoreDetailsButton;
+export default withRouter(StoreDetailsButton);

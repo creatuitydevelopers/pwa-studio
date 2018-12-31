@@ -145,7 +145,7 @@ class StoreWidget extends PureComponent {
 
     get content() {
         const { props, state } = this;
-        const { currentStore, classes, setCurrentStore } = props;
+        const { currentStore, classes, setCurrentStore, closeDrawer } = props;
         const showDetails = currentStore && !this.state.isFindAnotherVisible;
         const showList = state.isFindAnotherVisible && !state.showNoStoresFound;
 
@@ -155,6 +155,7 @@ class StoreWidget extends PureComponent {
                 {showDetails && <StoreDetails details={currentStore} />}
                 {showList && <StoresList 
                                 onSelectStore={this.onSelectStore} 
+                                onDetailsClick={closeDrawer}
                                 setCurrentStore={setCurrentStore} 
                                 displayNumber={false} 
                                 currentStore={currentStore} 

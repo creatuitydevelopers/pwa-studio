@@ -2,3 +2,10 @@
     display: flex;
     flex-direction: column;
 }
+
+.storeDetailsButton {
+    composes: root from '../../Button/button.css';
+    composes: empty from '../../Button/button.css';
+    composes: small from '../../Button/button.css';
+    margin-bottom: 5px;
+}

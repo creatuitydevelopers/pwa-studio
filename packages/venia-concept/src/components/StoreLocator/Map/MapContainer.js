@@ -6,7 +6,6 @@ import classify from 'src/classify';
 import defaultClasses from './mapContainer.css';
 import markerIcon from 'src/components/StoreLocator/marker.png';
 import markerActiveIcon from 'src/components/StoreLocator/markerActive.png';
-import {Link} from "react-router-dom";
 
 const mapHeight = '600px';
 const metersInMile = 1609.34;
@@ -46,15 +45,11 @@ class MapContainer extends React.Component {
 
     get StoreButtons() {
         const selectedStore = this.state.selectedPlace.store;
-        const { setCurrentStore, currentStore } = this.props;
+        const { setCurrentStore, currentStore, classes } = this.props;
 
         return (
             <React.Fragment>
-                <StoreDetailsButton
-                    store={selectedStore}
-                    size={`small`}
-                    useStandardLink={true}
-                    style={{ marginBottom: '5px' }} />
+                <a className={classes.storeDetailsButton} href={`\/${selectedStore.rewrite_request_path}`}>Store Details</a>
                 <ChooseStoreButton
                     store={selectedStore}
                     currentStore={currentStore}

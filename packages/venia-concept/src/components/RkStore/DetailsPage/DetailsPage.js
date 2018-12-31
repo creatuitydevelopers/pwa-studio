@@ -94,8 +94,6 @@ const DetailsPage = (props) => {
             </div>
         </div>
     )
-
-    
 }
 
 export default classify(defaultClasses)(DetailsPage);

@@ -8,6 +8,14 @@
     grid-row-gap: 0.5rem;
 }
 
+.open {
+    composes: root;
+}
+
+.closed {
+    composes: root;
+}
+
 .toolbar {
     align-content: center;
     align-items: center;
@@ -21,8 +29,7 @@
 }
 
 .navTrigger,
-.cartTrigger,
-.searchTrigger {
+.cartTrigger {
     composes: root from '../clickable.css';
     height: 3rem;
     width: 3rem;
