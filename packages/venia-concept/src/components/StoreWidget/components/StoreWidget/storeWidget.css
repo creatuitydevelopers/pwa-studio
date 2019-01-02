@@ -4,7 +4,7 @@
     bottom: 0;
     box-shadow: -1px 0 rgb(var(--venia-border));
     display: grid;
-    grid-template-rows: min-content 1fr auto auto;
+    grid-template-rows: auto 1fr auto auto;
     opacity: 0;
     overflow: hidden;
     position: fixed;
@@ -17,6 +17,7 @@
     visibility: hidden;
     width: 360px;
     z-index: 4;
+    height: 100%;
 }
 
 .header {
@@ -73,6 +74,7 @@
     transition-duration: 224ms;
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
     visibility: visible;
+    -webkit-overflow-scrolling: touch;
 }
 
 

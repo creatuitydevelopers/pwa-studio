@@ -1,0 +1,15 @@
+query storeLocator($urlKey: String){
+    storeLocator(rewrite_request_path: $urlKey) {
+            latitude
+            storelocator_id
+            longitude
+            address
+            city
+            rewrite_request_path
+            schedule {
+                day
+                open
+                close
+        }
+    }
+}

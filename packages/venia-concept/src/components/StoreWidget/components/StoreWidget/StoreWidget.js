@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { bool, func, object, shape, string } from 'prop-types';
 import geolib from 'geolib';
 import {geocodeByAddress, getLatLng} from "react-places-autocomplete";
+import { withRouter } from 'react-router-dom';
 
 import classify from 'src/classify';
 import Button from 'src/components/Button';
@@ -29,6 +30,7 @@ class StoreWidget extends PureComponent {
 
     async componentDidMount() {
         const { currentStore } = this.props;
+        console.log(this);
         await this.props.getAllStores();
         currentStore ? this.hideFindAnother() : this.showFindAnother();
     }
@@ -115,6 +117,32 @@ class StoreWidget extends PureComponent {
         });
     }
 
+    handleViewAll = () => {
+        const { closeDrawer } = this.props;
+        closeDrawer();
+        this.props.history.push('/storelocator');
+    }
+
+    handleBack = () => {
+        const { storesNearBy, showNoStoresFound, isFindAnotherVisible } = this.state;
+        const { closeDrawer } = this.props;
+        if (isFindAnotherVisible) {
+            if (!showNoStoresFound && storesNearBy.length > 0) {
+                return this.setState({ storesNearBy: [] });
+            }
+            return closeDrawer();
+        } else {
+            return this.showFindAnother();
+        }
+    }
+
+    handleTitleClick = () => {
+        const { currentStore } = this.props;
+        if (currentStore && this.state.isFindAnotherVisible) {
+            return this.hideFindAnother();
+        }
+    }
+
     get content() {
         const { props, state } = this;
         const { currentStore, classes, setCurrentStore } = props;
@@ -141,31 +169,11 @@ class StoreWidget extends PureComponent {
         const { classes } = this.props;
         return (
             <div className={classes.actionBar}>
-                <Button type="button">View All</Button>
+                <Button type="button" onClick={this.handleViewAll}>View All</Button>
                 {this.state.isFindAnotherVisible && <Button type="button" disabled={!this.isUserLocationSet()} onClick={() => this.onSearchLocation()}>Search</Button>}
                 {!this.state.isFindAnotherVisible && <Button type="button" onClick={this.onFindAnother}>Find Another</Button>}
             </div>
         )
-    }
-
-    handleBack = () => {
-        const { storesNearBy, showNoStoresFound, isFindAnotherVisible } = this.state;
-        const { closeDrawer } = this.props;
-        if (isFindAnotherVisible) {
-            if (!showNoStoresFound && storesNearBy.length > 0) {
-                return this.setState({ storesNearBy: [] });
-            }
-            return closeDrawer();
-        } else {
-            return this.showFindAnother();
-        }
-    }
-
-    handleTitleClick = () => {
-        const { currentStore } = this.props
-        if (currentStore && this.state.isFindAnotherVisible) {
-            return this.hideFindAnother();
-        }
     }
 
     render() {
@@ -192,4 +200,4 @@ class StoreWidget extends PureComponent {
     }
 }
 
-export default classify(defaultClasses)(StoreWidget);
+export default withRouter(classify(defaultClasses)(StoreWidget));

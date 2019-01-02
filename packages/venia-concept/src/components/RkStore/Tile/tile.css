@@ -46,6 +46,9 @@
 .photo img {
     max-width: 100%;
     grid-area: photo;
+}
+
+.row .photo img {
     max-height: 135px;
     float: right;
 }
