@@ -114,6 +114,7 @@
     "memoize-one": "~4.0.3",
     "memory-fs": "~0.4.1",
     "mkdirp": "~0.5.1",
+    "moment": "^2.23.0",
     "morgan": "~1.9.0",
     "multispinner": "~0.2.1",
     "node-fetch": "~2.2.1",

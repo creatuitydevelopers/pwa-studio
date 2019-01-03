@@ -24,6 +24,29 @@ const query = gql`
             baseimage
             rewrite_request_path
             tags
+            specialdays { 
+                specialday_id
+                time_open
+                date_from
+                date_to
+            }
+            upcoming_events {
+                month
+                day
+                day_name
+                time_start
+                time_end
+                description
+                name
+                link
+            }
+            holidays{
+                holiday_id,
+                holiday_name
+                holiday_comment,
+                date_from,
+                date_to
+            }
             schedule {
                 day
                 open

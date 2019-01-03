@@ -3,8 +3,10 @@
     margin: 0 auto;
 }
 
-.root h3 {
-    text-align: center;
+.root h2 {
+    margin-bottom: 1rem;
+    padding-bottom: 10px;
+    /* text-align: center; */
 }
 
 .header {
@@ -45,4 +47,23 @@
     font-size: 48px;
     margin: 0 0 20px 0;
     line-height: 1;
+}
+
+.section {
+    /* background: red; */
+}
+
+.sectionContent {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgb(var(--rk--color__gray-1));
+}
+
+.events .eventsList {
+    margin-bottom: 20px;
+}
+
+.events .sectionContent {
+    background-color: rgb(var(--rk--color__gray-6));
+    padding: 20px 35px;
 }
