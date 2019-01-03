@@ -21,21 +21,14 @@ const getDates = (startDate, stopDate) => {
     let currentDate = moment(startDate);
     let endDate = moment(stopDate);
     while (currentDate <= endDate) {
-        dateArray.push( moment(currentDate).format('dddd Do MMMM') )
+        dateArray.push(moment(currentDate).format('dddd Do MMMM'));
         currentDate = moment(currentDate).add(1, 'days');
     }
     return dateArray;
-}
-  
+};
 
 const DetailsPage = props => {
-
-    const { 
-        classes, 
-        store, 
-        setCurrentStore, 
-        currentStore 
-    } = props;
+    const { classes, store, setCurrentStore, currentStore } = props;
 
     const {
         address,
@@ -51,13 +44,17 @@ const DetailsPage = props => {
         holidays
     } = store;
 
-    const Heading = ({title}) => <h2><strong>{title}</strong></h2>;
+    const Heading = ({ title }) => (
+        <h2>
+            <strong>{title}</strong>
+        </h2>
+    );
 
     const sectionClass = (cssClass = null) => {
         const classNames = [classes.section];
         cssClass ? classNames.push(classes[cssClass]) : classNames;
         return classNames.join(' ');
-    } 
+    };
 
     return (
         <div className={classes.root}>
@@ -81,7 +78,7 @@ const DetailsPage = props => {
 
             <div className={sectionClass('address')}>
                 <Heading title={`Address`} />
-                <div className={classes.sectionContent}>    
+                <div className={classes.sectionContent}>
                     <ul>
                         {address && <li>{address}</li>}
                         <li>
@@ -108,7 +105,7 @@ const DetailsPage = props => {
 
             <div className={sectionClass('openingHours')}>
                 <Heading title={`Hours`} />
-                <div className={classes.sectionContent}>    
+                <div className={classes.sectionContent}>
                     <table>
                         <tbody>
                             {schedule.map((el, idx) => (
@@ -126,7 +123,7 @@ const DetailsPage = props => {
 
             <div className={sectionClass('manager')}>
                 <Heading title={`Manager`} />
-                <div className={classes.sectionContent}>    
+                <div className={classes.sectionContent}>
                     <ul>
                         <li>{store_manager}</li>
                     </ul>
@@ -136,50 +133,62 @@ const DetailsPage = props => {
             <div className={sectionClass('holidays')}>
                 <div className={classes.sectionContent}>
                     <ul>
-                        {holidays.map(holiday => 
+                        {holidays.map(holiday => (
                             <li key={holiday.holiday_id}>
                                 <Heading title={holiday.holiday_name} />
                                 <ul>
-                                {getDates(holiday.date_from,holiday.date_to).map((date, idx) => 
-                                    <li key={idx}>
-                                        <div>{date}</div>
-                                        <div>closed</div>
-                                    </li>
-                                )}
+                                    {getDates(
+                                        holiday.date_from,
+                                        holiday.date_to
+                                    ).map((date, idx) => (
+                                        <li key={idx}>
+                                            <div>{date}</div>
+                                            <div>closed</div>
+                                        </li>
+                                    ))}
                                 </ul>
                             </li>
-                        )}
+                        ))}
                     </ul>
                 </div>
-            </div> 
+            </div>
 
             <div className={classes.events}>
                 <Heading title={`Upcoming Events`} />
                 <div className={sectionClass('eventsList')}>
-                    {
-                        !!upcoming_events ? 
-                            <React.Fragment>
-                                <ul className={classes.eventsList}>
-                                    {upcoming_events.map((upEvent, idx) => 
-                                        <li key={idx}>
-                                            <div>
-                                                <strong>
-                                                    {upEvent.day_name}, {upEvent.month}/{upEvent.day}
-                                                </strong>
-                                            </div>
-                                            <div>
-                                                <span><strong>{upEvent.name}</strong></span><br/>
-                                                <span>{upEvent.time_start} - {upEvent.time_end}</span><br/>
-                                                <span>More Info ›</span>
-                                            </div>
-                                        </li>    
-                                    )}
-                                </ul>
-                                <Link to={`/events`}>See All Events</Link>
-                            </React.Fragment>
-                            :
-                            <div>There are no upcoming events at {city}, {state}.</div>
-                    }
+                    {!!upcoming_events ? (
+                        <React.Fragment>
+                            <ul className={classes.eventsList}>
+                                {upcoming_events.map((upEvent, idx) => (
+                                    <li key={idx}>
+                                        <div>
+                                            <strong>
+                                                {upEvent.day_name},{' '}
+                                                {upEvent.month}/{upEvent.day}
+                                            </strong>
+                                        </div>
+                                        <div>
+                                            <span>
+                                                <strong>{upEvent.name}</strong>
+                                            </span>
+                                            <br />
+                                            <span>
+                                                {upEvent.time_start} -{' '}
+                                                {upEvent.time_end}
+                                            </span>
+                                            <br />
+                                            <span>More Info ›</span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link to={`/events`}>See All Events</Link>
+                        </React.Fragment>
+                    ) : (
+                        <div>
+                            There are no upcoming events at {city}, {state}.
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
