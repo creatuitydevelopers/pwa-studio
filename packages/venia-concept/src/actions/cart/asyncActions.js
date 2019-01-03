@@ -47,7 +47,7 @@ export const createGuestCart = () =>
     };
 
 export const addItemToCart = (payload = {}) => {
-    const { item, options, parentSku, productType, quantity } = payload;
+    const { item, options, parentSku, productType, quantity, delivery_method } = payload;
     const writingImageToCache = writeImageToCache(item);
 
     return async function thunk(dispatch, getState) {
@@ -75,13 +75,16 @@ export const addItemToCart = (payload = {}) => {
                 throw missingGuestCartError;
             }
 
+            console.log(payload);
             // TODO: change to GraphQL mutation
             // for now, manually transform the payload for REST
             const itemPayload = {
                 qty: quantity,
                 sku: item.sku,
                 name: item.name,
-                quote_id: guestCartId
+                quote_id: guestCartId,
+                delivery_method: delivery_method.type,
+                store_number: delivery_method.store
             };
 
             if (productType === 'ConfigurableProduct') {
@@ -96,6 +99,8 @@ export const addItemToCart = (payload = {}) => {
                 });
             }
 
+            console.log('cart item');
+            console.log(itemPayload);
             const cartItem = await request(
                 `/rest/V1/guest-carts/${guestCartId}/items`,
                 {
@@ -109,7 +114,6 @@ export const addItemToCart = (payload = {}) => {
             dispatch(actions.addItem.receive({ cartItem, item, quantity }));
         } catch (error) {
             const { response, noGuestCartId } = error;
-
             dispatch(actions.addItem.receive(error));
 
             // check if the guest cart has expired

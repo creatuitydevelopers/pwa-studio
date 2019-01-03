@@ -12,6 +12,7 @@ const query = gql`
     query productDetail($urlKey: String, $onServer: Boolean!) {
         productDetail: products(filter: { url_key: { eq: $urlKey } }) {
             items {
+                id
                 sku
                 name
                 price {
