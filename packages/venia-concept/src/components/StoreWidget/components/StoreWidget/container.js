@@ -1,10 +1,10 @@
-import {connect} from 'react-redux';
-import {closeDrawer} from 'src/actions/app';
-import {getAllStores, setCurrentStore} from 'src/actions/store';
+import { connect } from 'react-redux';
+import { closeDrawer } from 'src/actions/app';
+import { getAllStores, setCurrentStore } from 'src/actions/store';
 import StoreWidget from './StoreWidget';
 
-const mapStateToProps = ({store}) => {
-    const {currentStore, allStores} = store;
+const mapStateToProps = ({ store }) => {
+    const { currentStore, allStores } = store;
 
     return {
         currentStore,
@@ -12,7 +12,7 @@ const mapStateToProps = ({store}) => {
     };
 };
 
-const mapDispatchToProps = {closeDrawer, getAllStores, setCurrentStore};
+const mapDispatchToProps = { closeDrawer, getAllStores, setCurrentStore };
 
 export default connect(
     mapStateToProps,

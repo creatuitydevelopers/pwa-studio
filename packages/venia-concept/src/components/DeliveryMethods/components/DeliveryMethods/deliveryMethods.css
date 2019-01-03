@@ -2,7 +2,7 @@
     composes: section from '../../../ProductFullDetail/productFullDetail.css';
 }
 
-.header{
+.header {
     composes: sectionTitle from '../../../ProductFullDetail/productFullDetail.css';
     justify-content: left;
 }

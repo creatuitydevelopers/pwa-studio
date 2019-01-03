@@ -10,7 +10,8 @@ const data = [
         latitude: '52.406374',
         longitude: '16.925168100000064',
         link: 'https://www.ruralking.com/mattoon-il',
-        image: 'https://www.ruralking.com/media/magestore/storelocator/images/store/gallery/r/u/rural-king-store-mattoon-illinois-1.jpg',
+        image:
+            'https://www.ruralking.com/media/magestore/storelocator/images/store/gallery/r/u/rural-king-store-mattoon-illinois-1.jpg',
         distance: '4679.3 Mi',
         number: 2
     },
@@ -25,7 +26,8 @@ const data = [
         latitude: '51.1078852',
         longitude: '17.03853760000004',
         link: 'https://www.ruralking.com/paris-il',
-        image: 'https://www.ruralking.com/media/magestore/storelocator/images/store/gallery/r/u/rural-king-store-l-paris-illinois-2.jpg',
+        image:
+            'https://www.ruralking.com/media/magestore/storelocator/images/store/gallery/r/u/rural-king-store-l-paris-illinois-2.jpg',
         distance: '5114.Mi',
         number: 2
     },
@@ -40,7 +42,8 @@ const data = [
         latitude: '36.03762',
         longitude: '-78.18768',
         link: 'https://www.ruralking.com/bloomington-in',
-        image: 'https://www.ruralking.com/media/magestore/storelocator/images/store/gallery/r/u/rural-king-store-l-crystal-river-florida-74.jpg',
+        image:
+            'https://www.ruralking.com/media/magestore/storelocator/images/store/gallery/r/u/rural-king-store-l-crystal-river-florida-74.jpg',
         distance: '5014.Mi',
         number: 3
     }

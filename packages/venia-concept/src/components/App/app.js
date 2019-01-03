@@ -4,7 +4,7 @@ import { bool, func, shape, string } from 'prop-types';
 import classify from 'src/classify';
 import Main from 'src/components/Main';
 import Mask from 'src/components/Mask';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 import MiniCart from 'src/components/MiniCart';
 import Navigation from 'src/components/Navigation';
 import StoreWidget from 'src/components/StoreWidget';
@@ -46,14 +46,17 @@ class App extends Component {
         return (
             <div className={className}>
                 <Helmet>
-                    <link rel="stylesheet" href="https://use.typekit.net/uca6omh.css" />
+                    <link
+                        rel="stylesheet"
+                        href="https://use.typekit.net/uca6omh.css"
+                    />
                 </Helmet>
                 <Main isMasked={overlay}>
                     {onlineIndicator}
                     {renderRoutes()}
                 </Main>
                 <Mask isActive={overlay} dismiss={closeDrawer} />
-                <Navigation isOpen={navIsOpen} />
+                {/* <Navigation isOpen={navIsOpen} /> */}
                 <MiniCart isOpen={cartIsOpen} />
                 <StoreWidget isOpen={storeWidgetIsOpen} />
             </div>

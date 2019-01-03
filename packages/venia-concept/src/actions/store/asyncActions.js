@@ -8,7 +8,7 @@ export const getAllStores = () =>
         dispatch(actions.getAllStores.request());
         try {
             const allStores = await getStoresFromStorage();
-            if(allStores) {
+            if (allStores) {
                 dispatch(actions.getAllStores.receive(allStores));
                 return;
             }
@@ -22,12 +22,9 @@ export const getAllStores = () =>
             );
 
             if (storesHash !== storesHashOnServer) {
-                const response = await request(
-                    '/rest/V1/storelocator/stores',
-                    {
-                        method: 'GET'
-                    }
-                );
+                const response = await request('/rest/V1/storelocator/stores', {
+                    method: 'GET'
+                });
 
                 const { hash, stores } = JSON.parse(response);
                 setStoresHashInStorage(hash);
@@ -50,7 +47,7 @@ export const setCurrentStore = store =>
         } catch (error) {
             dispatch(actions.setCurrentStore.receive(error));
         }
-    }
+    };
 
 async function setStoresHashInStorage(hash) {
     const storage = new BrowserPersistence();

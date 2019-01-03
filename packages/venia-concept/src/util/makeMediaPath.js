@@ -18,10 +18,6 @@ export function makePathPrepender(prefix) {
 
 const mediaPath = 'https://ruralking.com/media/catalog/';
 
-
-
 export const makeProductMediaPath = makePathPrepender(mediaPath + 'product/');
 
-export const makeCategoryMediaPath = makePathPrepender(
-    mediaPath + 'category/'
-);
+export const makeCategoryMediaPath = makePathPrepender(mediaPath + 'category/');

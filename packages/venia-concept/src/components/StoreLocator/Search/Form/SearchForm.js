@@ -1,9 +1,9 @@
 import React from 'react';
-import {oneOf, shape, string, bool} from "prop-types";
+import { oneOf, shape, string, bool } from 'prop-types';
 import classify from 'src/classify';
-import Button from "src/components/Button";
-import Select from "src/components/Select";
-import {Autocomplete, RadiusSlider} from 'src/components/StoreLocator';
+import Button from 'src/components/Button';
+import Select from 'src/components/Select';
+import { Autocomplete, RadiusSlider } from 'src/components/StoreLocator';
 import defaultClasses from './searchForm.css';
 
 const STORELOCATOR_DEST = 'storelocator';
@@ -47,7 +47,6 @@ const RANGE_DROPDOWN_OPTIONS = [
 ];
 
 class SearchForm extends React.Component {
-
     static propTypes = {
         classes: shape({
             root: string,
@@ -56,12 +55,12 @@ class SearchForm extends React.Component {
             rootDeliveryMethods: string
         }),
         destination: oneOf([
-            STORELOCATOR_DEST, STOREWIDGET_DEST, DELIVERY_METHOD_DEST
+            STORELOCATOR_DEST,
+            STOREWIDGET_DEST,
+            DELIVERY_METHOD_DEST
         ]),
         showRange: bool,
-        rangeStyle: oneOf([
-            RANGE_STYLE_RANGE, RANGE_STYLE_DROPDOWN
-        ]),
+        rangeStyle: oneOf([RANGE_STYLE_RANGE, RANGE_STYLE_DROPDOWN])
     };
 
     static defaultProps = {
@@ -70,81 +69,98 @@ class SearchForm extends React.Component {
         rangeStyle: RANGE_STYLE_RANGE
     };
 
-
     constructor(props) {
         super(props);
         this.state = {
             radius: this.props.radius,
             searchText: ''
-        }
+        };
     }
 
     handleRadiusChange = radius => {
-        this.setState({radius}, () => {
-            this.props.onRadiusChange(radius)
+        this.setState({ radius }, () => {
+            this.props.onRadiusChange(radius);
         });
-    }
+    };
 
     handlePlaceSelect = selected => {
-        this.setState({searchText: selected});
+        this.setState({ searchText: selected });
         this.props.handlePlaceSelect(this.state.searchText);
-    }
+    };
 
     handlePlaceChange = selected => {
-        this.setState({searchText: selected});
-    }
+        this.setState({ searchText: selected });
+    };
 
     handleSearchPlace = () => {
         this.props.handlePlaceSelect(this.state.searchText);
-    }
+    };
 
     handleResetStoreLocator = () => {
-        this.setState({searchText: '', radius: this.props.radius});
+        this.setState({ searchText: '', radius: this.props.radius });
         this.props.handlePlaceSelect('');
-    }
+    };
 
     get rangeContent() {
-        const {rangeStyle, radius} = this.props;
+        const { rangeStyle, radius } = this.props;
 
-        return (
-            rangeStyle == RANGE_STYLE_RANGE
-                ? <RadiusSlider
-                    changed={this.handleRadiusChange}
-                    initialVal={radius}
-                    map={this.props.map}
-                    min={1}
-                    step={1}
-                    max={150}/>
-                : <div>
-                    <Select items={RANGE_DROPDOWN_OPTIONS} value={this.state.radius} onChange={this.handleRadiusChange}/>
-                </div>
-        )
+        return rangeStyle == RANGE_STYLE_RANGE ? (
+            <RadiusSlider
+                changed={this.handleRadiusChange}
+                initialVal={radius}
+                map={this.props.map}
+                min={1}
+                step={1}
+                max={150}
+            />
+        ) : (
+            <div>
+                <Select
+                    items={RANGE_DROPDOWN_OPTIONS}
+                    value={this.state.radius}
+                    onChange={this.handleRadiusChange}
+                />
+            </div>
+        );
     }
 
     render() {
-        const {classes, destination, showRange} = this.props;
+        const { classes, destination, showRange } = this.props;
         const rootClassName = [classes.root];
 
-        destination === STORELOCATOR_DEST && rootClassName.push(classes.rootStoreLocator);
-        destination === STOREWIDGET_DEST && rootClassName.push(classes.rootStoreWidget);
-        destination === DELIVERY_METHOD_DEST && rootClassName.push(classes.rootDeliveryMethods);
+        destination === STORELOCATOR_DEST &&
+            rootClassName.push(classes.rootStoreLocator);
+        destination === STOREWIDGET_DEST &&
+            rootClassName.push(classes.rootStoreWidget);
+        destination === DELIVERY_METHOD_DEST &&
+            rootClassName.push(classes.rootDeliveryMethods);
 
         return (
             <div className={rootClassName.join(' ')}>
-                <Autocomplete handleSelect={this.handlePlaceSelect}
-                              handleChange={this.handlePlaceChange}
-                              value={this.state.searchText}
-                              suggestionDisplayMode={destination === STOREWIDGET_DEST ? `above`: `below`}/>
+                <Autocomplete
+                    handleSelect={this.handlePlaceSelect}
+                    handleChange={this.handlePlaceChange}
+                    value={this.state.searchText}
+                    suggestionDisplayMode={
+                        destination === STOREWIDGET_DEST ? `above` : `below`
+                    }
+                />
                 {!!showRange && this.rangeContent}
-                {destination !== STOREWIDGET_DEST &&
+                {destination !== STOREWIDGET_DEST && (
                     <div className={classes.actions}>
                         <Button onClick={this.handleSearchPlace}>Search</Button>
-                        {destination === STORELOCATOR_DEST &&
-                        <Button onClick={this.handleResetStoreLocator} genre={'secondary'}>View all stores</Button>}
+                        {destination === STORELOCATOR_DEST && (
+                            <Button
+                                onClick={this.handleResetStoreLocator}
+                                genre={'secondary'}
+                            >
+                                View all stores
+                            </Button>
+                        )}
                     </div>
-                }
+                )}
             </div>
-        )
+        );
     }
 }
 

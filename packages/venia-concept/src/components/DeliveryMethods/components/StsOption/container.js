@@ -10,6 +10,4 @@ const mapStateToProps = ({ store }) => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-)(StsOption);
+export default connect(mapStateToProps)(StsOption);

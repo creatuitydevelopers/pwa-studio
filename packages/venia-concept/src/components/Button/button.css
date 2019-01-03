@@ -8,7 +8,7 @@
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
-    border-radius: .2rem;
+    border-radius: 0.2rem;
     cursor: pointer;
     transition: opacity 256ms linear;
     touch-action: manipulation;
@@ -40,15 +40,16 @@
 }
 
 .medium {
-    
 }
 
 .big {
     height: 3.5rem;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 /*** Genre ***/
-.primary{
+.primary {
     background-color: rgb(var(--rk--color__red));
     border: 1px solid rgb(var(--rk--color__red));
     color: white;
@@ -58,14 +59,14 @@
     background-color: rgb(var(--rk--color__red-alt));
 }
 
-.secondary{
-    background-color: rgb(var(--venia-grey));
-    border: 1px solid currentColor;
+.secondary {
+    background-color: rgb(var(--venia-grey-dark));
+    border: 1px solid rgb(var(--venia-grey-dark));
     color: white;
 }
 
 .secondary:hover {
-    background-color: rgb(var(--venia-grey-dark));
+    background-color: rgb(var(--rk--color__gray-8));
 }
 
 .empty {
@@ -79,4 +80,5 @@
     border-color: rgb(var(--rk--color__gray));
     color: white;
 }
-.asLink{}
+.asLink {
+}

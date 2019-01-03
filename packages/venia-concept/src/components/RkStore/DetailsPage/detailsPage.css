@@ -1,0 +1,48 @@
+.root {
+    max-width: 1530px;
+    margin: 0 auto;
+}
+
+.root h3 {
+    text-align: center;
+}
+
+.header {
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    margin: 60px 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    height: 170%;
+    position: absolute;
+    opacity: 0.7;
+}
+
+.caption {
+    position: relative;
+    background: rgb(var(--rk--color__gray-6));
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.captionLink {
+    text-decoration: underline;
+    margin-top: 20px;
+}
+
+.title {
+    font-weight: bold;
+    white-space: nowrap;
+    color: rgb(var(--rk--color__red));
+    font-size: 48px;
+    margin: 0 0 20px 0;
+    line-height: 1;
+}

@@ -9,20 +9,20 @@
 }
 
 .row {
-    grid-template-areas: 
-    "title title photo"
-    "info info photo"
-    "buttons buttons buttons";
+    grid-template-areas:
+        'title title photo'
+        'info info photo'
+        'buttons buttons buttons';
     grid-template-columns: 1fr 1fr 120px;
     grid-template-rows: 35px 1fr auto;
 }
 
 .column {
-    grid-template-areas: 
-    "photo photo photo"
-    "title title title"
-    "info info info"
-    "buttons buttons buttons";
+    grid-template-areas:
+        'photo photo photo'
+        'title title title'
+        'info info info'
+        'buttons buttons buttons';
     grid-template-columns: 1fr;
     grid-template-rows: auto;
 }
@@ -46,6 +46,9 @@
 .photo img {
     max-width: 100%;
     grid-area: photo;
+}
+
+.row .photo img {
     max-height: 135px;
     float: right;
 }
@@ -65,7 +68,7 @@
 
 .storeButtons {
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     grid-column-gap: 20px;
     grid-row-gap: 10px;
     grid-area: buttons;

@@ -10,7 +10,7 @@ import {
 import defaultClasses from './categoryTile.css';
 
 // TODO: get categoryUrlSuffix from graphql storeOptions when it is ready
-const categoryUrlSuffix = '.html';
+const categoryUrlSuffix = '';
 
 class CategoryTile extends Component {
     static propTypes = {

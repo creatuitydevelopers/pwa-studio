@@ -2,25 +2,32 @@ import React from 'react';
 import Button from 'src/components/Button';
 import { Link } from 'react-router-dom';
 import { shape, string, bool, any } from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 const defaultSize = null;
 
-const StoreDetailsButton = (props) => {
-    const { store, title, children, size, useStandardLink,  ...rest } = props;
-    
-    return children ? 
-        <Button type="button" genre="empty" size={size} {...rest}>
-            {children}
+const StoreDetailsButton = props => {
+    const {
+        store,
+        title,
+        children,
+        history,
+        size,
+        useStandardLink,
+        onClick = function() {}
+    } = props;
+
+    const handleClick = () => {
+        history.push(`\/${store.rewrite_request_path}`);
+        onClick();
+    };
+
+    return (
+        <Button type="button" genre="empty" size={size} onClick={handleClick}>
+            {title}
         </Button>
-        :
-        <Button type="button" genre="empty" size={size} {...rest}>
-            { useStandardLink ?
-                <a href={`/storelocator/${store.rewrite_request_path}`}>{title}</a>
-                :
-                <Link to={`/storelocator/${store.rewrite_request_path}`}>{title}</Link>
-            }
-        </Button>
-}
+    );
+};
 
 StoreDetailsButton.propTypes = {
     title: string,
@@ -33,6 +40,6 @@ StoreDetailsButton.propTypes = {
 StoreDetailsButton.defaultProps = {
     title: 'Store Details',
     size: defaultSize
-}
+};
 
-export default StoreDetailsButton;
+export default withRouter(StoreDetailsButton);

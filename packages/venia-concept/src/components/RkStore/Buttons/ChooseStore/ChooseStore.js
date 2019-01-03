@@ -6,18 +6,32 @@ import { MyStoreBadge } from 'src/components/RkStore';
 
 const defaultSize = null;
 
-const ChooseStore = (props) => {
-
-    const { store, currentStore, onSelectStore, setCurrentStore, size, children, title, ...rest } = props;
+const ChooseStore = props => {
+    const {
+        store,
+        currentStore,
+        onSelectStore,
+        setCurrentStore,
+        size,
+        children,
+        title,
+        ...rest
+    } = props;
     const isCurrent = currentStore && isCurrentStore(store, currentStore);
     const content = children ? children : title;
     const handleClick = () => {
         setCurrentStore(store);
         onSelectStore(store);
-    }
+    };
 
-    return isCurrent ? <MyStoreBadge size={size} /> : <Button type="button" onClick={handleClick} size={size} {...rest}>{content}</Button>
-}
+    return isCurrent ? (
+        <MyStoreBadge size={size} />
+    ) : (
+        <Button type="button" onClick={handleClick} size={size} {...rest}>
+            {content}
+        </Button>
+    );
+};
 
 ChooseStore.propTypes = {
     title: string,
@@ -32,8 +46,8 @@ ChooseStore.propTypes = {
 ChooseStore.defaultProps = {
     title: 'Choose as My Store',
     genre: 'primary',
-    onSelectStore: function(){},
+    onSelectStore: function() {},
     size: defaultSize
-}
+};
 
 export default ChooseStore;

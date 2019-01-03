@@ -7,10 +7,9 @@
     max-width: 426px;
     background: #fff;
     border: none;
-    transition: all .5s;
+    transition: all 0.5s;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
 }
-
 
 .rootClosed {
     composes: root;
@@ -55,4 +54,4 @@
     .header > button {
         display: none;
     }
- }
+}

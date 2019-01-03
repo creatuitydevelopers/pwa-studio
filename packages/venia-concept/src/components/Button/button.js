@@ -25,10 +25,17 @@ class Button extends Component {
     };
 
     render() {
-        const { children, classes, type, size = defaultSize, genre, ...restProps} = this.props;
+        const {
+            children,
+            classes,
+            type,
+            size = defaultSize,
+            genre,
+            ...restProps
+        } = this.props;
         let classNames = [classes.root, classes[genre]];
-        if(!!size){
-            classNames.push(classes[size])
+        if (!!size) {
+            classNames.push(classes[size]);
         }
 
         return (

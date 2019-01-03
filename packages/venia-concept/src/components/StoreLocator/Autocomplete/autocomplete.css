@@ -1,4 +1,4 @@
-.actionBar{
+.actionBar {
     position: relative;
 }
 
@@ -9,24 +9,23 @@
     background: #fff;
     border-width: 0 1px 1px 1px;
     border-style: solid;
-    border-color: rgb(var(--rk--color__gray-2))
+    border-color: rgb(var(--rk--color__gray-2));
 }
 
-.autocompleteDropdownContainerOpen.above{
+.autocompleteDropdownContainerOpen.above {
     bottom: 40px;
     border: 1px solid #ccc;
 }
 
-.autocompleteDropdownContainerOpen.below{
+.autocompleteDropdownContainerOpen.below {
 }
 
-.autocompleteDropdownContainerClosed{
-
+.autocompleteDropdownContainerClosed {
 }
 
 .suggestionItem {
     background-color: #fff;
-    cursor: pointer; 
+    cursor: pointer;
     padding: 5px 10px;
     border-bottom: 1px solid rgb(var(--rk--color__gray-2));
 }
@@ -45,4 +44,3 @@
     top: 2px;
     color: rgb(var(--rk--color__gray-2));
 }
-
