@@ -11,23 +11,23 @@ import classify from 'src/classify';
 const searchQuery = gql`
     query($id: Int) {
         upcomingEvents(id: $id) {
-          event{
-            id
-            name
-            date_start
-            date_end
-            description
-          }   
+            event{
+                id
+                name
+                date_start
+                date_end
+                description
+            }   
             attachments {
-            attachment_type
-            file
+                attachment_type
+                file
             }
             stores
         }
     }
 `;
 
-export class Events extends Component {
+export class EventsPage extends Component {
     static propTypes = {
         classes: shape({
             noResult: string,
@@ -72,4 +72,4 @@ export class Events extends Component {
     }
 }
 
-export default Events;
+export default EventsPage;

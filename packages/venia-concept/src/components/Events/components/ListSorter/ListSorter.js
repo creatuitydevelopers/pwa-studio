@@ -13,8 +13,9 @@ const ListSorter = ({classes, defaultValue, handleSortChange}) => {
         <div className={classes.root}>
             {`Sort by`}
             {/*<Select*/}
+                {/*field="sortEvents"*/}
                 {/*items={SORT_DROPDOWN_OPTIONS}*/}
-                {/*initialValue={SORT_DEFAULT}*/}
+                {/*value={SORT_DEFAULT}*/}
                 {/*onChange={(event) => handleSortChange(event.target.value)}*/}
             {/*/>*/}
         </div>

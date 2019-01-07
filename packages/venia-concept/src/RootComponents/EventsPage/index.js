@@ -4,4 +4,4 @@
  * pageTypes = EVENTS_LIST
  */
 
-export { default } from './Events';
+export { default } from './EventsPage';

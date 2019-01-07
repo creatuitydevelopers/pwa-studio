@@ -39,7 +39,7 @@ console.log(items);
                 <h1 className={classes.header}>
                     <span>Upcoming Events Near You</span>
                 </h1>
-                {!!currentStore && <h2>{events.length} Events for <Title store={currentStore} tag="span"/></h2>}
+                {!!currentStore && <h2>{items.length} Events for <Title store={currentStore} tag="span"/></h2>}
                 <ListSorter handleSortChange={this.handleSortChange}/>
                 <div className={classes.grid}>{items.map((item, index) => <Item key={index} item={item}/>)}</div>
             </section>
