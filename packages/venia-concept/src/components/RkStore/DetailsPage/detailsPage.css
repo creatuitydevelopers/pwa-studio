@@ -6,7 +6,6 @@
 .root h2 {
     margin-bottom: 1rem;
     padding-bottom: 10px;
-    /* text-align: center; */
 }
 
 .header {
@@ -50,7 +49,7 @@
 }
 
 .section {
-    /* background: red; */
+    margin: 0 15px;
 }
 
 .sectionContent {
@@ -59,11 +58,45 @@
     border-bottom: 1px solid rgb(var(--rk--color__gray-1));
 }
 
-.events .eventsList {
-    margin-bottom: 20px;
+.section.address {
+    grid-area: address;
+}
+
+.section.contact {
+    grid-area: contact;
+}
+
+.section.openingHours {
+    grid-area: openingHours;
+}
+
+.section.manager {
+    grid-area: manager;
+}
+
+.section.holidays {
+    grid-area: holidays;
+}
+
+.section.events {
+    grid-area: events;
 }
 
 .events .sectionContent {
     background-color: rgb(var(--rk--color__gray-6));
     padding: 20px 35px;
+}
+
+.eventsList {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(var(--rk--color__gray-1));
+}
+
+.eventsList li {
+    line-height: 1.4;
+}
+
+.eventsMoreInfo {
+    color: rgb(var(--rk--color__red));
 }
