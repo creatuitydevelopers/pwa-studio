@@ -5,6 +5,7 @@ import ErrorView from 'src/components/ErrorView/index';
 import CreateAccountPage from 'src/components/CreateAccountPage/index';
 import StoreLocator from 'src/components/StoreLocator';
 import Search from 'src/RootComponents/Search';
+import Events from 'src/RootComponents/Events';
 
 const renderRoutingError = props => <ErrorView {...props} />;
 
@@ -13,6 +14,7 @@ const renderRoutes = () => (
         <Route exact path="/search.html" component={Search} />
         <Route exact path="/create-account" component={CreateAccountPage} />
         <Route exact path="/storelocator" component={StoreLocator} />
+        <Route exact path="/events" component={Events} />
         <Route render={() => <Page>{renderRoutingError}</Page>} />
     </Switch>
 );

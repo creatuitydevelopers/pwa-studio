@@ -23,7 +23,6 @@ const query = gql`
             zipcode
             baseimage
             rewrite_request_path
-            tags
             specialdays {
                 specialday_id
                 time_open
