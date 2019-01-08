@@ -84,7 +84,6 @@ class ProductFullDetail extends Component {
     setQuantity = quantity => this.setState({ quantity });
 
     setDeliveryMethod = (type, store) => {
-        console.log(type, store);
         this.setState({deliveryMethodType: type, deliveryMethodStore: store});
     }
 
@@ -113,10 +112,6 @@ class ProductFullDetail extends Component {
                 option_id: id,
                 option_value: value
             }));
-
-            console.log(optionSelections);
-            console.log(options);
-            console.log(variants);
 
             const item = variants.find(({ product: variant }) => {
                 for (const [id, value] of optionSelections) {

@@ -17,39 +17,56 @@ class DeliveryMethods extends Component {
         onChange: func.isRequired
     };
 
-    constructor() {
-        super();
-        this.state = {
-            methods: null,
-            isLoading: true
-        };
+    state = {
+        error: null,
+        methods: [],
+        isLoading: true
     };
 
+
     async componentDidMount() {
-        const {product} = this.props;
-        await fetch(`/rest/V1/delivery-method/product-delivery-methods/${product.id}`)
+        const {product, selectedStore, currentStore} = this.props;
+        const store = !!selectedStore ? selectedStore : currentStore;
+
+        await fetch(`/rest/V1/delivery-method/product-delivery-methods/${product.id}/${store.store_number}`)
             .then(response => {
-                return response.json()
+                if(response.ok){
+                    return response.json();
+                }else{
+                    this.setState({
+                        error: response,
+                        isLoading: false
+                    })
+                }
             })
             .then(data => {
                 const methods = JSON.parse(data);
+
+                if(!!methods.length && methods[0].data.enabled.includes(store.store_number)){
+                    this.props.onChange(methods[0].type, store)
+                }
+
                 this.setState({
                     methods,
                     isLoading: false
                 })
-            });
+            }).catch( err => {
+                console.log(err);
+                console.log(this.state.error);
+            })
     };
 
     render() {
         const {defaultMethod, currentStore, selectedStore, onChange, classes} = this.props;
         const {methods, isLoading} = this.state;
+        const store = !!selectedStore ? selectedStore : currentStore;
 
         return (
             <section className={classes.root}>
                 <h2 className={classes.header}>
                     <span>Delivery Methods</span>
                 </h2>
-                {!!currentStore
+                {!!store
                     ? <DeliveryMethodsList
                         methods={methods}
                         isLoading={isLoading}

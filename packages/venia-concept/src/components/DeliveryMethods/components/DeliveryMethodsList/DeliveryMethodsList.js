@@ -6,7 +6,7 @@ import StsOption from 'src/components/DeliveryMethods/components/StsOption';
 import VstsOption from 'src/components/DeliveryMethods/components/VstsOption';
 import PlaceholderOption from 'src/components/DeliveryMethods/components/PlaceholderOption';
 
-const emptyData = Array.from({ length: 2 }).fill(null);
+const emptyData = Array.from({ length: 1 }).fill(null);
 
 const withLoading = Component => props =>
     !!props.isLoading ? (
@@ -50,7 +50,7 @@ function DeliveryMethodsList({
                         isChecked={
                             defaultMethod
                                 ? defaultMethod == method.type
-                                : !index
+                                : false
                         }
                         methodInfo={method.data}
                         selectedStore={selectedStore}
