@@ -198,14 +198,15 @@ const DetailsPage = props => {
             {!!tags.length &&
                 <div className={sectionClass('services')}>
                     <Heading title={`Store Services`} />
-                    <div className={classes.services}>
+                    <div className={classes.sectionContent}>
                         <ul>
-                            {console.log(tags)}
-                            {/* {tags.map((tag, idx) => 
+                            {tags.map((tag, idx) => 
                                 <li key={idx}>
-                                    {tag}
+                                    {tag.tag_icon && <img src={tag.tag_icon} alt={tag.tag_name} />}
+                                    <p>{tag.tag_name}</p>
+                                    {}
                                 </li>
-                            )} */}
+                            )}
                         </ul>
                     </div>
                 </div>

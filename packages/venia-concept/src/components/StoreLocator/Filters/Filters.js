@@ -16,14 +16,15 @@ class Filters extends React.Component {
     getFilters = () => {
         const { stores, filterList } = this.props;
 
+        console.log(this.props);
+
         return stores.reduce(
             (previousValue, currentValue) => {
                 let arr = [];
                 let tags = currentValue[filterList];
-                tags = tags.split(',');
                 tags.forEach(tag => {
-                    if (previousValue.indexOf(tag) === -1) {
-                        arr.push(tag);
+                    if (previousValue.indexOf(tag['tag_name']) === -1) {
+                        arr.push(tag['tag_name']);
                     }
                 });
                 return [...previousValue, ...arr];
@@ -68,14 +69,12 @@ class Filters extends React.Component {
 
     filterStores = () => {
         let stores = [];
+        const {filterList} = this.props;
         if (this.state.activeFilters.length > 0) {
             stores = this.state.allStores.filter(store => {
-                let tags = store.tags.split(',');
-                return this.state.activeFilters.some(filter =>
-                    tags.includes(filter)
-                )
-                    ? store
-                    : false;
+                let tags = store[filterList];
+
+                return tags.some(tag => this.state.activeFilters.indexOf(tag['tag_name']) > -1) ? store : false;
             });
         } else {
             stores = this.state.allStores;

@@ -42,10 +42,16 @@ class StoreWidget extends PureComponent {
     }
 
     assignNearestStore = () => {
-        if (navigator.geolocation) {
+        const { setCurrentStore, allStores } = this.props;
+
+        if (navigator.geolocation && !!allStores) {
             navigator.geolocation.getCurrentPosition(async position => {
                 const { latitude, longitude } = position.coords;
-                const { setCurrentStore, allStores } = this.props;
+                
+
+                console.log(position.coords);
+                console.log(allStores);
+
                 const nearest = await geolib.findNearest(
                     { latitude, longitude },
                     allStores,
