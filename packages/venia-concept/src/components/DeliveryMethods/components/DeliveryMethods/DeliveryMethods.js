@@ -31,8 +31,8 @@ class DeliveryMethods extends Component {
             .then(response => {
                 return response.json()
             })
-            .then(methods => {
-                console.log(methods);
+            .then(data => {
+                const methods = JSON.parse(data);
                 this.setState({
                     methods,
                     isLoading: false

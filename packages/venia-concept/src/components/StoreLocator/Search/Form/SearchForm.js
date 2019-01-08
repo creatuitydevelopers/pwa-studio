@@ -116,6 +116,7 @@ class SearchForm extends React.Component {
         ) : (
             <div>
                 <Select
+                    field="searchSelect"
                     items={RANGE_DROPDOWN_OPTIONS}
                     value={this.state.radius}
                     onChange={this.handleRadiusChange}
