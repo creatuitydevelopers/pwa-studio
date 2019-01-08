@@ -4,13 +4,21 @@
     display: grid;
     grid-template: 
     "header header header"
-    "address events services"
-    "contact events services"
-    "openingHours events services"
-    "manager events services"
+    "leftColumn centerColumn rightColumn"
     / 1fr 1.3fr 1fr ;
-    grid-column-gap: 30px;
     align-items: start;
+}
+
+.leftColumn {
+    grid-area: leftColumn;
+}
+
+.rightColumn {
+    grid-area: rightColumn;
+}
+
+.centerColumn {
+    grid-area: centerColumn;
 }
 
 .root h2 {
@@ -72,36 +80,12 @@
     text-align: center;
 }
 
-.section.address {
-    grid-area: address;
-}
-
-.section.contact {
-    grid-area: contact;
-}
-
-.section.openingHours {
-    grid-area: openingHours;
-}
-
 .section.openingHours table {
     display: inline-block;
 }
 
-.section.manager {
-    grid-area: manager;
-}
-
 .section.manager .sectionContent {
     border-bottom: 0;
-}
-
-.section.holidays {
-    grid-area: holidays;
-}
-
-.section.services {
-    grid-area: services;
 }
 
 .section.services .sectionContent {
@@ -109,17 +93,18 @@
 }
 
 .section.events {
-    grid-area: events;
     border-width: 0 1px 0 1px;
     border-style: solid;
     border-color: rgb(var(--rk--color__gray-1));
+    padding-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .section.events .sectionContent {
     background-color: rgb(var(--rk--color__gray-6));
     padding: 20px 35px;
     border-bottom: 0;
-    margin: 0 15px 30px 15px;
+    margin: 0 15px;
 }
 
 .eventsList {
@@ -150,5 +135,4 @@
     .section.events .sectionContent {
         margin: 1rem 0;
     }
-
 }

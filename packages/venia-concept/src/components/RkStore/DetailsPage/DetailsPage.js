@@ -4,6 +4,8 @@ import classify from 'src/classify';
 import defaultClasses from './detailsPage.css';
 import storeImage from './image.jpg';
 import { Title, ChooseStoreButton } from 'src/components/RkStore';
+import {Rating} from 'src/components/Review'
+import {Places} from 'src/components/GoogleMaps';
 import moment from 'moment';
 
 const tConv24 = time24 => {
@@ -77,140 +79,162 @@ const DetailsPage = props => {
                 </figcaption>
             </figure>
 
-            <div className={sectionClass('address')}>
-                <Heading title={`Address`} />
-                <div className={classes.sectionContent}>
-                    <ul>
-                        {address && <li>{address}</li>}
-                        <li>
-                            {city}, {state} {zipcode}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className={sectionClass('contact')}>
-                <div className={classes.sectionContent}>
-                    <ul>
-                        <li>
-                            <strong>Phone: </strong>
-                            <a href={`tel:${phone}`}>{phone}</a>
-                        </li>
-                        <li>
-                            <strong>Email: </strong>
-                            <a href={`mailto:${email}`}>{email}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className={sectionClass('openingHours')}>
-                <Heading title={`Hours`} />
-                <div className={classes.sectionContent}>
-                    <table>
-                        <tbody>
-                            {schedule.map((el, idx) => (
-                                <tr key={idx}>
-                                    <td>{el.day}:</td>
-                                    <td>
-                                        {tConv24(el.open)} - {tConv24(el.close)}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div className={sectionClass('manager')}>
-                <Heading title={`Manager`} />
-                <div className={classes.sectionContent}>
-                    <ul>
-                        <li>{store_manager}</li>
-                    </ul>
-                </div>
-            </div>
-
-            {!!holidays.length && 
-                <div className={sectionClass('holidays')}>
+            <div className={classes.leftColumn}>
+                <div className={sectionClass('address')}>
+                    <Heading title={`Address`} />
                     <div className={classes.sectionContent}>
                         <ul>
-                            {holidays.map(holiday => (
-                                <li key={holiday.holiday_id}>
-                                    <Heading title={holiday.holiday_name} />
-                                    <ul>
-                                        {getDates(
-                                            holiday.date_from,
-                                            holiday.date_to
-                                        ).map((date, idx) => (
-                                            <li key={idx}>
-                                                <div>{date}</div>
-                                                <div>closed</div>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </li>
-                            ))}
+                            {address && <li>{address}</li>}
+                            <li>
+                                {city}, {state} {zipcode}
+                            </li>
                         </ul>
                     </div>
                 </div>
-            }
-
-            <div className={sectionClass(`events`)}>
-                <Heading title={`Upcoming Events`} />
-                <div className={classes.sectionContent}>
-                    {!!upcoming_events ? (
-                        <React.Fragment>
-                            <ul className={classes.eventsList}>
-                                {upcoming_events.map((upEvent, idx) => (
-                                    <li key={idx}>
-                                        <div>
-                                            <strong>
-                                                {upEvent.day_name},{' '}
-                                                {upEvent.month}/{upEvent.day}
-                                            </strong>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <strong>{upEvent.name}</strong>
-                                            </span>
-                                            <br />
-                                            <span>
-                                                {upEvent.time_start} -{' '}
-                                                {upEvent.time_end}
-                                            </span>
-                                            <br />
-                                            <span className={classes.eventsMoreInfo}><strong>More Info ›</strong></span>
-                                        </div>
+                <div className={sectionClass('contact')}>
+                    <div className={classes.sectionContent}>
+                        <ul>
+                            <li>
+                                <strong>Phone: </strong>
+                                <a href={`tel:${phone}`}>{phone}</a>
+                            </li>
+                            <li>
+                                <strong>Email: </strong>
+                                <a href={`mailto:${email}`}>{email}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div className={sectionClass('openingHours')}>
+                    <Heading title={`Hours`} />
+                    <div className={classes.sectionContent}>
+                        <table>
+                            <tbody>
+                                {schedule.map((el, idx) => (
+                                    <tr key={idx}>
+                                        <td>{el.day}:</td>
+                                        <td>
+                                            {tConv24(el.open)} - {tConv24(el.close)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div className={sectionClass('manager')}>
+                    <Heading title={`Manager`} />
+                    <div className={classes.sectionContent}>
+                        <ul>
+                            <li>{store_manager}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div className={classes.centerColumn}>
+                <div className={sectionClass(`events`)}>
+                    <Heading title={`Upcoming Events`} />
+                    <div className={classes.sectionContent}>
+                        {!!upcoming_events.length ? (
+                            <React.Fragment>
+                                <ul className={classes.eventsList}>
+                                    {upcoming_events.map((upEvent, idx) => (
+                                        <li key={idx}>
+                                            <div>
+                                                <strong>
+                                                    {upEvent.day_name},{' '}
+                                                    {upEvent.month}/{upEvent.day}
+                                                </strong>
+                                            </div>
+                                            <div>
+                                                <span>
+                                                    <strong>{upEvent.name}</strong>
+                                                </span>
+                                                <br />
+                                                <span>
+                                                    {upEvent.time_start} -{' '}
+                                                    {upEvent.time_end}
+                                                </span>
+                                                <br />
+                                                <span className={classes.eventsMoreInfo}><strong>More Info ›</strong></span>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <Link to={`/events`}>See All Events</Link>
+                            </React.Fragment>
+                        ) : (
+                            <div>
+                                There are no upcoming events at {city}, {state}.
+                            </div>
+                        )}
+                    </div>
+                </div>
+                {!!holidays.length && 
+                    <div className={sectionClass('holidays')}>
+                        <div className={classes.sectionContent}>
+                            <ul>
+                                {holidays.map(holiday => (
+                                    <li key={holiday.holiday_id}>
+                                        <Heading title={holiday.holiday_name} />
+                                        <ul>
+                                            {getDates(
+                                                holiday.date_from,
+                                                holiday.date_to
+                                            ).map((date, idx) => (
+                                                <li key={idx}>
+                                                    <div>{date}</div>
+                                                    <div>closed</div>
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </li>
                                 ))}
                             </ul>
-                            <Link to={`/events`}>See All Events</Link>
-                        </React.Fragment>
-                    ) : (
-                        <div>
-                            There are no upcoming events at {city}, {state}.
                         </div>
-                    )}
-                </div>
-            </div>
+                    </div>
+                }
 
-            {!!tags.length &&
-                <div className={sectionClass('services')}>
-                    <Heading title={`Store Services`} />
+            </div>
+            <div className={classes.rightColumn}>
+                {!!tags.length &&
+                    <div className={sectionClass('services')}>
+                        <Heading title={`Store Services`} />
+                        <div className={classes.sectionContent}>
+                            <ul>
+                                {tags.map((tag, idx) => 
+                                    <li key={idx}>
+                                        {tag.tag_icon && <img src={tag.tag_icon} alt={tag.tag_name} />}
+                                        <p>{tag.tag_name}</p>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
+                    </div>
+                }
+                <div className={sectionClass('rating')}>
+                    <Heading title={`${store.city}, ${store.state} Google Review Score`} />
                     <div className={classes.sectionContent}>
-                        <ul>
-                            {tags.map((tag, idx) => 
-                                <li key={idx}>
-                                    {tag.tag_icon && <img src={tag.tag_icon} alt={tag.tag_name} />}
-                                    <p>{tag.tag_name}</p>
-                                    {}
-                                </li>
-                            )}
-                        </ul>
+                        <Places 
+                            lat={store.latitude} 
+                            lng={store.longitude}
+                            radius={500}
+                            searchString={`Rural King`}
+                        >
+                            { ({isLoading, place}) => 
+                                { return isLoading ? 
+                                    <p>...Loading...</p>
+                                    :
+                                    <React.Fragment>
+                                        <Rating avgRating={place.rating} />
+                                        <a href={`https://search.google.com/local/writereview?placeid=${place.place_id}`} target="blank">Leave a Review</a>
+                                    </React.Fragment>
+                                }
+                            }
+                        </Places>
                     </div>
                 </div>
-            }
+            </div>
         </div>
     );
 };
