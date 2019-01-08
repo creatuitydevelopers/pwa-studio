@@ -12,14 +12,14 @@ const Rating = ({classes, showAverage, placeHolder, avgRating, overallRating}) =
     return (
         <div className={rootClassName}>
             <div className={classes.container} title={percent + '%'}>
-                    <span className={classes.stars}>
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </span>
+                <span className={classes.stars}>
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </span>
                 <span className={classes.starsOn} style={ratingStyle}>
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </span>
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </span>
             </div>
-            {!!showAverage && <div className={classes.label}>{avgRating}</div>}
+            {!!showAverage && !!avgRating && <div className={classes.label}>{avgRating.toFixed(2)}</div>}
         </div>
     );
 };
