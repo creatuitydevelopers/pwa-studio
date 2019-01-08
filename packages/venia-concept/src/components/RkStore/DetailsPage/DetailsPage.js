@@ -41,7 +41,8 @@ const DetailsPage = props => {
         store_manager,
         specialdays,
         upcoming_events,
-        holidays
+        holidays,
+        tags
     } = store;
 
     const Heading = ({ title }) => (
@@ -130,32 +131,34 @@ const DetailsPage = props => {
                 </div>
             </div>
 
-            <div className={sectionClass('holidays')}>
-                <div className={classes.sectionContent}>
-                    <ul>
-                        {holidays.map(holiday => (
-                            <li key={holiday.holiday_id}>
-                                <Heading title={holiday.holiday_name} />
-                                <ul>
-                                    {getDates(
-                                        holiday.date_from,
-                                        holiday.date_to
-                                    ).map((date, idx) => (
-                                        <li key={idx}>
-                                            <div>{date}</div>
-                                            <div>closed</div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </li>
-                        ))}
-                    </ul>
+            {!!holidays.length && 
+                <div className={sectionClass('holidays')}>
+                    <div className={classes.sectionContent}>
+                        <ul>
+                            {holidays.map(holiday => (
+                                <li key={holiday.holiday_id}>
+                                    <Heading title={holiday.holiday_name} />
+                                    <ul>
+                                        {getDates(
+                                            holiday.date_from,
+                                            holiday.date_to
+                                        ).map((date, idx) => (
+                                            <li key={idx}>
+                                                <div>{date}</div>
+                                                <div>closed</div>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            }
 
-            <div className={classes.events}>
+            <div className={sectionClass(`events`)}>
                 <Heading title={`Upcoming Events`} />
-                <div className={sectionClass('eventsList')}>
+                <div className={classes.sectionContent}>
                     {!!upcoming_events ? (
                         <React.Fragment>
                             <ul className={classes.eventsList}>
@@ -177,7 +180,7 @@ const DetailsPage = props => {
                                                 {upEvent.time_end}
                                             </span>
                                             <br />
-                                            <span>More Info ›</span>
+                                            <span className={classes.eventsMoreInfo}><strong>More Info ›</strong></span>
                                         </div>
                                     </li>
                                 ))}
@@ -191,6 +194,23 @@ const DetailsPage = props => {
                     )}
                 </div>
             </div>
+
+            {!!tags.length &&
+                <div className={sectionClass('services')}>
+                    <Heading title={`Store Services`} />
+                    <div className={classes.sectionContent}>
+                        <ul>
+                            {tags.map((tag, idx) => 
+                                <li key={idx}>
+                                    {tag.tag_icon && <img src={tag.tag_icon} alt={tag.tag_name} />}
+                                    <p>{tag.tag_name}</p>
+                                    {}
+                                </li>
+                            )}
+                        </ul>
+                    </div>
+                </div>
+            }
         </div>
     );
 };
