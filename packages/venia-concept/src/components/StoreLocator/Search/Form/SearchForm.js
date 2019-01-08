@@ -15,33 +15,33 @@ const RANGE_STYLE_DROPDOWN = 'dropdown';
 
 const RANGE_DROPDOWN_OPTIONS = [
     {
-        id: '5',
-        value: '5',
+        // id: '5',
+        value: 5,
         label: 'Within 5 miles'
     },
     {
-        id: '10',
-        value: '10',
+        // id: '10',
+        value: 10,
         label: 'Within 10 miles'
     },
     {
-        id: '25',
-        value: '25',
+        // id: '25',
+        value: 25,
         label: 'Within 25 miles'
     },
     {
-        id: '50',
-        value: '50',
+        // id: '50',
+        value: 50,
         label: 'Within 50 miles'
     },
     {
-        id: '100',
-        value: '100',
+        // id: '100',
+        value: 100,
         label: 'Within 100 miles'
     },
     {
-        id: '200',
-        value: '200',
+        // id: '200',
+        value: 200,
         label: 'Within 200 miles'
     }
 ];
@@ -118,8 +118,8 @@ class SearchForm extends React.Component {
                 <Select
                     field="searchSelect"
                     items={RANGE_DROPDOWN_OPTIONS}
-                    value={this.state.radius}
-                    onChange={this.handleRadiusChange}
+                    initialValue={this.state.radius}
+                    onValueChange={this.handleRadiusChange}
                 />
             </div>
         );

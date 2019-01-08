@@ -26,13 +26,19 @@ class DeliveryMethods extends Component {
     };
 
     async componentDidMount() {
-        const {product} = this.props;
+        const {product, selectedStore, currentStore} = this.props;
         await fetch(`/rest/V1/delivery-method/product-delivery-methods/${product.id}`)
             .then(response => {
                 return response.json()
             })
             .then(data => {
                 const methods = JSON.parse(data);
+                const store = !!selectedStore ? selectedStore : currentStore;
+
+                if(!!methods.length && methods[0].data.enabled.includes(store.store_number)){
+                    this.props.onChange(methods[0].type, store)
+                }
+
                 this.setState({
                     methods,
                     isLoading: false

@@ -79,12 +79,15 @@ class StsOption extends Component {
     };
 
     handleMethodChange = event => {
-        const { currentStore, selectedStore } = this.props;
+        const { methodInfo, currentStore, selectedStore } = this.props;
         const store = !!selectedStore ? selectedStore : currentStore;
 
-        !!store
-            ? this.props.onChange(event.target.value, store)
-            : this.setState({ modalOpen: true });
+        isCurrentStoreEnabledForSts({
+            allowedStores: methodInfo.enabled,
+            storeNumber: store.store_number
+        })
+        ? this.props.onChange(event.target.value, store)
+        : this.setState({ modalOpen: true });
     };
 
     handleOpenModalClick = () => {
@@ -100,7 +103,7 @@ class StsOption extends Component {
         this.setState({ modalOpen: false });
     };
 
-    get deliveryMeessage() {
+    get deliveryMessage() {
         const {
             methodCode,
             methodInfo,
@@ -150,7 +153,7 @@ class StsOption extends Component {
                     <span className={classes.storeName}>
                         {store.company_name}
                     </span>
-                    {this.deliveryMeessage}
+                    {this.deliveryMessage}
                 </span>
             );
         }
@@ -177,7 +180,6 @@ class StsOption extends Component {
         const { latitude, longitude, radius, modalOpen } = this.state;
 
         const store = !!selectedStore ? selectedStore : currentStore;
-
         return (
             <div>
                 <p>{this.inventoryMessage}</p>

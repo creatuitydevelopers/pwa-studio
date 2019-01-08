@@ -29,7 +29,7 @@ class StoreWidget extends PureComponent {
 
     async componentDidMount() {
         const { currentStore } = this.props;
-        console.log(this);
+
         await this.props.getAllStores();
         currentStore ? this.hideFindAnother() : this.showFindAnother();
     }

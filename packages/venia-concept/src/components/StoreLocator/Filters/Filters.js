@@ -16,8 +16,6 @@ class Filters extends React.Component {
     getFilters = () => {
         const { stores, filterList } = this.props;
 
-        console.log(this.props);
-
         return stores.reduce(
             (previousValue, currentValue) => {
                 let arr = [];
