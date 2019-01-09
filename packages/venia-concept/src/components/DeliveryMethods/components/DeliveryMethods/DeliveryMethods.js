@@ -23,12 +23,24 @@ class DeliveryMethods extends Component {
         isLoading: true
     };
 
+    async componentDidUpdate(prevProps) {
+        if (prevProps.currentStore.store_number != this.props.currentStore.store_number) {
+            this.setState({
+                isLoading: true
+            });
+            this.loadDeliveryMethods();
+        }
+    };
 
     async componentDidMount() {
-        const {product, selectedStore, currentStore} = this.props;
-        const store = !!selectedStore ? selectedStore : currentStore;
+        this.loadDeliveryMethods();
+    };
 
-        if(!store){
+    async loadDeliveryMethods() {
+        const {product, currentStore} = this.props;
+        const store = currentStore;
+
+        if (!store) {
             this.setState({
                 methods: [],
                 isLoading: false
@@ -39,9 +51,9 @@ class DeliveryMethods extends Component {
 
         await fetch(`/rest/V1/delivery-method/product-delivery-methods/${product.id}/${store.store_number}`)
             .then(response => {
-                if(response.ok){
+                if (response.ok) {
                     return response.json();
-                }else{
+                } else {
                     this.setState({
                         error: response,
                         isLoading: false
@@ -51,7 +63,7 @@ class DeliveryMethods extends Component {
             .then(data => {
                 const methods = JSON.parse(data);
 
-                if(!!methods.length && methods[0].data.enabled.includes(store.store_number)){
+                if (!!methods.length && methods[0].data.enabled.includes(store.store_number)) {
                     this.props.onChange(methods[0].type, store)
                 }
 
@@ -59,11 +71,11 @@ class DeliveryMethods extends Component {
                     methods,
                     isLoading: false
                 })
-            }).catch( err => {
+            }).catch(err => {
                 console.log(err);
                 console.log(this.state.error);
             });
-    };
+    }
 
     render() {
         const {defaultMethod, currentStore, selectedStore, onChange, classes} = this.props;
@@ -80,7 +92,7 @@ class DeliveryMethods extends Component {
                         methods={methods}
                         isLoading={isLoading}
                         defaultMethod={defaultMethod}
-                        selectedStore={selectedStore}
+                        selectedStore={store}
                         onChange={onChange}
                     />
                     : <p>{`To view the available delivery methods, select the current store first.`}</p>
