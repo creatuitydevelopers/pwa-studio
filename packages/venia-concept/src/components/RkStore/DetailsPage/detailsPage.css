@@ -19,12 +19,27 @@
 
 .centerColumn {
     grid-area: centerColumn;
+    border-width: 0 1px 0 1px;
+    border-style: solid;
+    border-color: rgb(var(--rk--color__gray-1));
+}
+
+.centerColumn .section {
+    border-bottom: 1px solid rgb(var(--rk--color__gray-1));
+}
+
+.centerColumn .section:last-child,
+.centerColumn .section:last-child .sectionContent,
+.rightColumn .section:last-child .sectionContent,
+.leftColumn .section:last-child .sectionContent {
+    border: none;
 }
 
 .root h2 {
     margin-bottom: 1rem;
     padding-bottom: 10px;
     font-size: 25px;
+    line-height: 1.1;
     text-align: center;
 }
 
@@ -69,6 +84,10 @@
     line-height: 1;
 }
 
+.red {
+    color: rgb(var(--rk--color__red));
+}
+
 .section {
     margin: 0 15px;
 }
@@ -84,19 +103,8 @@
     display: inline-block;
 }
 
-.section.manager .sectionContent {
-    border-bottom: 0;
-}
-
-.section.services .sectionContent {
-    border-bottom: 0;
-}
-
 .section.events {
-    border-width: 0 1px 0 1px;
-    border-style: solid;
-    border-color: rgb(var(--rk--color__gray-1));
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     margin-bottom: 30px;
 }
 
@@ -104,7 +112,6 @@
     background-color: rgb(var(--rk--color__gray-6));
     padding: 20px 35px;
     border-bottom: 0;
-    margin: 0 15px;
 }
 
 .eventsList {
@@ -115,10 +122,24 @@
 
 .eventsList li {
     line-height: 1.4;
+    margin-bottom: 15px;
 }
 
-.eventsMoreInfo {
-    color: rgb(var(--rk--color__red));
+.eventsList li:last-child {
+    margin-bottom: 0;
+}
+
+.section.holidays li {
+    padding: 10px 0;
+} 
+
+.section.holidays ul > li li:nth-of-type(odd) {
+    background-color: rgb(var(--rk--color__gray-6));
+}
+
+.ratingContainer {
+    display: inline-block;
+    text-align: center;
 }
 
 @media (max-width: 990px) {

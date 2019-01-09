@@ -4,6 +4,7 @@ import classify from 'src/classify';
 import defaultClasses from './detailsPage.css';
 import storeImage from './image.jpg';
 import { Title, ChooseStoreButton } from 'src/components/RkStore';
+import { object, func } from 'prop-types';
 import {Rating} from 'src/components/Review'
 import {Places} from 'src/components/GoogleMaps';
 import moment from 'moment';
@@ -156,7 +157,7 @@ const DetailsPage = props => {
                                                     {upEvent.time_end}
                                                 </span>
                                                 <br />
-                                                <span className={classes.eventsMoreInfo}><strong>More Info ›</strong></span>
+                                                <span className={classes.red}><strong>More Info ›</strong></span>
                                             </div>
                                         </li>
                                     ))}
@@ -178,13 +179,10 @@ const DetailsPage = props => {
                                     <li key={holiday.holiday_id}>
                                         <Heading title={holiday.holiday_name} />
                                         <ul>
-                                            {getDates(
-                                                holiday.date_from,
-                                                holiday.date_to
-                                            ).map((date, idx) => (
+                                            { getDates(holiday.date_from,holiday.date_to).map((date, idx) => (
                                                 <li key={idx}>
-                                                    <div>{date}</div>
-                                                    <div>closed</div>
+                                                    <div><strong>{date}</strong></div>
+                                                    <div><strong className={classes.red}>closed</strong></div>
                                                 </li>
                                             ))}
                                         </ul>
@@ -225,10 +223,10 @@ const DetailsPage = props => {
                                 { return isLoading ? 
                                     <p>...Loading...</p>
                                     :
-                                    <React.Fragment>
+                                    <div className={classes.ratingContainer}>
                                         <Rating avgRating={place.rating} />
                                         <a href={`https://search.google.com/local/writereview?placeid=${place.place_id}`} target="blank">Leave a Review</a>
-                                    </React.Fragment>
+                                    </div>
                                 }
                             }
                         </Places>
@@ -238,5 +236,12 @@ const DetailsPage = props => {
         </div>
     );
 };
+
+DetailsPage.propTypes = {
+    classes: object,
+    store: object,
+    setCurrentStore: func,
+    currentStore: object
+}
 
 export default classify(defaultClasses)(DetailsPage);
