@@ -28,6 +28,15 @@ class DeliveryMethods extends Component {
         const {product, selectedStore, currentStore} = this.props;
         const store = !!selectedStore ? selectedStore : currentStore;
 
+        if(!store){
+            this.setState({
+                methods: [],
+                isLoading: false
+            });
+
+            return;
+        }
+
         await fetch(`/rest/V1/delivery-method/product-delivery-methods/${product.id}/${store.store_number}`)
             .then(response => {
                 if(response.ok){
@@ -53,7 +62,7 @@ class DeliveryMethods extends Component {
             }).catch( err => {
                 console.log(err);
                 console.log(this.state.error);
-            })
+            });
     };
 
     render() {

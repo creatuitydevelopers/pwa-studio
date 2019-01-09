@@ -1,6 +1,8 @@
 import React from "react";
-import {Rating} from "src/components/Review";
 import {bool, shape, number} from "prop-types";
+import {Rating} from "src/components/Review";
+
+import {getReviewFetchUrl} from 'src/models/Reviews';
 
 class SingleRating extends React.Component {
 
@@ -16,35 +18,36 @@ class SingleRating extends React.Component {
     };
 
     state = {
+        error: null,
         review: null,
         isLoading: true,
     };
 
     async componentDidMount() {
-        const review = {
-            "Limit": 1,
-            "Offset": 0,
-            "TotalResults": 1,
-            "Locale": "en_US",
-            "Results": [{
-                "ProductStatistics": {
-                    "ProductId": "data-gen-2s9kaf0ugzn0p2flzl73ahuys",
-                    "NativeReviewStatistics": {},
-                    "ReviewStatistics": {"AverageOverallRating": 4.55, "TotalReviewCount": 20, "OverallRatingRange": 5}
+        const {item} = this.props;
+
+        await fetch(getReviewFetchUrl(item.sku))
+            .then(response => {
+                if(response.ok){
+                    return response.json();
+                }else{
+                    this.setState({
+                        error: response,
+                        isLoading: false
+                    })
                 }
-            }],
-            "Includes": {},
-            "HasErrors": false,
-            "Errors": []
-        };
-
-
-
-
-        this.setState({
-            review,
-            isLoading: false
-        });
+            })
+            .then(review => {
+                const result= review.BatchedResults.r.Results[0];
+                this.setState({
+                    review: !!result ? result.ProductStatistics.ReviewStatistics : {},
+                    error: null,
+                    isLoading: false
+                })
+            }).catch(err => {
+                console.log(err);
+                console.log(this.state.error);
+            });
     }
 
     get errorContent() {
@@ -53,17 +56,17 @@ class SingleRating extends React.Component {
 
     render() {
         const {showAverage} = this.props;
-        const {isLoading, review} = this.state;
+        const {isLoading, review, error} = this.state;
 
         if (isLoading) {
             return (<Rating placeHolder={isLoading}/>)
         }
 
-        const avgRating = !!review ? review.Results[0].ProductStatistics.ReviewStatistics.AverageOverallRating : 0;
-        const overallRating = !!review ? review.Results[0].ProductStatistics.ReviewStatistics.OverallRatingRange : 0;
+        const avgRating = !!review.AverageOverallRating ? review.AverageOverallRating : 0;
+        const overallRating = !!review.OverallRatingRange ? review.OverallRatingRange : 0;
 
         return (
-            (!!review && !!review.HasErrors) ? this.errorContent :
+            (!!error) ? this.errorContent :
                 <Rating showAverage={showAverage} avgRating={avgRating} overallRating={overallRating}/>
         )
     }

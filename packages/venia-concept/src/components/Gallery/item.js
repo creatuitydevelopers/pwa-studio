@@ -3,6 +3,7 @@ import { string, number, shape } from 'prop-types';
 import { Price } from '@magento/peregrine';
 import { Link } from 'react-router-dom';
 import classify from 'src/classify';
+import {Rating} from "src/components/Review";
 import { transparentPlaceholder } from 'src/shared/images';
 import { makeProductMediaPath } from 'src/util/makeMediaPath';
 import defaultClasses from './item.css';
@@ -54,7 +55,7 @@ class GalleryItem extends Component {
     };
 
     render() {
-        const { classes, item } = this.props;
+        const { classes, rating, item } = this.props;
 
         if (!item) {
             return (
@@ -67,6 +68,8 @@ class GalleryItem extends Component {
         const { name, price, url_key } = item;
         const productLink = `/${url_key}${productUrlSuffix}`;
 
+        console.log(this.props);
+
         return (
             <div className={classes.root}>
                 <Link to={productLink} className={classes.images}>
@@ -76,6 +79,7 @@ class GalleryItem extends Component {
                 <Link to={productLink} className={classes.name}>
                     <span>{name}</span>
                 </Link>
+                {!!rating && <Rating showAverage={rating.showAverage} avgRating={rating.avgRating} overallRating={rating.overallRating}/>}
                 <div className={classes.price}>
                     <Price
                         value={price.regularPrice.amount.value}
