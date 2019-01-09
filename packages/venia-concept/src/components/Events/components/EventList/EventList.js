@@ -47,7 +47,7 @@ class EventList extends Component {
     getStore = storeNumber => this.props.allStores.filter(store => store.store_number == storeNumber)[0];
 
     render() {
-        const {items, storeNumber, currentStore, classes} = this.props;
+        const {items, storeNumber, currentStore, allStores, classes} = this.props;
         const store = !!storeNumber ? this.getStore(storeNumber) : currentStore;
 
         return (
@@ -61,7 +61,7 @@ class EventList extends Component {
                         <ListSorter handleSortChange={this.handleSortChange} defaultValue={SORT_DEFAULT}/>
                     </Form>
                 </header>
-                <div className={classes.grid}>{this.getSortedItems(items).map((item, index) => <Item key={index} item={item}/>)}</div>
+                <div className={classes.grid}>{this.getSortedItems(items).map((item, index) => <Item key={index} item={item} stores={allStores}/>)}</div>
             </section>
         )
     }

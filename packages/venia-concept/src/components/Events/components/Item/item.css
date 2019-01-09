@@ -18,7 +18,7 @@
 
 .image {
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -79,8 +79,37 @@
 }
 
 .storesWrapper {
-    height: 20px;
-    margin-bottom: 10px;
+    position: relative;
+    height: 30px;
+    padding-bottom: 10px;
+}
+
+.storesWrapper:hover > .storesListWrapper {
+    display: block;
+}
+
+.storeAnchor {
+    cursor: pointer;
+    color: #0c4e77;
+}
+
+.storesListWrapper {
+    position: absolute;
+    top: 26px;
+    left: 0;
+    display: none;
+    max-height: 100px;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 0 5px;
+}
+
+.storesListWrapper ul li span {
+    display: block;
+    font-weight: 400;
+    margin: 7px 0;
+    color: inherit;
 }
 
 .linkWrapper {

@@ -5,6 +5,7 @@ import {func, oneOf, object, shape, string} from "prop-types";
 
 import {Link} from "react-router-dom";
 import RichText from 'src/components/RichText';
+import Title from "src/components/RkStore/Title/Title";
 
 import { BACKEND_URL, IMAGE_PATH } from 'src/components/Events/consts';
 
@@ -21,6 +22,8 @@ class Item extends Component {
             name: string,
             description: string,
             storesWrapper: string,
+            storeAnchor: string,
+            storeListWrapper: string,
             linkWrapper: string,
             link: string,
             badge: string,
@@ -32,12 +35,17 @@ class Item extends Component {
 
     render() {
 
-        const {classes, item} = this.props;
+        const {classes, item, stores} = this.props;
         const {id, name, date_start, description} = item.event;
 
         const link = `/event/${id}`;
         const date = moment(new Date(date_start));
 
+        const itemStores = item.stores.map(storeNumber => {
+            return stores.filter(store => store.store_number == storeNumber)[0];
+        }).filter(store => !!store);
+
+console.log(itemStores);
         return (
             <div className={classes.root}>
                 <Link to={link} className={classes.imageWrapper}>
@@ -51,7 +59,14 @@ class Item extends Component {
                     <div className={classes.storesWrapper}>
                         {!!item.stores.length
                         &&
-                        <span>See all event stores</span>
+                        <React.Fragment>
+                            <span className={classes.storeAnchor}>See all event stores</span>
+                            <div className={classes.storesListWrapper}>
+                                <ul>
+                                    {itemStores.map(store => <li key={store.store_number}><Title store={store} tag={`span`}/></li>)}
+                                </ul>
+                            </div>
+                        </React.Fragment>
                         }
                     </div>
                     <RichText className={classes.description}
