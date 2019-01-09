@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { bool, func, object, shape, string } from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-
-import getQueryParameterValue from '../../util/getQueryParameterValue';
+import getQueryParameterValue from 'src/util/getQueryParameterValue';
 
 import {EventList} from "src/components/Events";
-import classify from 'src/classify';
 
 const searchQuery = gql`
     query($id: Int) {
@@ -40,32 +38,26 @@ export class EventsPage extends Component {
     };
 
     render() {
-        const { classes, location } = this.props;
-        console.log(this.props);
-        const userInput = getQueryParameterValue({
+        const { location } = this.props;
+        const storeNumber = parseInt(getQueryParameterValue({
             location,
-            queryParameter: 'query'
-        });
+            queryParameter: 'store'
+        }));
 
         return (
             <Query query={searchQuery} variables={{ id: null }}>
                 {({ loading, error, data }) => {
-                    console.log(loading, error, data);
 
                     if (error) return <div>Data Fetch Error</div>;
                     if (loading) return <div>Fetching Data</div>;
 
-                    if (data.upcomingEvents.length === 0) {
-                        return (
-                            <div>
-                                No results found!
-                            </div>
-                        );
+                    const items = !!storeNumber ? data.upcomingEvents.filter(item => item.stores.includes(storeNumber)) : data.upcomingEvents;
+
+                    if (items.length === 0) {
+                        return (<div>No results found!</div>);
                     }
 
-                    return (
-                           <EventList items={data.upcomingEvents}/>
-                    );
+                    return (<EventList items={items} storeNumber={storeNumber}/>);
                 }}
             </Query>
         );

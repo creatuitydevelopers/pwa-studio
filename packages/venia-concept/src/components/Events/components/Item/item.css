@@ -5,17 +5,31 @@
     min-width: 0;
 }
 
-.details{
+.details {
     padding: 20px;
     border-top: 1px solid #cccccc;
 }
 
-.image{
-    min-height: 80px;
+.imageWrapper {
+    position: relative;
+    padding-bottom: 220px;
     display: block;
 }
 
-.name{
+.image {
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.name {
     display: block;
     margin-bottom: 10px;
     overflow: hidden;
@@ -28,14 +42,18 @@
     max-width: 100%;
 }
 
-.description{
-    height: 66px;
+.description {
+    height: 44px;
     margin-bottom: 10px;
     line-height: 22px;
     overflow: hidden;
 }
 
-.badge{
+.description p {
+    margin: 0;
+}
+
+.badge {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -48,26 +66,27 @@
     background: #ffffff;
 }
 
-.badgeMonth{
+.badgeMonth {
     display: block;
     margin-top: 7px;
     font-size: 14px;
 }
 
-.badgeDay{
+.badgeDay {
     display: block;
     font-size: 20px;
     font-weight: 700;
 }
 
-.storesWrapper{
+.storesWrapper {
     height: 20px;
     margin-bottom: 10px;
 }
 
-.linkWrapper{
+.linkWrapper {
     text-align: right;
 }
-.link{
+
+.link {
     color: #0c4e77;
 }

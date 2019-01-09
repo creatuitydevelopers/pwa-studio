@@ -4,20 +4,20 @@ import classify from 'src/classify';
 
 import Select from 'src/components/Select';
 
-import { SORT_DEFAULT, SORT_DROPDOWN_OPTIONS } from './consts';
+import { SORT_DEFAULT, SORT_DROPDOWN_OPTIONS } from 'src/components/Events/consts';
 import defaultClasses from './listSorter.css';
 
 
 const ListSorter = ({classes, defaultValue, handleSortChange}) => {
     return (
         <div className={classes.root}>
-            {`Sort by`}
-            {/*<Select*/}
-                {/*field="sortEvents"*/}
-                {/*items={SORT_DROPDOWN_OPTIONS}*/}
-                {/*value={SORT_DEFAULT}*/}
-                {/*onChange={(event) => handleSortChange(event.target.value)}*/}
-            {/*/>*/}
+            <label htmlFor={'sortEvents'}>{`Sort by`}</label>
+            <Select
+            field="sortEvents"
+            items={SORT_DROPDOWN_OPTIONS}
+            initialValue={defaultValue}
+            onValueChange={handleSortChange}
+            />
         </div>
     );
 };
@@ -27,7 +27,7 @@ ListSorter.propTypes = {
         root: string
     }),
     handleSortChange: func.isRequired,
-    defaultValue: oneOf(['date', 'event']),
+    defaultValue: oneOf(['date_start', 'name']),
 };
 
 ListSorter.defaultProps = {

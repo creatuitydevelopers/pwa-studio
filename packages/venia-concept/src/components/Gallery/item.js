@@ -68,8 +68,6 @@ class GalleryItem extends Component {
         const { name, price, url_key } = item;
         const productLink = `/${url_key}${productUrlSuffix}`;
 
-        console.log(this.props);
-
         return (
             <div className={classes.root}>
                 <Link to={productLink} className={classes.images}>
