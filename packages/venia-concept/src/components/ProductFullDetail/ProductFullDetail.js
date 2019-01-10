@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { arrayOf, bool, func, number, shape, string } from 'prop-types';
 import { Form } from 'informed';
-import { Price } from '@magento/peregrine';
+import { Price } from 'src/components/Price';
 
 import classify from 'src/classify';
 import Button from 'src/components/Button';
@@ -185,6 +185,12 @@ class ProductFullDetail extends Component {
                         <Price
                             currencyCode={regularPrice.amount.currency}
                             value={regularPrice.amount.value}
+                            partsClasses={{
+                                currency: 'upIdx',
+                                fraction: 'upIdx',
+                                decimal: 'hidden'
+                            }}
+                            locale={`en-US`}
                         />
                     </p>
                     <SingleRating item={product}/>
