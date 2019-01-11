@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { camelize } from './lib/String';
 import { makeCancelable } from './lib/cancelablePromise';
 import { GoogleApiWrapper } from 'google-maps-react';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 const mapStyles = {
     container: {
@@ -307,6 +308,11 @@ Map.defaultProps = {
     visible: true
 };
 
+const LoadingContainer = (props) => (
+    <div>{loadingIndicator}</div>
+)
+
 export default GoogleApiWrapper({
-    apiKey: GOOGLE_MAPS_API_KEY
+    apiKey: GOOGLE_MAPS_API_KEY,
+    LoadingContainer: LoadingContainer
 })(Map);

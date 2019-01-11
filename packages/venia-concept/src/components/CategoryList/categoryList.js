@@ -58,10 +58,10 @@ class CategoryList extends Component {
 
                         return (
                             <div className={classes.content}>
-                                {data.category.children.map(item => (
+                                {data.category.children.map((item, idx) => (
                                     <CategoryTile
                                         item={item}
-                                        key={item.url_key}
+                                        key={idx}
                                     />
                                 ))}
                             </div>

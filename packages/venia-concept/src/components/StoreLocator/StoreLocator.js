@@ -20,14 +20,15 @@ const initialState = {
     radiusLatitude: null,
     radiusLongitude: null,
     radius: 50,
-    latitude: 36.08353,
-    longitude: -83.9315079,
+    latitude: 39.7345203,
+    longitude: -84.2594939,
     selectedPlace: {},
-    zoom: 5,
+    zoom: 9,
     isGeocoding: false
 };
 
 class StoreLocator extends React.Component {
+    
     state = {
         allStores: this.props.allStores,
         ...initialState

@@ -8,6 +8,7 @@ import { object, func } from 'prop-types';
 import {Rating} from 'src/components/Review'
 import {Places} from 'src/components/GoogleMaps';
 import moment from 'moment';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 const tConv24 = time24 => {
     var ts = time24;
@@ -221,7 +222,7 @@ const DetailsPage = props => {
                         >
                             { ({isLoading, place}) => 
                                 { return isLoading ? 
-                                    <p>...Loading...</p>
+                                    <div>{loadingIndicator}</div>
                                     :
                                     <div className={classes.ratingContainer}>
                                         <Rating avgRating={place.rating} />
