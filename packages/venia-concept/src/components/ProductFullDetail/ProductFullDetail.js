@@ -181,7 +181,7 @@ class ProductFullDetail extends Component {
                     <h1 className={classes.productName}>
                         <span>{product.name}</span>
                     </h1>
-                    <p className={classes.productPrice}>
+                    <div className={classes.productPrice}>
                         <Price
                             currencyCode={regularPrice.amount.currency}
                             value={regularPrice.amount.value}
@@ -192,7 +192,7 @@ class ProductFullDetail extends Component {
                             }}
                             locale={`en-US`}
                         />
-                    </p>
+                    </div>
                     <SingleRating item={product}/>
                 </section>
                 <section className={classes.imageCarousel}>
