@@ -16,6 +16,8 @@ import Icon from 'src/components/Icon';
 import Button from 'src/components/Button';
 import { SearchForm } from 'src/components/StoreLocator';
 import StoresList from 'src/components/DeliveryMethods/components/StoresList';
+import mapPin from 'react-feather/dist/icons/map-pin';
+
 
 import defaultClasses from './stsOption.css';
 
@@ -149,7 +151,7 @@ class StsOption extends Component {
         ) {
             return (
                 <span>
-                    <Icon name="map-pin" className={classes.pinIcon} />
+                    <Icon src={mapPin} className={classes.pinIcon} />
                     <span className={classes.storeName}>
                         {store.company_name}
                     </span>
@@ -160,7 +162,7 @@ class StsOption extends Component {
 
         return (
             <span className={classes.alertMessage}>
-                <Icon name="map-pin" className={classes.pinIcon} />
+                <Icon src={mapPin} className={classes.pinIcon} />
                 <span>
                     This item is not available for Ship to Store to{' '}
                     {store.company_name}

@@ -10,6 +10,7 @@ import { MapContainer, Filters } from 'src/components/StoreLocator';
 import WindowDimensions from 'src/components/Utils/WindowDimensions';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { SearchPopup, SearchForm } from 'src/components/StoreLocator';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 export const mobileViewport = 560;
 const searchRadiusUnit = 'mi';
@@ -116,7 +117,7 @@ class StoreLocator extends React.Component {
         let stores;
 
         if (!allStores) {
-            return <h1> ... Loading stores .... </h1>;
+            return loadingIndicator;
         }
 
         if (
