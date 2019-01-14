@@ -16,7 +16,6 @@ import { StoreWidgetHeaderLabel } from 'src/components/StoreWidget';
 
 import SearchTrigger from './searchTrigger';
 const SearchBar = React.lazy(() => import('src/components/SearchBar'));
-import defaultClasses from './header.css';
 
 class Header extends Component {
     static propTypes = {

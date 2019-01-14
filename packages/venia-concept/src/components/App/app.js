@@ -11,6 +11,7 @@ import OnlineIndicator from 'src/components/OnlineIndicator';
 import renderRoutes from './renderRoutes';
 
 class App extends Component {
+
     static propTypes = {
         app: shape({
             drawer: string,
@@ -35,7 +36,6 @@ class App extends Component {
         const navIsOpen = drawer === 'nav';
         const cartIsOpen = drawer === 'cart';
         const storeWidgetIsOpen = drawer === 'storeWidget';
-        const className = overlay ? classes.root_masked : classes.root;
 
         return (
             <Fragment>
@@ -50,11 +50,10 @@ class App extends Component {
                     {renderRoutes()}
                 </Main>
                 <Mask isActive={overlay} dismiss={closeDrawer} />
-                {/* <Navigation isOpen={navIsOpen} /> */}
+                <Navigation isOpen={navIsOpen} />
                 <MiniCart isOpen={cartIsOpen} />
                 <StoreWidget isOpen={storeWidgetIsOpen} />
             </Fragment>
-
         );
     }
 }
