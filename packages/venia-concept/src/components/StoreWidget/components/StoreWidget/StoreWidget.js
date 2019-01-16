@@ -53,6 +53,7 @@ class StoreWidget extends PureComponent {
                     1
                 );
                 setCurrentStore(allStores[nearest.key]);
+
                 this.hideFindAnother();
             });
         }
@@ -111,7 +112,7 @@ class StoreWidget extends PureComponent {
     };
 
     getStoresNearBy = () => {
-        const foundStores = findStoresWithinRadius({
+        let foundStores = findStoresWithinRadius({
             stores: this.props.allStores,
             currentLocation: {
                 latitude: this.state.lat,
@@ -120,6 +121,14 @@ class StoreWidget extends PureComponent {
             radius: searchRadius,
             radiusUnit: searchRadiusUnit
         });
+
+        !!foundStores.length ? foundStores = geolib.orderByDistance(
+            {
+                latitude: this.state.lat, 
+                longitude: this.state.lng
+            }, foundStores
+        ) : false;
+
         const showNoStoresFound = foundStores.length < 1;
         this.setState({
             storesNearBy: foundStores,
