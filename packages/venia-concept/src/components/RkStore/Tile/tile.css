@@ -62,7 +62,7 @@
     text-align: center;
     line-height: 30px;
     border-radius: 50%;
-    background: rgb(var(--venia-teal));
+    background: rgb(var(--rk--color__red));
     color: #fff;
 }
 

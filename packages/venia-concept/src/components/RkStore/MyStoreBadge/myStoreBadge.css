@@ -1,6 +1,8 @@
 .root {
-    composes: root from '../../Button/button.css';
+    composes: root_highPriority  from '../../Button/button.css';
+    composes: root_normalSize from '../../Button/button.css';
     background: rgb(var(--rk--color__green));
+    border-color: rgb(var(--rk--color__green));
     color: white;
 }
 
@@ -19,9 +21,9 @@
 }
 
 .small {
-    composes: small from '../../Button/button.css';
+    composes: root_smallSize from '../../Button/button.css';
 }
 
 .big {
-    composes: big from '../../Button/button.css';
+    composes: root_bigSize from '../../Button/button.css';
 }

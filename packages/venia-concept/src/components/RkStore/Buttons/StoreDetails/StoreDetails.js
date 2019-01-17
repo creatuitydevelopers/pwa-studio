@@ -10,10 +10,8 @@ const StoreDetailsButton = props => {
     const {
         store,
         title,
-        children,
         history,
         size,
-        useStandardLink,
         onClick = function() {}
     } = props;
 
@@ -23,7 +21,7 @@ const StoreDetailsButton = props => {
     };
 
     return (
-        <Button type="button" genre="empty" size={size} onClick={handleClick}>
+        <Button type="button" priority={`normalSecondary`} size={size} onClick={handleClick}>
             {title}
         </Button>
     );

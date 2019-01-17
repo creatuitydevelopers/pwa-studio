@@ -73,7 +73,7 @@ const DetailsPage = props => {
                         currentStore={currentStore}
                         setCurrentStore={setCurrentStore}
                         size={`big`}
-                        genre={`secondary`}
+                        priority={`highSecondary`}
                     />
                     <Link to={`/storelocator/`} className={classes.captionLink}>
                         Find a Different Store

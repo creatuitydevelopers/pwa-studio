@@ -122,13 +122,6 @@ class StoreWidget extends PureComponent {
             radiusUnit: searchRadiusUnit
         });
 
-        !!foundStores.length ? foundStores = geolib.orderByDistance(
-            {
-                latitude: this.state.lat, 
-                longitude: this.state.lng
-            }, foundStores
-        ) : false;
-
         const showNoStoresFound = foundStores.length < 1;
         this.setState({
             storesNearBy: foundStores,
@@ -199,12 +192,13 @@ class StoreWidget extends PureComponent {
         const { classes } = this.props;
         return (
             <div className={classes.actionBar}>
-                <Button type="button" onClick={this.handleViewAll}>
+                <Button type="button" priority={`high`} onClick={this.handleViewAll}>
                     View All
                 </Button>
                 {this.state.isFindAnotherVisible && (
                     <Button
                         type="button"
+                        priority={`high`}
                         disabled={!this.isUserLocationSet()}
                         onClick={() => this.onSearchLocation()}
                     >
@@ -212,7 +206,7 @@ class StoreWidget extends PureComponent {
                     </Button>
                 )}
                 {!this.state.isFindAnotherVisible && (
-                    <Button type="button" onClick={this.onFindAnother}>
+                    <Button type="button" priority={`high`} onClick={this.onFindAnother}>
                         Find Another
                     </Button>
                 )}

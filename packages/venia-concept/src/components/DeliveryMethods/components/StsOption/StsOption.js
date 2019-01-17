@@ -188,7 +188,7 @@ class StsOption extends Component {
                 <p>
                     <Button
                         size={`small`}
-                        genre={`empty`}
+                        priority={`normalSecondary`}
                         onClick={this.handleOpenModalClick}
                     >
                         {!!store ? `Choose Another Store` : `Select store`}
