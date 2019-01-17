@@ -69,10 +69,12 @@ const StoreDetails = ({ classes, details }) => {
                 <h3 className={classes.detailsHeading}>
                     <strong>Other Info:</strong>
                 </h3>
-                <p>
-                    <strong>Opening Hours: </strong>
-                    {hours.open} - {hours.close}
-                </p>
+                {!!hours && 
+                    <p>
+                        <strong>Opening Hours: </strong>
+                        {hours.open} - {hours.close}
+                    </p>
+                }
                 <p>
                     <strong>Store Manager: </strong>
                     {details.store_manager}
