@@ -4,9 +4,9 @@ export const getScheduleForToday = ({ schedule }) => {
     const currentDay = new Date()
         .toLocaleDateString('en-US', { weekday: 'long' })
         .toLowerCase();
-    return schedule.find(el => {
+    return !!schedule ? schedule.find(el => {
         return el.day === currentDay;
-    });
+    }) : false;
 };
 
 export const isCurrentStore = (store, currentStore) => {
