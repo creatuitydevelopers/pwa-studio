@@ -8,6 +8,7 @@ class Price extends PureComponent {
     static propTypes = {
         value: number.isRequired,
         currencyCode: string.isRequired,
+        locale: string.isRequired,
         partsClasses: shape({
             currency: string,
             integer: string,
@@ -17,11 +18,12 @@ class Price extends PureComponent {
     };
 
     static defaultProps = {
-        partsClasses: {}
+        partsClasses: {},
+        locale: 'en-US'
     };
 
     render() {
-        const { value, currencyCode, partsClasses, classes, locale = undefined } = this.props;
+        const { value, currencyCode, partsClasses, classes, locale } = this.props;
 
         const parts = patches.toParts.call(
             Intl.NumberFormat(locale, {

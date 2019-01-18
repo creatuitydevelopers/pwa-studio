@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { bool, object, shape, string } from 'prop-types';
 
-import { Price } from '@magento/peregrine';
+import { Price } from 'src/components/Price';
 import classify from 'src/classify';
 import { getCartDetails, removeItemFromCart } from 'src/actions/cart';
 import Icon from 'src/components/Icon';

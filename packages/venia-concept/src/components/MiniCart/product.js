@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { arrayOf, number, shape, string } from 'prop-types';
-import { Price } from '@magento/peregrine';
+import { Price } from 'src/components/Price';
 import Kebab from './kebab';
 import Section from './section';
 
