@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { array, bool, func, object, shape, string } from 'prop-types';
 
-import { Price, Util } from '@magento/peregrine';
+import { Util } from '@magento/peregrine';
+import {Price} from 'src/components/Price';
 import AddressForm from './addressForm';
 import PaymentsForm from './paymentsForm';
 import Section from './section';
 import ShippingForm from './shippingForm';
 import SubmitButton from './submitButton';
+import ShippingInformation from './ShippingInformation';
 
 import classify from 'src/classify';
 import defaultClasses from './form.css';
@@ -80,7 +82,8 @@ class Form extends Component {
             editing,
             submitting,
             isAddressIncorrect,
-            incorrectAddressMessage
+            incorrectAddressMessage,
+            cart
         } = this.props;
 
         switch (editing) {
@@ -115,13 +118,19 @@ class Form extends Component {
                 const { availableShippingMethods, shippingMethod } = this.props;
 
                 return (
-                    <ShippingForm
+                    <ShippingInformation 
+                        cart={cart}
                         availableShippingMethods={availableShippingMethods}
                         cancel={this.stopEditing}
-                        shippingMethod={shippingMethod}
-                        submit={this.submitShippingMethod}
-                        submitting={submitting}
                     />
+                    
+                    // <ShippingForm
+                    //     availableShippingMethods={availableShippingMethods}
+                    //     cancel={this.stopEditing}
+                    //     shippingMethod={shippingMethod}
+                    //     submit={this.submitShippingMethod}
+                    //     submitting={submitting}
+                    // />
                 );
             }
             default: {
@@ -156,7 +165,7 @@ class Form extends Component {
                     </Section>
                     <Section
                         disabled={!isPaymentMethodReady}
-                        label="Get It By"
+                        label="Delivery"
                         onClick={this.editShippingMethod}
                     >
                         {this.shippingMethodSummary}
@@ -206,24 +215,14 @@ class Form extends Component {
     get shippingMethodSummary() {
         const {
             classes,
-            isPaymentMethodReady,
-            isShippingMethodReady,
-            shippingTitle
+            isPaymentMethodReady
         } = this.props;
 
-        if (!isShippingMethodReady) {
-            const promptClass = isPaymentMethodReady
-                ? classes.informationPrompt
-                : classes['informationPrompt--disabled'];
-            return (
-                <span className={promptClass}>Add Shipping Information</span>
-            );
-        }
-
+        const promptClass = isPaymentMethodReady
+            ? classes.informationPrompt
+            : classes['informationPrompt--disabled'];
         return (
-            <Fragment>
-                <strong>{shippingTitle}</strong>
-            </Fragment>
+            <span className={promptClass}>Show Shipping Information</span>
         );
     }
 

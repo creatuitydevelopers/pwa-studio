@@ -36,7 +36,7 @@ const isShippingInfoReady = () => {
     const address = storage.getItem('address');
     return isAddressValid(address);
 };
-const isShippingMethodReady = checkout => !!checkout.shippingMethod;
+const isShippingMethodReady = checkout => true;
 
 class CheckoutWrapper extends Component {
     static propTypes = {
@@ -69,7 +69,6 @@ class CheckoutWrapper extends Component {
         const {
             cart,
             checkout,
-
             beginCheckout,
             editOrder,
             getShippingMethods,
