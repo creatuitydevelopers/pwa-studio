@@ -1,0 +1,14 @@
+.root{
+    max-width: 768px;
+    width: 100%;
+}
+
+.modalHeader {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 30px 20px 0;
+}
+
+.description{
+    margin-bottom: 10px;
+}

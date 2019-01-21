@@ -3,7 +3,7 @@ import {func, object, array, shape, string} from "prop-types";
 import classify from 'src/classify';
 
 import {Form} from "informed";
-import {Title} from 'src/components/RkStore';
+import {Grid, Title} from 'src/components/RkStore';
 import {Item, ListSorter} from 'src/components/Events/';
 import {SORT_DEFAULT} from 'src/components/Events/consts';
 
@@ -13,8 +13,7 @@ class EventList extends Component {
     static propTypes = {
         classes: shape({
             root: string,
-            header: string,
-            grid: string
+            header: string
         }),
         events: array
     };
@@ -61,7 +60,7 @@ class EventList extends Component {
                         <ListSorter handleSortChange={this.handleSortChange} defaultValue={SORT_DEFAULT}/>
                     </Form>
                 </header>
-                <div className={classes.grid}>{this.getSortedItems(items).map((item, index) => <Item key={index} item={item} stores={allStores}/>)}</div>
+                <Grid>{this.getSortedItems(items).map((item, index) => <Item key={index} item={item} stores={allStores}/>)}</Grid>
             </section>
         )
     }
