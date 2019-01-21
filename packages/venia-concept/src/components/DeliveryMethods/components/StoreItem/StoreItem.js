@@ -50,7 +50,7 @@ const StoreItem = ({ store, onStoreSelectClick, classes }) => {
             </div>
             {!!store.inventoryLevel && (
                 <div className={classes.actions}>
-                    <Button onClick={() => onStoreSelectClick(store)}>
+                    <Button priority={`high`} onClick={() => onStoreSelectClick(store)}>
                         Select Store
                     </Button>
                 </div>

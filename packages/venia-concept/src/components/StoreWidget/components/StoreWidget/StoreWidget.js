@@ -47,17 +47,13 @@ class StoreWidget extends PureComponent {
         if (navigator.geolocation && !!allStores) {
             navigator.geolocation.getCurrentPosition(async position => {
                 const { latitude, longitude } = position.coords;
-                
-
-                console.log(position.coords);
-                console.log(allStores);
-
                 const nearest = await geolib.findNearest(
                     { latitude, longitude },
                     allStores,
                     1
                 );
                 setCurrentStore(allStores[nearest.key]);
+
                 this.hideFindAnother();
             });
         }
@@ -116,7 +112,7 @@ class StoreWidget extends PureComponent {
     };
 
     getStoresNearBy = () => {
-        const foundStores = findStoresWithinRadius({
+        let foundStores = findStoresWithinRadius({
             stores: this.props.allStores,
             currentLocation: {
                 latitude: this.state.lat,
@@ -125,6 +121,7 @@ class StoreWidget extends PureComponent {
             radius: searchRadius,
             radiusUnit: searchRadiusUnit
         });
+
         const showNoStoresFound = foundStores.length < 1;
         this.setState({
             storesNearBy: foundStores,
@@ -195,12 +192,13 @@ class StoreWidget extends PureComponent {
         const { classes } = this.props;
         return (
             <div className={classes.actionBar}>
-                <Button type="button" onClick={this.handleViewAll}>
+                <Button type="button" priority={`high`} onClick={this.handleViewAll}>
                     View All
                 </Button>
                 {this.state.isFindAnotherVisible && (
                     <Button
                         type="button"
+                        priority={`high`}
                         disabled={!this.isUserLocationSet()}
                         onClick={() => this.onSearchLocation()}
                     >
@@ -208,7 +206,7 @@ class StoreWidget extends PureComponent {
                     </Button>
                 )}
                 {!this.state.isFindAnotherVisible && (
-                    <Button type="button" onClick={this.onFindAnother}>
+                    <Button type="button" priority={`high`} onClick={this.onFindAnother}>
                         Find Another
                     </Button>
                 )}

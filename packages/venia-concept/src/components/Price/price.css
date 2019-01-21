@@ -1,0 +1,16 @@
+.priceContainer {
+    display: flex;
+    line-height: 1;
+}
+
+.upIdx,
+.upIdx {
+    font-size: 70%;
+    align-self: flex-start;
+}
+
+.hidden {
+    display: none;
+}
+
+

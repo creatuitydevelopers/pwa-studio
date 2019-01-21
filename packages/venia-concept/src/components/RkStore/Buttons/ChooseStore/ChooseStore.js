@@ -27,7 +27,7 @@ const ChooseStore = props => {
     return isCurrent ? (
         <MyStoreBadge size={size} />
     ) : (
-        <Button type="button" onClick={handleClick} size={size} {...rest}>
+        <Button type="button" priority={`high`} onClick={handleClick} size={size} {...rest}>
             {content}
         </Button>
     );

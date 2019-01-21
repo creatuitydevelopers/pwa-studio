@@ -20,9 +20,11 @@ const Info = ({ classes, store }) => {
                     <a href={`tel:${phone}`}>{phone}</a>
                 </li>
             )}
-            <li>
-                <strong>Hours:</strong> {schedule.open} - {schedule.close}
-            </li>
+            {!!schedule && 
+                <li>
+                    <strong>Hours:</strong>{schedule.open} - {schedule.close}
+                </li>
+            }
             {store_manager && (
                 <li>
                     <strong>Store Manager:</strong> {store_manager}

@@ -17,15 +17,12 @@
 }
 
 .buttonSticky {
-    display: block;
-    background: rgb(var(--rk--color__red));
-    border: 1px solid rgb(var(--rk--color__red));
-    border-radius: 2px;
-    color: white;
+    composes: root_highPriority from '../../../Button/button.css';
+    composes: root_normalSize from '../../../Button/button.css';
+    display: flex;
+    align-items: center;
+    font-size: 21px;
     width: calc(50% - 5px);
-    text-align: center;
-    padding: 5px 10px;
-    font-size: 25px;
 }
 
 .buttonSticky:hover {

@@ -5,6 +5,8 @@ import classify from 'src/classify';
 
 import Icon from 'src/components/Icon';
 import Trigger from 'src/components/Trigger';
+import ArrowLeftIcon from 'react-feather/dist/icons/arrow-left';
+import CloseIcon from 'react-feather/dist/icons/x';
 
 import defaultClasses from './header.css';
 
@@ -12,11 +14,11 @@ const Header = ({ classes, onBack, onClose, children }) => {
     return (
         <React.Fragment>
             <Trigger key="backButton" action={onBack}>
-                <Icon name="arrow-left" />
+                <Icon src={ArrowLeftIcon} />
             </Trigger>
             <div className={classes.title}>{children}</div>
             <Trigger key="closeButton" action={onClose}>
-                <Icon name="x" />
+                <Icon src={CloseIcon} />
             </Trigger>
         </React.Fragment>
     );

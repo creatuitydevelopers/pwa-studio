@@ -4,8 +4,8 @@
 }
 
 .storeDetailsButton {
-    composes: root from '../../Button/button.css';
-    composes: empty from '../../Button/button.css';
-    composes: small from '../../Button/button.css';
+    composes: root_normalPriority from '../../Button/button.css';
+    composes: root_smallSize from '../../Button/button.css';
+    font-family: var(--venia-font);
     margin-bottom: 5px;
 }

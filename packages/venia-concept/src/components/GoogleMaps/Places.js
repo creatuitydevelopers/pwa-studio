@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { GoogleApiWrapper } from 'google-maps-react';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 class Palces extends React.Component {
 
@@ -64,7 +65,12 @@ Palces.propTypes = {
     searchString: PropTypes.string
 }
 
+const LoadingContainer = (props) => (
+    <div>{loadingIndicator}</div>
+)
+
 export default GoogleApiWrapper({
     apiKey: GOOGLE_MAPS_API_KEY,
+    LoadingContainer: LoadingContainer,
     libraries: ['places']
 })(Palces);

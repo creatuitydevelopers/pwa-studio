@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
 import { setCurrentStore } from 'src/actions/store';
 import gql from 'graphql-tag';
 import { DetailsPage } from 'src/components/RkStore';
@@ -74,7 +75,7 @@ class StoreDetails extends Component {
             <Query query={query} variables={{ urlKey: getUrlKey() }}>
                 {({ loading, error, data }) => {
                     if (error) return <div>Data Fetch Error</div>;
-                    if (loading) return <div>Fetching Data</div>;
+                    if (loading) return loadingIndicator;
 
                     const store = data.storeLocator[0];
 

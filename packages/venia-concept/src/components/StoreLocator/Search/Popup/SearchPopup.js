@@ -5,6 +5,9 @@ import classify from 'src/classify';
 import Icon from 'src/components/Icon';
 import Button from 'src/components/Button';
 import defaultClasses from './searchPopup.css';
+import searchIcon from 'react-feather/dist/icons/search';
+import CloseIcon from 'react-feather/dist/icons/x';
+
 
 class SearchPopup extends React.Component {
     static propTypes = {
@@ -47,7 +50,7 @@ class SearchPopup extends React.Component {
                                 genre={`empty`}
                                 onClick={this.handleCloseForm}
                             >
-                                <Icon name="x" />
+                                <Icon src={CloseIcon} />
                             </Button>
                         </div>
                         {children}
@@ -55,7 +58,7 @@ class SearchPopup extends React.Component {
                 ) : (
                     <div className={classes.header}>
                         <Button genre={`empty`} onClick={this.handleOpenForm}>
-                            <Icon name="search" />
+                            <Icon src={searchIcon} />
                         </Button>
                     </div>
                 )}

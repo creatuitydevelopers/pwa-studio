@@ -149,11 +149,11 @@ class SearchForm extends React.Component {
                 {!!showRange && this.rangeContent}
                 {destination !== STOREWIDGET_DEST && (
                     <div className={classes.actions}>
-                        <Button onClick={this.handleSearchPlace}>Search</Button>
+                        <Button priority={`high`} onClick={this.handleSearchPlace}>Search</Button>
                         {destination === STORELOCATOR_DEST && (
                             <Button
+                                priority={`highSecondary`}
                                 onClick={this.handleResetStoreLocator}
-                                genre={'secondary'}
                             >
                                 View all stores
                             </Button>

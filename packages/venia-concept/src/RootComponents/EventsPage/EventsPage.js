@@ -3,6 +3,7 @@ import { bool, func, object, shape, string } from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import getQueryParameterValue from 'src/util/getQueryParameterValue';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 import {EventList} from "src/components/Events";
 
@@ -49,7 +50,7 @@ export class EventsPage extends Component {
                 {({ loading, error, data }) => {
 
                     if (error) return <div>Data Fetch Error</div>;
-                    if (loading) return <div>Fetching Data</div>;
+                    if (loading) return loadingIndicator;
 
                     const items = !!storeNumber ? data.upcomingEvents.filter(item => item.stores.includes(storeNumber)) : data.upcomingEvents;
 

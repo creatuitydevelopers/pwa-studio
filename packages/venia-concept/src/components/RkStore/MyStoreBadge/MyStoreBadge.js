@@ -25,7 +25,7 @@ MyStoreBadge.propTypes = {
         root: string,
         size: string
     }),
-    size: oneOf(['small', 'big'])
+    size: oneOf(['small', 'big', 'normal', 'medium'])
 };
 
 MyStoreBadge.defaultProps = {

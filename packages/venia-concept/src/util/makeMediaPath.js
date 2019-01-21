@@ -1,6 +1,7 @@
 const trailingSlashRE = /\/+$/;
 const wrappingSlashRE = /^\/*(.+?)\/*$/;
-export function makePathPrepender(prefix) {
+
+function makePathPrepender(prefix) {
     const normalizedPrefix = prefix.replace(trailingSlashRE, '') + '/';
     return (...args) => {
         return (
