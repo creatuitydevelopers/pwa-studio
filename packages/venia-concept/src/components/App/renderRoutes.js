@@ -6,6 +6,7 @@ import CreateAccountPage from 'src/components/CreateAccountPage/index';
 import StoreLocator from 'src/components/StoreLocator';
 import Search from 'src/RootComponents/Search';
 import EventsPage from 'src/RootComponents/EventsPage';
+import Rebates from 'src/RootComponents/Rebates';
 
 const renderRoutingError = props => <ErrorView {...props} />;
 
@@ -15,6 +16,7 @@ const renderRoutes = () => (
         <Route exact path="/create-account" component={CreateAccountPage} />
         <Route exact path="/storelocator" component={StoreLocator} />
         <Route exact path="/events" component={EventsPage} />
+        <Route exact path="/rebates" component={Rebates} />
         <Route render={() => <Page>{renderRoutingError}</Page>} />
     </Switch>
 );

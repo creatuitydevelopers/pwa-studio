@@ -10,15 +10,6 @@
     line-height: 28px;
 }
 
-.header small {
-    display: block;
-}
-
-.header small span {
-    font-size: 100%;
-    color: inherit;
-}
-
 .title {
     align-self: center;
 }

@@ -45,7 +45,6 @@ class Item extends Component {
             return stores.filter(store => store.store_number == storeNumber)[0];
         }).filter(store => !!store);
 
-console.log(itemStores);
         return (
             <div className={classes.root}>
                 <Link to={link} className={classes.imageWrapper}>
