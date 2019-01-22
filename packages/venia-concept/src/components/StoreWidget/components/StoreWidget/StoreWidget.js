@@ -18,6 +18,7 @@ const searchRadiusUnit = 'mi';
 const noStoresFoundMessage = `Sorry, there are no Rural King stores within ${searchRadius} miles of your search. Please try searching another location.`;
 
 class StoreWidget extends PureComponent {
+    
     state = {
         address: '',
         lat: null,
@@ -29,13 +30,16 @@ class StoreWidget extends PureComponent {
 
     async componentDidMount() {
         const { currentStore } = this.props;
-
         await this.props.getAllStores();
         currentStore ? this.hideFindAnother() : this.showFindAnother();
     }
 
     componentDidUpdate() {
-        const { isOpen, currentStore } = this.props;
+        const { isOpen, currentStore, drawer } = this.props;
+        if(!drawer) {
+            this.hideFindAnother();
+        }
+
         if (isOpen && !currentStore) {
             this.assignNearestStore();
         }
@@ -89,8 +93,7 @@ class StoreWidget extends PureComponent {
                         lat,
                         lng,
                         address: selected
-                    },
-                    () => this.getStoresNearBy()
+                    }
                 );
             })
             .catch(error => {
@@ -146,9 +149,9 @@ class StoreWidget extends PureComponent {
             if (!showNoStoresFound && storesNearBy.length > 0) {
                 return this.setState({ storesNearBy: [] });
             }
-            return closeDrawer();
+            this.hideFindAnother();
         } else {
-            return this.showFindAnother();
+            return closeDrawer();
         }
     };
 
@@ -164,6 +167,7 @@ class StoreWidget extends PureComponent {
         const { currentStore, classes, setCurrentStore, closeDrawer } = props;
         const showDetails = currentStore && !this.state.isFindAnotherVisible;
         const showList = state.isFindAnotherVisible && !state.showNoStoresFound;
+        console.log(this.state.storesNearBy);
 
         return (
             <React.Fragment>
