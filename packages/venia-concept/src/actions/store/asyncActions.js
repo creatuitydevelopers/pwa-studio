@@ -53,7 +53,7 @@ export const getStoreByNumber = async (storeNumber) => {
     const stores = await getStoresFromStorage();
     
     return stores.find(el => {
-        return el.storelocator_id == storeNumber;
+        return el.store_number == storeNumber;
     });
 }
 

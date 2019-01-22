@@ -1,0 +1,17 @@
+.name {
+    display: flex;
+    background: rgb(var(--venia-grey));
+    padding: 7px 10px;
+    align-items: center;
+    margin: 0;
+}
+
+.icon {
+    padding-right: 5px;
+    height: 18px;
+    color: rgb(var(--rk--color__red));
+}
+
+.icon svg {
+    height: 18px;
+}

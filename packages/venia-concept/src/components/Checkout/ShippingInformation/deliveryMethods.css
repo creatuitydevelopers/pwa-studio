@@ -1,0 +1,10 @@
+.name {
+    text-align: center;
+    color: rgb(var(--rk--color__red));
+    text-transform: uppercase;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid rgb(var(--venia-border));
+}

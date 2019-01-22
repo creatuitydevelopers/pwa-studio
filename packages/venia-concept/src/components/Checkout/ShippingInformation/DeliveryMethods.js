@@ -1,30 +1,38 @@
 import React from 'react';
 import groupBy from 'lodash/groupBy';
 import toPairs from 'lodash/toPairs'
+import StoreDetails from './StoreDetails';
+import classify from 'src/classify';
+import defaultClasses from './deliveryMethods.css';
 
 class DeliveryMethods extends React.Component {
 
     getCarrierTitleByCode = (code) => {
         const { availableShippingMethods } = this.props;
-        const o = availableShippingMethods.find((el) => {
+        const carrier = availableShippingMethods.find((el) => {
             return el.carrier_code == code;
         })
-        return o.carrier_title
+        return carrier.carrier_title
     }
 
     render() {
-        const { storeCode, items } = this.props;
+        const { storeCode, currencyCode, items, classes } = this.props;
         const dataGroupedByStoreNumber = toPairs(groupBy(items, item => item.extension_attributes.store_number));
 
         return (
             <div>
-                <h3>{this.getCarrierTitleByCode(storeCode)}</h3>
-                {dataGroupedByStoreNumber.map((store, idx) => {
-                    const [storeNumber, items] = store;
-                    console.log(storeNumber);
-                    console.log(items);
-                    return <p key={idx}>lasjhdjkashdkajshd</p>
-                })}
+                <h3 className={classes.name}><strong>{this.getCarrierTitleByCode(storeCode)}</strong></h3>
+                {
+                    dataGroupedByStoreNumber.map((store, idx) => {
+                        const [storeNumber, items] = store;
+                        return <StoreDetails 
+                                    key={idx} 
+                                    currencyCode={currencyCode}
+                                    storeNumber={storeNumber} 
+                                    items={items} 
+                                />
+                    })
+                }
             </div>
             
         )
@@ -32,4 +40,4 @@ class DeliveryMethods extends React.Component {
 
 }
 
-export default DeliveryMethods;
+export default classify(defaultClasses)(DeliveryMethods);
