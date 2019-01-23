@@ -123,14 +123,6 @@ class Form extends Component {
                         availableShippingMethods={availableShippingMethods}
                         cancel={this.stopEditing}
                     />
-                    
-                    // <ShippingForm
-                    //     availableShippingMethods={availableShippingMethods}
-                    //     cancel={this.stopEditing}
-                    //     shippingMethod={shippingMethod}
-                    //     submit={this.submitShippingMethod}
-                    //     submitting={submitting}
-                    // />
                 );
             }
             default: {

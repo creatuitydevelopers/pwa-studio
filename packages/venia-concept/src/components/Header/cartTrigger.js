@@ -28,7 +28,7 @@ class Trigger extends Component {
                 onClick={toggleCart}
             >
                 <span className={classes.counter}>
-                    {items_count}
+                    {items_count ? items_count : 0 }
                 </span>
                 {children}
             </button>

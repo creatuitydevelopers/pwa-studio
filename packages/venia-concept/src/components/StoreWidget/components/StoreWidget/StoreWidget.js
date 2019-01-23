@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { bool, func, object, shape, string } from 'prop-types';
 import geolib from 'geolib';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { withRouter } from 'react-router-dom';

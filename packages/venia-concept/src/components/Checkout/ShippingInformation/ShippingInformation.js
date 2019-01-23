@@ -1,5 +1,6 @@
 import React from 'react';
 import classify from 'src/classify';
+import { func, object, array } from 'prop-types';
 import { getStoreByNumber } from 'src/actions/store';
 import Button from 'src/components/Button';
 import defaultClasses from './shippingInformation.css';
@@ -54,6 +55,12 @@ class ShippingInformation extends React.Component {
             </div>
         )
     }
+}
+
+ShippingInformation.propTypes = {
+    cancel: func,
+    cart: object,
+    availableShippingMethods: array
 }
 
 export default classify(defaultClasses)(ShippingInformation);
