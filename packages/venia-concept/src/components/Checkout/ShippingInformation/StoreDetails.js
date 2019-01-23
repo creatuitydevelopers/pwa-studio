@@ -1,6 +1,8 @@
 import React from 'react';
 import Icon from 'src/components/Icon';
 import mapPin from 'react-feather/dist/icons/map-pin';
+import chevronDown from 'react-feather/dist/icons/chevron-down';
+import chevronUp from 'react-feather/dist/icons/chevron-up';
 import { getStoreByNumber } from 'src/actions/store';
 import { loadingIndicator } from 'src/components/LoadingIndicator';
 import classify from 'src/classify';
@@ -12,7 +14,8 @@ class StoreDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            store: {}
+            store: {},
+            detailsVisible: false
         }
     }
 
@@ -24,19 +27,38 @@ class StoreDetails extends React.Component {
         });
     }
 
+    toggleContent = () => {
+        this.setState(prevState => {
+            return {
+                detailsVisible: !prevState.detailsVisible
+            }
+        })
+    }
+
     render() {
-        const { items, currencyCode, classes } = this.props;
-        const { store } = this.state;
+        const { toggleContent, props, state } = this;
+        const { items, currencyCode, classes } = props;
+        const { store, detailsVisible } = state;
+        const detailsClass = detailsVisible ? classes.detailsVisible : classes.detailsHidden;
+        const triggerChevron = detailsVisible ? chevronUp : chevronDown;
+
+        console.log(store);
 
         return !!store ?
 
             <div>
-                <p className={classes.name}>
+                <div className={classes.name} onClick={toggleContent}>
                     <Icon src={mapPin} className={classes.icon} />
                     <strong>{store.store_name}</strong>
-                </p>
+                    <Icon src={triggerChevron} className={classes.chevron} />
+                </div>
+                <ul className={detailsClass}>
+                    <li>{store.address}</li>
+                    <li>{store.company_name} {store.zipcode}</li>
+                    <li>{store.phone}</li>
+                </ul>
                 {
-                    items.map((item,idx) => {
+                    items.map((item, idx) => {
                         return <Item key={idx} currencyCode={currencyCode} item={item} />
                     })
                 }

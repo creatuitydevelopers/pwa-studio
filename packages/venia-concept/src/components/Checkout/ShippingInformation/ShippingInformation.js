@@ -50,7 +50,7 @@ class ShippingInformation extends React.Component {
                     </div>
                 </div>
                 <div className={classes.footer}>
-                    <Button onClick={cancel}>Done</Button>
+                    <Button onClick={cancel}>Back</Button>
                 </div>
             </div>
         )

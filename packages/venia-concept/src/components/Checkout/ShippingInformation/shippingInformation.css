@@ -5,7 +5,7 @@
 .body {
     composes: body from '../form.css';
     grid-gap: 0.5rem;
-    padding: 0 1.5rem;
+    padding: 0;
     max-height: 500px;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
