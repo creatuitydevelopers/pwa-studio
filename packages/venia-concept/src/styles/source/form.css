@@ -21,7 +21,7 @@ select {
     font-weight: 400;
     background: rgba(var(--rk--color__gray-6));
     border-radius: 0.2em;
-    color: rgb(var(--venia-grey-dark));
+    color: rgb(var(--rk-grey-dark));
 }
 
 input[type='text']:not([disabled]):focus,
@@ -35,7 +35,7 @@ input[type='email']:not([disabled]):focus,
 input[type='text']:not([disabled]):focus,
 textarea:not([disabled]):focus,
 select:not([disabled]):focus {
-    box-shadow: 0 0 5px rgb(var(--venia-grey-dark));
+    box-shadow: 0 0 5px rgb(var(--rk-grey-dark));
     outline: none;
 }
 

@@ -42,8 +42,6 @@ class StoreDetails extends React.Component {
         const detailsClass = detailsVisible ? classes.detailsVisible : classes.detailsHidden;
         const triggerChevron = detailsVisible ? chevronUp : chevronDown;
 
-        console.log(store);
-
         return !!store ?
 
             <div>

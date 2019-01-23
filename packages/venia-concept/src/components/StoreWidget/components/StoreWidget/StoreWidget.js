@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import geolib from 'geolib';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { withRouter } from 'react-router-dom';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 import classify from 'src/classify';
 import Button from 'src/components/Button';
@@ -24,6 +25,7 @@ class StoreWidget extends PureComponent {
         lng: null,
         storesNearBy: [],
         isFindAnotherVisible: false,
+        loader: false,
         showNoStoresFound: false
     };
 
@@ -48,6 +50,9 @@ class StoreWidget extends PureComponent {
         const { setCurrentStore, allStores } = this.props;
 
         if (navigator.geolocation && !!allStores) {
+            this.setState({
+                loader: true
+            });
             navigator.geolocation.getCurrentPosition(async position => {
                 const { latitude, longitude } = position.coords;
                 const nearest = await geolib.findNearest(
@@ -56,7 +61,9 @@ class StoreWidget extends PureComponent {
                     1
                 );
                 setCurrentStore(allStores[nearest.key]);
-
+                this.setState({
+                    loader: false
+                });
                 this.hideFindAnother();
             });
         }
@@ -166,10 +173,10 @@ class StoreWidget extends PureComponent {
         const { currentStore, classes, setCurrentStore, closeDrawer } = props;
         const showDetails = currentStore && !this.state.isFindAnotherVisible;
         const showList = state.isFindAnotherVisible && !state.showNoStoresFound;
-        console.log(this.state.storesNearBy);
 
         return (
             <React.Fragment>
+                {state.loader && loadingIndicator}
                 {state.showNoStoresFound && (
                     <p className={classes.noStoresFound}>
                         {noStoresFoundMessage}
