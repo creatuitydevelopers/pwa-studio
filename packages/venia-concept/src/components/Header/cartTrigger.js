@@ -13,11 +13,13 @@ class Trigger extends Component {
         classes: PropTypes.shape({
             root: PropTypes.string
         }),
+        cart: PropTypes.object,
         toggleCart: PropTypes.func.isRequired
     };
 
     render() {
-        const { children, classes, toggleCart } = this.props;
+        const { children, classes, toggleCart, cart } = this.props;
+        const {details: {items_count}} = cart;
 
         return (
             <button
@@ -25,9 +27,18 @@ class Trigger extends Component {
                 aria-label="Toggle mini cart"
                 onClick={toggleCart}
             >
+                <span className={classes.counter}>
+                    {items_count}
+                </span>
                 {children}
             </button>
         );
+    }
+}
+
+const mapStateToProps = ({cart}) => {
+    return {
+        cart
     }
 }
 
@@ -38,7 +49,7 @@ const mapDispatchToProps = {
 export default compose(
     classify(defaultClasses),
     connect(
-        null,
+        mapStateToProps,
         mapDispatchToProps
     )
 )(Trigger);
