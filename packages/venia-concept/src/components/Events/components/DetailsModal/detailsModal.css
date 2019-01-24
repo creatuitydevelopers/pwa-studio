@@ -9,6 +9,56 @@
     margin: 0 30px 20px 0;
 }
 
+.image{
+    display: block;
+    max-width: 240px;
+    max-height: 240px;
+    margin: 30px auto 10px;
+}
+
 .description {
     margin-bottom: 10px;
+}
+
+.storesListWrapper {
+    margin-bottom: 20px;
+    clear: both;
+}
+
+.storesListWrapper ul {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: stretch;
+}
+
+.storesListWrapper ul li {
+    display: block;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+@media (min-width: 480px) {
+    .storesListWrapper ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .image{
+        margin: 0 10px 10px 0;
+        max-width: 150px;
+        max-height: 150px;
+        float: left;
+    }
+}
+
+@media (min-width: 768px) {
+    .storesListWrapper ul {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .storesListWrapper ul {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

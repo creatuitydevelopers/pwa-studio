@@ -1,18 +1,16 @@
-import React, {Component} from "react";
+import React, { Component } from 'react';
 import classify from 'src/classify';
 import moment from 'moment';
-import {func, oneOf, object, shape, string} from "prop-types";
+import { func, oneOf, object, shape, string } from 'prop-types';
 
-import {Link} from "react-router-dom";
 import RichText from 'src/components/RichText';
-import Title from "src/components/RkStore/Title/Title";
+import Title from 'src/components/RkStore/Title/Title';
 
 import { BACKEND_URL, IMAGE_PATH } from 'src/components/Events/consts';
 
 import defaultClasses from './item.css';
 
 class Item extends Component {
-
     static propTypes = {
         classes: shape({
             root: string,
@@ -30,68 +28,88 @@ class Item extends Component {
             badgeMonth: string,
             badgeDay: string
         }),
-        item: object
+        item: object,
+        openDetails: func.isRequired
     };
 
     render() {
+        const { classes, item, stores } = this.props;
+        const { id, name, date_start, description } = item.event;
 
-        const {classes, item, stores} = this.props;
-        const {id, name, date_start, description} = item.event;
-
-        const link = `/event/${id}`;
         const date = moment(new Date(date_start));
 
-        const itemStores = item.stores.map(storeNumber => {
-            return stores.filter(store => store.store_number == storeNumber)[0];
-        }).filter(store => !!store);
+        const itemStores = item.stores
+            .map(storeNumber => {
+                return stores.filter(
+                    store => store.store_number == storeNumber
+                )[0];
+            })
+            .filter(store => !!store);
 
         return (
             <div className={classes.root}>
-                <Link to={link} className={classes.imageWrapper}>
+                <a onClick={() => this.props.openDetails(item)} className={classes.imageWrapper}>
                     {this.renderImage()}
-                </Link>
+                </a>
                 <div className={classes.details}>
-                    <Link to={link} className={classes.name}>
+                    <a onClick={() => this.props.openDetails(item)} className={classes.name}>
                         <span>{name}</span>
-                    </Link>
-                    <p>{date.format("dddd, L | LT")}</p>
+                    </a>
+                    <p>{date.format('dddd, L | LT')}</p>
                     <div className={classes.storesWrapper}>
-                        {!!item.stores.length
-                        &&
-                        <React.Fragment>
-                            <span className={classes.storeAnchor}>See all event stores</span>
-                            <div className={classes.storesListWrapper}>
-                                <ul>
-                                    {itemStores.map(store => <li key={store.store_number}><Title store={store} tag={`span`}/></li>)}
-                                </ul>
-                            </div>
-                        </React.Fragment>
-                        }
+                        {!!item.stores.length && (
+                            <React.Fragment>
+                                <span className={classes.storeAnchor}>
+                                    See all event stores
+                                </span>
+                                <div className={classes.storesListWrapper}>
+                                    <ul>
+                                        {itemStores.map(store => (
+                                            <li key={store.store_number}>
+                                                <Title
+                                                    store={store}
+                                                    tag={`span`}
+                                                />
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </React.Fragment>
+                        )}
                     </div>
-                    <RichText className={classes.description}
-                              content={!!description && description.replace(/(<([^>]+)>)/ig, "")}/>
+                    <RichText
+                        className={classes.description}
+                        content={
+                            !!description &&
+                            description.replace(/(<([^>]+)>)/gi, '')
+                        }
+                    />
                     <div className={classes.linkWrapper}>
-                        <Link to={link} className={classes.link}>
+                        <a onClick={() => this.props.openDetails(item)} className={classes.link}>
                             <span>{`Event Details >`}</span>
-                        </Link>
+                        </a>
                     </div>
                 </div>
                 <div className={classes.badge}>
-                    <span className={classes.badgeMonth}>{date.format("MMM")}</span>
-                    <span className={classes.badgeDay}>{date.format("D")}</span>
+                    <span className={classes.badgeMonth}>
+                        {date.format('MMM')}
+                    </span>
+                    <span className={classes.badgeDay}>{date.format('D')}</span>
                 </div>
             </div>
         );
     }
 
     renderImage = () => {
-        const {classes, item} = this.props;
+        const { classes, item } = this.props;
 
         if (!item) {
             return null;
         }
 
-        const image = item.attachments.filter(file => file.attachment_type == 2)[0];
+        const image = item.attachments.filter(
+            file => file.attachment_type == 2
+        )[0];
 
         if (!image) {
             return null;
@@ -105,7 +123,6 @@ class Item extends Component {
             />
         );
     };
-};
-
+}
 
 export default classify(defaultClasses)(Item);
