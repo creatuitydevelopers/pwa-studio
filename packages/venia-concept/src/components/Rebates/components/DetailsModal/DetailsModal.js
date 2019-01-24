@@ -24,8 +24,8 @@ class DetailsModal extends Component {
     render() {
         const {modalOpen, item, classes} = this.props;
 
-        const dateStart = !!item && moment(new Date(item.rebate.date_start));
-        const dateExp = !!item && moment(new Date(item.rebate.date_exp));
+        const dateStart = !!item && moment(new Date(item.start_date));
+        const dateExp = !!item && moment(new Date(item.expiration_date));
 
         return (
             <Modal
@@ -33,19 +33,22 @@ class DetailsModal extends Component {
                 onClose={this.props.closeModalClick}
                 classNames={{
                     modal: classes.root
-                }}
-                focusTrapped>
+                }}>
                 {!!item &&
                 <React.Fragment>
-                    <h2 className={classes.modalHeader}>{item.rebate.name}</h2>
+                    <h2 className={classes.modalHeader}>{item.title}</h2>
                     <p>
                         {`Offer valid from`} <strong>{dateStart.format("MMMM DD, YYYY")}</strong> {`through`} <strong>{dateExp.format("MMMM DD, YYYY")}</strong>
                     </p>
                     <p>{`Must be submitted by:`} <strong>{dateExp.format("MMMM DD, YYYY")}</strong></p>
                     <RichText className={classes.description}
-                              content={!!item.rebate.description && item.rebate.description.replace(/(<([^>]+)>)/ig, "")}/>
+                              content={!!item.description && item.description.replace(/(<([^>]+)>)/ig, "")}/>
                     <p>
-                        <Button priority={`high`}>{`Download rebate form`}</Button>
+                        <Button priority={`high`}>
+                        <a href={item.rebate_form} target="_blank" title={`Download rebate form`}>
+                            {`Download rebate form`}
+                        </a>
+                        </Button>
                     </p>
                 </React.Fragment>
                 }

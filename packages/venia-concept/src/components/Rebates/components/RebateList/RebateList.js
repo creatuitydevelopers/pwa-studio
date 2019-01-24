@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import {func, object, array, shape, string} from "prop-types";
+import {func, object, array, shape, string, number} from "prop-types";
 import classify from 'src/classify';
 
 import {Form} from "informed";
 import {Grid} from 'src/components/RkStore';
-import {Item, DetailsModal} from 'src/components/Rebates';
+import {Item, DetailsModal, PageSize} from 'src/components/Rebates';
 
 import {SORT_DEFAULT} from 'src/components/Rebates/consts';
 
@@ -16,11 +16,13 @@ class RebateList extends Component {
             root: string,
             header: string
         }),
-        items: array
+        items: array,
+        pageSize: number
     };
 
     static defaultProps = {
         items: []
+
     };
 
     state = {
@@ -41,21 +43,25 @@ class RebateList extends Component {
         this.setState({sort});
     };
 
+    handlePageSize = pageSize => {
+        this.props.setPageSize(pageSize)
+    };
+
     getSortedItems = items => {
         return items.sort((a, b) => {
             const {sort} = this.state;
 
             if (sort == SORT_DEFAULT) {
-                return new Date(b.rebate[sort]) - new Date(a.rebate[sort]);
+                return new Date(b[sort]) - new Date(a[sort]);
 
             }
-            return a.rebate[sort].localeCompare(b.rebate[sort]);
+            return a[sort].localeCompare(b[sort]);
 
         });
     };
 
     render() {
-        const {items, classes} = this.props;
+        const {items, pageSize, classes} = this.props;
         const {modalOpen, currentItem} = this.state;
 
         return (
@@ -65,6 +71,7 @@ class RebateList extends Component {
                         <span>{`Manufacturer Rebates`}</span>
                     </h1>
                     <Form className={classes.sortForm}>
+                        <PageSize defaultValue={pageSize} handlePageSize={this.handlePageSize}/>
                     </Form>
                 </header>
                 <Grid>{this.getSortedItems(items).map((item, index) => <Item key={index} item={item}

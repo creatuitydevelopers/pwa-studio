@@ -29,7 +29,7 @@
 }
 
 @media (min-width: 640px) {
-    .header{
+    .header {
         grid-template-columns: auto 200px;
         grid-gap: 20px;
     }

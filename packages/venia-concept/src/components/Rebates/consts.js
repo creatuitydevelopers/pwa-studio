@@ -1,13 +1,30 @@
-export const SORT_DEFAULT = `date_start`;
+export const SORT_DEFAULT = `start_date`;
 export const SORT_DROPDOWN_OPTIONS = [
     {
-        value: 'date_start',
-        label: 'Event Data'
+        value: 'start_date',
+        label: 'Start Data'
     },
     {
-        value: 'name',
-        label: 'Event Name'
+        value: 'title',
+        label: 'Rebate Name'
     }
+];
+
+export const DEFAULT_PAGE_SIZE = 12;
+export const PAGE_SIZE_OPTIONS = [
+    {
+        value: 12,
+        label: '12'
+    },
+    {
+        value: 24,
+        label: '24'
+    },
+    {
+        value: 36,
+        label: '36'
+    },
+
 ];
 
 

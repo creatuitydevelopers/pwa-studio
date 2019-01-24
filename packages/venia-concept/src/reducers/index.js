@@ -10,6 +10,7 @@ import purchaseDetails from './purchaseDetails';
 import checkoutReceipt from './checkoutReceipt';
 import purchaseHistory from './purchaseHistory';
 import store from './store';
+import rebates from './rebates';
 
 export default combineReducers({
     app,
@@ -17,8 +18,8 @@ export default combineReducers({
     catalog,
     checkout,
     checkoutReceipt,
-    purchaseHistory,
     store,
+    rebates,
     directory,
     purchaseDetails,
     purchaseHistory,
