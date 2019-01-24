@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import { bool, func, object, shape, string } from 'prop-types';
 import geolib from 'geolib';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { withRouter } from 'react-router-dom';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 import classify from 'src/classify';
 import Button from 'src/components/Button';
@@ -18,24 +18,29 @@ const searchRadiusUnit = 'mi';
 const noStoresFoundMessage = `Sorry, there are no Rural King stores within ${searchRadius} miles of your search. Please try searching another location.`;
 
 class StoreWidget extends PureComponent {
+    
     state = {
         address: '',
         lat: null,
         lng: null,
         storesNearBy: [],
         isFindAnotherVisible: false,
+        loader: false,
         showNoStoresFound: false
     };
 
     async componentDidMount() {
         const { currentStore } = this.props;
-
         await this.props.getAllStores();
         currentStore ? this.hideFindAnother() : this.showFindAnother();
     }
 
     componentDidUpdate() {
-        const { isOpen, currentStore } = this.props;
+        const { isOpen, currentStore, drawer } = this.props;
+        if(!drawer) {
+            this.hideFindAnother();
+        }
+
         if (isOpen && !currentStore) {
             this.assignNearestStore();
         }
@@ -45,6 +50,9 @@ class StoreWidget extends PureComponent {
         const { setCurrentStore, allStores } = this.props;
 
         if (navigator.geolocation && !!allStores) {
+            this.setState({
+                loader: true
+            });
             navigator.geolocation.getCurrentPosition(async position => {
                 const { latitude, longitude } = position.coords;
                 const nearest = await geolib.findNearest(
@@ -53,7 +61,9 @@ class StoreWidget extends PureComponent {
                     1
                 );
                 setCurrentStore(allStores[nearest.key]);
-
+                this.setState({
+                    loader: false
+                });
                 this.hideFindAnother();
             });
         }
@@ -89,8 +99,7 @@ class StoreWidget extends PureComponent {
                         lat,
                         lng,
                         address: selected
-                    },
-                    () => this.getStoresNearBy()
+                    }
                 );
             })
             .catch(error => {
@@ -146,9 +155,9 @@ class StoreWidget extends PureComponent {
             if (!showNoStoresFound && storesNearBy.length > 0) {
                 return this.setState({ storesNearBy: [] });
             }
-            return closeDrawer();
+            this.hideFindAnother();
         } else {
-            return this.showFindAnother();
+            return closeDrawer();
         }
     };
 
@@ -167,6 +176,7 @@ class StoreWidget extends PureComponent {
 
         return (
             <React.Fragment>
+                {state.loader && loadingIndicator}
                 {state.showNoStoresFound && (
                     <p className={classes.noStoresFound}>
                         {noStoresFoundMessage}

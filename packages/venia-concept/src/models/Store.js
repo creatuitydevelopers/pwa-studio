@@ -22,7 +22,8 @@ export const findStoresWithinRadius = ({
     radius,
     radiusUnit = 'mi'
 }) => {
-    return stores.filter(store => {
+
+    return stores.map(store => {
         const distanceInMiles = geolib.convertUnit(
             radiusUnit,
             geolib.getDistance(
@@ -35,8 +36,13 @@ export const findStoresWithinRadius = ({
             2
         );
 
-        if (distanceInMiles < radius) {
+        store.distance = distanceInMiles;
+        return store;
+    }).filter(store => {
+        if (store.distance < radius) {
             return store;
         }
+    }).sort((a,b) => {
+        return a.distance - b.distance;
     });
 };

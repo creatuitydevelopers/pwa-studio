@@ -1,0 +1,9 @@
+.root {
+    border-bottom: 1px solid rgb(var(--venia-border));
+}
+
+.name {
+    font-size: .85rem;
+    margin-bottom: 3px;
+    padding: 10px 20px;
+}

@@ -1,0 +1,47 @@
+.name {
+    display: flex;
+    background: rgb(var(--venia-grey));
+    padding: 10px 15px;
+    align-items: center;
+    margin: 0;
+    flex-wrap: wrap;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.details {
+    padding: 0 20px 15px 20px;
+    min-width: 100%;
+    font-size: 14px;
+    background: rgb(var(--venia-grey));
+}
+
+.chevron {
+    padding-left: 3px;
+    display: inline;
+    line-height: 15px;
+}
+
+.chevron svg {
+    height: 15px;
+}
+
+.icon {
+    padding-right: 5px;
+    height: 18px;
+    color: rgb(var(--rk--color__red));
+}
+
+.icon svg {
+    height: 18px;
+}
+
+.detailsVisible {
+    composes:  details;
+    display: block;
+}
+
+.detailsHidden {
+    composes:  details;
+    display: none;
+}

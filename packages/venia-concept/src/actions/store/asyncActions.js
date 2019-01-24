@@ -49,9 +49,17 @@ export const setCurrentStore = store =>
         }
     };
 
+export const getStoreByNumber = async (storeNumber) => {
+    const stores = await getStoresFromStorage();
+    
+    return stores.find(el => {
+        return el.store_number == storeNumber;
+    });
+}
+
 async function setStoresHashInStorage(hash) {
     const storage = new BrowserPersistence();
-    storage.setItem('stores_hash', hash, 99999);
+    storage.setItem('stores_hash', hash, 999999999999);
 }
 
 async function getStoresHashFromStorage() {
@@ -66,10 +74,10 @@ async function getStoresFromStorage() {
 
 async function setStoresInStorage(stores) {
     const storage = new BrowserPersistence();
-    storage.setItem('all_stores', stores, 99999);
+    storage.setItem('all_stores', stores, 999999999999);
 }
 
 async function setCurrentStoreInStorage(store) {
     const storage = new BrowserPersistence();
-    storage.setItem('current_store', store, 3600);
+    storage.setItem('current_store', store, 999999999999);
 }

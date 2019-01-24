@@ -10,8 +10,9 @@
 }
 
 .informationPrompt {
-    color: rgb(var(--venia-orange));
+    color: rgb(var(--venia-text));
     text-transform: capitalize;
+    font-weight: bold;
 }
 .informationPrompt--disabled {
     color: rgb(var(--venia-text-hint));

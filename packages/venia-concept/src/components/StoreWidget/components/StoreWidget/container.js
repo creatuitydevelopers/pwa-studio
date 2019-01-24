@@ -3,10 +3,12 @@ import { closeDrawer } from 'src/actions/app';
 import { getAllStores, setCurrentStore } from 'src/actions/store';
 import StoreWidget from './StoreWidget';
 
-const mapStateToProps = ({ store }) => {
+const mapStateToProps = ({ store, app }) => {
     const { currentStore, allStores } = store;
+    const { drawer } = app;
 
     return {
+        drawer,
         currentStore,
         allStores
     };

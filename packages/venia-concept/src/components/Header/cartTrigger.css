@@ -3,3 +3,18 @@
     height: 3rem;
     width: 3rem;
 }
+
+.counter {
+    position: absolute;
+    background: rgb(var(--rk--color__red));
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    top: 8px;
+    right: 20px;
+    font-size: 11px;
+    color: white;
+}

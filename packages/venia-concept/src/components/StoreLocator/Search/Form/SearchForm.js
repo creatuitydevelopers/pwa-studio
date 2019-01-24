@@ -84,8 +84,10 @@ class SearchForm extends React.Component {
     };
 
     handlePlaceSelect = selected => {
-        this.setState({ searchText: selected });
-        this.props.handlePlaceSelect(this.state.searchText);
+        this.setState({ searchText: selected }, function() {
+            this.props.handlePlaceSelect(this.state.searchText);
+        });
+        
     };
 
     handlePlaceChange = selected => {
