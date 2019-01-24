@@ -1,0 +1,18 @@
+.root{
+
+}
+.root select{
+    min-width: 65px;
+}
+
+.label{
+    margin-right: 5px;
+}
+
+.label:after{
+    content: ':';
+}
+
+.select{
+
+}

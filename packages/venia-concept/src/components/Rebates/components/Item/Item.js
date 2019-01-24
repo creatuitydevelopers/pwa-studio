@@ -34,9 +34,9 @@ class Item extends Component {
     render() {
 
         const {classes, item} = this.props;
-        const {name, date_start, date_exp, description} = item.rebate;
+        const {title, expiration_date, description} = item;
 
-        const date = moment(new Date(date_exp));
+        const date = moment(new Date(expiration_date));
 
         return (
             <div className={classes.root}>
@@ -45,7 +45,7 @@ class Item extends Component {
                 </a>
                 <div className={classes.details}>
                     <a onClick={() => this.props.openDetails(item)} className={classes.name}>
-                        <span>{name}</span>
+                        <span>{title}</span>
                     </a>
                     <RichText className={classes.description} content={!!description && description.replace(/(<([^>]+)>)/ig, "")}/>
                     <div>
@@ -58,12 +58,7 @@ class Item extends Component {
 
     renderImage = () => {
         const {classes, item} = this.props;
-
-        if (!item) {
-            return null;
-        }
-
-        const image = item.attachments.filter(file => file.attachment_type == 2)[0];
+        const image = item.image;
 
         if (!image) {
             return null;
@@ -72,8 +67,8 @@ class Item extends Component {
         return (
             <img
                 className={classes.image}
-                src={`${BACKEND_URL}/${IMAGE_PATH}/${image.file}`}
-                alt={item.event.name}
+                src={image}
+                alt={item.title}
             />
         );
     };

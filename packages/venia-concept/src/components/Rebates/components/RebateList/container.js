@@ -1,8 +1,15 @@
 import { connect } from 'react-redux';
+import { setPageSize } from 'src/actions/rebates';
 import RebateList from './RebateList';
 
-const mapStateToProps = ({ store }) => {
+
+const mapStateToProps = ({}) => {
     return {};
 };
 
-export default connect(mapStateToProps)(RebateList);
+const mapDispatchToProps = { setPageSize };
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(RebateList);

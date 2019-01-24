@@ -99,7 +99,7 @@ class DetailsModal extends Component {
 
     render() {
         const { modalOpen, classes } = this.props;
-        console.log(this.props);
+
         return (
             <Modal
                 open={modalOpen}
