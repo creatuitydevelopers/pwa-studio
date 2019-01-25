@@ -67,7 +67,6 @@ class Quantity extends Component {
         return (
             <div className={classes.root}>
                 <Button 
-                    className={classes.button} 
                     onClick={decrease}
                     style={buttonStyles}
                 >-</Button>
@@ -82,7 +81,6 @@ class Quantity extends Component {
                     name={`quantity`}
                 />
                 <Button 
-                    className={classes.button} 
                     onClick={increase} 
                     style={buttonStyles}
                 >+</Button>

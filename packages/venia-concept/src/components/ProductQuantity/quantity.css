@@ -1,5 +1,6 @@
 .root {
     display: flex;
+    width: 225px;
 }
 
 .input[type="text"] {
@@ -7,4 +8,3 @@
     text-align: center;
     margin: 0 10px;
 }
-
