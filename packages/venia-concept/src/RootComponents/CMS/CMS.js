@@ -17,7 +17,7 @@ const cmsPageQuery = gql`
     }
 `;
 
-class CMS extends Component {
+export default class CMS extends Component {
     render() {
 
         const { id } = this.props;
@@ -45,5 +45,3 @@ class CMS extends Component {
         );
     }
 }
-
-export default classify(defaultClasses)(CMS)
