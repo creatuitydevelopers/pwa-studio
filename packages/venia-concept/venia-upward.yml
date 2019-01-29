@@ -64,7 +64,7 @@ resource:
       use:
         inline:
           model: product
-          template: './templates/product-shell.mst'
+          template: './templates/generic-shell.mst'         
     - matches: urlResolver.type
       pattern: 'STORELOCATOR_DETAILS'
       use:
@@ -132,7 +132,7 @@ storelocatorResult:
 urlKey:
   when:
     - matches: request.url.pathname
-      pattern: '^/(?:(.*)\.html)?'
+      pattern: '^/(.*)\.html'
       use: $match.$1
   default:
     inline: ''
