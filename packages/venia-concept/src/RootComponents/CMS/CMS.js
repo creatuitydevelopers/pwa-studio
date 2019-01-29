@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CategoryList from 'src/components/CategoryList';
 import classify from 'src/classify';
-import defaultClasses from '../../styles/source/pageBuilder.css';
 
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
