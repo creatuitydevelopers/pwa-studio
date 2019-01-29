@@ -19,7 +19,7 @@ class Trigger extends Component {
 
     render() {
         const { children, classes, toggleCart, cart } = this.props;
-        const {details: {items_count}} = cart;
+        const {totals: {items_qty}} = cart;
 
         return (
             <button
@@ -28,7 +28,7 @@ class Trigger extends Component {
                 onClick={toggleCart}
             >
                 <span className={classes.counter}>
-                    {items_count ? items_count : 0 }
+                    {items_qty ? items_qty : 0 }
                 </span>
                 {children}
             </button>

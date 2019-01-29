@@ -1,4 +1,10 @@
 .root {
     display: flex;
-    flex-direction: column;
+    width: 225px;
+}
+
+.input[type="text"] {
+    height: 2.5rem;
+    text-align: center;
+    margin: 0 10px;
 }
