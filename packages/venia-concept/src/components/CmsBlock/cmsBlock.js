@@ -6,6 +6,7 @@ import classify from 'src/classify';
 import Block from './block';
 import defaultClasses from './cmsBlock.css';
 import getCmsBlocks from '../../queries/getCmsBlocks.graphql';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 class CmsBlockGroup extends Component {
     static propTypes = {
@@ -26,10 +27,10 @@ class CmsBlockGroup extends Component {
         }
 
         if (loading) {
-            return <div>Fetching Data</div>;
+            return loadingIndicator;
         }
 
-        const { items } = data.blocks;
+        const { items } = data.cmsBlocks;
 
         if (!Array.isArray(items) || !items.length) {
             return <div>There are no blocks to display</div>;

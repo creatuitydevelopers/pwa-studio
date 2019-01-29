@@ -49,6 +49,10 @@ button {
     -webkit-appearance: none;
 }
 
+img {
+    max-width: 100%;
+}
+
 button:disabled {
     cursor: default;
     touch-action: none;

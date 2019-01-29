@@ -27,9 +27,13 @@ class StoreWidget extends PureComponent {
     };
 
     async componentDidMount() {
-        const { currentStore } = this.props;
+        const { currentStore, isOpen } = this.props;
         await this.props.getAllStores();
         currentStore ? this.hideFindAnother() : this.showFindAnother();
+
+        if (isOpen && !currentStore) {
+            this.assignNearestStore();
+        }
     }
 
     componentDidUpdate() {
@@ -224,7 +228,7 @@ class StoreWidget extends PureComponent {
             allStores
         } = this.props;
         const className = isOpen ? classes.root_open : classes.root;
-        const showForm = state.isFindAnotherVisible && allStores;
+        const showForm = state.isFindAnotherVisible && allStores && isOpen;
 
         return (
             <aside className={className}>
