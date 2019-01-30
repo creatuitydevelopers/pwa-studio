@@ -39,16 +39,6 @@ class App extends Component {
 
         return (
             <Fragment>
-                <Helmet>
-                    <link
-                        rel="stylesheet"
-                        href="https://use.typekit.net/uca6omh.css"
-                    />
-                    <link
-                        rel="stylesheet"
-                        href="https://rkpwa.preview2.creatuity.com/pageBuilder.css"
-                    />
-                </Helmet>
                 <Main isMasked={overlay}>
                     {onlineIndicator}
                     {renderRoutes()}

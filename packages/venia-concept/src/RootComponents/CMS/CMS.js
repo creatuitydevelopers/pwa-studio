@@ -22,12 +22,7 @@ export default class CMS extends Component {
 
         const { id } = this.props;
 
-        return <CategoryList title="Shop by category" id={2} />;
-
         return (
-
-            
-
             <Query
                 query={cmsPageQuery}
                 variables={{ id: Number(id) }}
@@ -41,6 +36,7 @@ export default class CMS extends Component {
 
                         return (
                             <div dangerouslySetInnerHTML={{__html: content}}>
+
                             </div>
                         )
                     }

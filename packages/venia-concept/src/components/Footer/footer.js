@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import CmsBlock from 'src/components/CmsBlock';
 import classify from 'src/classify';
 import defaultClasses from './footer.css';
 
@@ -17,7 +18,7 @@ class Footer extends Component {
 
     render() {
         const { classes } = this.props;
-
+        
         return (
             <footer className={classes.root}>
                 <div className={classes.tile}>

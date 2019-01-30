@@ -212,26 +212,31 @@ const DetailsPage = props => {
                     </div>
                 }
                 <div className={sectionClass('rating')}>
-                    <Heading title={`${store.city}, ${store.state} Google Review Score`} />
-                    <div className={classes.sectionContent}>
-                        <Places 
+                    <Places 
                             lat={store.latitude} 
                             lng={store.longitude}
                             radius={500}
                             searchString={`Rural King`}
                         >
-                            { ({isLoading, place}) => 
+                            { ({isLoading, place, error}) => 
                                 { return isLoading ? 
                                     <div>{loadingIndicator}</div>
                                     :
-                                    <div className={classes.ratingContainer}>
-                                        <Rating avgRating={place.rating} />
-                                        <a href={`https://search.google.com/local/writereview?placeid=${place.place_id}`} target="blank">Leave a Review</a>
-                                    </div>
+                                    error ? 
+                                        <span></span>
+                                        :
+                                        <React.Fragment>
+                                            <Heading title={`${store.city}, ${store.state} Google Review Score`} />
+                                            <div className={classes.sectionContent}>
+                                                <div className={classes.ratingContainer}>
+                                                    <Rating avgRating={place.rating} />
+                                                    <a href={`https://search.google.com/local/writereview?placeid=${place.place_id}`} target="blank">Leave a Review</a>
+                                                </div>
+                                            </div>
+                                        </React.Fragment>
                                 }
                             }
-                        </Places>
-                    </div>
+                    </Places>
                 </div>
             </div>
         </div>
