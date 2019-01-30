@@ -47,6 +47,8 @@ const query = gql`
                     }
                     variants {
                         product {
+                            outerwear_size
+                            color
                             id
                             media_gallery_entries {
                                 disabled
