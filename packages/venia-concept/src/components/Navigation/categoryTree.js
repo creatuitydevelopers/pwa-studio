@@ -46,6 +46,8 @@ class Tree extends Component {
 
                     const branches = [];
 
+                    console.log(data.category.children);
+
                     const children = data.category.children.sort((a, b) => {
                         if (a.position > b.position) return 1;
                         else if (a.position == b.position && a.id > b.id)
