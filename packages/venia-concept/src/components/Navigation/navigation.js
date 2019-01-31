@@ -10,6 +10,9 @@ import CategoryTree from './categoryTree';
 import NavHeader from './navHeader';
 import defaultClasses from './navigation.css';
 import { MyAccountMenuTrigger } from '../MyAccountMenuPage';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
+
+const Tree = React.lazy(() => import('./categoryTree'));
 
 class Navigation extends PureComponent {
     static propTypes = {
@@ -70,15 +73,17 @@ class Navigation extends PureComponent {
     get categoryTree() {
         const { props, setCurrentPath, state } = this;
         const { rootNodeId } = state;
-        const { closeDrawer } = props;
+        const { closeDrawer, isOpen } = props;
 
-        return rootNodeId ? (
-            <CategoryTree
-                rootNodeId={props.rootCategoryId}
-                currentId={rootNodeId}
-                updateRootNodeId={setCurrentPath}
-                onNavigate={closeDrawer}
-            />
+        return isOpen && rootNodeId ? (
+            <Suspense fallback={loadingIndicator}>
+                <Tree
+                    rootNodeId={props.rootCategoryId}
+                    currentId={rootNodeId}
+                    updateRootNodeId={setCurrentPath}
+                    onNavigate={closeDrawer}
+                />
+            </Suspense>
         ) : null;
     }
 

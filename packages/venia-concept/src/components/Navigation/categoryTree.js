@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, Suspense } from 'react';
 import { func, number, objectOf, shape, string } from 'prop-types';
 import { Query } from 'react-apollo';
 
@@ -45,8 +45,6 @@ class Tree extends Component {
                     if (loading) return loadingIndicator;
 
                     const branches = [];
-
-                    console.log(data.category.children);
 
                     const children = data.category.children.sort((a, b) => {
                         if (a.position > b.position) return 1;
