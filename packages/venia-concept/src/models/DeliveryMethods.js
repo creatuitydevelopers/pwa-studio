@@ -38,13 +38,9 @@ export const getStoreListForStsMethod = ({
             );
 
             if (distanceInMiles < radius) {
+                const storeFromMethodInfo = methodInfo.stores.find(obj => obj.store_number == store.store_number);
+                store.inventoryLevel = !!storeFromMethodInfo ? storeFromMethodInfo.inventory_level : 0;
                 store.distance = distanceInMiles;
-                store.inventoryLevel = isCurrentStoreEnabledForSts({
-                    allowedStores: methodInfo.enabled,
-                    storeNumber: store.store_number
-                })
-                    ? methodInfo.inventoryLevel
-                    : 0;
 
                 return store;
             }
@@ -52,8 +48,14 @@ export const getStoreListForStsMethod = ({
         .sort((a, b) => (a.distance >= b.distance ? 1 : -1));
 };
 
-export const isCurrentStoreEnabledForSts = ({ allowedStores, storeNumber }) => {
-    return allowedStores.some(
-        enabledStoreNumber => enabledStoreNumber == storeNumber
-    );
+export const isCurrentStoreEnabledForSts = ({ allowedStores, store }) => {
+    if(!store){
+        return false;
+    }
+
+    return allowedStores.some(enabledStore => enabledStore.store_number == store.store_number);
 };
+
+export const isDeliveryMethodValid = (method, store) => {
+    return !!method && !!store;
+}

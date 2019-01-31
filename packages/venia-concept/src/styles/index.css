@@ -1,5 +1,7 @@
 @import './source/variables.css';
 @import './source/normalize.css';
+@import './source/normalize-bluefoot.css';
 @import './source/typography.css';
 
 @import './source/form.css';
+

@@ -1,3 +1,7 @@
+html {
+    color: rgb(var(--rk--color__gray));
+}
+
 h1,
 h2,
 h3,

@@ -4,6 +4,20 @@ import {func, object, shape, string} from "prop-types";
 import classify from 'src/classify';
 import defaultClasses from './deliveryMethods.css';
 import DeliveryMethodsList from 'src/components/DeliveryMethods/components/DeliveryMethodsList';
+import gql from "graphql-tag";
+import {Query} from "react-apollo";
+
+const searchQuery = gql`
+    query($id: Int) {
+      inStorePickupAvailability(product_id: $id){
+        method
+        stores{
+          store_number
+          inventory_level
+        }
+      }
+    }
+`;
 
 class DeliveryMethods extends Component {
     static propTypes = {
@@ -13,73 +27,13 @@ class DeliveryMethods extends Component {
         }),
         defaultMethod: string,
         selectedStore: object,
+        validationMessage: string,
         product: object.isRequired,
         onChange: func.isRequired
     };
 
-    state = {
-        error: null,
-        methods: [],
-        isLoading: true
-    };
-
-    async componentDidUpdate(prevProps) {
-        if (prevProps.currentStore.store_number != this.props.currentStore.store_number) {
-            this.setState({
-                isLoading: true
-            });
-            this.loadDeliveryMethods();
-        }
-    };
-
-    async componentDidMount() {
-        this.loadDeliveryMethods();
-    };
-
-    async loadDeliveryMethods() {
-        const {product, currentStore} = this.props;
-        const store = currentStore;
-
-        if (!store) {
-            this.setState({
-                methods: [],
-                isLoading: false
-            });
-
-            return;
-        }
-
-        await fetch(`/rest/V1/delivery-method/product-delivery-methods/${product.id}/${store.store_number}`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    this.setState({
-                        error: response,
-                        isLoading: false
-                    })
-                }
-            })
-            .then(data => {
-                const methods = JSON.parse(data);
-
-                if (!!methods.length && methods[0].data.enabled.includes(store.store_number)) {
-                    this.props.onChange(methods[0].type, store)
-                }
-
-                this.setState({
-                    methods,
-                    isLoading: false
-                })
-            }).catch(err => {
-                console.log(err);
-                console.log(this.state.error);
-            });
-    }
-
     render() {
-        const {defaultMethod, currentStore, selectedStore, onChange, classes} = this.props;
-        const {methods, isLoading} = this.state;
+        const {defaultMethod, product, currentStore, selectedStore, validationMessage, onChange, classes} = this.props;
         const store = !!selectedStore ? selectedStore : currentStore;
 
         return (
@@ -87,18 +41,26 @@ class DeliveryMethods extends Component {
                 <h2 className={classes.header}>
                     <span>Delivery Methods</span>
                 </h2>
-                {!!store
-                    ? <DeliveryMethodsList
-                        methods={methods}
-                        isLoading={isLoading}
-                        defaultMethod={defaultMethod}
-                        selectedStore={store}
-                        onChange={onChange}
-                    />
-                    : <p>{`To view the available delivery methods, select the current store first.`}</p>
-                }
+                <Query query={searchQuery} variables={{ id: product.id }}>
+                    {({ loading, error, data }) => {
+
+                        if (error) return <div>Something went wrong. Please refresh page.</div>;
+                        if (loading) return <DeliveryMethodsList methods={Array.from({ length: 1 }).fill(null)}/>;
+
+                        const methods = data.inStorePickupAvailability;
+
+                        return (
+                            <DeliveryMethodsList
+                                methods={methods}
+                                defaultMethod={defaultMethod}
+                                selectedStore={store}
+                                onChange={onChange}/>
+                        );
+                    }}
+                </Query>
+                {!!validationMessage && <p>{validationMessage}</p>}
             </section>
-        )
+        );
     }
 }
 

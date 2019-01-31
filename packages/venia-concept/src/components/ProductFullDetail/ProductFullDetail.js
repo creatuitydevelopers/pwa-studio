@@ -12,6 +12,8 @@ import RichText from 'src/components/RichText';
 import DeliveryMethods from 'src/components/DeliveryMethods';
 import {SingleRating} from "src/components/Review";
 
+import {isDeliveryMethodValid} from 'src/models/DeliveryMethods';
+
 import defaultClasses from './productFullDetail.css';
 
 const Options = React.lazy(() => import('../ProductOptions'));
@@ -79,13 +81,14 @@ class ProductFullDetail extends Component {
         optionSelections: new Map(),
         quantity: 1,
         deliveryMethodType: null,
-        deliveryMethodStore: null
+        deliveryMethodStore: null,
+        deliveryMethodValidationMessage: ''
     };
 
     setQuantity = quantity => this.setState({ quantity });
 
     setDeliveryMethod = (type, store) => {
-        this.setState({deliveryMethodType: type, deliveryMethodStore: store});
+        this.setState({deliveryMethodType: type, deliveryMethodStore: store, deliveryMethodValidationMessage: ''});
     }
 
     addToCart = () => {
@@ -107,6 +110,12 @@ class ProductFullDetail extends Component {
                 store: state.deliveryMethodStore
             }
         };
+
+        if(!isDeliveryMethodValid(state.deliveryMethodType, state.deliveryMethodStore)){
+            this.setState({deliveryMethodValidationMessage: 'Please select delivery method first'});
+            return;
+        }
+
 
         if (productType === 'ConfigurableProduct') {
             const options = Array.from(optionSelections, ([id, value]) => ({
@@ -204,6 +213,7 @@ class ProductFullDetail extends Component {
                     product={product}
                     defaultMethod={this.state.deliveryMethodType}
                     selectedStore={this.state.deliveryMethodStore}
+                    validationMessage={this.state.deliveryMethodValidationMessage}
                     onChange={this.setDeliveryMethod}
                 />
                 <section className={classes.quantity}>
