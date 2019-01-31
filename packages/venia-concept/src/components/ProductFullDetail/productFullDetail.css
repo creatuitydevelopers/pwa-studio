@@ -57,14 +57,13 @@
 }
 
 .productName {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    color: rgb(var(--rk--color__blue));
 }
 
 @media (min-width: 1024px) {
     .productName {
-        font-size: 1.3125rem;
-        font-weight: 400;
+        font-size: 1.5rem;
     }
 }
 

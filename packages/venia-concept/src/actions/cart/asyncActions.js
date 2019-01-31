@@ -75,7 +75,6 @@ export const addItemToCart = (payload = {}) => {
                 throw missingGuestCartError;
             }
 
-            console.log(payload);
             // TODO: change to GraphQL mutation
             // for now, manually transform the payload for REST
             const itemPayload = {
@@ -89,7 +88,7 @@ export const addItemToCart = (payload = {}) => {
 
             if (productType === 'ConfigurableProduct') {
                 Object.assign(itemPayload, {
-                    sku: parentSku,
+                    parentSku: parentSku,
                     product_type: 'configurable',
                     product_option: {
                         extension_attributes: {

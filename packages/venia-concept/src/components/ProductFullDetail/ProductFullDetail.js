@@ -180,7 +180,7 @@ class ProductFullDetail extends Component {
             <Form className={classes.root}>
                 <section className={classes.title}>
                     <h1 className={classes.productName}>
-                        <span>{product.name}</span>
+                        <strong>{product.name}</strong>
                     </h1>
                     <div className={classes.productPrice}>
                         <Price
