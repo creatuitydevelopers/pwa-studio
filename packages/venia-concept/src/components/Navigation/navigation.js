@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Suspense } from 'react';
 import { bool, func, object, shape, string } from 'prop-types';
 
 import classify from 'src/classify';

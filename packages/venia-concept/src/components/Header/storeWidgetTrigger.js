@@ -17,10 +17,11 @@ class Trigger extends Component {
     };
 
     render() {
-        const { children, classes, openStoreWidget } = this.props;
+        const { children, classes, openStoreWidget, currentStore } = this.props;
+        const classNames = currentStore ? classes.rootFilled : classes.root;
 
         return (
-            <button className={classes.root} onClick={openStoreWidget}>
+            <button className={classNames} onClick={openStoreWidget}>
                 {children}
             </button>
         );
@@ -31,10 +32,18 @@ const mapDispatchToProps = dispatch => ({
     openStoreWidget: () => dispatch(toggleDrawer('storeWidget'))
 });
 
+const mapStateToProps = ({ store }) => {
+    const { currentStore } = store;
+
+    return {
+        currentStore
+    }
+}
+
 export default compose(
     classify(defaultClasses),
     connect(
-        null,
+        mapStateToProps,
         mapDispatchToProps
     )
 )(Trigger);
