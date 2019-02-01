@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import StsOption from './StsOption';
+import ShipToStoreOption from './ShipToStoreOption';
 
 const mapStateToProps = ({ store }) => {
     const { currentStore, allStores } = store;
@@ -10,4 +10,4 @@ const mapStateToProps = ({ store }) => {
     };
 };
 
-export default connect(mapStateToProps)(StsOption);
+export default connect(mapStateToProps)(ShipToStoreOption);

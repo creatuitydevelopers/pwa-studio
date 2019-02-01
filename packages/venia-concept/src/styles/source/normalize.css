@@ -19,6 +19,8 @@ html {
 body {
     margin: 0;
     padding: 0;
+    /*font-size: 1.4rem;*/
+    line-height: 1.42857143;
     font-family: var(--venia-font);
     background-color: white;
     color: rgb(var(--venia-text));

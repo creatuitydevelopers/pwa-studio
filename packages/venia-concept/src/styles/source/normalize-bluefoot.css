@@ -1,0 +1,22 @@
+
+[data-role="row"]{
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+    box-sizing: border-box;
+}
+
+[data-role="row"] [data-role="column"]{
+    float: left;
+    padding: 0 7.5px;
+    min-height: 1px;
+}
+
+[data-role="row"] [data-role="column"] [data-role="html"]{
+    margin-bottom: 15px;
+}
+
+@media all and (min-width:1500px){
+    [data-role='row'][data-appearance='contained']{
+        max-width:1440px !important;
+    }
+}

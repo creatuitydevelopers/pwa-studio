@@ -6,15 +6,6 @@ import StsOption from 'src/components/DeliveryMethods/components/StsOption';
 import VstsOption from 'src/components/DeliveryMethods/components/VstsOption';
 import PlaceholderOption from 'src/components/DeliveryMethods/components/PlaceholderOption';
 
-const emptyData = Array.from({ length: 1 }).fill(null);
-
-const withLoading = Component => props =>
-    !!props.isLoading ? (
-        <Component {...props} methods={emptyData} />
-    ) : (
-        <Component {...props} />
-    );
-
 const withNoData = Component => props =>
     !Array.isArray(props.methods) || !props.methods.length ? (
         <div>
@@ -36,23 +27,24 @@ function DeliveryMethodsList({
         vsts: VstsOption
     };
 
+
     return (
         <ul>
             {methods.map((method, index) => {
-                if (!method || !method.type || !optionsMap[method.type]) {
+                if (!method || !method.method || !optionsMap[method.method]) {
                     return <PlaceholderOption key={index} />;
                 }
-                const OptionTagName = optionsMap[method.type];
+                const OptionTagName = optionsMap[method.method];
 
                 return (
                     <OptionTagName
                         key={index}
                         isChecked={
                             defaultMethod
-                                ? defaultMethod == method.type
+                                ? defaultMethod == method.method
                                 : false
                         }
-                        methodInfo={method.data}
+                        methodInfo={method}
                         selectedStore={selectedStore}
                         onChange={onChange}
                     />
@@ -63,6 +55,5 @@ function DeliveryMethodsList({
 }
 
 export default compose(
-    withLoading,
     withNoData
 )(DeliveryMethodsList);
