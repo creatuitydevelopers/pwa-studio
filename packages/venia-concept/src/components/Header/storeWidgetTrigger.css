@@ -3,3 +3,8 @@
     height: 3rem;
     width: 3rem;
 }
+
+.rootFilled {
+    composes: root;
+    color: rgb(var(--rk--color__red));
+}   

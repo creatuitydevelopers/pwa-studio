@@ -4,22 +4,48 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
 import { toggleCart } from 'src/actions/cart';
+import CartCounter from './cartCounter';
+
+import Icon from 'src/components/Icon';
+import ShoppingCartIcon from 'react-feather/dist/icons/shopping-cart';
 import classify from 'src/classify';
 import defaultClasses from './cartTrigger.css';
 
-class Trigger extends Component {
+export class Trigger extends Component {
     static propTypes = {
         children: PropTypes.node,
         classes: PropTypes.shape({
             root: PropTypes.string
         }),
-        cart: PropTypes.object,
-        toggleCart: PropTypes.func.isRequired
+        toggleCart: PropTypes.func.isRequired,
+        itemsQty: PropTypes.number
     };
 
+    get cartIcon() {
+        const {
+            cart: { details }
+        } = this.props;
+        const itemsQty = details.items_qty;
+        const iconColor = 'rgb(var(--venia-text))';
+        let svgAttributes = {
+            stroke: iconColor
+        };
+
+        if (itemsQty > 0) {
+            svgAttributes.fill = iconColor;
+        }
+
+        return <Icon src={ShoppingCartIcon} attrs={svgAttributes} />;
+    }
+
     render() {
-        const { children, classes, toggleCart, cart } = this.props;
-        const {totals: {items_qty}} = cart;
+        const {
+            classes,
+            toggleCart,
+            cart: { details }
+        } = this.props;
+        const { cartIcon } = this;
+        const itemsQty = details.items_qty;
 
         return (
             <button
@@ -27,20 +53,14 @@ class Trigger extends Component {
                 aria-label="Toggle mini cart"
                 onClick={toggleCart}
             >
-                <span className={classes.counter}>
-                    {items_qty ? items_qty : 0 }
-                </span>
-                {children}
+                {cartIcon}
+                <CartCounter counter={itemsQty ? itemsQty : 0} />
             </button>
         );
     }
 }
 
-const mapStateToProps = ({cart}) => {
-    return {
-        cart
-    }
-}
+const mapStateToProps = ({ cart }) => ({ cart });
 
 const mapDispatchToProps = {
     toggleCart

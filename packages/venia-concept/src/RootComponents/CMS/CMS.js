@@ -23,7 +23,6 @@ export default class CMS extends Component {
         const { id } = this.props;
 
         return (
-
             <Query
                 query={cmsPageQuery}
                 variables={{ id: Number(id) }}
@@ -37,6 +36,7 @@ export default class CMS extends Component {
 
                         return (
                             <div dangerouslySetInnerHTML={{__html: content}}>
+
                             </div>
                         )
                     }

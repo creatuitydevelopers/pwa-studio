@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, Suspense } from 'react';
 import { func, number, objectOf, shape, string } from 'prop-types';
 import { Query } from 'react-apollo';
 

@@ -21,7 +21,7 @@
     align-items: center;
     display: grid;
     grid-template-areas: 'primary title secondary';
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: auto 1fr auto;
     grid-template-rows: 3rem;
     justify-items: center;
     min-height: 3.5rem;
@@ -48,7 +48,10 @@
 
 .secondaryActions {
     grid-area: secondary;
-    justify-self: end;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: end;
 }
 
 .searchBlock {

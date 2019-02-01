@@ -10,7 +10,8 @@ class Palces extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
-            place: null
+            place: null,
+            error: false
         }
     }
 
@@ -41,6 +42,11 @@ class Palces extends React.Component {
             this.setState({
                 isLoading: false,
                 place: result[0]
+            })
+        } else {
+            this.setState({
+                isLoading: false,
+                error: status
             })
         }
     }

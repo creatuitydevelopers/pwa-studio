@@ -4,6 +4,10 @@ import { arrayOf, number, shape, string } from 'prop-types';
 import Button from 'src/components/Button';
 import classify from 'src/classify';
 import defaultClasses from './quantity.css';
+import Icon from 'src/components/Icon';
+import PlusIcon from 'react-feather/dist/icons/plus';
+import MinusIcon from 'react-feather/dist/icons/minus';
+
 
 const buttonStyles = {
     minWidth: 0, 
@@ -69,7 +73,7 @@ class Quantity extends Component {
                 <Button 
                     onClick={decrease}
                     style={buttonStyles}
-                >-</Button>
+                ><Icon src={MinusIcon} size={15} /></Button>
                 <input 
                     className={classes.input}
                     type="text"
@@ -83,7 +87,7 @@ class Quantity extends Component {
                 <Button 
                     onClick={increase} 
                     style={buttonStyles}
-                >+</Button>
+                ><Icon src={PlusIcon} size={15}/></Button>
             </div>
         );
     }
