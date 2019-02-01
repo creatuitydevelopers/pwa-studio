@@ -81,7 +81,6 @@ export const addItemToCart = (payload = {}) => {
                 qty: quantity,
                 sku: item.sku,
                 name: item.name,
-                selected_configurable_option: item.id,
                 product,
                 quote_id: guestCartId,
                 delivery_method: delivery_method.type,
@@ -91,6 +90,7 @@ export const addItemToCart = (payload = {}) => {
             if (productType === 'ConfigurableProduct') {
                 Object.assign(itemPayload, {
                     parentSku: parentSku,
+                    selected_configurable_option: item.id,
                     product_type: 'configurable',
                     product_option: {
                         extension_attributes: {
@@ -100,8 +100,6 @@ export const addItemToCart = (payload = {}) => {
                 });
             }
 
-            console.log('cart item');
-            console.log(itemPayload);
             const cartItem = await request(
                 `/rest/V1/guest-carts/${guestCartId}/items`,
                 {
