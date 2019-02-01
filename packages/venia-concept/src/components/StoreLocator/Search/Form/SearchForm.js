@@ -87,7 +87,6 @@ class SearchForm extends React.Component {
         this.setState({ searchText: selected }, function() {
             this.props.handlePlaceSelect(this.state.searchText);
         });
-        
     };
 
     handlePlaceChange = selected => {
@@ -151,7 +150,12 @@ class SearchForm extends React.Component {
                 {!!showRange && this.rangeContent}
                 {destination !== STOREWIDGET_DEST && (
                     <div className={classes.actions}>
-                        <Button priority={`high`} onClick={this.handleSearchPlace}>Search</Button>
+                        <Button
+                            priority={`high`}
+                            onClick={this.handleSearchPlace}
+                        >
+                            Search
+                        </Button>
                         {destination === STORELOCATOR_DEST && (
                             <Button
                                 priority={`highSecondary`}

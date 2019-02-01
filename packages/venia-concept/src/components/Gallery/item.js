@@ -3,7 +3,7 @@ import { string, number, shape } from 'prop-types';
 import { Price } from '@magento/peregrine';
 import { Link } from 'react-router-dom';
 import classify from 'src/classify';
-import {Rating} from "src/components/Review";
+import { Rating } from 'src/components/Review';
 import { transparentPlaceholder } from 'src/shared/images';
 import { makeProductMediaPath } from 'src/util/makeMediaPath';
 import defaultClasses from './item.css';
@@ -77,7 +77,13 @@ class GalleryItem extends Component {
                 <Link to={productLink} className={classes.name}>
                     <span>{name}</span>
                 </Link>
-                {!!rating && <Rating showAverage={rating.showAverage} avgRating={rating.avgRating} overallRating={rating.overallRating}/>}
+                {!!rating && (
+                    <Rating
+                        showAverage={rating.showAverage}
+                        avgRating={rating.avgRating}
+                        overallRating={rating.overallRating}
+                    />
+                )}
                 <div className={classes.price}>
                     <Price
                         value={price.regularPrice.amount.value}

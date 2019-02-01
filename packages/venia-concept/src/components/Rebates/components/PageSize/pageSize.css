@@ -1,18 +1,16 @@
-.root{
-
+.root {
 }
-.root select{
+.root select {
     min-width: 65px;
 }
 
-.label{
+.label {
     margin-right: 5px;
 }
 
-.label:after{
+.label:after {
     content: ':';
 }
 
-.select{
-
+.select {
 }

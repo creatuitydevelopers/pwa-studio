@@ -1,1 +1,1 @@
-export { default as SingleRating  } from './SingleRating';
+export { default as SingleRating } from './SingleRating';

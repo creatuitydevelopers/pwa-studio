@@ -15,7 +15,6 @@ const searchRadiusUnit = 'mi';
 const noStoresFoundMessage = `Sorry, there are no Rural King stores within ${searchRadius} miles of your search. Please try searching another location.`;
 
 class StoreWidget extends PureComponent {
-    
     state = {
         address: '',
         lat: null,
@@ -38,7 +37,7 @@ class StoreWidget extends PureComponent {
 
     componentDidUpdate() {
         const { isOpen, currentStore, drawer } = this.props;
-        if(!drawer) {
+        if (!drawer) {
             this.hideFindAnother();
         }
 
@@ -89,13 +88,11 @@ class StoreWidget extends PureComponent {
         geocodeByAddress(selected)
             .then(res => getLatLng(res[0]))
             .then(({ lat, lng }) => {
-                this.setState(
-                    {
-                        lat,
-                        lng,
-                        address: selected
-                    }
-                );
+                this.setState({
+                    lat,
+                    lng,
+                    address: selected
+                });
             })
             .catch(error => {
                 console.log('error', error); // eslint-disable-line no-console
@@ -196,7 +193,11 @@ class StoreWidget extends PureComponent {
         const { classes } = this.props;
         return (
             <div className={classes.actionBar}>
-                <Button type="button" priority={`high`} onClick={this.handleViewAll}>
+                <Button
+                    type="button"
+                    priority={`high`}
+                    onClick={this.handleViewAll}
+                >
                     View All
                 </Button>
                 {this.state.isFindAnotherVisible && (
@@ -210,7 +211,11 @@ class StoreWidget extends PureComponent {
                     </Button>
                 )}
                 {!this.state.isFindAnotherVisible && (
-                    <Button type="button" priority={`high`} onClick={this.onFindAnother}>
+                    <Button
+                        type="button"
+                        priority={`high`}
+                        onClick={this.onFindAnother}
+                    >
                         Find Another
                     </Button>
                 )}

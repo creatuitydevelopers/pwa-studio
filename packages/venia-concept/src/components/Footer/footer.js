@@ -18,7 +18,7 @@ class Footer extends Component {
 
     render() {
         const { classes } = this.props;
-        
+
         return (
             <footer className={classes.root}>
                 <div className={classes.tile}>

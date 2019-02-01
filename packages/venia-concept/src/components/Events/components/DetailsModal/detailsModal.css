@@ -9,7 +9,7 @@
     margin: 0 30px 20px 0;
 }
 
-.image{
+.image {
     display: block;
     max-width: 240px;
     max-height: 240px;
@@ -43,7 +43,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .image{
+    .image {
         margin: 0 10px 10px 0;
         max-width: 150px;
         max-height: 150px;

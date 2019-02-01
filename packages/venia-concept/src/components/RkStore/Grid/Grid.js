@@ -5,12 +5,21 @@ import { shape, string } from 'prop-types';
 
 const Grid = ({ classes, title, children }) => {
 
-    return (<div>{title}<div className={classes.root}>{children}</div></div>);
+    return (
+        <div>
+            {title}
+            {!children.length && <div className={classes.noResults}>No results found!</div>}
+            <div className={classes.root}>
+                {children}
+            </div>
+        </div>
+    );
 };
 
 Grid.propTypes = {
     classes: shape({
-        root: string
+        root: string,
+        noResults: string
     })
 };
 

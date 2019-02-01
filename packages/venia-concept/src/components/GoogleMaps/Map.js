@@ -308,9 +308,7 @@ Map.defaultProps = {
     visible: true
 };
 
-const LoadingContainer = (props) => (
-    <div>{loadingIndicator}</div>
-)
+const LoadingContainer = props => <div>{loadingIndicator}</div>;
 
 export default GoogleApiWrapper({
     apiKey: GOOGLE_MAPS_API_KEY,

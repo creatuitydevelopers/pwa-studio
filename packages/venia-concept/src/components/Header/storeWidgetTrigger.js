@@ -37,8 +37,8 @@ const mapStateToProps = ({ store }) => {
 
     return {
         currentStore
-    }
-}
+    };
+};
 
 export default compose(
     classify(defaultClasses),

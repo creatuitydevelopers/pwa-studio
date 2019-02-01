@@ -24,7 +24,7 @@ const StoreList = props => {
         onDetailsClick,
         ...rest
     } = props;
-    
+
     let classNames = [classes.root];
     if (!!direction) {
         classNames.push(classes[direction]);

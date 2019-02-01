@@ -38,8 +38,12 @@ export const getStoreListForStsMethod = ({
             );
 
             if (distanceInMiles < radius) {
-                const storeFromMethodInfo = methodInfo.stores.find(obj => obj.store_number == store.store_number);
-                store.inventoryLevel = !!storeFromMethodInfo ? storeFromMethodInfo.inventory_level : 0;
+                const storeFromMethodInfo = methodInfo.stores.find(
+                    obj => obj.store_number == store.store_number
+                );
+                store.inventoryLevel = !!storeFromMethodInfo
+                    ? storeFromMethodInfo.inventory_level
+                    : 0;
                 store.distance = distanceInMiles;
 
                 return store;
@@ -49,27 +53,25 @@ export const getStoreListForStsMethod = ({
 };
 
 export const isCurrentStoreEnabledForSts = ({ allowedStores, store }) => {
-    if(!store){
+    if (!store) {
         return false;
     }
 
-    return allowedStores.some(enabledStore => enabledStore.store_number == store.store_number);
+    return allowedStores.some(
+        enabledStore => enabledStore.store_number == store.store_number
+    );
 };
 
 export const isDeliveryMethodValid = (method, store) => {
-
-    if(!method){
+    if (!method) {
         return false;
     }
 
-    const methodsRequiredStore = [
-        STS_METHOD_CODE,
-        VSTS_METHOD_CODE
-    ];
+    const methodsRequiredStore = [STS_METHOD_CODE, VSTS_METHOD_CODE];
 
-    if(methodsRequiredStore.some(item => item == method) && !store){
-        return false
+    if (methodsRequiredStore.some(item => item == method) && !store) {
+        return false;
     }
 
     return true;
-}
+};

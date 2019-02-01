@@ -11,28 +11,34 @@ import groupBy from 'lodash/groupBy';
 import toPairs from 'lodash/toPairs';
 
 class ShippingInformation extends React.Component {
-
-    getStoreDetailsByNumber = async (storeNumber) => {
+    getStoreDetailsByNumber = async storeNumber => {
         return getStoreByNumber(storeNumber);
-    }
+    };
 
     get content() {
         const { cart, availableShippingMethods } = this.props;
-        const { details: { items, currency: { quote_currency_code } } } = cart;
-        const data = toPairs(groupBy(items, item => item.extension_attributes.delivery_method));
+        const {
+            details: {
+                items,
+                currency: { quote_currency_code }
+            }
+        } = cart;
+        const data = toPairs(
+            groupBy(items, item => item.extension_attributes.delivery_method)
+        );
 
-        return (
-            data.map((el, idx) => {
-                const [storeCode, items] = el;
-                return <DeliveryMethods
+        return data.map((el, idx) => {
+            const [storeCode, items] = el;
+            return (
+                <DeliveryMethods
                     key={idx}
                     availableShippingMethods={availableShippingMethods}
                     storeCode={storeCode}
                     currencyCode={quote_currency_code}
                     items={items}
                 />
-            })
-        )
+            );
+        });
     }
 
     render() {
@@ -45,15 +51,13 @@ class ShippingInformation extends React.Component {
         return (
             <div className={classes.root}>
                 <div className={classes.body}>
-                    <div>
-                        {content}
-                    </div>
+                    <div>{content}</div>
                 </div>
                 <div className={classes.footer}>
                     <Button onClick={cancel}>Back</Button>
                 </div>
             </div>
-        )
+        );
     }
 }
 
@@ -61,8 +65,6 @@ ShippingInformation.propTypes = {
     cancel: func,
     cart: object,
     availableShippingMethods: array
-}
+};
 
 export default classify(defaultClasses)(ShippingInformation);
-
-

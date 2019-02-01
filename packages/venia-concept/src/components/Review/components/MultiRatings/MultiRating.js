@@ -1,7 +1,7 @@
-import React from "react";
-import {array, bool} from "prop-types";
+import React from 'react';
+import { array, bool } from 'prop-types';
 
-import {getReviewFetchUrl, getRatingsForProducts} from "src/models/Reviews";
+import { getReviewFetchUrl, getRatingsForProducts } from 'src/models/Reviews';
 
 class MultiRating extends React.Component {
     static propTypes = {
@@ -16,22 +16,21 @@ class MultiRating extends React.Component {
 
     state = {
         reviews: null,
-        isLoading: true,
+        isLoading: true
     };
 
     async componentDidMount() {
-
         const skus = this.props.items.map(item => item.sku).join(',');
 
         await fetch(getReviewFetchUrl(skus))
             .then(response => {
-                if(response.ok){
+                if (response.ok) {
                     return response.json();
-                }else{
+                } else {
                     this.setState({
                         error: response,
                         isLoading: false
-                    })
+                    });
                 }
             })
             .then(reviews => {
@@ -39,25 +38,29 @@ class MultiRating extends React.Component {
                     reviews: reviews.BatchedResults.r.Results,
                     error: null,
                     isLoading: false
-                })
-            }).catch(err => {
+                });
+            })
+            .catch(err => {
                 console.log(err);
                 console.log(this.state.error);
             });
     }
 
     render() {
-        const {children, showAverage} = this.props;
-        const {reviews, isLoading} = this.state;
+        const { children, showAverage } = this.props;
+        const { reviews, isLoading } = this.state;
         const ratings = getRatingsForProducts(reviews, showAverage, isLoading);
 
-        const updatedChildren = React.Children.map(children, (child) => {
-            const rating = ratings.find(rating => rating.productId == child.props.item.sku) || {};
-            return React.cloneElement(child, {rating});
+        const updatedChildren = React.Children.map(children, child => {
+            const rating =
+                ratings.find(
+                    rating => rating.productId == child.props.item.sku
+                ) || {};
+            return React.cloneElement(child, { rating });
         });
 
-        return <React.Fragment>{updatedChildren}</React.Fragment>
+        return <React.Fragment>{updatedChildren}</React.Fragment>;
     }
-};
+}
 
 export default MultiRating;

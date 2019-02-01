@@ -32,7 +32,9 @@ const DefaultOption = ({ isChecked, methodInfo, onChange, classes }) => {
                     <p>{methodInfo.ship_time_options}</p>
                 )}
                 {methodInfo.qty <= 5 && methodInfo.qty > 0 && (
-                    <p className={classes.alertMessage}>{`Only ${methodInfo.qty} Left Online`}</p>
+                    <p className={classes.alertMessage}>{`Only ${
+                        methodInfo.qty
+                    } Left Online`}</p>
                 )}
             </div>
         </li>

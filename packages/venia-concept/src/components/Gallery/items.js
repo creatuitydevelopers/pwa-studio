@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { arrayOf, string, number, shape } from 'prop-types';
 import GalleryItem from './item';
 
-import {MultiRating} from 'src/components/Review';
+import { MultiRating } from 'src/components/Review';
 
 const pageSize = 12;
 const emptyData = Array.from({ length: pageSize }).fill(null);
@@ -50,7 +50,13 @@ class GalleryItems extends Component {
             return this.placeholders;
         }
 
-        return <MultiRating items={items}>{items.map(item => <GalleryItem key={item.id} item={item} />)}</MultiRating>;
+        return (
+            <MultiRating items={items}>
+                {items.map(item => (
+                    <GalleryItem key={item.id} item={item} />
+                ))}
+            </MultiRating>
+        );
     }
 }
 

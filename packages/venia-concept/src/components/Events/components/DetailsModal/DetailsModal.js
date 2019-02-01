@@ -24,13 +24,13 @@ class DetailsModal extends Component {
     };
 
     get content() {
-        const {item, stores, classes } = this.props;
+        const { item, stores, classes } = this.props;
 
-        if(!item){
+        if (!item) {
             return null;
         }
 
-        const {name, date_start, date_end, description } = item.event;
+        const { name, date_start, date_end, description } = item;
         const dateStart = moment(new Date(date_start));
         const dateEnd = moment(new Date(date_end));
         const itemStores = item.stores
@@ -45,21 +45,31 @@ class DetailsModal extends Component {
             <React.Fragment>
                 {this.renderImage()}
                 <h2 className={classes.modalHeader}>{name}</h2>
-                <p><strong>{`Date`}:</strong> {dateStart.format('MMMM DD, YYYY')}</p>
-                <p><strong>{`Time`}:</strong> {dateStart.format('LT')} - {dateEnd.format('LT')}</p>
+                <p>
+                    <strong>{`Date`}:</strong>{' '}
+                    {dateStart.format('MMMM DD, YYYY')}
+                </p>
+                <p>
+                    <strong>{`Time`}:</strong> {dateStart.format('LT')} -{' '}
+                    {dateEnd.format('LT')}
+                </p>
                 {!!item.stores.length && (
                     <div className={classes.storesListWrapper}>
-                        <p><strong>{`Location`}:</strong></p>
+                        <p>
+                            <strong>{`Location`}:</strong>
+                        </p>
                         <ul>
                             {itemStores.map(store => (
                                 <li key={store.store_number}>
-                                    <Title
-                                        store={store}
-                                        tag={`span`}
-                                    /> | #{store.store_number}<br/>
-                                    {store.address}<br/>
-                                    {store.city}, {store.state}<br/>
-                                    {store.phone}<br/>
+                                    <Title store={store} tag={`span`} /> | #
+                                    {store.store_number}
+                                    <br />
+                                    {store.address}
+                                    <br />
+                                    {store.city}, {store.state}
+                                    <br />
+                                    {store.phone}
+                                    <br />
                                 </li>
                             ))}
                         </ul>
@@ -67,7 +77,10 @@ class DetailsModal extends Component {
                 )}
                 <RichText
                     className={classes.description}
-                    content={!!description && description.replace(/(<([^>]+)>)/gi, '')}
+                    content={
+                        !!description &&
+                        description.replace(/(<([^>]+)>)/gi, '')
+                    }
                 />
             </React.Fragment>
         );
@@ -92,7 +105,7 @@ class DetailsModal extends Component {
             <img
                 className={classes.image}
                 src={`${BACKEND_URL}/${IMAGE_PATH}/${image.file}`}
-                alt={item.event.name}
+                alt={item.name}
             />
         );
     };

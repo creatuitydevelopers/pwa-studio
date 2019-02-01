@@ -8,6 +8,6 @@
     justify-content: left;
 }
 
-.validationMessage{
+.validationMessage {
     color: rgb(var(--rk--color__red));
 }

@@ -7,13 +7,7 @@ import { withRouter } from 'react-router-dom';
 const defaultSize = null;
 
 const StoreDetailsButton = props => {
-    const {
-        store,
-        title,
-        history,
-        size,
-        onClick = function() {}
-    } = props;
+    const { store, title, history, size, onClick = function() {} } = props;
 
     const handleClick = () => {
         history.push(`\/${store.rewrite_request_path}`);
@@ -21,7 +15,12 @@ const StoreDetailsButton = props => {
     };
 
     return (
-        <Button type="button" priority={`normalSecondary`} size={size} onClick={handleClick}>
+        <Button
+            type="button"
+            priority={`normalSecondary`}
+            size={size}
+            onClick={handleClick}
+        >
             {title}
         </Button>
     );

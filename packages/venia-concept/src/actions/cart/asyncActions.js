@@ -47,7 +47,14 @@ export const createGuestCart = () =>
     };
 
 export const addItemToCart = (payload = {}) => {
-    const { item, options, parentSku, productType, quantity, delivery_method } = payload;
+    const {
+        item,
+        options,
+        parentSku,
+        productType,
+        quantity,
+        delivery_method
+    } = payload;
     const writingImageToCache = writeImageToCache(item);
 
     return async function thunk(dispatch, getState) {

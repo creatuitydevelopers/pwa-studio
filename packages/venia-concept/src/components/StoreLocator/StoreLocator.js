@@ -28,7 +28,6 @@ const initialState = {
 };
 
 class StoreLocator extends React.Component {
-    
     state = {
         allStores: this.props.allStores,
         ...initialState

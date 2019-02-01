@@ -49,13 +49,13 @@ export const setCurrentStore = store =>
         }
     };
 
-export const getStoreByNumber = async (storeNumber) => {
+export const getStoreByNumber = async storeNumber => {
     const stores = await getStoresFromStorage();
-    
+
     return stores.find(el => {
         return el.store_number == storeNumber;
     });
-}
+};
 
 async function setStoresHashInStorage(hash) {
     const storage = new BrowserPersistence();

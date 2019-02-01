@@ -1,12 +1,12 @@
-import React, {Component} from "react";
-import {func, object, array, shape, string, number} from "prop-types";
+import React, { Component } from 'react';
+import { func, object, array, shape, string, number } from 'prop-types';
 import classify from 'src/classify';
 
-import {Form} from "informed";
-import {Grid} from 'src/components/RkStore';
-import {Item, DetailsModal, PageSize} from 'src/components/Rebates';
+import { Form } from 'informed';
+import { Grid } from 'src/components/RkStore';
+import { Item, DetailsModal, PageSize } from 'src/components/Rebates';
 
-import {SORT_DEFAULT} from 'src/components/Rebates/consts';
+import { SORT_DEFAULT } from 'src/components/Rebates/consts';
 
 import defaultClasses from './rebateList.css';
 
@@ -22,7 +22,6 @@ class RebateList extends Component {
 
     static defaultProps = {
         items: []
-
     };
 
     state = {
@@ -31,38 +30,36 @@ class RebateList extends Component {
         currentItem: null
     };
 
-    handleOpenModalClick = (item) => {
-        this.setState({currentItem: item, modalOpen: true});
+    handleOpenModalClick = item => {
+        this.setState({ currentItem: item, modalOpen: true });
     };
 
     handleCloseModalClick = () => {
-        this.setState({currentItem: null, modalOpen: false});
+        this.setState({ currentItem: null, modalOpen: false });
     };
 
     handleSortChange = sort => {
-        this.setState({sort});
+        this.setState({ sort });
     };
 
     handlePageSize = pageSize => {
-        this.props.setPageSize(pageSize)
+        this.props.setPageSize(pageSize);
     };
 
     getSortedItems = items => {
         return items.sort((a, b) => {
-            const {sort} = this.state;
+            const { sort } = this.state;
 
             if (sort == SORT_DEFAULT) {
                 return new Date(b[sort]) - new Date(a[sort]);
-
             }
             return a[sort].localeCompare(b[sort]);
-
         });
     };
 
     render() {
-        const {items, pageSize, classes} = this.props;
-        const {modalOpen, currentItem} = this.state;
+        const { items, pageSize, classes } = this.props;
+        const { modalOpen, currentItem } = this.state;
 
         return (
             <section className={classes.root}>
@@ -71,17 +68,30 @@ class RebateList extends Component {
                         <span>{`Manufacturer Rebates`}</span>
                     </h1>
                     <Form className={classes.sortForm}>
-                        <PageSize defaultValue={pageSize} handlePageSize={this.handlePageSize}/>
+                        <PageSize
+                            defaultValue={pageSize}
+                            handlePageSize={this.handlePageSize}
+                        />
                     </Form>
                 </header>
-                <Grid>{this.getSortedItems(items).map((item, index) => <Item key={index} item={item}
-                                                                             openDetails={this.handleOpenModalClick}/>)}</Grid>
+                <Grid>
+                    {this.getSortedItems(items).map((item, index) => (
+                        <Item
+                            key={index}
+                            item={item}
+                            openDetails={this.handleOpenModalClick}
+                        />
+                    ))}
+                </Grid>
 
-                <DetailsModal modalOpen={modalOpen} item={currentItem} closeModalClick={this.handleCloseModalClick}/>
+                <DetailsModal
+                    modalOpen={modalOpen}
+                    item={currentItem}
+                    closeModalClick={this.handleCloseModalClick}
+                />
             </section>
-        )
+        );
     }
-
 }
 
 export default classify(defaultClasses)(RebateList);

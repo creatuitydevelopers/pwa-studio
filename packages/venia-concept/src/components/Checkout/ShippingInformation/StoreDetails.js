@@ -10,13 +10,12 @@ import defaultClasses from './storeDetails.css';
 import Item from './Item';
 
 class StoreDetails extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             store: {},
             detailsVisible: false
-        }
+        };
     }
 
     async componentDidMount() {
@@ -31,19 +30,20 @@ class StoreDetails extends React.Component {
         this.setState(prevState => {
             return {
                 detailsVisible: !prevState.detailsVisible
-            }
-        })
-    }
+            };
+        });
+    };
 
     render() {
         const { toggleContent, props, state } = this;
         const { items, currencyCode, classes } = props;
         const { store, detailsVisible } = state;
-        const detailsClass = detailsVisible ? classes.detailsVisible : classes.detailsHidden;
+        const detailsClass = detailsVisible
+            ? classes.detailsVisible
+            : classes.detailsHidden;
         const triggerChevron = detailsVisible ? chevronUp : chevronDown;
 
-        return !!store ?
-
+        return !!store ? (
             <div>
                 <div className={classes.name} onClick={toggleContent}>
                     <Icon src={mapPin} className={classes.icon} />
@@ -52,19 +52,25 @@ class StoreDetails extends React.Component {
                 </div>
                 <ul className={detailsClass}>
                     <li>{store.address}</li>
-                    <li>{store.company_name} {store.zipcode}</li>
+                    <li>
+                        {store.company_name} {store.zipcode}
+                    </li>
                     <li>{store.phone}</li>
                 </ul>
-                {
-                    items.map((item, idx) => {
-                        return <Item key={idx} currencyCode={currencyCode} item={item} />
-                    })
-                }
-                <div></div>
+                {items.map((item, idx) => {
+                    return (
+                        <Item
+                            key={idx}
+                            currencyCode={currencyCode}
+                            item={item}
+                        />
+                    );
+                })}
+                <div />
             </div>
-            :
-            loadingIndicator;
-
+        ) : (
+            loadingIndicator
+        );
     }
 }
 
