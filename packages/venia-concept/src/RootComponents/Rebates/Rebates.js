@@ -37,9 +37,8 @@ const searchQuery = gql`
 class Rebates extends Component {
     static propTypes = {
         classes: shape({
-            noResult: string,
             root: string,
-            totalPages: string
+            pagination: string
         }),
         history: object,
         location: object.isRequired,

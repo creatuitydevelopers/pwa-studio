@@ -43,9 +43,8 @@ const searchQuery = gql`
 export class EventsPage extends Component {
     static propTypes = {
         classes: shape({
-            noResult: string,
             root: string,
-            totalPages: string
+            pagination: string
         }),
         history: object,
         location: object.isRequired,
