@@ -57,11 +57,11 @@ export const isCurrentStoreEnabledForSts = ({ allowedStores, store }) => {
 };
 
 export const isDeliveryMethodValid = (method, store) => {
-    console.log(method, store);
+
     if(!method){
         return false;
     }
-    console.log('v1');
+
     const methodsRequiredStore = [
         STS_METHOD_CODE,
         VSTS_METHOD_CODE
@@ -70,6 +70,6 @@ export const isDeliveryMethodValid = (method, store) => {
     if(methodsRequiredStore.some(item => item == method) && !store){
         return false
     }
-    console.log('v2');
+
     return true;
 }
