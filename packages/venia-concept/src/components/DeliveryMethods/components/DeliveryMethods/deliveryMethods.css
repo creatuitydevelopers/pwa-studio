@@ -7,3 +7,7 @@
     composes: sectionTitle from '../../../ProductFullDetail/productFullDetail.css';
     justify-content: left;
 }
+
+.validationMessage{
+    color: rgb(var(--rk--color__red));
+}
