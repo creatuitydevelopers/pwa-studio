@@ -47,7 +47,7 @@ export const createGuestCart = () =>
     };
 
 export const addItemToCart = (payload = {}) => {
-    const { item, options, parentSku, productType, quantity, delivery_method } = payload;
+    const { item, options, parentSku, productType, quantity, delivery_method, product } = payload;
     const writingImageToCache = writeImageToCache(item);
 
     return async function thunk(dispatch, getState) {
@@ -81,6 +81,8 @@ export const addItemToCart = (payload = {}) => {
                 qty: quantity,
                 sku: item.sku,
                 name: item.name,
+                selected_configurable_option: item.id,
+                product,
                 quote_id: guestCartId,
                 delivery_method: delivery_method.type,
                 store_number: delivery_method.store.store_number

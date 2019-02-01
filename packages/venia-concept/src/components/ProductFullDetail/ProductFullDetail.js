@@ -98,9 +98,12 @@ class ProductFullDetail extends Component {
             ? 'ConfigurableProduct'
             : 'SimpleProduct';
 
+        console.log(product);
+
         const payload = {
             item: product,
             productType,
+            product: product.id,
             quantity,
             delivery_method: {
                 type: state.deliveryMethodType,
@@ -126,8 +129,6 @@ class ProductFullDetail extends Component {
 
                 return true;
             });
-
-            console.log(item);
 
             Object.assign(payload, {
                 options,
