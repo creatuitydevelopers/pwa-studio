@@ -10,6 +10,7 @@ import Carousel from 'src/components/ProductImageCarousel';
 import Quantity from 'src/components/ProductQuantity';
 import RichText from 'src/components/RichText';
 import DeliveryMethods from 'src/components/DeliveryMethods';
+import {PriceWrapper} from 'src/components/RkStore';
 import { SingleRating } from 'src/components/Review';
 
 import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
@@ -104,8 +105,6 @@ class ProductFullDetail extends Component {
         const productType = isConfigurable
             ? 'ConfigurableProduct'
             : 'SimpleProduct';
-
-        console.log(product);
 
         const payload = {
             item: product,
@@ -213,8 +212,12 @@ class ProductFullDetail extends Component {
                             }}
                             locale={`en-US`}
                         />
+                        <PriceWrapper/>
                     </div>
-                    <SingleRating item={product} />
+                    <div>
+                        <SingleRating item={product} />
+                        <strong>{`SKU`}: {product.sku}</strong>
+                    </div>
                 </section>
                 <section className={classes.imageCarousel}>
                     <Carousel images={product.media_gallery_entries} />
@@ -239,21 +242,15 @@ class ProductFullDetail extends Component {
                     />
                 </section>
                 <section className={classes.cartActions}>
-                    <Button priority="high" onClick={this.addToCart}>
+                    <Button priority="high" size="big" onClick={this.addToCart}>
                         <span>Add to Cart</span>
                     </Button>
                 </section>
                 <section className={classes.description}>
                     <h2 className={classes.descriptionTitle}>
-                        <span>Product Description</span>
+                        <span>Details</span>
                     </h2>
                     <RichText content={product.description} />
-                </section>
-                <section className={classes.details}>
-                    <h2 className={classes.detailsTitle}>
-                        <span>SKU</span>
-                    </h2>
-                    <strong>{product.sku}</strong>
                 </section>
             </Form>
         );

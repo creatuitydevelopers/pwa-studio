@@ -4,7 +4,7 @@ import { func, object, shape, string } from 'prop-types';
 import classify from 'src/classify';
 import defaultClasses from './deliveryMethods.css';
 import DeliveryMethodsList from 'src/components/DeliveryMethods/components/DeliveryMethodsList';
-import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
+import { isStsMethod, isCurrentStoreEnabledForSts, isDeliveryMethodValid } from 'src/models/DeliveryMethods';
 
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -32,6 +32,14 @@ class DeliveryMethods extends Component {
         validationMessage: string,
         product: object.isRequired,
         onChange: func.isRequired
+    };
+
+    async componentDidUpdate(prevProps) {
+        const {currentStore, onChange} = this.props;
+
+        if (!!prevProps.currentStore && !!currentStore && prevProps.currentStore.store_number != currentStore.store_number) {
+            onChange(null, null);
+        }
     };
 
     render() {
@@ -72,14 +80,11 @@ class DeliveryMethods extends Component {
 
                         if (methods.length > 0 && !defaultMethod) {
                             methods.every(method => {
-                                if (
-                                    isDeliveryMethodValid(method.method, store)
-                                ) {
-                                    onChange(method.method, store);
-                                    return false;
-                                }
+                                if(isStsMethod(method.method) && !isCurrentStoreEnabledForSts(method.stores, store)) return true;
+                                if (!isDeliveryMethodValid(method.method, store)) return true;
 
-                                return true;
+                                onChange(method.method, store);
+                                return false;
                             });
                         }
 

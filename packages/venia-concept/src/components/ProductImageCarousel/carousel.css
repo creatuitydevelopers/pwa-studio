@@ -19,6 +19,7 @@
     display: grid;
     grid-area: main;
     grid-template-columns: repeat(3, 1fr);
+    border: 1px solid rgb(var(--venia-border));
 }
 
 .currentImage {

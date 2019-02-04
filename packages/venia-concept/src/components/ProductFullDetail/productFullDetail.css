@@ -57,6 +57,8 @@
 }
 
 .productName {
+    grid-column-start: 1;
+    grid-column-end: 3;
     font-size: 1.5rem;
     color: rgb(var(--rk--color__blue));
 }
@@ -119,7 +121,9 @@
 
 .description {
     composes: section;
-    grid-column: 1 / span 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    /*grid-column: 1 / span 1;*/
     grid-row: fold / span 1;
 }
 
@@ -135,6 +139,7 @@
 
 .descriptionTitle {
     composes: sectionTitle;
+    text-transform: uppercase;
 }
 
 .details {

@@ -1,0 +1,8 @@
+.root{
+
+}
+
+.msrpPrice{
+    text-decoration: line-through;
+    color: rgb(var(--venia-text-alt));
+}

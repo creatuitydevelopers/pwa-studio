@@ -52,6 +52,8 @@ export const getStoreListForStsMethod = ({
         .sort((a, b) => (a.distance >= b.distance ? 1 : -1));
 };
 
+export const isStsMethod = (method)  => STS_METHOD_CODE == method || VSTS_METHOD_CODE == method;
+
 export const isCurrentStoreEnabledForSts = ({ allowedStores, store }) => {
     if (!store) {
         return false;
