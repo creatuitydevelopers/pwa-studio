@@ -7,7 +7,7 @@ import Section from './section';
 import classify from 'src/classify';
 import { makeProductMediaPath } from 'src/util/makeMediaPath';
 import defaultClasses from './product.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const imageWidth = 80;
 const imageHeight = 100;
@@ -99,7 +99,9 @@ class Product extends Component {
                     style={this.styleImage(item.image)}
                 />
                 <div className={classes.name}>
-                    <Link to={`${item.extension_attributes.url_key}`}>{item.name}</Link>
+                    <Link to={`${item.extension_attributes.url_key}`}>
+                        {item.name}
+                    </Link>
                 </div>
                 {options}
                 <div className={classes.quantity}>

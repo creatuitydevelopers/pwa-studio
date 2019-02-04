@@ -91,7 +91,6 @@
     composes: rootSecondary filled;
 }
 
-
 .root_normalSize {
     font-size: 0.875rem;
     height: 2.5rem;
@@ -103,31 +102,12 @@
 }
 
 .root_mediumSize {
-
 }
 
 .root_bigSize {
     height: 3.5rem;
     font-size: 25px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /****
 .small {

@@ -2,10 +2,10 @@
     max-width: 1530px;
     margin: 0 auto;
     display: grid;
-    grid-template: 
-    "header header header"
-    "leftColumn centerColumn rightColumn"
-    / 1fr 1.3fr 1fr ;
+    grid-template:
+        'header header header'
+        'leftColumn centerColumn rightColumn'
+        / 1fr 1.3fr 1fr;
     align-items: start;
 }
 
@@ -131,7 +131,7 @@
 
 .section.holidays li {
     padding: 10px 0;
-} 
+}
 
 .section.holidays ul > li li:nth-of-type(odd) {
     background-color: rgb(var(--rk--color__gray-6));

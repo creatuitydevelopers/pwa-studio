@@ -7,4 +7,4 @@
 .rootFilled {
     composes: root;
     color: rgb(var(--rk--color__red));
-}   
+}

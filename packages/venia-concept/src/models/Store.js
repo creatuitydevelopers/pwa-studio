@@ -4,9 +4,11 @@ export const getScheduleForToday = ({ schedule }) => {
     const currentDay = new Date()
         .toLocaleDateString('en-US', { weekday: 'long' })
         .toLowerCase();
-    return !!schedule ? schedule.find(el => {
-        return el.day === currentDay;
-    }) : false;
+    return !!schedule
+        ? schedule.find(el => {
+              return el.day === currentDay;
+          })
+        : false;
 };
 
 export const isCurrentStore = (store, currentStore) => {
@@ -22,27 +24,29 @@ export const findStoresWithinRadius = ({
     radius,
     radiusUnit = 'mi'
 }) => {
+    return stores
+        .map(store => {
+            const distanceInMiles = geolib.convertUnit(
+                radiusUnit,
+                geolib.getDistance(
+                    { latitude: store.latitude, longitude: store.longitude },
+                    {
+                        latitude: currentLocation.latitude,
+                        longitude: currentLocation.longitude
+                    }
+                ),
+                2
+            );
 
-    return stores.map(store => {
-        const distanceInMiles = geolib.convertUnit(
-            radiusUnit,
-            geolib.getDistance(
-                { latitude: store.latitude, longitude: store.longitude },
-                {
-                    latitude: currentLocation.latitude,
-                    longitude: currentLocation.longitude
-                }
-            ),
-            2
-        );
-
-        store.distance = distanceInMiles;
-        return store;
-    }).filter(store => {
-        if (store.distance < radius) {
+            store.distance = distanceInMiles;
             return store;
-        }
-    }).sort((a,b) => {
-        return a.distance - b.distance;
-    });
+        })
+        .filter(store => {
+            if (store.distance < radius) {
+                return store;
+            }
+        })
+        .sort((a, b) => {
+            return a.distance - b.distance;
+        });
 };

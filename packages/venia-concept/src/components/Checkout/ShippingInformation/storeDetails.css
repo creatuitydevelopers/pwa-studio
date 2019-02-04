@@ -37,11 +37,11 @@
 }
 
 .detailsVisible {
-    composes:  details;
+    composes: details;
     display: block;
 }
 
 .detailsHidden {
-    composes:  details;
+    composes: details;
     display: none;
 }

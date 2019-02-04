@@ -34,7 +34,7 @@ class Item extends Component {
 
     render() {
         const { classes, item, stores } = this.props;
-        const { id, name, date_start, description } = item.event;
+        const { id, name, date_start, description } = item;
 
         const date = moment(new Date(date_start));
 
@@ -48,11 +48,17 @@ class Item extends Component {
 
         return (
             <div className={classes.root}>
-                <a onClick={() => this.props.openDetails(item)} className={classes.imageWrapper}>
+                <a
+                    onClick={() => this.props.openDetails(item)}
+                    className={classes.imageWrapper}
+                >
                     {this.renderImage()}
                 </a>
                 <div className={classes.details}>
-                    <a onClick={() => this.props.openDetails(item)} className={classes.name}>
+                    <a
+                        onClick={() => this.props.openDetails(item)}
+                        className={classes.name}
+                    >
                         <span>{name}</span>
                     </a>
                     <p>{date.format('dddd, L | LT')}</p>
@@ -85,7 +91,10 @@ class Item extends Component {
                         }
                     />
                     <div className={classes.linkWrapper}>
-                        <a onClick={() => this.props.openDetails(item)} className={classes.link}>
+                        <a
+                            onClick={() => this.props.openDetails(item)}
+                            className={classes.link}
+                        >
                             <span>{`Event Details >`}</span>
                         </a>
                     </div>
@@ -119,7 +128,7 @@ class Item extends Component {
             <img
                 className={classes.image}
                 src={`${BACKEND_URL}/${IMAGE_PATH}/${image.file}`}
-                alt={item.event.name}
+                alt={item.name}
             />
         );
     };

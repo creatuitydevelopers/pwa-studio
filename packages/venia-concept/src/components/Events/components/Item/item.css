@@ -14,6 +14,7 @@
     position: relative;
     padding-bottom: 220px;
     display: block;
+    cursor: pointer;
 }
 
 .image {
@@ -38,7 +39,7 @@
     line-height: 24px;
     text-overflow: ellipsis;
     white-space: nowrap;
-
+    cursor: pointer;
     max-width: 100%;
 }
 
@@ -118,4 +119,5 @@
 
 .link {
     color: #0c4e77;
+    cursor: pointer;
 }

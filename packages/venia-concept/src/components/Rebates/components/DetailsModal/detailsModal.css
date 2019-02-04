@@ -1,4 +1,4 @@
-.root{
+.root {
     max-width: 768px;
     width: 100%;
 }
@@ -9,6 +9,6 @@
     margin: 0 30px 20px 0;
 }
 
-.description{
+.description {
     margin-bottom: 10px;
 }

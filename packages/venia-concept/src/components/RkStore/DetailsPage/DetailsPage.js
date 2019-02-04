@@ -5,8 +5,8 @@ import defaultClasses from './detailsPage.css';
 import storeImage from './image.jpg';
 import { Title, ChooseStoreButton } from 'src/components/RkStore';
 import { object, func } from 'prop-types';
-import {Rating} from 'src/components/Review'
-import {Places} from 'src/components/GoogleMaps';
+import { Rating } from 'src/components/Review';
+import { Places } from 'src/components/GoogleMaps';
 import moment from 'moment';
 import { loadingIndicator } from 'src/components/LoadingIndicator';
 
@@ -116,7 +116,8 @@ const DetailsPage = props => {
                                     <tr key={idx}>
                                         <td>{el.day}:</td>
                                         <td>
-                                            {tConv24(el.open)} - {tConv24(el.close)}
+                                            {tConv24(el.open)} -{' '}
+                                            {tConv24(el.close)}
                                         </td>
                                     </tr>
                                 ))}
@@ -145,12 +146,15 @@ const DetailsPage = props => {
                                             <div>
                                                 <strong>
                                                     {upEvent.day_name},{' '}
-                                                    {upEvent.month}/{upEvent.day}
+                                                    {upEvent.month}/
+                                                    {upEvent.day}
                                                 </strong>
                                             </div>
                                             <div>
                                                 <span>
-                                                    <strong>{upEvent.name}</strong>
+                                                    <strong>
+                                                        {upEvent.name}
+                                                    </strong>
                                                 </span>
                                                 <br />
                                                 <span>
@@ -158,7 +162,9 @@ const DetailsPage = props => {
                                                     {upEvent.time_end}
                                                 </span>
                                                 <br />
-                                                <span className={classes.red}><strong>More Info ›</strong></span>
+                                                <span className={classes.red}>
+                                                    <strong>More Info ›</strong>
+                                                </span>
                                             </div>
                                         </li>
                                     ))}
@@ -172,7 +178,7 @@ const DetailsPage = props => {
                         )}
                     </div>
                 </div>
-                {!!holidays.length && 
+                {!!holidays.length && (
                     <div className={sectionClass('holidays')}>
                         <div className={classes.sectionContent}>
                             <ul>
@@ -180,10 +186,23 @@ const DetailsPage = props => {
                                     <li key={holiday.holiday_id}>
                                         <Heading title={holiday.holiday_name} />
                                         <ul>
-                                            { getDates(holiday.date_from,holiday.date_to).map((date, idx) => (
+                                            {getDates(
+                                                holiday.date_from,
+                                                holiday.date_to
+                                            ).map((date, idx) => (
                                                 <li key={idx}>
-                                                    <div><strong>{date}</strong></div>
-                                                    <div><strong className={classes.red}>closed</strong></div>
+                                                    <div>
+                                                        <strong>{date}</strong>
+                                                    </div>
+                                                    <div>
+                                                        <strong
+                                                            className={
+                                                                classes.red
+                                                            }
+                                                        >
+                                                            closed
+                                                        </strong>
+                                                    </div>
                                                 </li>
                                             ))}
                                         </ul>
@@ -192,50 +211,66 @@ const DetailsPage = props => {
                             </ul>
                         </div>
                     </div>
-                }
-
+                )}
             </div>
             <div className={classes.rightColumn}>
-                {!!tags.length &&
+                {!!tags.length && (
                     <div className={sectionClass('services')}>
                         <Heading title={`Store Services`} />
                         <div className={classes.sectionContent}>
                             <ul>
-                                {tags.map((tag, idx) => 
+                                {tags.map((tag, idx) => (
                                     <li key={idx}>
-                                        {tag.tag_icon && <img src={tag.tag_icon} alt={tag.tag_name} />}
+                                        {tag.tag_icon && (
+                                            <img
+                                                src={tag.tag_icon}
+                                                alt={tag.tag_name}
+                                            />
+                                        )}
                                         <p>{tag.tag_name}</p>
                                     </li>
-                                )}
+                                ))}
                             </ul>
                         </div>
                     </div>
-                }
+                )}
                 <div className={sectionClass('rating')}>
-                    <Places 
-                            lat={store.latitude} 
-                            lng={store.longitude}
-                            radius={500}
-                            searchString={`Rural King`}
-                        >
-                            { ({isLoading, place, error}) => 
-                                { return isLoading ? 
-                                    <div>{loadingIndicator}</div>
-                                    :
-                                    error ? 
-                                        <span></span>
-                                        :
-                                        <React.Fragment>
-                                            <Heading title={`${store.city}, ${store.state} Google Review Score`} />
-                                            <div className={classes.sectionContent}>
-                                                <div className={classes.ratingContainer}>
-                                                    <Rating avgRating={place.rating} />
-                                                    <a href={`https://search.google.com/local/writereview?placeid=${place.place_id}`} target="blank">Leave a Review</a>
-                                                </div>
-                                            </div>
-                                        </React.Fragment>
-                                }
-                            }
+                    <Places
+                        lat={store.latitude}
+                        lng={store.longitude}
+                        radius={500}
+                        searchString={`Rural King`}
+                    >
+                        {({ isLoading, place, error }) => {
+                            return isLoading ? (
+                                <div>{loadingIndicator}</div>
+                            ) : error ? (
+                                <span />
+                            ) : (
+                                <React.Fragment>
+                                    <Heading
+                                        title={`${store.city}, ${
+                                            store.state
+                                        } Google Review Score`}
+                                    />
+                                    <div className={classes.sectionContent}>
+                                        <div
+                                            className={classes.ratingContainer}
+                                        >
+                                            <Rating avgRating={place.rating} />
+                                            <a
+                                                href={`https://search.google.com/local/writereview?placeid=${
+                                                    place.place_id
+                                                }`}
+                                                target="blank"
+                                            >
+                                                Leave a Review
+                                            </a>
+                                        </div>
+                                    </div>
+                                </React.Fragment>
+                            );
+                        }}
                     </Places>
                 </div>
             </div>
@@ -248,6 +283,6 @@ DetailsPage.propTypes = {
     store: object,
     setCurrentStore: func,
     currentStore: object
-}
+};
 
 export default classify(defaultClasses)(DetailsPage);

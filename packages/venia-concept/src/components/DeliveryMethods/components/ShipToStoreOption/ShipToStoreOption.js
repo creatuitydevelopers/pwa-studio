@@ -16,7 +16,6 @@ import { SearchForm } from 'src/components/StoreLocator';
 import StoresList from 'src/components/DeliveryMethods/components/StoresList';
 import mapPin from 'react-feather/dist/icons/map-pin';
 
-
 import defaultClasses from './shipToStoreOption.css';
 
 class ShipToStoreOption extends Component {
@@ -82,10 +81,9 @@ class ShipToStoreOption extends Component {
         const { methodInfo, currentStore, selectedStore } = this.props;
         const store = !!selectedStore ? selectedStore : currentStore;
 
-
-        isCurrentStoreEnabledForSts({allowedStores: methodInfo.stores, store})
-        ? this.props.onChange(event.target.value, store)
-        : this.setState({ modalOpen: true });
+        isCurrentStoreEnabledForSts({ allowedStores: methodInfo.stores, store })
+            ? this.props.onChange(event.target.value, store)
+            : this.setState({ modalOpen: true });
     };
 
     handleOpenModalClick = () => {
@@ -102,10 +100,16 @@ class ShipToStoreOption extends Component {
     };
 
     get inventoryMessage() {
-        const { methodInfo, deliveryMessage, classes, currentStore, selectedStore } = this.props;
+        const {
+            methodInfo,
+            deliveryMessage,
+            classes,
+            currentStore,
+            selectedStore
+        } = this.props;
         const store = !!selectedStore ? selectedStore : currentStore;
 
-        if(!store){
+        if (!store) {
             return (
                 <span className={classes.alertMessage}>
                     <Icon src={mapPin} className={classes.pinIcon} />
@@ -114,7 +118,12 @@ class ShipToStoreOption extends Component {
             );
         }
 
-        if (isCurrentStoreEnabledForSts({allowedStores: methodInfo.stores, store})) {
+        if (
+            isCurrentStoreEnabledForSts({
+                allowedStores: methodInfo.stores,
+                store
+            })
+        ) {
             return (
                 <span>
                     <Icon src={mapPin} className={classes.pinIcon} />
@@ -134,7 +143,9 @@ class ShipToStoreOption extends Component {
         return (
             <span className={classes.alertMessage}>
                 <Icon src={mapPin} className={classes.pinIcon} />
-                <span>{`This item is not available for Ship to Store to ${store.company_name}`}</span>
+                <span>{`This item is not available for Ship to Store to ${
+                    store.company_name
+                }`}</span>
             </span>
         );
     }

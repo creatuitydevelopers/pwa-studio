@@ -1,1 +1,1 @@
-export { default as MultiRating  } from './MultiRating';
+export { default as MultiRating } from './MultiRating';

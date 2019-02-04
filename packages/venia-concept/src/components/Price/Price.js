@@ -23,7 +23,13 @@ class Price extends PureComponent {
     };
 
     render() {
-        const { value, currencyCode, partsClasses, classes, locale } = this.props;
+        const {
+            value,
+            currencyCode,
+            partsClasses,
+            classes,
+            locale
+        } = this.props;
 
         const parts = patches.toParts.call(
             Intl.NumberFormat(locale, {
@@ -49,4 +55,4 @@ class Price extends PureComponent {
     }
 }
 
-export default classify(defaultClasses)(Price)
+export default classify(defaultClasses)(Price);

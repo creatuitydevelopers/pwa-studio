@@ -8,7 +8,6 @@ import defaultClasses from './searchPopup.css';
 import searchIcon from 'react-feather/dist/icons/search';
 import CloseIcon from 'react-feather/dist/icons/x';
 
-
 class SearchPopup extends React.Component {
     static propTypes = {
         classes: shape({

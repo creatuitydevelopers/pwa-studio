@@ -27,7 +27,6 @@ function DeliveryMethodsList({
         vsts: VstsOption
     };
 
-
     return (
         <ul>
             {methods.map((method, index) => {
@@ -54,6 +53,4 @@ function DeliveryMethodsList({
     );
 }
 
-export default compose(
-    withNoData
-)(DeliveryMethodsList);
+export default compose(withNoData)(DeliveryMethodsList);

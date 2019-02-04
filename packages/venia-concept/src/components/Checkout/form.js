@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { array, bool, func, object, shape, string } from 'prop-types';
 
 import { Util } from '@magento/peregrine';
-import {Price} from 'src/components/Price';
+import { Price } from 'src/components/Price';
 import AddressForm from './addressForm';
 import PaymentsForm from './paymentsForm';
 import Section from './section';
@@ -124,7 +124,7 @@ class Form extends Component {
                 const { availableShippingMethods, shippingMethod } = this.props;
 
                 return (
-                    <ShippingInformation 
+                    <ShippingInformation
                         cart={cart}
                         availableShippingMethods={availableShippingMethods}
                         cancel={this.stopEditing}
@@ -224,17 +224,12 @@ class Form extends Component {
     }
 
     get shippingMethodSummary() {
-        const {
-            classes,
-            isPaymentMethodReady
-        } = this.props;
+        const { classes, isPaymentMethodReady } = this.props;
 
         const promptClass = isPaymentMethodReady
             ? classes.informationPrompt
             : classes['informationPrompt--disabled'];
-        return (
-            <span className={promptClass}>Show Shipping Information</span>
-        );
+        return <span className={promptClass}>Show Shipping Information</span>;
     }
 
     /*

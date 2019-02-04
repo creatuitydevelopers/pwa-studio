@@ -67,12 +67,17 @@ class Filters extends React.Component {
 
     filterStores = () => {
         let stores = [];
-        const {filterList} = this.props;
+        const { filterList } = this.props;
         if (this.state.activeFilters.length > 0) {
             stores = this.state.allStores.filter(store => {
                 let tags = store[filterList];
 
-                return tags.some(tag => this.state.activeFilters.indexOf(tag['tag_name']) > -1) ? store : false;
+                return tags.some(
+                    tag =>
+                        this.state.activeFilters.indexOf(tag['tag_name']) > -1
+                )
+                    ? store
+                    : false;
             });
         } else {
             stores = this.state.allStores;

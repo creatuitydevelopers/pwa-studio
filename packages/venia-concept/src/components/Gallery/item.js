@@ -3,7 +3,7 @@ import { string, number, shape } from 'prop-types';
 import { Price } from '@magento/peregrine';
 import { Link } from 'react-router-dom';
 import classify from 'src/classify';
-import {Rating} from "src/components/Review";
+import { Rating } from 'src/components/Review';
 import { transparentPlaceholder } from 'src/shared/images';
 import { makeProductMediaPath } from 'src/util/makeMediaPath';
 import defaultClasses from './item.css';
@@ -25,6 +25,7 @@ const productUrlSuffix = '';
 class GalleryItem extends Component {
     static propTypes = {
         classes: shape({
+            bottomWrapper: string,
             image: string,
             image_pending: string,
             imagePlaceholder: string,
@@ -35,6 +36,7 @@ class GalleryItem extends Component {
             name_pending: string,
             price: string,
             price_pending: string,
+            rating: string,
             root: string,
             root_pending: string
         }),
@@ -71,18 +73,30 @@ class GalleryItem extends Component {
         return (
             <div className={classes.root}>
                 <Link to={productLink} className={classes.images}>
-                    {this.renderImagePlaceholder()}
-                    {this.renderImage()}
+                    <span className={classes.imagesWrapper}>
+                        {this.renderImagePlaceholder()}
+                        {this.renderImage()}
+                    </span>
                 </Link>
                 <Link to={productLink} className={classes.name}>
                     <span>{name}</span>
                 </Link>
-                {!!rating && <Rating showAverage={rating.showAverage} avgRating={rating.avgRating} overallRating={rating.overallRating}/>}
-                <div className={classes.price}>
-                    <Price
-                        value={price.regularPrice.amount.value}
-                        currencyCode={price.regularPrice.amount.currency}
-                    />
+                <div className={classes.bottomWrapper}>
+                    <div className={classes.price}>
+                        <Price
+                            value={price.regularPrice.amount.value}
+                            currencyCode={price.regularPrice.amount.currency}
+                        />
+                    </div>
+                    <div className={classes.rating}>
+                    {!!rating && (
+                        <Rating
+                            showAverage={rating.showAverage}
+                            avgRating={rating.avgRating}
+                            overallRating={rating.overallRating}
+                        />
+                    )}
+                    </div>
                 </div>
             </div>
         );

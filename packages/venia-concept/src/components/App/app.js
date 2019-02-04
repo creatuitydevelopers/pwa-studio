@@ -11,7 +11,6 @@ import OnlineIndicator from 'src/components/OnlineIndicator';
 import renderRoutes from './renderRoutes';
 
 class App extends Component {
-
     static propTypes = {
         app: shape({
             drawer: string,

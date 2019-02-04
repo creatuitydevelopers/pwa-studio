@@ -6,6 +6,15 @@
     padding: 20px 0;
 }
 
+.noResults{
+    text-align: center;
+    border-top: 1px solid rgb(var(--rk--color__gray-2));
+    margin: 20px 0;
+    padding: 20px 0 0;
+    font-size: 20px;
+}
+
+
 @media (min-width: 640px) {
     .root {
         grid-template-columns: repeat(2, 1fr);

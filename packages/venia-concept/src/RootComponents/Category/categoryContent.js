@@ -6,9 +6,13 @@ import defaultClasses from './category.css';
 
 class CategoryContent extends Component {
     render() {
+
         const { classes, pageControl, data, pageSize } = this.props;
+        const { currentPage } = pageControl;
+
         const items = data ? data.category.products.items : null;
-        const title = data ? data.category.description : null;
+        const title = data ? data.category.name : null;
+        const subtitle = data ? `Showing ${(currentPage - 1) * pageSize  +1}-${currentPage * pageSize} of ${data.category.products.total_count} Results` : '';
 
         return (
             <article className={classes.root}>
@@ -19,7 +23,11 @@ class CategoryContent extends Component {
                             __html: title
                         }}
                     />
+                    <small>{subtitle}</small>
                 </h1>
+                <div className={classes.topPagination}>
+                    <Pagination pageControl={pageControl} />
+                </div>
                 <section className={classes.gallery}>
                     <Gallery data={items} title={title} pageSize={pageSize} />
                 </section>

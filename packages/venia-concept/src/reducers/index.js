@@ -11,6 +11,7 @@ import checkoutReceipt from './checkoutReceipt';
 import purchaseHistory from './purchaseHistory';
 import store from './store';
 import rebates from './rebates';
+import upcomingEvents from './upcomingEvents';
 
 export default combineReducers({
     app,
@@ -23,5 +24,6 @@ export default combineReducers({
     directory,
     purchaseDetails,
     purchaseHistory,
+    upcomingEvents,
     user
 });

@@ -112,6 +112,7 @@ class Category extends Component {
                             classes={classes}
                             pageControl={totalWrapper}
                             data={data}
+                            pageSize={pageSize}
                         />
                     );
                 }}

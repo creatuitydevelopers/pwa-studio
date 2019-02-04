@@ -10,9 +10,9 @@ import Carousel from 'src/components/ProductImageCarousel';
 import Quantity from 'src/components/ProductQuantity';
 import RichText from 'src/components/RichText';
 import DeliveryMethods from 'src/components/DeliveryMethods';
-import {SingleRating} from "src/components/Review";
+import { SingleRating } from 'src/components/Review';
 
-import {isDeliveryMethodValid} from 'src/models/DeliveryMethods';
+import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
 
 import defaultClasses from './productFullDetail.css';
 
@@ -88,8 +88,12 @@ class ProductFullDetail extends Component {
     setQuantity = quantity => this.setState({ quantity });
 
     setDeliveryMethod = (type, store) => {
-        this.setState({deliveryMethodType: type, deliveryMethodStore: store, deliveryMethodValidationMessage: ''});
-    }
+        this.setState({
+            deliveryMethodType: type,
+            deliveryMethodStore: store,
+            deliveryMethodValidationMessage: ''
+        });
+    };
 
     addToCart = () => {
         const { props, state } = this;
@@ -114,11 +118,18 @@ class ProductFullDetail extends Component {
             }
         };
 
-        if(!isDeliveryMethodValid(state.deliveryMethodType, state.deliveryMethodStore)){
-            this.setState({deliveryMethodValidationMessage: 'Please select delivery method first'});
+        if (
+            !isDeliveryMethodValid(
+                state.deliveryMethodType,
+                state.deliveryMethodStore
+            )
+        ) {
+            this.setState({
+                deliveryMethodValidationMessage:
+                    'Please select delivery method first'
+            });
             return;
         }
-
 
         if (productType === 'ConfigurableProduct') {
             const options = Array.from(optionSelections, ([id, value]) => ({
@@ -128,7 +139,6 @@ class ProductFullDetail extends Component {
 
             const item = variants.find(({ product: variant }) => {
                 for (const [id, value] of optionSelections) {
-
                     const code = optionCodes.get(id);
 
                     if (variant[code] !== value) {
@@ -204,7 +214,7 @@ class ProductFullDetail extends Component {
                             locale={`en-US`}
                         />
                     </div>
-                    <SingleRating item={product}/>
+                    <SingleRating item={product} />
                 </section>
                 <section className={classes.imageCarousel}>
                     <Carousel images={product.media_gallery_entries} />
@@ -214,7 +224,9 @@ class ProductFullDetail extends Component {
                     product={product}
                     defaultMethod={this.state.deliveryMethodType}
                     selectedStore={this.state.deliveryMethodStore}
-                    validationMessage={this.state.deliveryMethodValidationMessage}
+                    validationMessage={
+                        this.state.deliveryMethodValidationMessage
+                    }
                     onChange={this.setDeliveryMethod}
                 />
                 <section className={classes.quantity}>

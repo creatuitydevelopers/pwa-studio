@@ -1,44 +1,120 @@
 .root {
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-rows: auto 60px 30px;
 }
 
 .images {
     display: grid;
     grid-template-areas: 'main';
+    border: 1px solid rgba(var(--rk--color__gray-2));
+}
+
+.imagesWrapper {
+    position: relative;
+    display: block;
+    height: 0;
+    margin: .5rem 0;
+    padding-bottom: 100%;
+    overflow: hidden;
 }
 
 .image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: block;
-    grid-area: main;
     height: auto;
+    max-width: 100%;
+    margin: auto;
+    grid-area: main;
     opacity: 1;
     transition-duration: 512ms;
     transition-property: opacity, visibility;
     transition-timing-function: ease-out;
     visibility: visible;
+}
+
+.image:before {
+    content: " ";
+    display: block;
+
+    position: absolute;
+    top:  0;
+    left: 0;
+    height: 100%;
     width: 100%;
+    background-color: #fff;
+}
+
+.image:after {
+    content: attr(alt);
+    display: block;
+    font-size: 16px;
+    font-style: normal;
+    color: rgb(100, 100, 100);
+
+    position: absolute;
+    height: 60px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    text-align: center;
 }
 
 .imagePlaceholder {
     composes: image;
-    background-color: rgb(var(--venia-grey));
+    background-color: transparent;
 }
 
-.name,
-.price {
-    font-size: 0.875rem;
-    line-height: 1rem;
-    margin: 0.5rem 0;
+.name {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    text-align: justify;
     min-height: 1rem;
+    color: rgba(var(--rk--color__blue));
+    border-bottom: 1px solid rgba(var(--rk--color__gray-2));
+    overflow: hidden;
+}
+
+.name:hover{
+    text-decoration: underline;
+}
+
+.price {
+    align-self: center;
+    min-height: 1rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    color: rgba(var(--rk--color__blue));
+}
+
+.rating {
+    display: grid;
+    justify-items: right;
+    align-items: center;
+}
+
+.bottomWrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 /* state: pending */
 
 .root_pending {
     composes: root;
+    grid-template-rows: 250px 60px 30px;
 }
 
 .images_pending {
     composes: images;
+    background-color: rgb(var(--venia-grey));
+    border: none;
 }
 
 .image_pending {

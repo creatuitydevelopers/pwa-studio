@@ -1,8 +1,8 @@
 import { handleActions } from 'redux-actions';
 
-import actions from 'src/actions/rebates';
+import actions from 'src/actions/upcomingEvents';
 
-export const name = 'rebates';
+export const name = 'upcoming-events';
 
 const initialState = {
     currentPage: 1,

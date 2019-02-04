@@ -14,15 +14,16 @@ const StoreDetails = ({ classes, details }) => {
     const getDirections = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(async position => {
-                const {
-                    longitude, 
-                    latitude
-                } = details;
+                const { longitude, latitude } = details;
                 const { coords } = position;
-                return window.open(`${DIRECTIONS_URL}${coords.latitude},${coords.longitude}/${latitude},${longitude}/`);
-            })
+                return window.open(
+                    `${DIRECTIONS_URL}${coords.latitude},${
+                        coords.longitude
+                    }/${latitude},${longitude}/`
+                );
+            });
         }
-    }
+    };
 
     return (
         <React.Fragment>
@@ -46,7 +47,11 @@ const StoreDetails = ({ classes, details }) => {
                 </Map>
             </div>
             <div className={classes.sticky}>
-                <a href="#" onClick={getDirections} className={classes.buttonSticky}>
+                <a
+                    href="#"
+                    onClick={getDirections}
+                    className={classes.buttonSticky}
+                >
                     <IoMdNavigate />
                 </a>
                 <a
@@ -82,12 +87,12 @@ const StoreDetails = ({ classes, details }) => {
                 <h3 className={classes.detailsHeading}>
                     <strong>Other Info:</strong>
                 </h3>
-                {!!hours && 
+                {!!hours && (
                     <p>
                         <strong>Opening Hours: </strong>
                         {hours.open} - {hours.close}
                     </p>
-                }
+                )}
                 <p>
                     <strong>Store Manager: </strong>
                     {details.store_manager}

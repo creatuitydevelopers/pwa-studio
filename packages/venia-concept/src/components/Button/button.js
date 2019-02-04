@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import { oneOf, shape, string } from 'prop-types';
 
@@ -17,9 +15,10 @@ export class Button extends Component {
             root_highSecondaryPriority: string,
             root_normalPriority: string
         }).isRequired,
-        priority: oneOf(['high', 'normal', 'highSecondary', 'normalSecondary']).isRequired,
+        priority: oneOf(['high', 'normal', 'highSecondary', 'normalSecondary'])
+            .isRequired,
         type: oneOf(['button', 'reset', 'submit']).isRequired,
-        size: oneOf(['small', 'normal', 'medium', 'big']).isRequired,
+        size: oneOf(['small', 'normal', 'medium', 'big']).isRequired
     };
 
     static defaultProps = {
@@ -29,12 +28,26 @@ export class Button extends Component {
     };
 
     render() {
-        const { children, classes, priority, type, size, ...restProps } = this.props;
+        const {
+            children,
+            classes,
+            priority,
+            type,
+            size,
+            ...restProps
+        } = this.props;
 
-        const rootClassName = [classes[getRootClassName(priority)], classes[`root_${size}Size`]];
+        const rootClassName = [
+            classes[getRootClassName(priority)],
+            classes[`root_${size}Size`]
+        ];
 
         return (
-            <button className={rootClassName.join(' ')} type={type} {...restProps}>
+            <button
+                className={rootClassName.join(' ')}
+                type={type}
+                {...restProps}
+            >
                 <span className={classes.content}>{children}</span>
             </button>
         );

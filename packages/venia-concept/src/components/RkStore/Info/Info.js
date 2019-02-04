@@ -5,7 +5,15 @@ import { getScheduleForToday } from 'src/models/Store';
 import { shape, string } from 'prop-types';
 
 const Info = ({ classes, store }) => {
-    const { address, city, zipcode, phone, store_manager, state, distance } = store;
+    const {
+        address,
+        city,
+        zipcode,
+        phone,
+        store_manager,
+        state,
+        distance
+    } = store;
 
     const schedule = getScheduleForToday(store);
 
@@ -20,11 +28,12 @@ const Info = ({ classes, store }) => {
                     <a href={`tel:${phone}`}>{phone}</a>
                 </li>
             )}
-            {!!schedule && 
+            {!!schedule && (
                 <li>
-                    <strong>Hours:</strong>{schedule.open} - {schedule.close}
+                    <strong>Hours:</strong>
+                    {schedule.open} - {schedule.close}
                 </li>
-            }
+            )}
             {store_manager && (
                 <li>
                     <strong>Store Manager:</strong> {store_manager}
@@ -32,7 +41,10 @@ const Info = ({ classes, store }) => {
             )}
             {!!store.distance && (
                 <li>
-                    <strong>Distance: <span className={classes.red}>{store.distance}</span></strong>
+                    <strong>
+                        Distance:{' '}
+                        <span className={classes.red}>{store.distance}</span>
+                    </strong>
                 </li>
             )}
         </ul>
