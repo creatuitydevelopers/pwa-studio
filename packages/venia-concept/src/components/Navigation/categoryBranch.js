@@ -16,7 +16,8 @@ class Branch extends Component {
     };
 
     handleClick = () => {
-        const { path, onDive } = this.props;
+        const { path, onDive, setChildCategoryUrl, urlPath } = this.props;
+        setChildCategoryUrl(urlPath);
         onDive(path);
     };
 

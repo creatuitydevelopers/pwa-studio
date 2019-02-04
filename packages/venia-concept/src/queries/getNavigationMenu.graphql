@@ -11,6 +11,7 @@ query navigationMenu($id: Int!) {
       level
       url_key
       url_path
+      include_in_menu
       product_count
       children_count
       path

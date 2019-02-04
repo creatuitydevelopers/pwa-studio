@@ -67,21 +67,24 @@ class Navigation extends PureComponent {
         isSignInOpen: false,
         isForgotPasswordOpen: false,
         rootNodeId: null,
-        currentPath: null
+        currentPath: null,
+        currentUrlPath: null
     };
 
     get categoryTree() {
-        const { props, setCurrentPath, state } = this;
-        const { rootNodeId } = state;
-        const { closeDrawer, isOpen } = props;
+        const { props, setCurrentPath, state, setChildCategoryUrl } = this;
+        const { rootNodeId, currentUrlPath } = state;
+        const { closeDrawer } = props;
 
-        return isOpen && rootNodeId ? (
+        return rootNodeId ? (
             <Suspense fallback={loadingIndicator}>
                 <Tree
-                    rootNodeId={props.rootCategoryId}
+                    rootNodeId={rootNodeId}
                     currentId={rootNodeId}
                     updateRootNodeId={setCurrentPath}
                     onNavigate={closeDrawer}
+                    currentUrlPath={currentUrlPath}
+                    setChildCategoryUrl={setChildCategoryUrl}
                 />
             </Suspense>
         ) : null;
@@ -97,8 +100,8 @@ class Navigation extends PureComponent {
                 </Button>
             </div>
         ) : (
-            <MyAccountMenuTrigger />
-        );
+                <MyAccountMenuTrigger />
+            );
     }
 
     get signInForm() {
@@ -118,7 +121,7 @@ class Navigation extends PureComponent {
         );
     }
 
-    createAccount = () => {};
+    createAccount = () => { };
 
     setCreateAccountForm = () => {
         /*
@@ -141,7 +144,7 @@ class Navigation extends PureComponent {
         this.showCreateAccountForm();
     };
 
-    forgotPassword = () => {};
+    forgotPassword = () => { };
 
     /*
      * When the ForgotPassword component is mounted, its email input will be set to
@@ -226,6 +229,16 @@ class Navigation extends PureComponent {
         }));
     };
 
+    setChildCategoryUrl = urlKey => {
+        const { currentUrlPath } = this.state;
+        const urlPath = !currentUrlPath 
+            ? urlKey : [...currentUrlPath.split('/'), urlKey].join('/');
+
+        this.setState({
+            currentUrlPath: urlPath
+        });
+    }
+
     setCurrentPath = currentPath => {
         const path = currentPath.split('/').reverse();
         const rootNodeId = parseInt(path[0]);
@@ -241,12 +254,23 @@ class Navigation extends PureComponent {
         const parentId =
             path.length > 1 ? parseInt(path[1]) : this.props.rootCategoryId;
         path.shift();
-
+        const newPath = this.removeLastItemFromCurrentUrlPath();
         this.setState(() => ({
             rootNodeId: parentId,
-            currentPath: path
+            currentPath: path,
+            currentUrlPath: newPath
         }));
     };
+
+    removeLastItemFromCurrentUrlPath = () => {
+        let { currentUrlPath } = this.state;
+        const pathArr = currentUrlPath.split('/');
+        pathArr.pop();
+        const newPath = pathArr.join('/');
+        if(this.state.rootNodeId == this.props.rootCategoryId) newPath = '';
+
+        return newPath;
+    }
 
     render() {
         const {
@@ -283,21 +307,21 @@ class Navigation extends PureComponent {
             isCreateAccountOpen && !isSignedIn
                 ? hideCreateAccountForm
                 : isForgotPasswordOpen
-                ? hideForgotPasswordForm
-                : isSignInOpen && !isSignedIn
-                ? hideSignInForm
-                : isTopLevel
-                ? closeDrawer
-                : setRootNodeIdToParent;
+                    ? hideForgotPasswordForm
+                    : isSignInOpen && !isSignedIn
+                        ? hideSignInForm
+                        : isTopLevel
+                            ? closeDrawer
+                            : setRootNodeIdToParent;
 
         const title =
             isCreateAccountOpen && !isSignedIn
                 ? 'Create Account'
                 : isForgotPasswordOpen
-                ? 'Forgot password'
-                : isSignInOpen && !isSignedIn
-                ? 'Sign In'
-                : 'Main Menu';
+                    ? 'Forgot password'
+                    : isSignInOpen && !isSignedIn
+                        ? 'Sign In'
+                        : 'Main Menu';
 
         return (
             <aside className={className}>
