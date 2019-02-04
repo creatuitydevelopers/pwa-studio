@@ -31,11 +31,10 @@ class Tree extends Component {
 
     get leaves() {
         const {
-            classes,
             onNavigate,
             rootNodeId,
             updateRootNodeId,
-            currentId
+            setChildCategoryUrl
         } = this.props;
 
         return rootNodeId ? (
@@ -44,9 +43,9 @@ class Tree extends Component {
                     if (error) return <div>Data Fetch Error</div>;
                     if (loading) return loadingIndicator;
 
-                    const branches = [];
-
-                    const children = data.category.children.sort((a, b) => {
+                    const children = data.category.children.filter(el => {
+                        return !!el.include_in_menu
+                    }).sort((a, b) => {
                         if (a.position > b.position) return 1;
                         else if (a.position == b.position && a.id > b.id)
                             return 1;
@@ -56,31 +55,21 @@ class Tree extends Component {
                     const leaves = children.map(node => {
                         const { children_count } = node;
                         const isLeaf = children_count == 0;
-
                         const elementProps = {
                             nodeId: node.id,
                             name: node.name,
+                            level: node.level,
+                            currentUrlPath: this.props.currentUrlPath,
                             urlPath: node.url_key,
                             path: node.path
                         };
-
-                        if (!isLeaf) {
-                            branches.push(
-                                <CategoryTree
-                                    key={node.id}
-                                    rootNodeId={node.id}
-                                    updateRootNodeId={updateRootNodeId}
-                                    onNavigate={onNavigate}
-                                    currentId={currentId}
-                                />
-                            );
-                        }
 
                         const element = isLeaf ? (
                             <Leaf {...elementProps} onNavigate={onNavigate} />
                         ) : (
                             <Branch
                                 {...elementProps}
+                                setChildCategoryUrl={setChildCategoryUrl}
                                 onDive={updateRootNodeId}
                             />
                         );
@@ -88,15 +77,9 @@ class Tree extends Component {
                         return <li key={node.id}>{element}</li>;
                     });
 
-                    const branchClass =
-                        currentId == rootNodeId
-                            ? classes.branch
-                            : classes.inactive;
-
                     return (
                         <Fragment>
-                            <div className={branchClass}>{leaves}</div>
-                            {branches}
+                            <div>{leaves}</div>
                         </Fragment>
                     );
                 }}
