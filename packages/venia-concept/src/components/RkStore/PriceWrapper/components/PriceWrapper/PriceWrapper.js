@@ -6,29 +6,32 @@ import {SimpleProductPrice, ConfigurableProductPrice, GiftCardProductPrice, Boun
 
 const PriceWrapper = (props) => {
     const priceData = {
-        "final_price": 3.29,
-        // "special_price": 2.29,
+        "final_price": 1123.29,
+        "regular_price": 1223.29,
+        // "special_price": 1112.29,
+        // "save_amount": 12.99,
+        // "save_percent": 11.2,
         "min_price": 2.29,
         "max_price": 3.29,
         "show_range": true,
         "tier_prices": [
-            // {
-            //     price_qty: 5,
-            //     price: 2.10
-            // },
-            // {
-            //     price_qty: 10,
-            //     price: 1.10
-            // },
-            // {
-            //     price_qty: 15,
-            //     price: 0.10
-            // }
+            {
+                price_qty: 5,
+                price: 2.10
+            },
+            {
+                price_qty: 10,
+                price: 1.10
+            },
+            {
+                price_qty: 15,
+                price: 0.10
+            }
         ],
         "msrp": false,
         "msrp_ongesture": false,
         "msrp_price": 1.23,
-        "type_id": "simple"
+        "type_id": "configurable"
     };
 
     const {priceConfig, viewMode} = props;

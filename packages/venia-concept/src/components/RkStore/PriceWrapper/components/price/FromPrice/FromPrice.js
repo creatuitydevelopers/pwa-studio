@@ -3,16 +3,18 @@ import classify from 'src/classify';
 import {oneOf, object, shape, string} from 'prop-types';
 
 import {Price} from 'src/components/Price';
+import { MetaData } from "src/components/RkStore/PriceWrapper";
 
 import defaultClasses from './fromPrice.css';
 
-const FromPrice = ({priceData, priceConfig, classes}) => {
+const FromPrice = ({priceData, priceConfig, viewMode, classes}) => {
 
     return (
         <div className={classes.root}>
             <span className={classes.label}>From</span>
             <span className={classes.price}>
                 <Price value={priceData.regular_price} {...priceConfig}/>
+                {viewMode == 'product_page' && <MetaData price={priceData.regular_price} currencyCode={priceConfig.currencyCode}/>}
             </span>
         </div>
     );

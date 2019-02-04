@@ -1,0 +1,23 @@
+.root{
+    display: grid;
+    grid-template-rows: auto 30px;
+    align-items: center;
+}
+
+.label{
+    display: inline-flex;
+    font-size: 1.2rem;
+}
+
+.label > span{
+    margin-left:10px;
+}
+
+.modal{
+    display: none;
+}
+
+.msrpPrice{
+    text-decoration: line-through;
+    color: rgb(var(--venia-text-alt));
+}

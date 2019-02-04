@@ -1,0 +1,21 @@
+.root{
+    display: grid;
+    grid-template-columns: auto 30px auto;
+    grid-template-rows: 60px;
+    align-items: center;
+    width: 250px;
+}
+
+.separator{
+    text-align: center;
+}
+
+.minPrice,
+.maxPrice{
+    display: inline-flex;
+}
+
+.minPrice > div,
+.maxPrice > div{
+    display: inline-flex;
+}

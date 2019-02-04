@@ -3,6 +3,7 @@ import classify from 'src/classify';
 import {oneOf, object, shape, string} from 'prop-types';
 
 import {Price} from 'src/components/Price';
+import { MetaData } from "src/components/RkStore/PriceWrapper";
 
 import defaultClasses from './rangePrice.css';
 
@@ -29,6 +30,7 @@ const RangePrice = ({priceData, priceConfig, viewMode, classes}) => {
                     <span className={classes.maxPrice}>
                         <Price value={priceData.max_price} {...priceConfig}/>
                     </span>
+                    <MetaData price={priceData.min_price} currencyCode={priceConfig.currencyCode}/>
                 </React.Fragment>
             }
         </div>

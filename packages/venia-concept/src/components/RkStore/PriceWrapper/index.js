@@ -11,5 +11,7 @@ export {SpecialPrice} from './components/price/SpecialPrice'
 export {RangePrice} from './components/price/RangePrice'
 export {FromPrice} from './components/price/FromPrice'
 export {RegularPrice} from './components/price/RegularPrice'
+
 export {TierPrices} from './components/price/TierPrices'
+export {MetaData} from './components/MetaData';
 

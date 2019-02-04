@@ -2,15 +2,17 @@ import React from 'react';
 import classify from 'src/classify';
 import {oneOf, object, shape, string} from 'prop-types';
 
+import { MetaData } from "src/components/RkStore/PriceWrapper";
 import { Price } from 'src/components/Price';
 
 import defaultClasses from './regularPrice.css';
 
-const RegularPrice = ({priceData, priceConfig, classes}) => {
+const RegularPrice = ({priceData, priceConfig, viewMode, classes}) => {
 
     return (
         <div className={classes.root}>
             <span><Price value={priceData.final_price} {...priceConfig}/></span>
+            {viewMode == 'product_page' && <MetaData price={priceData.final_price} currencyCode={priceConfig.currencyCode}/>}
         </div>
     );
 };

@@ -2,7 +2,8 @@ import React from 'react';
 import classify from 'src/classify';
 import {oneOf, object, shape, string} from 'prop-types';
 
-import { Price } from 'src/components/Price';
+import {Price} from 'src/components/Price';
+import {MetaData} from "src/components/RkStore/PriceWrapper";
 
 import defaultClasses from './specialPrice.css';
 
@@ -21,20 +22,21 @@ const SpecialPrice = ({priceData, priceConfig, viewMode, classes}) => {
                 viewMode == 'product_page' &&
                 <React.Fragment>
                     {!!priceData.regular_price &&
-                        <div className={classes.oldPrice}>
-                            <span>Regular Price</span>
-                            <span><Price value={priceData.regular_price} {...priceConfig}/></span>
-                        </div>
+                    <div className={classes.oldPrice}>
+                        <span className={classes.oldPriceLabel}>Regular Price:</span>
+                        <span><Price value={priceData.regular_price} {...priceConfig}/></span>
+                    </div>
                     }
                     <div className={classes.specialPrice}>
-                        <span>Special Price</span>
+                        <span className={classes.specialPriceLabel}>Special Price:</span>
                         <span><Price value={priceData.special_price} {...priceConfig}/></span>
                     </div>
-                    {!!priceData.costSave && !!priceData.savePercent &&
-                        <div className={classes.saveInfo}>
-                            <span>{`You Save ${priceData.costSave} (${priceData.savePercent})`}</span>
-                        </div>
+                    {!!priceData.save_amount && !!priceData.save_amount &&
+                    <div className={classes.saveInfo}>
+                        {`You Save: `}<Price value={priceData.save_amount} {...priceConfig}/>{` (${priceData.save_percent}%)`}
+                    </div>
                     }
+                    <MetaData price={priceData.special_price} currencyCode={priceConfig.currencyCode}/>
                 </React.Fragment>
             }
         </div>
@@ -43,7 +45,12 @@ const SpecialPrice = ({priceData, priceConfig, viewMode, classes}) => {
 
 SpecialPrice.propsType = {
     classes: shape({
-
+        root: string,
+        oldPrice: string,
+        oldPriceLabel: string,
+        specialPrice: string,
+        specialPricelabel: string,
+        saveInfo: string
     }),
     priceConfig: shape({
         currencyCode: string.isRequired,
