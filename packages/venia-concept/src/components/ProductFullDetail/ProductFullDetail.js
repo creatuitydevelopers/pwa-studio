@@ -65,7 +65,7 @@ class ProductFullDetail extends Component {
 
         // if this is a simple product, do nothing
         if (!Array.isArray(configurable_options)) {
-            return {};
+            return null;
         }
 
         // otherwise, cache attribute codes to avoid lookup cost later
@@ -104,8 +104,6 @@ class ProductFullDetail extends Component {
         const productType = isConfigurable
             ? 'ConfigurableProduct'
             : 'SimpleProduct';
-
-        console.log(product);
 
         const payload = {
             item: product,
