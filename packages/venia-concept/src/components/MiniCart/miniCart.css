@@ -107,6 +107,11 @@
     color: rgb(var(--venia-text-alt));
 }
 
+.subtotalLabelText {
+    display: flex;
+    align-items: center;
+}
+
 .subtotalValue {
     font-weight: 600;
     margin-left: 0.5rem;
