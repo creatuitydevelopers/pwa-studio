@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { string, number, shape } from 'prop-types';
 import { Link, resourceUrl } from 'src/drivers';
-import { Price } from '@magento/peregrine';
+import { Price } from 'src/components/Price';
 import classify from 'src/classify';
 import { Rating } from 'src/components/Review';
 import { transparentPlaceholder } from 'src/shared/images';
