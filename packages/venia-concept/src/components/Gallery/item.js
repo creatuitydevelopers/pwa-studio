@@ -42,7 +42,7 @@ class GalleryItem extends Component {
         item: shape({
             id: number.isRequired,
             name: string.isRequired,
-            small_image: string.isRequired,
+            small_image: string,
             url_key: string.isRequired,
             price: shape({
                 regularPrice: shape({
@@ -53,6 +53,7 @@ class GalleryItem extends Component {
                 }).isRequired
             }).isRequired
         })
+        
     };
 
     render() {
