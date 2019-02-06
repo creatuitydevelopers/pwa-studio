@@ -6,7 +6,7 @@ import { Link, resourceUrl } from 'src/drivers';
 
 import defaultClasses from './suggestedProduct.css';
 
-const productUrlSuffix = '.html';
+const productUrlSuffix = '';
 
 class suggestedProduct extends Component {
     static propTypes = {
