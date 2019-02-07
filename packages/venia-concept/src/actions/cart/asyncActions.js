@@ -129,10 +129,8 @@ export const addItemToCart = (payload = {}) => {
             }
         }
 
-        await Promise.all([
-            dispatch(toggleDrawer('cart')),
-            dispatch(getCartDetails({ forceRefresh: true }))
-        ]);
+        await dispatch(getCartDetails({ forceRefresh: true }));
+        await dispatch(toggleDrawer('cart'));
     };
 };
 

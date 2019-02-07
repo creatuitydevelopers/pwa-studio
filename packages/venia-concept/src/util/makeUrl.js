@@ -7,7 +7,7 @@ const absoluteUrl = /^(data|https)?:/i;
 const joinUrls = (base, url) =>
     (base.endsWith('/') ? base.slice(0, -1) : base) +
     '/' +
-    (url.startsWith('/') ? url.slice(1) : url);
+    (url && url.startsWith('/') ? url.slice(1) : !!url ? url : '');
 
 // TODO: make this even more dynamic, like an open registry
 const mediaPathPrefixes = {

@@ -10,7 +10,7 @@ import {
 import Navigation from './navigation';
 
 const mapStateToProps = ({ catalog, user }) => {
-    const { categories, rootCategoryId } = catalog;
+    const { categories } = catalog;
     const { currentUser, isSignedIn, forgotPassword } = user;
     const { firstname, email, lastname } = currentUser;
 
@@ -21,7 +21,6 @@ const mapStateToProps = ({ catalog, user }) => {
         forgotPassword,
         isSignedIn,
         lastname,
-        rootCategoryId
     };
 };
 

@@ -54,6 +54,10 @@ class Navigation extends PureComponent {
         signInError: object
     };
 
+    static defaultProps = {
+        rootCategoryId: 3
+    };
+
     static getDerivedStateFromProps(props, state) {
         if (!state.rootNodeId && props.rootCategoryId) {
             return {
@@ -76,7 +80,7 @@ class Navigation extends PureComponent {
         isForgotPasswordOpen: false,
         rootNodeId: null,
         currentPath: null,
-        currentUrlPath: null
+        currentUrlPath: 'all-departments'
     };
 
     get categoryTree() {
