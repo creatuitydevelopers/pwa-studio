@@ -15,11 +15,11 @@ class MultiRating extends React.Component {
     };
 
     state = {
-        reviews: null,
+        ratings: [],
         isLoading: true
     };
 
-    async componentDidMount() {
+    async fetchDataFromApi() {
         const skus = this.props.items.map(item => item.sku).join(',');
 
         await fetch(getReviewFetchUrl(skus))
@@ -28,14 +28,14 @@ class MultiRating extends React.Component {
                     return response.json();
                 } else {
                     this.setState({
-                        error: response,
+                        error: 'Something went wrong',
                         isLoading: false
                     });
                 }
             })
             .then(reviews => {
                 this.setState({
-                    reviews: reviews.BatchedResults.r.Results,
+                    ratings: getRatingsForProducts(reviews.BatchedResults.r.Results),
                     error: null,
                     isLoading: false
                 });
@@ -46,16 +46,29 @@ class MultiRating extends React.Component {
             });
     }
 
+    async componentDidMount() {
+        const {isOnline, items} = this.props;
+
+        if (isOnline) {
+            await this.fetchDataFromApi();
+        } else {
+
+        }
+    }
+
     render() {
         const { children, showAverage } = this.props;
-        const { reviews, isLoading } = this.state;
-        const ratings = getRatingsForProducts(reviews, showAverage, isLoading);
+        const { ratings, isLoading } = this.state;
 
+console.log(ratings);
         const updatedChildren = React.Children.map(children, child => {
             const rating =
                 ratings.find(
                     rating => rating.productId == child.props.item.sku
                 ) || {};
+
+            rating.showAverage = showAverage;
+            rating.isLoading = isLoading;
             return React.cloneElement(child, { rating });
         });
 
