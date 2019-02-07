@@ -9,8 +9,13 @@ import defaultClasses from './rangePrice.css';
 
 const RangePrice = ({priceData, priceConfig, viewMode, classes}) => {
 
+    const rootClassName = [
+        classes.root,
+        classes[`mode__${viewMode}`]
+    ];
+
     return (
-        <div className={classes.root}>
+        <div className={rootClassName.join(' ')}>
             {
                 viewMode == 'category_page' &&
                 <React.Fragment>

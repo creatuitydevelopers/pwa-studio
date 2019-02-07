@@ -9,12 +9,17 @@ import defaultClasses from './specialPrice.css';
 
 const SpecialPrice = ({priceData, priceConfig, viewMode, classes}) => {
 
+    const rootClassName = [
+        classes.root,
+        classes[`mode__${viewMode}`]
+    ];
+
     return (
-        <div className={classes.root}>
+        <div className={rootClassName.join(' ')}>
             {
                 viewMode == 'category_page' &&
                 <React.Fragment>
-                    <span>Special Price</span>
+                    <span className={classes.specialPriceLabel}>Special Price</span>
                     <span><Price value={priceData.special_price} {...priceConfig}/></span>
                 </React.Fragment>
             }

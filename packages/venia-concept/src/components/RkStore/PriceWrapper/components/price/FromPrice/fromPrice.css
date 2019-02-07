@@ -2,6 +2,10 @@
     display: grid;
 }
 
+.root.mode__category_page .label{
+    font-size: 1rem;
+}
+
 .label{
     display: inline-flex;
     font-size: 1.2rem;

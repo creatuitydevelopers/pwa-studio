@@ -2,6 +2,11 @@
 
 }
 
+.root.mode__category_page .specialPriceLabel{
+    font-size: 1rem;
+}
+
+
 .oldPrice{
     display: grid;
     grid-template-columns: 100px auto;

@@ -1,9 +1,16 @@
 .root{
     display: grid;
+    align-items: center;
+}
+
+.root.mode__product_page{
     grid-template-columns: auto 30px auto;
     grid-template-rows: 60px;
-    align-items: center;
-    width: 250px;
+    width: 200px;
+}
+.root.mode__category_page{
+    grid-template-columns: auto 30px;
+    width: 60px;
 }
 
 .separator{

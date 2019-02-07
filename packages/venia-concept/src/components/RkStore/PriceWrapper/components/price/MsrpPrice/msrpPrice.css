@@ -1,20 +1,28 @@
 .root{
     display: grid;
-    grid-template-rows: auto 30px;
+
     align-items: center;
+}
+
+.root.mode__product_page{
+    grid-template-rows: auto 30px;
+}
+.root.mode__category_page{
+
 }
 
 .label{
     display: inline-flex;
     font-size: 1.2rem;
 }
-
-.label > span{
-    margin-left:10px;
-}
-
-.modal{
-    display: none;
+.label > button{
+    margin-left: 10px;
+    width: auto;
+    min-width: 20px;
+    height: auto;
+    padding: 0;
+    border: none;
+    color: inherit;
 }
 
 .msrpPrice{

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { string, number, shape } from 'prop-types';
 import { Link, resourceUrl } from 'src/drivers';
-import { Price } from 'src/components/Price';
 import classify from 'src/classify';
 import { Rating } from 'src/components/Review';
+import {PriceWrapper} from 'src/components/RkStore';
+
 import { transparentPlaceholder } from 'src/shared/images';
 import defaultClasses from './item.css';
 
@@ -81,10 +82,7 @@ class GalleryItem extends Component {
                 </Link>
                 <div className={classes.bottomWrapper}>
                     <div className={classes.price}>
-                        <Price
-                            value={price.regularPrice.amount.value}
-                            currencyCode={price.regularPrice.amount.currency}
-                        />
+                        <PriceWrapper product={item} viewMode={'category_page'}/>
                     </div>
                     <div className={classes.rating}>
                     {!!rating && (

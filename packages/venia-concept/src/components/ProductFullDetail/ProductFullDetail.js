@@ -1,7 +1,6 @@
 import React, { Component, Suspense } from 'react';
 import { arrayOf, bool, func, number, shape, string } from 'prop-types';
 import { Form } from 'informed';
-import { Price } from 'src/components/Price';
 
 import classify from 'src/classify';
 import Button from 'src/components/Button';
@@ -193,7 +192,6 @@ class ProductFullDetail extends Component {
     render() {
         const { productOptions, props } = this;
         const { classes, product } = props;
-        const { regularPrice } = product.price;
 
         return (
             <Form className={classes.root}>
@@ -202,17 +200,7 @@ class ProductFullDetail extends Component {
                         <strong>{product.name}</strong>
                     </h1>
                     <div className={classes.productPrice}>
-                        <Price
-                            currencyCode={regularPrice.amount.currency}
-                            value={regularPrice.amount.value}
-                            partsClasses={{
-                                currency: 'upIdx',
-                                fraction: 'upIdx',
-                                decimal: 'hidden'
-                            }}
-                            locale={`en-US`}
-                        />
-                        <PriceWrapper/>
+                        <PriceWrapper product={product}/>
                     </div>
                     <div>
                         <SingleRating item={product} />

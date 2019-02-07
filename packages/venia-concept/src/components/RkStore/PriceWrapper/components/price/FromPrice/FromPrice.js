@@ -8,9 +8,13 @@ import { MetaData } from "src/components/RkStore/PriceWrapper";
 import defaultClasses from './fromPrice.css';
 
 const FromPrice = ({priceData, priceConfig, viewMode, classes}) => {
+    const rootClassName = [
+        classes.root,
+        classes[`mode__${viewMode}`]
+    ];
 
     return (
-        <div className={classes.root}>
+        <div className={rootClassName.join(' ')}>
             <span className={classes.label}>From</span>
             <span className={classes.price}>
                 <Price value={priceData.regular_price} {...priceConfig}/>
