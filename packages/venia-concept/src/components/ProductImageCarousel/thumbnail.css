@@ -2,7 +2,7 @@
  * as a thumbnail to the left of the product image in desktop.
  */
 .root {
-    border: 1px solid rgb(var(--venia-text));
+    border: 1px solid rgb(var(--rk--color__gray));
     border-radius: 50%;
     height: 0.875rem;
     width: 0.875rem;
@@ -12,7 +12,7 @@
 
 .rootSelected {
     composes: root;
-    background-color: rgb(var(--venia-text));
+    background-color: rgb(var(--rk--color__gray));
 }
 
 .image {
@@ -36,7 +36,6 @@
 
     .image {
         background-color: rgb(var(--venia-grey));
-        box-shadow: 0 0 0 1px white;
         display: block;
         height: auto;
         width: 100%;

@@ -11,7 +11,7 @@ const RegularPrice = ({priceData, priceConfig, viewMode, classes}) => {
 
     return (
         <div className={classes.root}>
-            <span><Price value={priceData.final_price} {...priceConfig}/></span>
+            <Price value={priceData.final_price} {...priceConfig}/>
             {viewMode == 'product_page' && <MetaData price={priceData.final_price} currencyCode={priceConfig.currencyCode}/>}
         </div>
     );

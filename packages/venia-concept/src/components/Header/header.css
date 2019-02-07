@@ -25,7 +25,7 @@
     align-items: center;
     display: grid;
     grid-template-areas: 'primary title secondary';
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: minmax(144px, auto) 1fr minmax(144px, auto);
     grid-template-rows: 3rem;
     justify-items: center;
     min-height: 3.5rem;
@@ -84,6 +84,10 @@
         padding: 0;
     }
 
+    .toolbar > a{
+        justify-self: left;
+    }
+
     .logo {
         height: 36px;
     }
@@ -91,6 +95,6 @@
 
 @media (max-width: 400px) {
     .logo {
-        height: 20px;
+        height: 30px;
     }
 }

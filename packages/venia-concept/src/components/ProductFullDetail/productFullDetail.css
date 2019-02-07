@@ -1,5 +1,15 @@
 .root {
-    display: block;
+    display: grid;
+    grid-template-areas:
+        'images'
+        'title'
+        'options'
+        'deliveryMethod'
+        'quantity'
+        'cart'
+        '.';
+    align-items: start;
+    grid-template-columns: 1fr;
 }
 
 @media (min-width: 1024px) {
@@ -32,12 +42,13 @@
 .sectionTitle {
     align-items: center;
     display: flex;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 600;
     line-height: 1.5;
-    justify-content: center;
-    margin-bottom: 1.5rem;
+    justify-content: left;
+    margin-bottom: 1rem;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .title {
@@ -45,48 +56,81 @@
     display: grid;
     grid-area: title;
     grid-gap: 1rem;
-    grid-template-columns: 1fr max-content;
+    grid-template-areas: 'name' 'rating' 'price';
+
     line-height: 1.5;
     padding: 1rem 1.5rem;
 }
 
 @media (min-width: 1024px) {
     .title {
+        grid-template-columns: minmax(200px, 1fr) max-content;
+        grid-template-areas: 'name name' 'price rating';
         padding: 1.5rem;
     }
 }
 
 .productName {
-    grid-column-start: 1;
-    grid-column-end: 3;
+    grid-area: name;
+
     font-size: 1.5rem;
     color: rgb(var(--rk--color__blue));
 }
 
 @media (min-width: 1024px) {
     .productName {
+        grid-column-start: 1;
+        grid-column-end: 3;
         font-size: 1.5rem;
     }
 }
 
 .productPrice {
-    display: block;
+    grid-area: price;
+    display: flex;
+    justify-content: center;
     font-size: 58px;
     font-weight: bold;
     color: rgb(var(--rk--color__blue));
 }
 
+.productRating{
+    grid-area: rating;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.productSku{
+    text-align: right;
+}
+
+@media (min-width: 1024px) {
+    .productPrice {
+        display: block;
+    }
+    .productRating{
+        grid-template-columns: 100%;
+    }
+
+    .productSku{
+        text-align: left;
+    }
+}
+
+
 .imageCarousel {
     grid-area: images;
     grid-column: 1 / 2;
-    grid-row: 1 / fold;
     margin: 0 auto;
+    padding: 20px 20px 0;
     max-width: 640px;
 }
 
 @media (min-width: 1024px) {
     .imageCarousel {
         margin: 0;
+        padding: 0;
+        grid-row: 1 / fold;
         max-width: 800px;
         padding: 1.5rem 0;
     }
@@ -139,7 +183,7 @@
 
 .descriptionTitle {
     composes: sectionTitle;
-    text-transform: uppercase;
+
 }
 
 .details {

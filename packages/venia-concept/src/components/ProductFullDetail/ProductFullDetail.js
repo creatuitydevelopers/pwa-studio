@@ -202,9 +202,9 @@ class ProductFullDetail extends Component {
                     <div className={classes.productPrice}>
                         <PriceWrapper product={product}/>
                     </div>
-                    <div>
+                    <div className={classes.productRating}>
                         <SingleRating item={product} />
-                        <strong>{`SKU`}: {product.sku}</strong>
+                        <strong className={classes.productSku}>{`SKU`}: {product.sku}</strong>
                     </div>
                 </section>
                 <section className={classes.imageCarousel}>
