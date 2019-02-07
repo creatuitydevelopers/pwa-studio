@@ -38,6 +38,11 @@ class App extends Component {
 
         return (
             <Fragment>
+                <Helmet>
+                    <link rel="stylesheet" href="https://use.typekit.net/uca6omh.css" />
+                    <link rel="stylesheet" type="text/css" media="all" href="https://pwa-files.preview2.creatuity.com/pageBuilder-mobile.css" />
+                    <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="https://pwa-files.preview2.creatuity.com/pageBuilder-desktop.css" />
+                </Helmet>
                 <Main isMasked={overlay}>
                     {onlineIndicator}
                     {renderRoutes()}

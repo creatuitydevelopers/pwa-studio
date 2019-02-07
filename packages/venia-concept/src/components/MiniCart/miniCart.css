@@ -20,6 +20,7 @@
     transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     visibility: hidden;
     width: 360px;
+    height: 100%;
     z-index: var(--base-z-index);
 }
 
@@ -32,6 +33,7 @@
     transition-duration: 224ms;
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
     visibility: visible;
+    -webkit-overflow-scrolling: touch;
 }
 
 .body {
@@ -45,7 +47,7 @@
 }
 
 .footer {
-    box-shadow: 0 -1px rgb(var(--venia-border));
+    border-top: 1px solid rgb(var(--venia-border));
     padding: 1.5rem 0 0.5rem;
 }
 
@@ -53,7 +55,7 @@
     align-content: center;
     align-items: center;
     background-color: rgb(var(--venia-grey));
-    box-shadow: 0 1px rgb(var(--venia-border));
+    border-bottom: 1px solid rgb(var(--venia-border));
     display: grid;
     grid-auto-columns: auto;
     grid-auto-flow: column;

@@ -23,7 +23,7 @@
 .header {
     align-content: center;
     background-color: rgb(var(--venia-grey));
-    box-shadow: 0 1px rgb(var(--venia-border));
+    border-bottom: 1px solid rgb(var(--venia-border));
     display: grid;
     grid-auto-columns: 3.5rem;
     grid-auto-flow: column;
