@@ -15,12 +15,13 @@
     width: 100%;
     max-width: 360px;
     z-index: 3;
+    height: 100%;
 }
 
 .header {
     align-content: center;
     background-color: rgb(var(--venia-grey));
-    box-shadow: 0 1px rgb(var(--venia-border));
+    border-bottom: 1px solid rgb(var(--venia-border));
     display: grid;
     grid-auto-columns: 3.5rem;
     grid-auto-flow: column;
@@ -37,7 +38,7 @@
 }
 
 .footer {
-    box-shadow: 0 -1px rgb(var(--venia-border));
+    border-top: 1px solid rgb(var(--venia-border));
 }
 
 .authBar {
@@ -119,6 +120,7 @@
     transition-duration: 224ms;
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
     visibility: visible;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* keyframes */

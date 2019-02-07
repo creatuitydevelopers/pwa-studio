@@ -18,7 +18,7 @@ class CategoryContent extends Component {
             <article className={classes.root}>
                 <h1 className={classes.title}>
                     {/* TODO: Switch to RichContent component from Peregrine when merged */}
-                    <span
+                    <strong
                         dangerouslySetInnerHTML={{
                             __html: title
                         }}

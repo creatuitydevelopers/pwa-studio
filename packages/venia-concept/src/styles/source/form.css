@@ -19,7 +19,7 @@ select {
     min-width: 100px;
     font-size: 18px;
     font-weight: 400;
-    background: rgba(var(--rk--color__gray-6));
+    background: rgb(var(--rk--color__gray-6));
     border-radius: 0.2em;
     color: rgb(var(--rk-grey-dark));
 }
