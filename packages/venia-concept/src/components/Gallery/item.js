@@ -90,6 +90,7 @@ class GalleryItem extends Component {
                             showAverage={rating.showAverage}
                             avgRating={rating.avgRating}
                             overallRating={rating.overallRating}
+                            error = {!!rating.error  ? rating.error : null}
                         />
                     )}
                     </div>

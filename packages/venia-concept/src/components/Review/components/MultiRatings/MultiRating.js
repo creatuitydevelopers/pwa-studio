@@ -20,7 +20,9 @@ class MultiRating extends React.Component {
     };
 
     async fetchDataFromApi() {
-        const skus = this.props.items.map(item => item.sku).join(',');
+
+        const {setRatings, items} = this.props;
+        const skus = items.map(item => item.sku).join(',');
 
         await fetch(getReviewFetchUrl(skus))
             .then(response => {
@@ -34,8 +36,10 @@ class MultiRating extends React.Component {
                 }
             })
             .then(reviews => {
+                const ratings = getRatingsForProducts(reviews.BatchedResults.r.Results);
+                setRatings(ratings);
                 this.setState({
-                    ratings: getRatingsForProducts(reviews.BatchedResults.r.Results),
+                    ratings: ratings,
                     error: null,
                     isLoading: false
                 });
@@ -46,29 +50,47 @@ class MultiRating extends React.Component {
             });
     }
 
+    async getDataFromStorage() {
+        const {getRatings, items} = this.props;
+        const ratingFromStorage = await getRatings(items.map(item => item.sku));
+        if (!!ratingFromStorage.length) {
+            this.setState({
+                ratings: ratingFromStorage,
+                error: null,
+                isLoading: false
+            });
+        }else{
+            this.setState({
+                ratings: [],
+                error: 'No internet found',
+                isLoading: false
+            });
+        }
+    }
+
     async componentDidMount() {
-        const {isOnline, items} = this.props;
+        const {isOnline} = this.props;
 
         if (isOnline) {
             await this.fetchDataFromApi();
         } else {
-
+            await this.getDataFromStorage();
         }
     }
 
     render() {
         const { children, showAverage } = this.props;
-        const { ratings, isLoading } = this.state;
+        const { ratings, error, isLoading } = this.state;
 
-console.log(ratings);
         const updatedChildren = React.Children.map(children, child => {
             const rating =
                 ratings.find(
-                    rating => rating.productId == child.props.item.sku
+                    rating => rating.sku == child.props.item.sku
                 ) || {};
 
             rating.showAverage = showAverage;
             rating.isLoading = isLoading;
+            rating.error = error;
             return React.cloneElement(child, { rating });
         });
 

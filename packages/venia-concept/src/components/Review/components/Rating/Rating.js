@@ -8,6 +8,7 @@ const Rating = ({
     classes,
     showAverage,
     placeHolder,
+    error,
     avgRating,
     overallRating
 }) => {
@@ -16,6 +17,9 @@ const Rating = ({
     } ${!!placeHolder && classes.rootPlaceholder}`;
     const percent = Math.floor((avgRating * 100) / overallRating).toFixed(0);
     const ratingStyle = { width: percent + '%' };
+
+    if(!!error) return <p>{error}</p>;
+
 
     return (
         <div className={rootClassName}>
@@ -54,6 +58,7 @@ Rating.propTypes = {
     }),
     showAverage: bool,
     placeHolder: bool,
+    error: string,
     avgRating: number,
     overallRating: number
 };

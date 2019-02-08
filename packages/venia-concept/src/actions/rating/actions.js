@@ -3,11 +3,11 @@ import { createActions } from 'redux-actions';
 const prefix = 'RATING';
 
 const actionMap = {
-    SET_RATING: {
+    SET_RATINGS: {
         REQUEST: null,
         RECEIVE: null
     },
-    GET_RATING: {
+    GET_RATINGS: {
         REQUEST: null,
         RECEIVE: null
     }

@@ -2,68 +2,56 @@ import actions from './actions';
 import { Util } from '@magento/peregrine';
 const { BrowserPersistence } = Util;
 
-export const setRating = (product, rating) =>
+export const setRatings = (ratings) =>
     async function thunk(dispatch) {
-        dispatch(actions.setRating.request());
+        dispatch(actions.setRatings.request());
         try {
-            await setRatingInStorage(product, rating);
-            dispatch(actions.setRating.receive(product, rating));
+            await setRatingsInStorage(ratings);
+            dispatch(actions.setRatings.receive(ratings));
         } catch (error) {
-            dispatch(actions.setRating.receive(error));
+            dispatch(actions.setRatings.receive(error));
         }
     };
 
-export const getRating = (product) =>
+export const getRatings = (productSkus) =>
     async function thunk(dispatch) {
-        dispatch(actions.getRating.request());
+        dispatch(actions.getRatings.request());
         try {
-            const rating = await getRatingFromStorage(product);
+            const rating = await getRatingsFromStorage(productSkus);
             if (rating) {
-                dispatch(actions.getRating.receive(rating));
+                dispatch(actions.getRatings.receive(rating));
                 return rating;
             }
 
             return null
         } catch (error) {
-            dispatch(actions.getRating.receive(error));
+            dispatch(actions.getRatings.receive(error));
         }
     };
 
 
-async function getRatingFromStorage(product) {
+async function getRatingsFromStorage(productSkus) {
     const storage = new BrowserPersistence();
     const ratings = storage.getItem('ratings');
 
-    if(!ratings){
-        return {};
-    }
+    if(!ratings) return [];
+    if(!productSkus) return ratings;
 
-    if(Array.isArray(product)){
-        return ratings.filter(rating => rating.hasOwnProperty(rating.productId));
-    }
-
-    return !!product ? ratings[product.id] : rating;
-
+    return ratings.filter(rating => productSkus.includes(rating.sku));
 }
 
-async function setRatingInStorage(product, rating) {
+async function setRatingsInStorage(ratings) {
     const storage = new BrowserPersistence();
-    const ratings = await getRatingFromStorage();
-    ratings[product.id] = rating;
+    const storageRatings = await getRatingsFromStorage();
+    ratings.forEach(({sku, avgRating, overallRating}) => {
 
-    storage.setItem('ratings', ratings, 216000);
-}
+        if(!!storageRatings.find(storageRating => storageRating.sku == sku)) return;
 
-
-async function setMultiplyRatingInStorage(ratings) {
-    const storage = new BrowserPersistence();
-    const storageRatings = await getRatingFromStorage();
-
-    ratings.forEach(({productId, avgRating, overallRating}) => {
-        storageRatings[productId] = {
+        storageRatings.push({
+            sku,
             avgRating,
             overallRating
-        }
+        });
     });
 
     storage.setItem('ratings', storageRatings, 216000);

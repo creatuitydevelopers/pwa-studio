@@ -23,7 +23,7 @@ class SingleRating extends React.Component {
     };
 
     async fetchDataFromApi() {
-        const {setRating, item} = this.props;
+        const {setRatings, item} = this.props;
 
         return await fetch(getReviewFetchUrl(item.sku))
             .then(response => {
@@ -49,7 +49,7 @@ class SingleRating extends React.Component {
                 };
 
 
-                setRating(item, rating);
+                setRatings([{sku: item.sku, ...rating}]);
 
                 this.setState({
                     rating: rating,
@@ -63,34 +63,34 @@ class SingleRating extends React.Component {
             });
     }
 
+    async getDataFromStorage() {
+        const { getRatings, item} = this.props;
+        const ratingFromStorage = await getRatings([item.sku]);
+
+        if (!!ratingFromStorage[0]) {
+            this.setState({
+                rating: ratingFromStorage[0],
+                error: null,
+                isLoading: false
+            });
+        }else{
+            this.setState({
+                rating: {},
+                error: 'No internet found',
+                isLoading: false
+            });
+        }
+    }
+
     async componentDidMount() {
-        const {isOnline, getRating, item} = this.props;
+        const {isOnline} = this.props;
 
 
         if (isOnline) {
             await this.fetchDataFromApi();
         } else {
-            const ratingFromStorage = await getRating(item);
-            if (!!ratingFromStorage) {
-                this.setState({
-                    rating: ratingFromStorage,
-                    error: null,
-                    isLoading: false
-                });
-            }else{
-                this.setState({
-                    rating: {},
-                    error: 'No internet found',
-                    isLoading: false
-                });
-            }
+            await this.getDataFromStorage();
         }
-    }
-
-    get errorContent() {
-        const {error} = this.state;
-
-        return <p>{error}</p>;
     }
 
     render() {
@@ -102,13 +102,12 @@ class SingleRating extends React.Component {
             return <Rating placeHolder={isLoading}/>;
         }
 
-        return !!error ? (
-            this.errorContent
-        ) : (
+        return (
             <Rating
                 showAverage={showAverage}
                 avgRating={rating.avgRating}
                 overallRating={rating.overallRating}
+                error={error}
             />
         );
     }

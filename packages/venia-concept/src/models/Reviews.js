@@ -18,7 +18,7 @@ export const getRatingsForProducts = (reviews) => {
         const overallRating =
             results.ProductStatistics.ReviewStatistics.OverallRatingRange;
         return {
-            productId: results.ProductStatistics.ProductId,
+            sku: results.ProductStatistics.ProductId,
             avgRating: !!avgRating ? avgRating : 0,
             overallRating: !!overallRating ? overallRating : 0,
         };

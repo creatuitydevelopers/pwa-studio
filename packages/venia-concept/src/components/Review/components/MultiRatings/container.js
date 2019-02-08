@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import MultiRating from './MultiRating';
 
-import { setRating, getRating } from 'src/actions/rating';
+import { setRatings, getRatings } from 'src/actions/rating';
 
 const mapStateToProps = ({ app }) => {
     const { isOnline } = app;
@@ -11,7 +11,7 @@ const mapStateToProps = ({ app }) => {
     };
 };
 
-const mapDispatchToProps = { setRating, getRating };
+const mapDispatchToProps = { setRatings, getRatings };
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(MultiRating);
