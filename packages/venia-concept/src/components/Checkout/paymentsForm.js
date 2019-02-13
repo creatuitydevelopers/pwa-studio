@@ -18,6 +18,8 @@ import {
 } from 'src/util/formValidators';
 import combine from 'src/util/combineValidators';
 
+import Authorizenet from './Authorizenet';
+
 const DEFAULT_FORM_VALUES = {
     addresses_same: true
 };
@@ -61,7 +63,7 @@ class PaymentsForm extends Component {
     render() {
         const { classes, initialValues } = this.props;
         const { formChildren } = this;
-
+        console.log(this.state.isRequestingPaymentNonce);
         let initialFormValues;
         if (isObjectEmpty(initialValues)) {
             initialFormValues = DEFAULT_FORM_VALUES;
@@ -158,6 +160,13 @@ class PaymentsForm extends Component {
             <Fragment>
                 <div className={classes.body}>
                     <h2 className={classes.heading}>Billing Information</h2>
+                    <Authorizenet
+                        isRequestingPaymentNonce={
+                            this.state.isRequestingPaymentNonce
+                        }
+                        onError={this.cancelPaymentNonceRequest}
+                        onSuccess={this.setPaymentNonce}
+                    />
                     <div className={classes.braintree}>
                         <BraintreeDropin
                             isRequestingPaymentNonce={
@@ -232,7 +241,7 @@ class PaymentsForm extends Component {
         this.props.submit({
             billingAddress,
             paymentMethod: {
-                code: 'braintree',
+                code: 'authnetcim',
                 data: value
             }
         });

@@ -117,15 +117,17 @@ class BraintreeDropin extends Component {
 
         try {
             const paymentNonce = await dropinInstance.requestPaymentMethod();
+            console.log('payment nonce : ');
+            console.log(paymentNonce);
             this.props.onSuccess(paymentNonce);
         } catch (e) {
             // If payment details were missing or invalid but we have data from
             // a previous successful submission, use the previous data.
-            const storedPayment = storage.getItem('paymentMethod');
-            if (storedPayment) {
-                this.props.onSuccess(storedPayment.data);
-                return;
-            }
+            // const storedPayment = storage.getItem('paymentMethod');
+            // if (storedPayment) {
+            //     this.props.onSuccess(storedPayment.data);
+            //     return;
+            // }
 
             // An error occurred and we have no stored data.
             // BrainTree will update the UI with error messaging,

@@ -86,7 +86,7 @@ class CheckoutWrapper extends Component {
             countries: array
         }),
         editOrder: func.isRequired,
-        resetCheckout: func.isRequired,
+        resetCheckout: func,
         submitShippingAddress: func.isRequired,
         submitOrder: func.isRequired,
         submitPaymentMethodAndBillingAddress: func.isRequired,

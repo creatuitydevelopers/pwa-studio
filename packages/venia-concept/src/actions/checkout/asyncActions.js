@@ -231,10 +231,19 @@ export const submitOrder = () =>
                         cartId: guestCartId,
                         email: shipping_address.email,
                         paymentMethod: {
-                            additional_data: {
-                                payment_method_nonce: paymentMethod.data.nonce
-                            },
-                            method: paymentMethod.code
+                            "method": "authnetcim",
+                            "additional_data": {
+                                "save": false,
+                                "acceptjs_key": "COMMON.ACCEPT.INAPP.PAYMENT",
+                                "acceptjs_value": "eyJjb2RlIjoiNTBfMl8wNjAwMDUzODZDRTg2RTE4NzdBMTY0N0VBNEMzQUJFODMwNTg1ODNCNDQ2MUJGRDFDMkNFMTE5QzU0QUI5OUNFQkRDQjU4RjQ4ODJGNjg0NjVEN0U5QTdDNkU1MDZDREMwMDY1NzVCIiwidG9rZW4iOiI5NTUwMDU0MDE1MDIyNDc2MTA0NjAzIiwidiI6IjEuMSJ9",
+                                "cc_type": "VI",
+                                "cc_exp_year": "2020",
+                                "cc_exp_month": "2",
+                                "cc_cid": "900",
+                                "cc_last4": "1111",
+                                "cc_bin": "",
+                                "card_id": null
+                            }
                         }
                     })
                 }
