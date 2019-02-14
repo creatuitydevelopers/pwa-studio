@@ -14,6 +14,12 @@
     margin-bottom: 15px;
 }
 
+@media all and (max-width: 767px) {
+    [data-role="column-group"] [data-role="column"][style]{
+        width: 100% !important;
+    }
+}
+
 @media all and (min-width: 1500px) {
     [data-role='row'][data-appearance='contained'] {
         max-width: 1440px !important;
