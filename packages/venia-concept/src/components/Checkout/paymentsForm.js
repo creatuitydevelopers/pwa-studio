@@ -63,7 +63,7 @@ class PaymentsForm extends Component {
     render() {
         const { classes, initialValues } = this.props;
         const { formChildren } = this;
-        console.log(this.state.isRequestingPaymentNonce);
+      
         let initialFormValues;
         if (isObjectEmpty(initialValues)) {
             initialFormValues = DEFAULT_FORM_VALUES;
@@ -161,6 +161,7 @@ class PaymentsForm extends Component {
                 <div className={classes.body}>
                     <h2 className={classes.heading}>Billing Information</h2>
                     <Authorizenet
+                        environment="sandbox"
                         isRequestingPaymentNonce={
                             this.state.isRequestingPaymentNonce
                         }
@@ -168,13 +169,13 @@ class PaymentsForm extends Component {
                         onSuccess={this.setPaymentNonce}
                     />
                     <div className={classes.braintree}>
-                        <BraintreeDropin
+                        {/* <BraintreeDropin
                             isRequestingPaymentNonce={
                                 this.state.isRequestingPaymentNonce
                             }
                             onError={this.cancelPaymentNonceRequest}
                             onSuccess={this.setPaymentNonce}
-                        />
+                        /> */}
                     </div>
                     <div className={classes.address_check}>
                         <Checkbox

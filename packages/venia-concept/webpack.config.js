@@ -123,6 +123,12 @@ module.exports = async function(env) {
             new webpack.DefinePlugin({
                 GOOGLE_MAPS_API_KEY: JSON.stringify(
                     validEnv.GOOGLE_MAPS_API_KEY
+                ),
+                AUTHORIZENET_CLIENT_KEY: JSON.stringify(
+                    validEnv.AUTHORIZENET_CLIENT_KEY
+                ),
+                AUTHORIZENET_API_LOGIN_ID: JSON.stringify(
+                    validEnv.AUTHORIZENET_API_LOGIN_ID
                 )
             }),
             new webpack.DefinePlugin({
