@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { func, shape, string } from 'prop-types';
 
+import chevronRight from 'react-feather/dist/icons/chevron-right';
+import Icon from 'src/components/Icon';
 import classify from 'src/classify';
-import defaultClasses from './categoryLeaf.css';
+import defaultClasses from './categoryBranch.css';
 
 class Branch extends Component {
     static propTypes = {
@@ -12,7 +14,7 @@ class Branch extends Component {
         }),
         name: string.isRequired,
         path: string.isRequired,
-        onDive: func.isRequired
+        onDive: func.isRequired,
     };
 
     handleClick = () => {
@@ -22,12 +24,11 @@ class Branch extends Component {
     };
 
     render() {
-        const { classes, name } = this.props;
-        const text = name;
+        const { classes } = this.props;
 
         return (
             <button className={classes.root} onClick={this.handleClick}>
-                <span className={classes.text}>{text}</span>
+                <Icon src={chevronRight}/>
             </button>
         );
     }
