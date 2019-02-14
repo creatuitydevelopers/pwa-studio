@@ -15,7 +15,8 @@ class Tree extends Component {
         classes: shape({
             leaf: string,
             root: string,
-            tree: string
+            tree: string,
+            branch: string
         }),
         nodes: objectOf(
             shape({
@@ -31,6 +32,7 @@ class Tree extends Component {
 
     get leaves() {
         const {
+            classes,
             onNavigate,
             rootNodeId,
             updateRootNodeId,
@@ -64,17 +66,18 @@ class Tree extends Component {
                             path: node.path
                         };
 
-                        const element = isLeaf ? (
-                            <Leaf {...elementProps} onNavigate={onNavigate} />
-                        ) : (
-                            <Branch
-                                {...elementProps}
-                                setChildCategoryUrl={setChildCategoryUrl}
-                                onDive={updateRootNodeId}
-                            />
+                        const element = (
+                            <React.Fragment>
+                                {!isLeaf && <Branch
+                                    {...elementProps}
+                                    setChildCategoryUrl={setChildCategoryUrl}
+                                    onDive={updateRootNodeId}
+                                />}
+                                <Leaf {...elementProps} onNavigate={onNavigate} />
+                            </React.Fragment>
                         );
 
-                        return <li key={node.id}>{element}</li>;
+                        return <li key={node.id} className={isLeaf ? classes.leaf : classes.branch}>{element}</li>;
                     });
 
                     return (
