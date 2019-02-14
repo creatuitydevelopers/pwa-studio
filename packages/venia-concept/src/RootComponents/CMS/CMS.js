@@ -27,10 +27,6 @@ class CMS extends Component {
         const { id, submitOrder } = this.props;
 
         return (
-            <button onClick={submitOrder}>Submit order </button>
-        )
-
-        return (
             <Query query={cmsPageQuery} variables={{ id: Number(id) }}>
                 {({ loading, error, data }) => {
                     if (error) return <div>Data Fetch Error</div>;
