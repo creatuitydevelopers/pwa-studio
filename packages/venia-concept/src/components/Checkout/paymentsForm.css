@@ -57,6 +57,7 @@
 
 .address_check,
 .braintree,
+.authorizenet,
 .postcode,
 .street0 {
     grid-column-end: span 2;

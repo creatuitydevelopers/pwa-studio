@@ -14,14 +14,16 @@ select {
     border: 1px solid rgb(var(--rk--color__gray-2));
     display: flex;
     box-shadow: none;
-    padding: 8px;
+    padding: calc(0.375rem - 1px) calc(0.625rem - 1px);
     width: 100%;
     min-width: 100px;
-    font-size: 18px;
+    font-size: .8rem;
+    height: 2.25rem;
     font-weight: 400;
     background: rgb(var(--rk--color__gray-6));
-    border-radius: 0.2em;
+    border-radius: 2px;
     color: rgb(var(--rk-grey-dark));
+    -webkit-appearance: none;
 }
 
 input[type='text']:not([disabled]):focus,
@@ -35,8 +37,8 @@ input[type='email']:not([disabled]):focus,
 input[type='text']:not([disabled]):focus,
 textarea:not([disabled]):focus,
 select:not([disabled]):focus {
-    box-shadow: 0 0 5px rgb(var(--rk-grey-dark));
     outline: none;
+    border-color: rgb(var(--rk--color__red));
 }
 
 input[type='text'],

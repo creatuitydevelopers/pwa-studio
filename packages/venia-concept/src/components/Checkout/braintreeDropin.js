@@ -36,6 +36,7 @@ class BraintreeDropin extends Component {
 
     async componentDidMount() {
         let isError;
+        console.log('DID MOUNT!!!')
 
         try {
             this.dropinInstance = await this.createDropinInstance();
@@ -53,12 +54,13 @@ class BraintreeDropin extends Component {
     componentDidUpdate(prevProps) {
         const { dropinInstance } = this;
         const { isRequestingPaymentNonce } = this.props;
-
+        console.log('DID UPDATE!!!')
         if (
             dropinInstance &&
             isRequestingPaymentNonce &&
             !prevProps.isRequestingPaymentNonce
         ) {
+            console.log('DID UPDATE AND REQUESTED PAYMENT NONCE!!!')
             // Our parent is telling us to request the payment nonce.
             this.requestPaymentNonce();
         }
@@ -67,6 +69,7 @@ class BraintreeDropin extends Component {
     render() {
         const { classes } = this.props;
         const { isError } = this.state;
+        console.log('RENDER!!!')
 
         if (isError) {
             return (
@@ -85,6 +88,7 @@ class BraintreeDropin extends Component {
     }
 
     createDropinInstance = async () => {
+        console.log('create DropIn Instance!!!')
         // import the dropin API
         const { default: dropin } = await import('braintree-web-drop-in');
 
@@ -114,18 +118,22 @@ class BraintreeDropin extends Component {
      */
     requestPaymentNonce = async () => {
         const { dropinInstance } = this;
+        console.log('REQUESTING PAYMENT NONCE!!!')
 
         try {
+            console.log('probujemy !!!!!!!');
             const paymentNonce = await dropinInstance.requestPaymentMethod();
+            console.log('payment nonce : ');
+            console.log(JSON.stringify(paymentNonce));
             this.props.onSuccess(paymentNonce);
         } catch (e) {
             // If payment details were missing or invalid but we have data from
             // a previous successful submission, use the previous data.
-            const storedPayment = storage.getItem('paymentMethod');
-            if (storedPayment) {
-                this.props.onSuccess(storedPayment.data);
-                return;
-            }
+            // const storedPayment = storage.getItem('paymentMethod');
+            // if (storedPayment) {
+            //     this.props.onSuccess(storedPayment.data);
+            //     return;
+            // }
 
             // An error occurred and we have no stored data.
             // BrainTree will update the UI with error messaging,

@@ -220,6 +220,8 @@ export const submitOrder = () =>
                 }
             );
 
+            console.log(paymentMethod);
+
             // POST to payment-information to submit the payment details and billing address,
             // Note: this endpoint also actually submits the order.
             const response = await request(
@@ -232,7 +234,16 @@ export const submitOrder = () =>
                         email: shipping_address.email,
                         paymentMethod: {
                             additional_data: {
-                                payment_method_nonce: paymentMethod.data.nonce
+                                save: false,
+                                acceptjs_key: paymentMethod.data.opaqueData.dataDescriptor,
+                                acceptjs_value: paymentMethod.data.opaqueData.dataValue,
+                                cc_type: "VI",
+                                cc_exp_year: paymentMethod.data.details.expYear,
+                                cc_exp_month: `${paymentMethod.data.details.expMonth}`.replace(/^(\d)$/, '0$1'),
+                                cc_cid: paymentMethod.data.details.cc_cid,
+                                cc_last4: paymentMethod.data.details.lastFour,
+                                cc_bin: "",
+                                card_id: null
                             },
                             method: paymentMethod.code
                         }

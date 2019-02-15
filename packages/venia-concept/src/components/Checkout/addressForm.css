@@ -41,7 +41,7 @@
 }
 
 .textInput:focus {
-    border-color: rgb(var(--venia-text));
+    border-color: rgb(var(--rk--color__red));
     outline: 0 none;
 }
 

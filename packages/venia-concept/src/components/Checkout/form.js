@@ -215,6 +215,7 @@ class Form extends Component {
 
         let primaryDisplay = '';
         let secondaryDisplay = '';
+
         if (paymentData) {
             primaryDisplay = paymentData.details.cardType;
             secondaryDisplay = paymentData.description;
