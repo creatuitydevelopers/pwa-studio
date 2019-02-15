@@ -2,13 +2,18 @@ import React from 'react';
 import classify from 'src/classify';
 import defaultStyles from './Authorizenet.css';
 import { bool, func, shape, string } from 'prop-types';
-import { Number, Cvc, Expiration } from 'react-credit-card-primitives'
+import { Number, Cvc, Expiration } from 'react-credit-card-primitives';
+import * as creditCardIcon from './creditCardIcons';
 import Accept from './AcceptJs'
 
 const AuthorizeNetScriptUrl = {
     Production: 'https://js.authorize.net/v1/Accept.js',
     Sandbox: 'https://jstest.authorize.net/v1/Accept.js'
 }
+
+const ERROR_MSG_EXPIRATION_MONTH = "Please provide valid expiration month."
+const ERROR_MSG_EXPIRATION_YEAR = "Please provide valid expiration year."
+const ERROR_MSG_EXPIRATION_PAST_DATE = "Please enter a date in the future."
 
 class Authorizenet extends React.Component {
 
@@ -31,12 +36,14 @@ class Authorizenet extends React.Component {
         expiration: {
             month: '',
             year: '',
-            valid: false
+            valid: false,
+            dirty: false
         },
         cvv: {
             value: '',
             valid: false
         },
+        apiErrors: [],
         processing: false
     };
 
@@ -60,7 +67,6 @@ class Authorizenet extends React.Component {
             isRequestingPaymentNonce &&
             !prevProps.isRequestingPaymentNonce
         ) {
-            // Our parent is telling us to request the payment nonce.
             this.requestPaymentNonce();
         }
     }
@@ -89,11 +95,13 @@ class Authorizenet extends React.Component {
     }
 
     handleExpirationChange = (month, year, valid) => {
+        let dirty = !isNaN(month) || !isNaN(year);
         this.setState({
             expiration: {
                 month, 
                 year, 
-                valid
+                valid,
+                dirty
             }
         })
     }
@@ -114,12 +122,11 @@ class Authorizenet extends React.Component {
             details: {
                 cardType: this.state.card.type,
                 lastFour: this.state.card.value.slice(-4),
-                lastTwo: this.state.card.value.slice(-2),
                 expYear: this.state.expiration.year,
                 expMonth: this.state.expiration.month,
                 cc_cid: this.state.cvv.value
             },
-            description: 'Ending with 11'
+            description: `Ending with ${this.state.card.value.slice(-2)}` 
         }
     }
 
@@ -177,7 +184,17 @@ class Authorizenet extends React.Component {
 
         return (
             <div className={classes.root}>
-                    <div className={this.state.processing ? classes.loader : classes.border}></div>
+                <div className={classes.header}>
+                    <span className={classes.cardIcon} dangerouslySetInnerHTML={{
+                        __html: !this.state.card.type ? creditCardIcon.emptyCard  
+                            : !!creditCardIcon[this.state.card.type.replace(/\s/g, '').toLocaleLowerCase()] ?
+                                creditCardIcon[this.state.card.type.replace(/\s/g, '').toLocaleLowerCase()]
+                                : creditCardIcon.emptyCard
+                    }} />
+                    <h3>Pay with card</h3>
+                </div>
+                <div className={this.state.processing ? classes.loader : classes.border}></div>
+                <div className={classes.content}>
                     <Number
                         onChange={({ value, valid, type }) => this.handleCardNumberChange(value, valid, type)}
                         masked={true}
@@ -186,11 +203,14 @@ class Authorizenet extends React.Component {
                                 getInputProps,
                                 valid
                             }) => 
-                                <div>
-                                    <input {...getInputProps()} name={`cardNumber`} className={valid ? '' : 'error'} />
-                                    {!!getInputProps().value && !valid ? <p>Please Provide Valid Credit Card Number</p> : ''}
+                                <div className={classes.inputRow}>
+                                    <label htmlFor="cardNumber" className={classes.label}>Card Number</label>
+                                    <input {...getInputProps()} name={`cardNumber`} placeholder={`•••• •••• •••• ••••`} className={valid ? '' : 'error'} />
+                                    {
+                                        (!!getInputProps().value && !valid) || (!!this.state.apiErrors.length && !valid)
+                                        ? <p className={classes.errorMsg}>Please Provide Valid Credit Card Number</p> : ''
+                                    }
                                 </div>
-                                
                             }
                     />
                     <Expiration
@@ -200,26 +220,43 @@ class Authorizenet extends React.Component {
                             getInputProps,
                             valid,
                             error
-                        }) => (
-                                <div>
-                                    <input {...getInputProps()} className={valid ? '' : 'error'} />
-                                    {valid ? ''
-                                        : error === Expiration.ERROR_MONTHYEAR ? 'Please enter valid month and year'
-                                            : error === Expiration.ERROR_MONTH ? 'Please enter valid month'
-                                                : error === Expiration.ERROR_YEAR ? 'Please enter valid year'
-                                                    : error === Expiration.ERROR_PAST_DATE ? 'Please enter a date in the future.'
-                                                        : ''}
-                                </div>
-                            )} />
+                        }) => 
+                            <div className={classes.inputRow}>
+                                <label htmlFor="cc-exp" className={classes.label}>Expiration Date</label>
+                                <input {...getInputProps()} className={valid ? '' : 'error'} />
+                                <p className={classes.errorMsg}>
+                                    {   
+                                        !error || !this.state.apiErrors.length ? ''
+                                            : (error === Expiration.ERROR_MONTH || this.state.apiErrors.includes(ERROR_MSG_EXPIRATION_MONTH)) ? ERROR_MSG_EXPIRATION_MONTH
+                                                : (error === Expiration.ERROR_YEAR || this.state.apiErrors.includes(ERROR_MSG_EXPIRATION_YEAR)) ? ERROR_MSG_EXPIRATION_YEAR
+                                                    : error === Expiration.ERROR_PAST_DATE ? ERROR_MSG_EXPIRATION_PAST_DATE
+                                                        : ''
+                                    }
+                                </p>
+                            </div>
+                        } />
                     <Cvc
                         onChange={({ value, valid }) => this.handleCVVChange(value, valid)}
                         masked={false}
-                        render={({
-                            getInputProps,
-                            valid
-                        }) => <input {...getInputProps()} className={valid ? '' : 'error'} />} />
-    
+                        render={
+                            ({
+                                getInputProps,
+                                valid
+                            }) => 
+                                <div className={classes.inputRow}>
+                                    <label htmlFor="cvc" className={classes.label}>CVV</label>
+                                    <input {...getInputProps()} className={valid ? '' : 'error'} />
+                                    <p className={classes.errorMsg}>
+                                        {
+                                            !!this.state.apiErrors.length && !valid ? 
+                                            'Please provide CVV Number': ''
+                                        }
+                                    </p>
+                                </div>
+                        } 
+                    />
                 </div>
+            </div>
         )
     }
 }

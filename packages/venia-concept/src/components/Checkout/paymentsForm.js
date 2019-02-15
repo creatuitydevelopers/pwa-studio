@@ -160,22 +160,15 @@ class PaymentsForm extends Component {
             <Fragment>
                 <div className={classes.body}>
                     <h2 className={classes.heading}>Billing Information</h2>
-                    <Authorizenet
-                        environment="sandbox"
-                        isRequestingPaymentNonce={
-                            this.state.isRequestingPaymentNonce
-                        }
-                        onError={this.cancelPaymentNonceRequest}
-                        onSuccess={this.setPaymentNonce}
-                    />
-                    <div className={classes.braintree}>
-                        {/* <BraintreeDropin
+                    <div className={classes.authorizenet}>
+                        <Authorizenet
+                            environment="sandbox"
                             isRequestingPaymentNonce={
                                 this.state.isRequestingPaymentNonce
                             }
                             onError={this.cancelPaymentNonceRequest}
                             onSuccess={this.setPaymentNonce}
-                        /> */}
+                        />
                     </div>
                     <div className={classes.address_check}>
                         <Checkbox
