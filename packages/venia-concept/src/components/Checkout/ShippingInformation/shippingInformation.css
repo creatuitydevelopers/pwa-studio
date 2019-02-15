@@ -6,7 +6,7 @@
     composes: body from '../form.css';
     grid-gap: 0.5rem;
     padding: 0;
-    max-height: 470px;
+    max-height: calc(100vh - 150px);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
