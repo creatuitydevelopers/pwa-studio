@@ -41,8 +41,8 @@ class App extends Component {
                 <Helmet>
                     <link rel="stylesheet" href="https://use.typekit.net/uca6omh.css" />
                     <link rel="stylesheet" type="text/css" media="all" href="https://pwa-files.preview2.creatuity.com/bluefoot.min.css" />
-                    <link rel="stylesheet" type="text/css" media="all" href="https://pwa-files.preview2.creatuity.com/pageBuilderAndCms-desktop.min.css" />
-                    <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="https://pwa-files.preview2.creatuity.com/pageBuilderAndCms-mobile.min.css" />
+                    <link rel="stylesheet" type="text/css" media="all" href="https://pwa-files.preview2.creatuity.com/pageBuilderAndCms-mobile.min.css" />
+                    <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="https://pwa-files.preview2.creatuity.com/pageBuilderAndCms-desktop.min.css" />
                 </Helmet>
                 <Main isMasked={overlay}>
                     {onlineIndicator}
