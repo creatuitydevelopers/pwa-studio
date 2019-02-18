@@ -37,7 +37,7 @@ class Leaf extends Component {
                 to={`${url}`}
                 onClick={this.handleClick}
             >
-                <span className={classes.text}>{text}</span>
+                <span className={classes.text}>{name}</span>
             </Link>
         );
     }

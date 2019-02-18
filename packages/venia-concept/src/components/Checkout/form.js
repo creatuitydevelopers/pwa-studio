@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { array, bool, func, object, shape, string } from 'prop-types';
+import { array, bool, func, object, oneOf, shape, string } from 'prop-types';
 
 import { Price } from 'src/components/Price';
 import AddressForm from './addressForm';
@@ -37,7 +37,7 @@ class Form extends Component {
         }).isRequired,
         directory: shape({
             countries: array
-        }),
+        }).isRequired,
         classes: shape({
             body: string,
             footer: string,
@@ -47,7 +47,7 @@ class Form extends Component {
             paymentDisplaySecondary: string,
             root: string
         }),
-        editing: string,
+        editing: oneOf(['address', 'paymentMethod', 'shippingMethod']),
         editOrder: func.isRequired,
         hasPaymentMethod: bool,
         hasShippingAddress: bool,
