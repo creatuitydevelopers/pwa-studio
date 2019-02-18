@@ -2,13 +2,14 @@ import React from 'react';
 import ShipToStoreOption from 'src/components/DeliveryMethods/components/ShipToStoreOption';
 import { getVstsMethodCode } from 'src/models/DeliveryMethods';
 
-const VstsOption = ({ children, ...restProps }) => {
+const VstsOption = ({ children, methodInfo,selectedStore,currentStore, ...restProps }) => {
     const deliveryMessage = !!methodInfo.vsts_lead_time
         ? methodInfo.vsts_lead_time
         : ``;
     return (
         <ShipToStoreOption
             {...restProps}
+            methodInfo={methodInfo}
             selectedStore={selectedStore}
             currentStore={currentStore}
             methodCode={getVstsMethodCode()}

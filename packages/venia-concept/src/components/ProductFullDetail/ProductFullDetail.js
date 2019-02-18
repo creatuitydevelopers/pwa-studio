@@ -15,6 +15,7 @@ import { SingleRating } from 'src/components/Review';
 import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
 
 import defaultClasses from './productFullDetail.css';
+import appendOptionsToPayload from 'src/util/appendOptionsToPayload';
 
 const Options = React.lazy(() => import('../ProductOptions'));
 
@@ -97,9 +98,9 @@ class ProductFullDetail extends Component {
 
     addToCart = () => {
         const { props, state } = this;
-        const { optionCodes, optionSelections, quantity } = state;
+        const { optionSelections, quantity, optionCodes } = state;
         const { addToCart, product } = props;
-        const { configurable_options, variants } = product;
+        const { configurable_options } = product;
         const isConfigurable = Array.isArray(configurable_options);
         const productType = isConfigurable
             ? 'ConfigurableProduct'
@@ -130,28 +131,7 @@ class ProductFullDetail extends Component {
         }
 
         if (productType === 'ConfigurableProduct') {
-            const options = Array.from(optionSelections, ([id, value]) => ({
-                option_id: id,
-                option_value: value
-            }));
-
-            const item = variants.find(({ product: variant }) => {
-                for (const [id, value] of optionSelections) {
-                    const code = optionCodes.get(id);
-
-                    if (variant[code] !== value) {
-                        return false;
-                    }
-                }
-
-                return true;
-            });
-
-            Object.assign(payload, {
-                options,
-                parentSku: product.sku,
-                item: Object.assign({}, item.product)
-            });
+            appendOptionsToPayload(payload, optionSelections, optionCodes);
         }
 
         addToCart(payload);
