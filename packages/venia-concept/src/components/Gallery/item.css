@@ -1,7 +1,7 @@
 .root {
     display: grid;
     grid-gap: 0.5rem;
-    grid-template-rows: auto 60px 30px;
+    grid-template-rows: auto 60px minmax(30px, auto);
 }
 
 .images {
@@ -35,6 +35,15 @@
     transition-property: opacity, visibility;
     transition-timing-function: ease-out;
     visibility: visible;
+    min-height: 200px;
+    max-height: 260px;
+    width: auto;
+}
+
+@media (min-width: 1024px) {
+    .image {
+        max-height: calc(((100vh - 140px) / 2) - 124px);
+    }
 }
 
 .image:before {
@@ -113,8 +122,8 @@
 
 .images_pending {
     composes: images;
-    background-color: rgb(var(--venia-grey));
     border: none;
+    composes: placeholder from '../../styles/source/placeholder.css';
 }
 
 .image_pending {
@@ -129,11 +138,11 @@
 
 .name_pending {
     composes: name;
-    background-color: rgb(var(--venia-grey));
+    composes: placeholder from '../../styles/source/placeholder.css';
 }
 
 .price_pending {
     composes: price;
-    background-color: rgb(var(--venia-grey));
+    composes: placeholder from '../../styles/source/placeholder.css';
     width: 3rem;
 }

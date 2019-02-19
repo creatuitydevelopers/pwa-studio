@@ -18,8 +18,6 @@ const searchQuery = gql`
 const PriceWrapper = (props) => {
     const {priceConfig, product, viewMode} = props;
 
-    console.log(product)
-
     const optionsMap = {
         simple: SimpleProductPrice,
         configurable: ConfigurableProductPrice,

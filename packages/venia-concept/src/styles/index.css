@@ -3,4 +3,6 @@
 @import './source/normalize-bluefoot.css';
 @import './source/typography.css';
 
+@import './source/placeholder.css';
+
 @import './source/form.css';

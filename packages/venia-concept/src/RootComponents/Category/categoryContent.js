@@ -16,7 +16,7 @@ class CategoryContent extends Component {
 
         return (
             <article className={classes.root}>
-                <h1 className={classes.title}>
+                {!!title && <h1 className={classes.title}>
                     {/* TODO: Switch to RichContent component from Peregrine when merged */}
                     <strong
                         dangerouslySetInnerHTML={{
@@ -24,7 +24,8 @@ class CategoryContent extends Component {
                         }}
                     />
                     <small>{subtitle}</small>
-                </h1>
+                </h1>}
+                {!title && <div className={classes.categoryTitlePlaceholder}></div> }
                 <div className={classes.topPagination}>
                     <Pagination pageControl={pageControl} />
                 </div>

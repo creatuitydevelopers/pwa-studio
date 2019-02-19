@@ -40,3 +40,10 @@
     line-height: 1.375rem;
     text-align: center;
 }
+
+.categoryTitlePlaceholder {
+    composes: placeholder from '../../styles/source/placeholder.css';
+    height: 52px;
+    margin-bottom: 16px;
+
+}

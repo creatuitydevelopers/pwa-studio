@@ -67,13 +67,11 @@ class Category extends Component {
                 {({ loading, error, data }) => {
                     if (error) return <div>Data Fetch Error</div>;
                     if (loading)
-                        return pageControl.totalPages ? (
+                        return (
                             <CategoryContent
                                 pageControl={pageControl}
                                 pageSize={pageSize}
                             />
-                        ) : (
-                            loadingIndicator
                         );
 
                     // Retrieve the total page count from GraphQL when ready
