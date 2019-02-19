@@ -1,0 +1,16 @@
+.item {
+    display: block;
+    padding: 25px 15px 25px 65px;
+    margin-bottom: 10px;
+    background-color: rgb(var(--rk--color__gray-7));
+}
+
+.mode__cart{
+    padding: 15px;
+}
+
+@media (max-width: 640px) {
+    .item {
+        padding: 25px 25px;
+    }
+}

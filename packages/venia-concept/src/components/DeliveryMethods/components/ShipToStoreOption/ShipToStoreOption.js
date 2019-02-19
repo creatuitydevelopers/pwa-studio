@@ -211,7 +211,7 @@ class ShipToStoreOption extends Component {
         const inputId = `delivery_method-${methodCode}`;
 
         return (
-            <li className={classes.root}>
+            <React.Fragment>
                 <label className={classes.label} htmlFor={inputId}>
                     <input
                         id={inputId}
@@ -228,7 +228,7 @@ class ShipToStoreOption extends Component {
                     </span>
                 </label>
                 <div className={classes.details}>{this.detailsRender}</div>
-            </li>
+            </React.Fragment>
         );
     }
 }

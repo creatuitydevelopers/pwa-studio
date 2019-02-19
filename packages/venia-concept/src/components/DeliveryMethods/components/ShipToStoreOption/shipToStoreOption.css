@@ -1,7 +1,3 @@
-.root {
-    composes: root from '../DefaultOption/defualtOption.css';
-}
-
 .label {
     composes: label from '../DefaultOption/defualtOption.css';
 }

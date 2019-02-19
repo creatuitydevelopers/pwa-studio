@@ -139,7 +139,7 @@ export const addItemToCart = (payload = {}) => {
 };
 
 export const updateItemInCart = (payload = {}, targetItemId) => {
-    const { item, options, parentSku, productType, quantity } = payload;
+    const { item, options, parentSku, productType, quantity, delivery_method } = payload;
     const writingImageToCache = writeImageToCache(item);
 
     return async function thunk(dispatch, getState) {
@@ -173,7 +173,9 @@ export const updateItemInCart = (payload = {}, targetItemId) => {
                 qty: quantity,
                 sku: item.sku,
                 name: item.name,
-                quote_id: guestCartId
+                quote_id: guestCartId,
+                delivery_method: delivery_method.type,
+                store_number: delivery_method.store.store_number
             };
 
             if (productType === 'ConfigurableProduct') {

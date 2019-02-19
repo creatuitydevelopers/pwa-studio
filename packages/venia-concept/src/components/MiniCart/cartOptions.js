@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import { array, func, number, shape, string } from 'prop-types';
+import { array, object, func, number, shape, string } from 'prop-types';
 import { Form } from 'informed';
 import { Price } from '@magento/peregrine';
 
@@ -8,6 +8,8 @@ import classify from 'src/classify';
 import defaultClasses from './cartOptions.css';
 import Button from 'src/components/Button';
 import Quantity from 'src/components/ProductQuantity';
+import DeliveryMethods from 'src/components/DeliveryMethods';
+
 import appendOptionsToPayload from 'src/util/appendOptionsToPayload';
 
 // TODO: get real currencyCode for cartItem
@@ -29,6 +31,7 @@ class CartOptions extends Component {
             modal_active: string,
             options: string
         }),
+        product: object.isRequired,
         cartItem: shape({
             item_id: number.isRequired,
             name: string.isRequired,
@@ -44,9 +47,12 @@ class CartOptions extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             optionSelections: new Map(),
-            quantity: props.cartItem.qty
+            quantity: props.cartItem.qty,
+            deliveryMethodType: props.cartItem.extension_attributes.delivery_method,
+            deliveryMethodStore: props.allStores.filter((store) => store.store_number == props.cartItem.extension_attributes.store_number)[0],
         };
     }
 
@@ -55,6 +61,13 @@ class CartOptions extends Component {
     }
 
     setQuantity = quantity => this.setState({ quantity });
+
+    setDeliveryMethod = (type, store) => {
+        this.setState({
+            deliveryMethodType: type,
+            deliveryMethodStore: store,
+        });
+    };
 
     handleSelectionChange = (optionId, selection) => {
         this.setState(({ optionSelections }) => ({
@@ -67,7 +80,7 @@ class CartOptions extends Component {
 
     handleClick = async () => {
         const { updateCart, cartItem, configItem } = this.props;
-        const { optionSelections, quantity } = this.state;
+        const { optionSelections, quantity, deliveryMethodType, deliveryMethodStore } = this.state;
         const { configurable_options } = configItem;
         const isConfigurable = Array.isArray(configurable_options);
         const productType = isConfigurable
@@ -77,7 +90,11 @@ class CartOptions extends Component {
         const payload = {
             item: configItem,
             productType,
-            quantity: quantity
+            quantity: quantity,
+            delivery_method: {
+                type: deliveryMethodType,
+                store: deliveryMethodStore
+            }
         };
 
         if (productType === 'ConfigurableProduct') {
@@ -88,7 +105,7 @@ class CartOptions extends Component {
 
     render() {
         const { fallback, handleSelectionChange, props } = this;
-        const { classes, cartItem, configItem, isLoading } = props;
+        const { classes, product, cartItem, configItem, isLoading } = props;
         const { name, price } = cartItem;
         const { configurable_options } = configItem;
 
@@ -115,6 +132,14 @@ class CartOptions extends Component {
                 </div>
                 <div className={classes.form}>
                     {options}
+                    {/*<DeliveryMethods*/}
+                        {/*product={product}*/}
+                        {/*defaultMethod={this.state.deliveryMethodType}*/}
+                        {/*selectedStore={this.state.deliveryMethodStore}*/}
+                        {/*validationMessage={''}*/}
+                        {/*viewMode={'cart'}*/}
+                        {/*onChange={this.setDeliveryMethod}*/}
+                    {/*/>*/}
                     <section className={classes.quantity}>
                         <h2 className={classes.quantityTitle}>
                             <span>Quantity</span>
