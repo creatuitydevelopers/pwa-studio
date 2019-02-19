@@ -16,9 +16,9 @@
 .continue {
     composes: root from '../Button/button.css';
     color: white;
-    background-color: rgb(var(--venia-teal));
+    background-color: rgb(var(--rk--color__red));
 }
 
 .continue:hover {
-    color: rgb(var(--venia-teal));
+    background-color: rgb(var(--rk--color__red-alt));
 }

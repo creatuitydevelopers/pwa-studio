@@ -156,7 +156,7 @@ class MiniCart extends Component {
 
     get productOptions() {
         const { props, state, closeOptionsDrawer } = this;
-        const { updateItemInCart, cart } = props;
+        const { updateItemInCart, cart, allStores } = props;
         const { focusItem } = state;
 
         if (focusItem === null) return;
@@ -176,9 +176,13 @@ class MiniCart extends Component {
                     if (loading) return loadingIndicator;
 
                     const itemWithOptions = data.products.items[0];
-
                     return (
                         <CartOptions
+                            product={{
+                                sku: focusItem.sku,
+                                name: focusItem.name
+                            }}
+                            allStores={allStores}
                             cartItem={focusItem}
                             configItem={itemWithOptions}
                             closeOptionsDrawer={closeOptionsDrawer}
@@ -190,6 +194,11 @@ class MiniCart extends Component {
             </Query>
         ) : (
             <CartOptions
+                product={{
+                    sku: focusItem.sku,
+                    name: focusItem.name
+                }}
+                allStores={allStores}
                 cartItem={focusItem}
                 configItem={{}}
                 closeOptionsDrawer={closeOptionsDrawer}
@@ -262,10 +271,11 @@ class MiniCart extends Component {
 }
 
 const mapStateToProps = state => {
-    const { cart } = state;
+    const { cart, store } = state;
 
     return {
         cart,
+        allStores: store.allStores,
         isCartEmpty: isEmptyCartVisible(state),
         isMiniCartMaskOpen: isMiniCartMaskOpen(state)
     };

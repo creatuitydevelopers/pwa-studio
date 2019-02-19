@@ -9,7 +9,7 @@ const DefaultOption = ({ isChecked, methodInfo, onChange, classes }) => {
     const inputId = `delivery_method-${code}`;
 
     return (
-        <li className={classes.root}>
+        <React.Fragment>
             <label className={classes.label} htmlFor={inputId}>
                 <input
                     id={inputId}
@@ -37,7 +37,7 @@ const DefaultOption = ({ isChecked, methodInfo, onChange, classes }) => {
                     } Left Online`}</p>
                 )}
             </div>
-        </li>
+        </React.Fragment>
     );
 };
 

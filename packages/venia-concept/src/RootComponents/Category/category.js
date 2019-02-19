@@ -5,7 +5,6 @@ import { connect, Query } from 'src/drivers';
 
 import classify from 'src/classify';
 import { setCurrentPage, setPrevPageTotal } from 'src/actions/catalog';
-import { loadingIndicator } from 'src/components/LoadingIndicator';
 import CategoryContent from './categoryContent';
 import defaultClasses from './category.css';
 import categoryQuery from 'src/queries/getCategory.graphql';
@@ -71,14 +70,14 @@ class Category extends Component {
             >
                 {({ loading, error, data }) => {
                     if (error) return <div>Data Fetch Error</div>;
-                    if (loading) {
+                    if (loading)
                         return (
                             <CategoryContent
                                 pageControl={pageControl}
                                 pageSize={pageSize}
                             />
-                        )
-                    }
+                        );
+
                     // Retrieve the total page count from GraphQL when ready
                     const pageCount =
                         data.category.products.total_count / pageSize;

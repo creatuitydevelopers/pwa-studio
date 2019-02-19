@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func, object, shape, string } from 'prop-types';
+import { func, object, shape, string, oneOf } from 'prop-types';
 
 import classify from 'src/classify';
 import defaultClasses from './deliveryMethods.css';
@@ -31,7 +31,12 @@ class DeliveryMethods extends Component {
         selectedStore: object,
         validationMessage: string,
         product: object.isRequired,
-        onChange: func.isRequired
+        onChange: func.isRequired,
+        viewMode: oneOf(['product-page', 'cart'])
+    };
+
+    static defaultProps = {
+        viewMode: 'product-page'
     };
 
     async componentDidUpdate(prevProps) {
@@ -50,7 +55,8 @@ class DeliveryMethods extends Component {
             selectedStore,
             validationMessage,
             onChange,
-            classes
+            classes,
+            viewMode
         } = this.props;
         const store = !!selectedStore ? selectedStore : currentStore;
 
@@ -90,6 +96,7 @@ class DeliveryMethods extends Component {
 
                         return (
                             <DeliveryMethodsList
+                                viewMode={viewMode}
                                 methods={methods}
                                 defaultMethod={defaultMethod}
                                 selectedStore={store}
