@@ -38,6 +38,14 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
                         outerwear_size
                         color
                         id
+                        price {
+                            regularPrice {
+                                amount {
+                                    currency
+                                    value
+                                }
+                            }
+                        }
                         media_gallery_entries {
                             disabled
                             file

@@ -26,7 +26,12 @@ class Category extends Component {
     // TODO: Should not be a default here, we just don't have
     // the wiring in place to map route info down the tree (yet)
     static defaultProps = {
-        id: 3
+        id: 3,
+        currentPage: 1,
+        setCurrentPage: () => {},
+        setPrevPageTotal: () => {},
+        prevPageTotal: 1,
+        pageSize: 12
     };
 
     componentDidUpdate(prevProps) {
@@ -66,16 +71,14 @@ class Category extends Component {
             >
                 {({ loading, error, data }) => {
                     if (error) return <div>Data Fetch Error</div>;
-                    if (loading)
-                        return pageControl.totalPages ? (
+                    if (loading) {
+                        return (
                             <CategoryContent
                                 pageControl={pageControl}
                                 pageSize={pageSize}
                             />
-                        ) : (
-                            loadingIndicator
-                        );
-
+                        )
+                    }
                     // Retrieve the total page count from GraphQL when ready
                     const pageCount =
                         data.category.products.total_count / pageSize;

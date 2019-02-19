@@ -9,8 +9,11 @@ import Carousel from 'src/components/ProductImageCarousel';
 import Quantity from 'src/components/ProductQuantity';
 import RichText from 'src/components/RichText';
 import DeliveryMethods from 'src/components/DeliveryMethods';
-import {PriceWrapper} from 'src/components/RkStore';
+import { PriceWrapper } from 'src/components/RkStore';
 import { SingleRating } from 'src/components/Review';
+import every from 'lodash/every';
+import difference from 'lodash/difference';
+import isEqual from 'lodash/isEqual';
 
 import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
 
@@ -80,6 +83,7 @@ class ProductFullDetail extends Component {
     state = {
         optionCodes: new Map(),
         optionSelections: new Map(),
+        optionCodeSelection: new Map,
         quantity: 1,
         deliveryMethodType: null,
         deliveryMethodStore: null,
@@ -137,14 +141,36 @@ class ProductFullDetail extends Component {
         addToCart(payload);
     };
 
-    handleSelectionChange = (optionId, selection) => {
-        this.setState(({ optionSelections }) => ({
+    handleSelectionChange = (optionId, optionCode, selection) => {
+        this.setState(({ optionSelections, optionCodeSelection }) => ({
             optionSelections: new Map(optionSelections).set(
                 optionId,
+                Array.from(selection).pop()
+            ),
+            optionCodeSelection: new Map(optionCodeSelection).set(
+                optionCode,
                 Array.from(selection).pop()
             )
         }));
     };
+
+    hasAllOptionsSet = () => {
+        return isEqual(
+            Array.from(this.state.optionCodeSelection.keys()), 
+            Array.from(this.state.optionCodes.values())
+        );
+    }
+
+    getConfiguredProduct = () => {
+        return this.props.product.variants.find(el => {
+            const { product } = el;
+            let matched = [];
+            this.state.optionCodeSelection.forEach((val, key, map) => {
+                matched.push(product[key] === val);
+            })
+            return every(matched, Boolean);
+        }).product;
+    }
 
     get fallback() {
         return loadingIndicator;
@@ -172,6 +198,9 @@ class ProductFullDetail extends Component {
     render() {
         const { productOptions, props } = this;
         const { classes, product } = props;
+        const { configurable_options } = product;
+        const isConfigurable = Array.isArray(configurable_options);
+        const productId = isConfigurable && this.hasAllOptionsSet() ? this.getConfiguredProduct().id : product.id;
 
         return (
             <Form className={classes.root}>
@@ -180,7 +209,7 @@ class ProductFullDetail extends Component {
                         <strong>{product.name}</strong>
                     </h1>
                     <div className={classes.productPrice}>
-                        <PriceWrapper product={product}/>
+                        <PriceWrapper product={productId} />
                     </div>
                     <div className={classes.productRating}>
                         <SingleRating item={product} />

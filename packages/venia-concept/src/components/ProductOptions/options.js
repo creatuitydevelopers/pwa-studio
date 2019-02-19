@@ -13,11 +13,10 @@ class Options extends Component {
         ).isRequired
     };
 
-    handleSelectionChange = (optionId, selection) => {
+    handleSelectionChange = (optionId, optionCode, selection) => {
         const { onSelectionChange } = this.props;
-
         if (onSelectionChange) {
-            onSelectionChange(optionId, selection);
+            onSelectionChange(optionId, optionCode, selection);
         }
     };
 

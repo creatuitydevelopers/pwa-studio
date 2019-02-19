@@ -18,8 +18,6 @@ const searchQuery = gql`
 const PriceWrapper = (props) => {
     const {priceConfig, product, viewMode} = props;
 
-    console.log(product)
-
     const optionsMap = {
         simple: SimpleProductPrice,
         configurable: ConfigurableProductPrice,
@@ -28,12 +26,13 @@ const PriceWrapper = (props) => {
     };
 
     return (
-        <Query query={searchQuery} variables={{ ids: [product.id] }}>
+        <Query query={searchQuery} variables={{ ids: [product] }}>
             {({ loading, error, data }) => {
                 if (error) return (<div>Something went wrong. Please refresh page.</div>);
                 if (loading) return (<div>Loading.</div>);
 
                 const priceData = JSON.parse(data.priceData[0].priceData);
+                
                 const ProductOptionTagName = optionsMap[!!priceData.type_id ? priceData.type_id : 'simple'];
                 return (
                     <React.Fragment>

@@ -22,10 +22,9 @@ class Option extends Component {
     };
 
     handleSelectionChange = selection => {
-        const { attribute_id, onSelectionChange } = this.props;
-
+        const { attribute_id, onSelectionChange, attribute_code } = this.props;
         if (onSelectionChange) {
-            onSelectionChange(attribute_id, selection);
+            onSelectionChange(attribute_id, attribute_code, selection);
         }
     };
 
