@@ -278,11 +278,10 @@ class Navigation extends PureComponent {
     };
 
     removeLastItemFromCurrentUrlPath = () => {
-        let { currentUrlPath } = this.state;
+        const { currentUrlPath } = this.state;
         const pathArr = currentUrlPath.split('/');
         pathArr.pop();
-        const newPath = pathArr.join('/');
-        if(this.state.rootNodeId == this.props.rootCategoryId) newPath = '';
+        const newPath = this.state.rootNodeId == this.props.rootCategoryId ? '' : pathArr.join('/');
 
         return newPath;
     }
