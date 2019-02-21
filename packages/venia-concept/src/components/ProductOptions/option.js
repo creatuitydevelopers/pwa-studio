@@ -38,12 +38,14 @@ class Option extends Component {
 
     render() {
         const { handleSelectionChange, listComponent: ValueList, props } = this;
-        const { classes, label, values } = props;
+        const { classes, label, values, attribute_code } = props; 
+        const labelTitle = label ? label : attribute_code.replace('_', ' ');
+        console.log(props);
 
         return (
             <div className={classes.root}>
                 <h3 className={classes.title}>
-                    <span>{label}</span>
+                    <span>{labelTitle}</span>
                 </h3>
                 <ValueList
                     getItemKey={getItemKey}

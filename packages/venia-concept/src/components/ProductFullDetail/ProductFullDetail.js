@@ -12,7 +12,7 @@ import DeliveryMethods from 'src/components/DeliveryMethods';
 import { PriceWrapper } from 'src/components/RkStore';
 import { SingleRating } from 'src/components/Review';
 import every from 'lodash/every';
-import difference from 'lodash/difference';
+
 import isEqual from 'lodash/isEqual';
 
 import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
@@ -198,6 +198,7 @@ class ProductFullDetail extends Component {
     render() {
         const { productOptions, props } = this;
         const { classes, product } = props;
+    
         const { configurable_options } = product;
         const isConfigurable = Array.isArray(configurable_options);
         const productId = isConfigurable && this.hasAllOptionsSet() ? this.getConfiguredProduct().id : product.id;
@@ -209,7 +210,7 @@ class ProductFullDetail extends Component {
                         <strong>{product.name}</strong>
                     </h1>
                     <div className={classes.productPrice}>
-                        <PriceWrapper product={productId} />
+                        <PriceWrapper productId={productId} placeholderStyle={{minHeight: '58px'}} />
                     </div>
                     <div className={classes.productRating}>
                         <SingleRating item={product} />
@@ -220,15 +221,19 @@ class ProductFullDetail extends Component {
                     <Carousel images={product.media_gallery_entries} />
                 </section>
                 <section className={classes.options}>{productOptions}</section>
-                <DeliveryMethods
-                    product={product}
-                    defaultMethod={this.state.deliveryMethodType}
-                    selectedStore={this.state.deliveryMethodStore}
-                    validationMessage={
-                        this.state.deliveryMethodValidationMessage
-                    }
-                    onChange={this.setDeliveryMethod}
-                />
+                {
+                    (!isConfigurable || !!this.hasAllOptionsSet()) && 
+                        <DeliveryMethods
+                            productId={productId}
+                            defaultMethod={this.state.deliveryMethodType}
+                            selectedStore={this.state.deliveryMethodStore}
+                            validationMessage={
+                                this.state.deliveryMethodValidationMessage
+                            }
+                            onChange={this.setDeliveryMethod}
+                        />
+                }
+                
                 <section className={classes.quantity}>
                     <h2 className={classes.quantityTitle}>
                         <span>Quantity</span>

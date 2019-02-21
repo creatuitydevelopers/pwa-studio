@@ -86,7 +86,11 @@ class GalleryItem extends Component {
                 </Link>
                 <div className={classes.bottomWrapper}>
                     <div className={classes.price}>
-                        <PriceWrapper product={item.id} viewMode={'category_page'}/>
+                        <PriceWrapper 
+                            productId={item.id} 
+                            placeholderStyle={{minHeight: '24px', maxWidth: '100px'}} 
+                            viewMode={'category_page'}
+                        />
                     </div>
                     <div className={classes.rating}>
                         {!!rating && (

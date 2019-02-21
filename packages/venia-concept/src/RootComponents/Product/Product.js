@@ -51,6 +51,10 @@ class Product extends Component {
         })
     };
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     addToCart = async (item, quantity) => {
         const { guestCartId } = this.props;
         await this.props.addItemToCart({ guestCartId, item, quantity });

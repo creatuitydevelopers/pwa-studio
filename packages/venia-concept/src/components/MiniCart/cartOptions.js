@@ -8,7 +8,6 @@ import classify from 'src/classify';
 import defaultClasses from './cartOptions.css';
 import Button from 'src/components/Button';
 import Quantity from 'src/components/ProductQuantity';
-import DeliveryMethods from 'src/components/DeliveryMethods';
 
 import appendOptionsToPayload from 'src/util/appendOptionsToPayload';
 
@@ -132,14 +131,6 @@ class CartOptions extends Component {
                 </div>
                 <div className={classes.form}>
                     {options}
-                    {/*<DeliveryMethods*/}
-                        {/*product={product}*/}
-                        {/*defaultMethod={this.state.deliveryMethodType}*/}
-                        {/*selectedStore={this.state.deliveryMethodStore}*/}
-                        {/*validationMessage={''}*/}
-                        {/*viewMode={'cart'}*/}
-                        {/*onChange={this.setDeliveryMethod}*/}
-                    {/*/>*/}
                     <section className={classes.quantity}>
                         <h2 className={classes.quantityTitle}>
                             <span>Quantity</span>
