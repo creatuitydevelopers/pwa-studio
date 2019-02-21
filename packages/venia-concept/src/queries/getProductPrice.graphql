@@ -1,0 +1,6 @@
+query getProductPrice($ids: [Int]) {
+    priceData(productIds: $ids) {
+        priceData
+        type_id
+    }
+}

@@ -67,7 +67,7 @@ class Product extends Component {
                     if (loading) return loadingIndicator;
 
                     const product = data.productDetail.items[0];
-
+                    
                     return (
                         <ProductFullDetail
                             product={product}

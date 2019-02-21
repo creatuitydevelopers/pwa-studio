@@ -6,7 +6,7 @@ import {showZeroPrice, isPriceMoreThanZero} from "src/models/Pricing";
 const ProductPrice = (props) => {
     const {children, priceData} = props;
 
-    if (!showZeroPrice(priceData.type_id) && !isPriceMoreThanZero(priceData)) return null;
+    if (!showZeroPrice(priceData) && !isPriceMoreThanZero(priceData)) return null;
 
     if (!!priceData.msrp) return <MsrpPrice {...props} />;
 

@@ -1,22 +1,16 @@
 import React from 'react';
-import {compose} from "redux";
-import {oneOf, object, shape, string} from 'prop-types';
+import { compose } from "redux";
+import { oneOf, object, shape, string } from 'prop-types';
 
-import {SimpleProductPrice, ConfigurableProductPrice, GiftCardProductPrice, BoundleProductPrice, TierPrices} from "src/components/RkStore/PriceWrapper";
+import { SimpleProductPrice, ConfigurableProductPrice, GiftCardProductPrice, BoundleProductPrice, TierPrices } from "src/components/RkStore/PriceWrapper";
 
-import gql from 'graphql-tag';
+import getProductPrice from 'src/queries/getProductPrice.graphql'
 import { Query } from 'react-apollo';
 
-const searchQuery = gql`
-    query($ids: [Int]) {
-        priceData(productIds: $ids) {
-            priceData
-        }
-    }
-`;
+
 
 const PriceWrapper = (props) => {
-    const {priceConfig, product, viewMode} = props;
+    const { priceConfig, product, viewMode } = props;
 
     const optionsMap = {
         simple: SimpleProductPrice,
@@ -26,18 +20,19 @@ const PriceWrapper = (props) => {
     };
 
     return (
-        <Query query={searchQuery} variables={{ ids: [product] }}>
+        <Query query={getProductPrice} variables={{ ids: [product] }}>
             {({ loading, error, data }) => {
                 if (error) return (<div>Something went wrong. Please refresh page.</div>);
                 if (loading) return (<div>Loading.</div>);
+                let priceData = JSON.parse(data.priceData[0].priceData);
+                priceData.type_id = data.priceData[0].type_id;
 
-                const priceData = JSON.parse(data.priceData[0].priceData);
-                
-                const ProductOptionTagName = optionsMap[!!priceData.type_id ? priceData.type_id : 'simple'];
+                const ProductOptionTagName = optionsMap[!!data.priceData[0].type_id ? data.priceData[0].type_id : 'simple'];
+
                 return (
                     <React.Fragment>
-                        <ProductOptionTagName priceData={priceData} {...props}/>
-                        {viewMode == 'product_page' && <TierPrices items={priceData.tier_prices} priceConfig={priceConfig}/>}
+                        <ProductOptionTagName priceData={priceData} {...props} />
+                        {viewMode == 'product_page' && <TierPrices items={priceData.tier_prices} priceConfig={priceConfig} />}
                     </React.Fragment>
                 )
             }}
