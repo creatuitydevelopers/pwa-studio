@@ -156,8 +156,8 @@ class ProductFullDetail extends Component {
 
     hasAllOptionsSet = () => {
         return isEqual(
-            Array.from(this.state.optionCodeSelection.keys()), 
-            Array.from(this.state.optionCodes.values())
+            Array.from(this.state.optionCodeSelection.keys()).sort(), 
+            Array.from(this.state.optionCodes.values()).sort()
         );
     }
 
