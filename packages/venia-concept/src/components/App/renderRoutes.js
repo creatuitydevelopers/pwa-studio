@@ -7,6 +7,7 @@ import StoreLocator from 'src/components/StoreLocator';
 import Search from 'src/RootComponents/Search';
 import EventsPage from 'src/RootComponents/EventsPage';
 import Rebates from 'src/RootComponents/Rebates';
+import EditCartItem from 'src/components/EditCartItem';
 
 const renderRoutingError = props => <ErrorView {...props} />;
 
@@ -15,6 +16,7 @@ const renderRoutes = () => (
         <Route exact path="/search.html" component={Search} />
         <Route exact path="/create-account" component={CreateAccountPage} />
         <Route exact path="/storelocator" component={StoreLocator} />
+        <Route path="/edit-cart-item/:cartItem" component={EditCartItem} />
         <Route exact path="/events" component={EventsPage} />
         <Route exact path="/rebates" component={Rebates} />
         <Route render={() => <Page>{renderRoutingError}</Page>} />

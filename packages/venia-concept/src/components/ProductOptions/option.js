@@ -40,7 +40,6 @@ class Option extends Component {
         const { handleSelectionChange, listComponent: ValueList, props } = this;
         const { classes, label, values, attribute_code } = props; 
         const labelTitle = label ? label : attribute_code.replace('_', ' ');
-        console.log(props);
 
         return (
             <div className={classes.root}>

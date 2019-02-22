@@ -24,6 +24,7 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
                     attribute_code
                     attribute_id
                     id
+                    
                     label
                     values {
                         default_label

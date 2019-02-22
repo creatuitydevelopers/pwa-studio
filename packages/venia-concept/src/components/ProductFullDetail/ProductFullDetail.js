@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { arrayOf, bool, func, number, shape, string } from 'prop-types';
 import { Form } from 'informed';
+import getUrlKey from 'src/util/getUrlKey';
 
 import classify from 'src/classify';
 import Button from 'src/components/Button';
@@ -12,9 +13,7 @@ import DeliveryMethods from 'src/components/DeliveryMethods';
 import { PriceWrapper } from 'src/components/RkStore';
 import { SingleRating } from 'src/components/Review';
 import every from 'lodash/every';
-
 import isEqual from 'lodash/isEqual';
-
 import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
 
 import defaultClasses from './productFullDetail.css';
@@ -137,8 +136,13 @@ class ProductFullDetail extends Component {
         if (productType === 'ConfigurableProduct') {
             appendOptionsToPayload(payload, optionSelections, optionCodes);
         }
-
-        addToCart(payload);
+    
+        if (this.props.cartItemId) {
+            this.props.addToCart(payload, this.props.cartItemId);
+            this.props.history.goBack();
+        } else {
+            addToCart(payload);
+        }
     };
 
     handleSelectionChange = (optionId, optionCode, selection) => {
@@ -245,7 +249,7 @@ class ProductFullDetail extends Component {
                 </section>
                 <section className={classes.cartActions}>
                     <Button priority="high" size="big" onClick={this.addToCart}>
-                        <span>Add to Cart</span>
+                        <span>{this.props.cartItemId ? 'Update' : 'Add to Cart'}</span>
                     </Button>
                 </section>
                 <section className={classes.description}>
