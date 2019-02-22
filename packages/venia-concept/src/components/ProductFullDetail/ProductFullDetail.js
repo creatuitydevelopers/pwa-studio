@@ -138,10 +138,14 @@ class ProductFullDetail extends Component {
         }
     
         if (this.props.cartItemId) {
-            this.props.addToCart(payload, this.props.cartItemId);
+            this.props.addToCart(payload, this.props.cartItemId).then((data) => {
+                console.log(data);
+            });
             this.props.history.goBack();
         } else {
-            addToCart(payload);
+            addToCart(payload).then((data) => {
+                console.log(data);
+            });
         }
     };
 
