@@ -138,14 +138,14 @@ class ProductFullDetail extends Component {
         }
     
         if (this.props.cartItemId) {
-            this.props.addToCart(payload, this.props.cartItemId).then((data) => {
-                console.log(data);
-            });
-            this.props.history.goBack();
+            addToCart(payload, this.props.cartItemId)
+                .then((data) => {
+                    this.props.history.goBack();
+                }).catch(e => {
+                    console.log(e);
+                });
         } else {
-            addToCart(payload).then((data) => {
-                console.log(data);
-            });
+            addToCart(payload)
         }
     };
 
@@ -180,6 +180,31 @@ class ProductFullDetail extends Component {
         }).product;
     }
 
+    get deliveryMethods() {
+        const { props } = this;
+        const { product } = props;
+    
+        const { configurable_options } = product;
+        const isConfigurable = Array.isArray(configurable_options);
+        const productId = isConfigurable && this.hasAllOptionsSet() ? this.getConfiguredProduct().id : product.id;
+
+        if(isConfigurable && !this.hasAllOptionsSet()) {
+            return null;
+        }
+
+        return (
+            <DeliveryMethods
+                productId={productId}
+                defaultMethod={this.state.deliveryMethodType}
+                selectedStore={this.state.deliveryMethodStore}
+                validationMessage={
+                    this.state.deliveryMethodValidationMessage
+                }
+                onChange={this.setDeliveryMethod}
+            />
+        );
+    }
+
     get fallback() {
         return loadingIndicator;
     }
@@ -204,7 +229,7 @@ class ProductFullDetail extends Component {
     }
 
     render() {
-        const { productOptions, props } = this;
+        const { productOptions, props, deliveryMethods } = this;
         const { classes, product } = props;
     
         const { configurable_options } = product;
@@ -229,19 +254,7 @@ class ProductFullDetail extends Component {
                     <Carousel images={product.media_gallery_entries} />
                 </section>
                 <section className={classes.options}>{productOptions}</section>
-                {
-                    (!isConfigurable || !!this.hasAllOptionsSet()) && 
-                        <DeliveryMethods
-                            productId={productId}
-                            defaultMethod={this.state.deliveryMethodType}
-                            selectedStore={this.state.deliveryMethodStore}
-                            validationMessage={
-                                this.state.deliveryMethodValidationMessage
-                            }
-                            onChange={this.setDeliveryMethod}
-                        />
-                }
-                
+                {deliveryMethods}
                 <section className={classes.quantity}>
                     <h2 className={classes.quantityTitle}>
                         <span>Quantity</span>
@@ -252,8 +265,15 @@ class ProductFullDetail extends Component {
                     />
                 </section>
                 <section className={classes.cartActions}>
+                    {
+                        this.props.cartItemId && 
+                            <Button priority="normal" size="big" onClick={this.props.history.goBack}>
+                                <span>Cancel</span>
+                            </Button>
+                    }
+                    
                     <Button priority="high" size="big" onClick={this.addToCart}>
-                        <span>{this.props.cartItemId ? 'Update' : 'Add to Cart'}</span>
+                        <span>{this.props.cartItemId ? 'Update Cart' : 'Add to Cart'}</span>
                     </Button>
                 </section>
                 <section className={classes.description}>
