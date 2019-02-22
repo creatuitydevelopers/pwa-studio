@@ -5,4 +5,5 @@
     margin: 0;
     list-style: none;
     border: 1px solid rgb(var(--rk--color__gray-2));
+    -webkit-overflow-scrolling: touch;
 }
