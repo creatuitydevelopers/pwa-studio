@@ -1144,6 +1144,11 @@ div[id^="unbxd_"] ul.unbxd-widgets li.unbxd-field-price:after {
     height: 1px;
     background: #e4e8eb;
 }
+
+div[id^="unbxd_rural-king_"]{
+    display: none;
+}
+
 .homepage__content{
     width: 100%;
     margin: 0;
