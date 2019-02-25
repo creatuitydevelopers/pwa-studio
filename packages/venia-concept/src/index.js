@@ -8,7 +8,7 @@ import store from 'src/store';
 import app from 'src/actions/app';
 import App from 'src/components/App';
 import './index.css';
-import './global.css';
+// import './global.css';
 
 const { BrowserPersistence } = Util;
 const apiBase = new URL('/graphql', location.origin).toString();
