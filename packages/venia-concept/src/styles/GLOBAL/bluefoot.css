@@ -1,0 +1,1114 @@
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _fonts declares fonts used in the BlueFoot
+ * The '@{prefix}-icons' font is generated using Icomoon <https://icomoon.io/>
+ * It contains icons from Googles material design icon set <https://github.com/google/material-design-icons>
+ *
+ */
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _var contains core variables used throughout the BlueFoot {less} files
+ *
+ */
+/*-- Layout Variables --*/
+/*-- Column Variables --*/
+/*-- Responsive Sizes --*/
+/*-- Font Variables --*/
+/*-- Colours --*/
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _common contains core classes used throughout the BlueFoot
+ *
+ */
+/*-- Layout Classes --*/
+.bluefoot-full-width {
+    float: left;
+    width: 100%;
+}
+.bluefoot-wrapper {
+    width: 100%;
+    max-width: 1260px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.bluefoot-entity {
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+.bluefoot-align-left {
+    text-align: left;
+}
+.bluefoot-align-right {
+    text-align: right;
+}
+.bluefoot-align-center {
+    text-align: center;
+}
+.bluefoot-align-center img {
+    margin-left: auto;
+    margin-right: auto;
+}
+.page-layout-full-width .page-main {
+    max-width: 100%;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+@media all and (min-width: 1500px) {
+    .bluefoot-wrapper {
+        max-width: 1440px;
+    }
+}
+/*-- Responsive Classes --*/
+.bluefoot-mobile-only {
+    display: none !important;
+}
+@media all and (max-width: 770px) {
+    .bluefoot-mobile-only {
+        display: block !important;
+    }
+    .bluefoot-mobile-hidden {
+        display: none !important;
+    }
+}
+/*-- Text Classes --*/
+.bluefoot-icons {
+    font-family: 'bluefoot-icons';
+}
+/*-- Animation --*/
+.transition {
+    transition: .5s;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _column contains {less} for columns
+ *
+ */
+/*-- Generate column widths based on @column_count --*/
+/*-- Tablet column width --*/
+/*-- Mobile column width --*/
+/*-- Column styles --*/
+.bluefoot-column {
+    float: left;
+    padding: 0 7.5px;
+    box-sizing: border-box;
+    min-height: 1px;
+}
+.bluefoot-column.right {
+    float: right;
+}
+.bluefoot-column.bluefoot-no-padding {
+    padding: 0;
+}
+.bluefoot-column-12 {
+    width: 100%;
+}
+.bluefoot-column-11 {
+    width: 91.66666667%;
+}
+.bluefoot-column-10 {
+    width: 83.33333333%;
+}
+.bluefoot-column-9 {
+    width: 75%;
+}
+.bluefoot-column-8 {
+    width: 66.66666667%;
+}
+.bluefoot-column-7 {
+    width: 58.33333333%;
+}
+.bluefoot-column-6 {
+    width: 50%;
+}
+.bluefoot-column-5 {
+    width: 41.66666667%;
+}
+.bluefoot-column-4 {
+    width: 33.33333333%;
+}
+.bluefoot-column-3 {
+    width: 25%;
+}
+.bluefoot-column-2 {
+    width: 16.66666667%;
+}
+.bluefoot-column-1 {
+    width: 8.33333333%;
+}
+/*-- Responsive --*/
+@media all and (max-width: 990px) {
+    .bluefoot-column-12 {
+        width: 100%;
+    }
+    .bluefoot-column-12.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-11 {
+        width: 100%;
+    }
+    .bluefoot-column-11.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-10 {
+        width: 100%;
+    }
+    .bluefoot-column-10.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-9 {
+        width: 100%;
+    }
+    .bluefoot-column-9.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-8 {
+        width: 100%;
+    }
+    .bluefoot-column-8.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-7 {
+        width: 100%;
+    }
+    .bluefoot-column-7.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-6 {
+        width: 100%;
+    }
+    .bluefoot-column-6.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-5 {
+        width: 50%;
+    }
+    .bluefoot-column-4 {
+        width: 50%;
+    }
+    .bluefoot-column-3 {
+        width: 50%;
+    }
+    .bluefoot-column-2 {
+        width: 50%;
+    }
+    .bluefoot-column-1 {
+        width: 50%;
+    }
+}
+@media all and (max-width: 770px) {
+    .bluefoot-column-12 {
+        width: 100%;
+    }
+    .bluefoot-column-12.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-11 {
+        width: 100%;
+    }
+    .bluefoot-column-11.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-10 {
+        width: 100%;
+    }
+    .bluefoot-column-10.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-9 {
+        width: 100%;
+    }
+    .bluefoot-column-9.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-8 {
+        width: 100%;
+    }
+    .bluefoot-column-8.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-7 {
+        width: 100%;
+    }
+    .bluefoot-column-7.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-6 {
+        width: 100%;
+    }
+    .bluefoot-column-6.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-5 {
+        width: 100%;
+    }
+    .bluefoot-column-5.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-4 {
+        width: 100%;
+    }
+    .bluefoot-column-4.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-3 {
+        width: 100%;
+    }
+    .bluefoot-column-3.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-2 {
+        width: 100%;
+    }
+    .bluefoot-column-2.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column-1 {
+        width: 100%;
+    }
+    .bluefoot-column-1.bluefoot-fixed-height-item {
+        height: auto !important;
+    }
+    .bluefoot-column {
+        padding: 0;
+    }
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _row contains {less} for rows
+ *
+ */
+.bluefoot-row {
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+    box-sizing: border-box;
+}
+.bluefoot-row.with-media-background,
+.bluefoot-row.bluefoot-wrapper-row {
+    margin-left: 0;
+    margin-right: 0;
+}
+.bluefoot-row:before,
+.bluefoot-row:after {
+    content: '';
+    display: table;
+}
+.bluefoot-row:after {
+    clear: both;
+}
+.col-main .bluefoot-row > .bluefoot-entity {
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+}
+.col-main .bluefoot-row > .bluefoot-entity.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _heading contains {less} for heading blocks
+ *
+ */
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _hr contains {less} for horizontal rules
+ *
+ */
+.bluefoot-hr {
+    margin: 15px auto;
+    max-width: 100%;
+    width: 100%;
+    border-width: 1px;
+    border: none;
+    border-top: solid;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _spacer contains {less} for spacers
+ *
+ */
+.bluefoot-spacer {
+    height: 15px;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _image contains {less} for image blocks
+ *
+ */
+.bluefoot-image a {
+    width: auto;
+    display: inline-block;
+}
+.bluefoot-image img {
+    max-width: 100%;
+    display: block;
+}
+.bluefoot-image figcaption {
+    text-align: center;
+    margin-top: 15px;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _video contains {less} for video iframes
+ *
+ */
+.bluefoot-video {
+    width: 100%;
+}
+.bluefoot-video iframe {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+    border: none;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _driver contains {less} for driver blocks
+ *
+ */
+.bluefoot-driver {
+    font-size: 0;
+}
+.bluefoot-driver a {
+    width: auto;
+    display: inline-block;
+    position: relative;
+}
+.bluefoot-driver img {
+    max-width: 100%;
+    display: block;
+}
+.bluefoot-driver:hover .bluefoot-driver-text {
+    background: rgba(0, 0, 0, 0.6);
+}
+.bluefoot-driver-text {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: black;
+    background: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    transition: .5s;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _slider contains {less} for carousel blocks and carousel slide items
+ * The carousel uses the jQuery plugin Slick <http://kenwheeler.github.io/slick/>
+ *
+ */
+.bluefoot-slider {
+    float: left;
+    width: 100%;
+    background: url('images/loading_36x36.gif') center 15px no-repeat;
+    min-height: 66px;
+}
+.bluefoot-slider.bluefoot-slider-with-dots {
+    margin-bottom: 50px;
+}
+.bluefoot-slider.slick-visible {
+    background: none;
+    min-height: 0;
+}
+.bluefoot-slider.slick-visible .bluefoot-advanced-slide,
+.bluefoot-slider.slick-visible .bluefoot-slide,
+.bluefoot-slider.slick-visible .slick-arrow,
+.bluefoot-slider.slick-visible .slick-dots {
+    opacity: 1;
+    visibility: visible;
+}
+.bluefoot-slider img {
+    max-width: 100%;
+    margin: 0 auto;
+}
+.bluefoot-slider .slick-arrow {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: -20px;
+    border: none;
+    z-index: 10;
+    padding: 0;
+    font-family: 'bluefoot-icons';
+    font-size: 14px;
+    transition: .5s;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    opacity: 0;
+}
+.bluefoot-slider .slick-arrow:focus {
+    outline: none;
+}
+.bluefoot-slider .slick-arrow span {
+    width: 40px;
+    padding: 0;
+}
+.bluefoot-slider .slick-next {
+    right: 0;
+}
+.bluefoot-slider .slick-prev {
+    left: 0;
+}
+.bluefoot-slider .slick-dots {
+    list-style: none;
+    transition: .5s;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    opacity: 0;
+    padding: 0;
+    text-align: center;
+    margin: 15px 0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: -50px;
+}
+.bluefoot-slider .slick-dots li {
+    display: inline-block;
+    margin: 0 7.5px;
+}
+.bluefoot-slider .slick-dots li button {
+    text-indent: -9999px;
+    height: 15px;
+    line-height: 15px;
+    width: 15px !important;
+    padding: 0 !important;
+    border-radius: 50%;
+    border: none;
+    background: #dddddd;
+}
+.bluefoot-slider .slick-dots li button:focus {
+    outline: none;
+}
+.bluefoot-slider .slick-dots li button:hover {
+    background: #3399cc;
+}
+.bluefoot-slider .slick-dots li.slick-active button {
+    background: #3399cc;
+}
+.bluefoot-advanced-slide,
+.bluefoot-slide {
+    margin-bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+}
+.bluefoot-advanced-slide.hidden-on-load,
+.bluefoot-slide.hidden-on-load {
+    display: none;
+}
+/* Advanced Slider */
+.bluefoot-advanced-slide {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.bluefoot-advanced-slide.bluefoot-slide-with-link {
+    cursor: pointer;
+}
+.bluefoot-advanced-slide .bluefoot-advanced-slide-content {
+    margin: 30px;
+    padding: 30px;
+    display: inline-block;
+    width: 40%;
+    text-align: center;
+}
+.bluefoot-advanced-slide .bluefoot-advanced-slide-content.bluefoot-with-overlay {
+    background: rgba(0, 0, 0, 0.9);
+}
+.bluefoot-advanced-slide .bluefoot-advanced-slide-content.bluefoot-with-overlay h2,
+.bluefoot-advanced-slide .bluefoot-advanced-slide-content.bluefoot-with-overlay h3,
+.bluefoot-advanced-slide .bluefoot-advanced-slide-content.bluefoot-with-overlay h4,
+.bluefoot-advanced-slide .bluefoot-advanced-slide-content.bluefoot-with-overlay p,
+.bluefoot-advanced-slide .bluefoot-advanced-slide-content.bluefoot-with-overlay li {
+    color: white;
+}
+.columns .column.main {
+    max-width: 100%;
+}
+@media all and (max-width: 990px) {
+    .bluefoot-advanced-slide {
+        text-align: center;
+    }
+    .bluefoot-advanced-slide .bluefoot-wrapper {
+        padding: 0;
+    }
+    .bluefoot-advanced-slide .bluefoot-advanced-slide-content {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+        box-sizing: border-box;
+    }
+}
+@media all and (max-width: 770px) {
+    .bluefoot-advanced-slide .bluefoot-advanced-slide-content {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding: 15px;
+    }
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _product contains {less} for products
+ *
+ */
+.bluefoot-product {
+    background: none;
+}
+.bluefoot-product li.item,
+.bluefoot-product .item li {
+    list-style: none;
+    margin-left: 0;
+    width: 100%;
+}
+.bluefoot-product li.item .product-image img,
+.bluefoot-product .item li .product-image img {
+    max-width: 100%;
+    height: auto;
+}
+.bluefoot-product ul.add-to-links {
+    padding-left: 0;
+}
+.bluefoot-product.products-grid {
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+.bluefoot-product.products-grid .item {
+    margin: 0 0 15px;
+}
+.bluefoot-product.products-grid .item .actions {
+    display: block;
+}
+.bluefoot-product.products-list {
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+.bluefoot-product-single .products .product {
+    width: 100%;
+    padding-left: 0;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _product-list contains {less} for product lists
+ *
+ */
+.bluefoot-product-list li.item,
+.bluefoot-product-list .item li {
+    list-style: none;
+    margin-left: 0;
+}
+.bluefoot-product-list li.item .product-image img,
+.bluefoot-product-list .item li .product-image img {
+    max-width: 100%;
+    height: auto;
+}
+.bluefoot-product-list ul.add-to-links {
+    padding-left: 0;
+}
+.bluefoot-product-list.products-grid {
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+.bluefoot-product-list.products-grid .item .actions {
+    display: block;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _app contains {less} for app single and lists
+ *
+ */
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _newsletter contains {less} for newsletter subscribe blocks
+ *
+ */
+.bluefoot-newsletter.block .actions .button {
+    float: left;
+}
+.bluefoot-newsletter.block .block-title {
+    border-top: none;
+}
+.bluefoot-newsletter .input-container {
+    position: relative;
+}
+.bluefoot-newsletter .input-container .actions {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.bluefoot-newsletter .input-container .actions .button {
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _accordion contains {less} for accordions
+ *
+ */
+.bluefoot-accordion .bluefoot-accordion-link,
+.bluefoot-accordion h4.bluefoot-accordion-link {
+    cursor: pointer;
+    margin: 0;
+    padding: 15px 0;
+    box-sizing: border-box;
+    line-height: 1.4em;
+}
+.bluefoot-accordion .bluefoot-accordion-link:after,
+.bluefoot-accordion h4.bluefoot-accordion-link:after {
+    content: '+';
+    font-family: 'bluefoot-icons';
+    float: right;
+    font-size: 1.4em;
+    width: 20px;
+}
+.bluefoot-accordion .bluefoot-accordion-inner {
+    box-sizing: border-box;
+    padding: 15px 0;
+    border-top: 1px solid #ededed;
+}
+.bluefoot-accordion-item {
+    border-bottom: 1px solid #ededed;
+    margin: 0;
+}
+.bluefoot-accordion-item.active .bluefoot-accordion-link:after {
+    content: '-';
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _tabs contains {less} for Tabs
+ *
+ */
+.bluefoot-tabs .bluefoot-accordion-link {
+    cursor: pointer;
+    margin-bottom: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    line-height: 1.4em;
+    border-bottom: 1px solid #ededed;
+}
+.bluefoot-tabs .bluefoot-accordion-link:after {
+    content: '+';
+    font-family: 'bluefoot-icons';
+    float: right;
+    font-size: 1.4em;
+}
+.bluefoot-tabs .bluefoot-tabs-navigation {
+    border-bottom: 1px solid #ededed;
+    margin: 0;
+    padding: 0;
+}
+.bluefoot-tabs .bluefoot-tabs-navigation li {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.bluefoot-tab {
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #ededed;
+    border-bottom: none;
+    border-right: none;
+    background: #f6f6f6;
+    padding: 0 15px;
+    display: block;
+    cursor: pointer;
+    position: relative;
+}
+.bluefoot-tab:after {
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    border-bottom: 1px solid white;
+    position: absolute;
+    display: none;
+}
+.bluefoot-tab.last {
+    border-right: 1px solid #ededed;
+}
+.bluefoot-tab.active,
+.bluefoot-tab:hover {
+    background: white;
+}
+.bluefoot-tab.active:after {
+    display: block;
+}
+.bluefoot-tab-inner {
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+.bluefoot-tab-content {
+    display: none;
+}
+.bluefoot-tab-content.active {
+    display: block;
+}
+@media all and (min-width: 771px) {
+    .bluefoot-tab-inner {
+        display: block !important;
+    }
+}
+@media all and (max-width: 770px) {
+    .bluefoot-tab-content {
+        display: block;
+    }
+    .bluefoot-tab-inner {
+        padding: 15px;
+        display: none;
+    }
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _map contains {less} for Map blocks
+ *
+ */
+.bluefoot-map-container {
+    width: 100%;
+    height: 300px;
+}
+.bluefoot-map {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _search contains {less} for search blocks
+ *
+ */
+.bluefoot-search-form .form-search {
+    position: relative;
+    padding: 0;
+}
+.bluefoot-search-form label {
+    display: none;
+}
+.bluefoot-search-form input[type="search"],
+.bluefoot-search-form input[type="text"] {
+    width: 100%;
+    height: 40px;
+    padding-right: 40px;
+}
+.bluefoot-search-form .search-button {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #999999;
+    font-size: 20px;
+    transition: .5s;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+}
+.bluefoot-search-form .search-button:before {
+    content: 's';
+    text-transform: none;
+    font-family: 'bluefoot-icons';
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+.bluefoot-search-form .search-button:hover {
+    color: black;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _code contains {less} for code
+ * Powered by Highlight js https://highlightjs.org/ and the github theme
+ *
+ */
+.bluefoot-code {
+    text-align: left !important;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 13px;
+    tab-size: 8;
+    line-height: 1.4em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bluefoot-code pre {
+    padding: 0;
+    border: none;
+    background: none;
+}
+.bluefoot-code code {
+    padding: 15px;
+    box-sizing: border-box;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Chloe Langford <chloe@gene.co.uk>
+ *
+ * _app contains general {less} for the apps
+ *
+ */
+.bluefoot-app .col2-right-layout .col-right .block-title {
+    border: 0;
+}
+.bluefoot-content-view-latest .bluefoot-content-latest-item {
+    padding: 9px;
+}
+.bluefoot-content-view-latest .bluefoot-published-date {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 5px 0 0;
+}
+.bluefoot-content-view-latest .bluefoot-excerpt {
+    margin: 5px 0 0;
+}
+.bluefoot-content-view-latest .bluefoot-latest-title {
+    margin: 0;
+}
+@media screen and (max-width: 770px) {
+    .bluefoot-app .col2-right-layout .col-right {
+        float: left;
+        width: 100%;
+    }
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Chloe Langford <chloe@gene.co.uk>
+ *
+ * _list contains {less} for the blog listing
+ *
+ */
+/*-- Basic page styling for app view and taxonomy view styles --*/
+.bluefoot-app img,
+.bluefoot-content-list img,
+.bluefoot-app iframe,
+.bluefoot-content-list iframe {
+    max-width: 100%;
+}
+.bluefoot-app .bluefoot-content-list-page-title h1,
+.bluefoot-content-list .bluefoot-content-list-page-title h1 {
+    border-bottom: none;
+}
+.bluefoot-content-summary {
+    float: left;
+    width: 100%;
+}
+.bluefoot-content-list-page-description {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ededed;
+}
+.bluefoot-app .pager {
+    margin-bottom: 0;
+    width: 100%;
+}
+.bluefoot-app .pager ol {
+    margin-bottom: 0;
+}
+.bluefoot-app .pager li {
+    list-style: none;
+    margin-left: 0;
+}
+/*-- List Styles --*/
+.bluefoot-content-list-item {
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+.bluefoot-content-list-item .bluefoot-published-date {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.bluefoot-content-list-item.last {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.bluefoot-no-content p {
+    font-weight: bold;
+}
+/*-- Grid Styles --*/
+.bluefoot-content-grid-item .bluefoot-published-date {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+/*-- Split View --*/
+.bluefoot-content-list-type-item {
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    float: left;
+    width: 100%;
+}
+.bluefoot-content-list-type-item.last {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+/**
+* BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * _view contains {less} for the blog view
+ *
+ */
+.bluefoot-content-view img,
+.bluefoot-content-view iframe {
+    max-width: 100%;
+}
+.bluefoot-content-view .bluefoot-content-view-page-title h1 {
+    border-bottom: none;
+}
+.bluefoot-content-view-share {
+    min-height: 40px;
+    margin-bottom: 15px;
+}
+.bluefoot-content-featured-image {
+    margin-bottom: 15px;
+    display: block;
+}
+.bluefoot-content-view-taxonomies {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ededed;
+}
+.bluefoot-content-view-taxonomies .bluefoot-content-view-taxonomy-list {
+    list-style: none;
+    padding-left: 0;
+}
+.bluefoot-content-view-taxonomies .bluefoot-content-view-taxonomy-list li {
+    display: inline;
+    margin-left: 0;
+}
+.bluefoot-content-view-taxonomies .bluefoot-content-view-taxonomy-list li.bluefoot-list-divider {
+    margin: 0 7.5px;
+    opacity: 0.5;
+}
+/*-- Comments --*/
+.bluefoot-content-view-comments {
+    padding-top: 15px;
+    border-top: 1px solid #ededed;
+}
