@@ -41,14 +41,6 @@ class ProductFullDetail extends Component {
         product: shape({
             id: number,
             sku: string.isRequired,
-            price: shape({
-                regularPrice: shape({
-                    amount: shape({
-                        currency: string.isRequired,
-                        value: number.isRequired
-                    })
-                }).isRequired
-            }).isRequired,
             media_gallery_entries: arrayOf(
                 shape({
                     label: string,

@@ -82,12 +82,15 @@ class CartOptions extends Component {
         const { optionSelections, quantity, deliveryMethodType, deliveryMethodStore } = this.state;
         const { configurable_options } = configItem;
         const isConfigurable = Array.isArray(configurable_options);
+
+        console.log(cartItem);
+
         const productType = isConfigurable
             ? 'ConfigurableProduct'
             : 'SimpleProduct';
 
         const payload = {
-            item: configItem,
+            item: isConfigurable ? configItem : cartItem,
             productType,
             quantity: quantity,
             delivery_method: {

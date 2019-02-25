@@ -4,14 +4,6 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
             sku
             id
             name
-            price {
-                regularPrice {
-                    amount {
-                        currency
-                        value
-                    }
-                }
-            }
             description
             media_gallery_entries {
                 label
