@@ -19,8 +19,18 @@ body[data-model-type="CMS_PAGE"] main > div {
     padding: 0 15px;
 }
 
+body[data-model-type="CMS_PAGE"] h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+body[data-model-type="CMS_PAGE"] h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
 @media all and (max-width: 767px) {
-    [data-role="column-group"] [data-role="column"][style]{
+    [data-role="column-group"] [data-role="column"][style] {
         width: 100% !important;
     }
 }
@@ -36,7 +46,6 @@ body[data-model-type="CMS_PAGE"] main > div {
 [href="/giftcard/balance"],
 [href="/gift-card-giveaway"],
 [href="/pet-food-price-guarantee"],
-[href="/faq"]
-{
+[href="/faq"] {
     display: none;
 }

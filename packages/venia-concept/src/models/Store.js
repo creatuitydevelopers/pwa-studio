@@ -50,3 +50,8 @@ export const findStoresWithinRadius = ({
             return a.distance - b.distance;
         });
 };
+
+
+export const getStoreByNumber = (stores, store_number) => {
+    return stores.filter(store => store.store_number == store_number)[0];
+};

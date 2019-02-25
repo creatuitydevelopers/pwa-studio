@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { arrayOf, number, func, shape, string } from 'prop-types';
 import { Price } from 'src/components/Price';
+import { DeliveryMethodLabel } from 'src/components/DeliveryMethods';
 import { resourceUrl } from 'src/drivers';
 import Kebab from './kebab';
 import Section from './section';
@@ -19,6 +20,7 @@ const imageHeight = 100;
 class Product extends Component {
     static propTypes = {
         classes: shape({
+            deliveryMethod: string,
             image: string,
             modal: string,
             name: string,
@@ -62,7 +64,6 @@ class Product extends Component {
     get options() {
         const { classes, item } = this.props;
         const options = item.options;
-console.log(item);
 
         return options && options.length > 0 ? (
             <dl className={classes.options}>
@@ -111,6 +112,9 @@ console.log(item);
                     <Link to={`${item.extension_attributes.url_key}`}>
                         {item.name}
                     </Link>
+                </div>
+                <div className={classes.deliveryMethod}>
+                    <DeliveryMethodLabel methodCode={item.extension_attributes.delivery_method} storeNumber={item.extension_attributes.store_number}/>
                 </div>
                 {options}
                 <div className={classes.quantity}>
