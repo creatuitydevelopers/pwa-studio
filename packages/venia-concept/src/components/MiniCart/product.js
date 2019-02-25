@@ -62,6 +62,7 @@ class Product extends Component {
     get options() {
         const { classes, item } = this.props;
         const options = item.options;
+console.log(item);
 
         return options && options.length > 0 ? (
             <dl className={classes.options}>

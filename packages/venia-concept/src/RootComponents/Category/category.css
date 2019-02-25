@@ -13,9 +13,19 @@
     text-transform: uppercase;
 }
 
-.title > small:before{
-    content:'-';
-    margin: 0 5px;
+.title > small{
+    display: block;
+}
+
+
+@media (min-width: 640px) {
+    .title > small{
+        display: inline-block;
+    }
+    .title > small:before{
+        content:'-';
+        margin: 0 5px;
+    }
 }
 
 .topPagination{

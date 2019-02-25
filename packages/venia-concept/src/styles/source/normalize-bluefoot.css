@@ -14,6 +14,11 @@
     margin-bottom: 15px;
 }
 
+
+body[data-model-type="CMS_PAGE"] main > div {
+    padding: 0 15px;
+}
+
 @media all and (max-width: 767px) {
     [data-role="column-group"] [data-role="column"][style]{
         width: 100% !important;
@@ -24,4 +29,14 @@
     [data-role='row'][data-appearance='contained'] {
         max-width: 1440px !important;
     }
+}
+
+[href="/employee/registration"],
+[href="/sales/guest/form/"],
+[href="/giftcard/balance"],
+[href="/gift-card-giveaway"],
+[href="/pet-food-price-guarantee"],
+[href="/faq"]
+{
+    display: none;
 }

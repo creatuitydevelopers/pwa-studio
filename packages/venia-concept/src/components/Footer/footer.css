@@ -1,31 +1,58 @@
 .root {
-    background-color: rgb(var(--venia-grey));
-    border-top: 1px solid rgb(var(--venia-border));
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background-color: rgb(var(--rk--color__gray-5));
+    border-top: 1px solid rgb(var(--rk--color__gray-5));
     color: black;
     margin-top: 1rem;
-    padding: 0 1rem;
+    overflow: hidden;
+    padding: 0 0 30px;
 }
 
-.tile {
-    border-bottom: 1px solid rgb(var(--venia-border));
-    padding: 1rem 2rem;
+.nav > div,
+.social > div {
+    margin: 0;
 }
 
-.tileTitle {
-    font-size: 1.25rem;
-    margin: 1rem 0;
+.copyright > div {
+    margin: 0 1rem;
 }
 
-.tileBody {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    margin: 1rem 0;
+.nav > div {
+    max-width: 1024px;
+    margin: 0 auto;
 }
 
+.banner,
+.nav,
+.social,
 .copyright {
-    display: block;
-    color: rgb(var(--venia-text-alt));
-    font-size: 0.75rem;
-    padding: 1.5rem 2rem;
-    text-align: center;
+    grid-column: 1/3;
+}
+
+.banner {
+    margin: -1rem;
+}
+
+
+@media (min-width: 768px) {
+
+
+    .nav > div {
+        padding: 15px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .social {
+        grid-column: 1/2;
+    }
+
+    .copyright {
+        grid-column: 2/3;
+    }
+
+    .copyright > div {
+        margin: 1rem;
+    }
 }
