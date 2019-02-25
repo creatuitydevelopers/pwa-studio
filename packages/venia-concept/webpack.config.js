@@ -86,6 +86,7 @@ module.exports = async function(env) {
                 },
                 {
                     test: /\.css$/,
+                    exclude: /(global.css|GLOBAL)/,
                     use: [
                         'style-loader',
                         {
@@ -96,6 +97,16 @@ module.exports = async function(env) {
                                     '[name]-[local]-[hash:base64:3]',
                                 modules: true
                             }
+                        }
+                    ]
+                },
+                {
+                    test: /global\.css$/,
+                    include: /global.css/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader'
                         }
                     ]
                 },
