@@ -15,7 +15,11 @@ const ItemPlaceholder = ({ children, classes }) => (
     <div className={classes.root_pending}>
         <div className={classes.images_pending}>{children}</div>
         <div className={classes.name_pending} />
-        <div className={classes.price_pending} />
+        <div className={classes.bottomWrapper}>
+            <div className={classes.price_pending} />
+            <div className={classes.rating_pending} />
+        </div>
+        
     </div>
 );
 
@@ -82,17 +86,21 @@ class GalleryItem extends Component {
                 </Link>
                 <div className={classes.bottomWrapper}>
                     <div className={classes.price}>
-                        <PriceWrapper product={item} viewMode={'category_page'}/>
+                        <PriceWrapper 
+                            productId={item.id} 
+                            placeholderStyle={{minHeight: '24px', maxWidth: '100px'}} 
+                            viewMode={'category_page'}
+                        />
                     </div>
                     <div className={classes.rating}>
-                    {!!rating && (
-                        <Rating
-                            showAverage={rating.showAverage}
-                            avgRating={rating.avgRating}
-                            overallRating={rating.overallRating}
-                            error = {!!rating.error  ? rating.error : null}
-                        />
-                    )}
+                        {!!rating && (
+                            <Rating
+                                showAverage={rating.showAverage}
+                                avgRating={rating.avgRating}
+                                overallRating={rating.overallRating}
+                                error = {!!rating.error  ? rating.error : null}
+                            />
+                        )}
                     </div>
                 </div>
             </div>

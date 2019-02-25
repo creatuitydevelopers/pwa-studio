@@ -22,10 +22,9 @@ class Option extends Component {
     };
 
     handleSelectionChange = selection => {
-        const { attribute_id, onSelectionChange } = this.props;
-
+        const { attribute_id, onSelectionChange, attribute_code } = this.props;
         if (onSelectionChange) {
-            onSelectionChange(attribute_id, selection);
+            onSelectionChange(attribute_id, attribute_code, selection);
         }
     };
 
@@ -39,12 +38,13 @@ class Option extends Component {
 
     render() {
         const { handleSelectionChange, listComponent: ValueList, props } = this;
-        const { classes, label, values } = props;
+        const { classes, label, values, attribute_code } = props; 
+        const labelTitle = label ? label : attribute_code.replace('_', ' ');
 
         return (
             <div className={classes.root}>
                 <h3 className={classes.title}>
-                    <span>{label}</span>
+                    <span>{labelTitle}</span>
                 </h3>
                 <ValueList
                     getItemKey={getItemKey}

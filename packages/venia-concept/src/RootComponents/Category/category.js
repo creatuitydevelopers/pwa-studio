@@ -5,7 +5,6 @@ import { connect, Query } from 'src/drivers';
 
 import classify from 'src/classify';
 import { setCurrentPage, setPrevPageTotal } from 'src/actions/catalog';
-import { loadingIndicator } from 'src/components/LoadingIndicator';
 import CategoryContent from './categoryContent';
 import defaultClasses from './category.css';
 import categoryQuery from 'src/queries/getCategory.graphql';
@@ -26,7 +25,12 @@ class Category extends Component {
     // TODO: Should not be a default here, we just don't have
     // the wiring in place to map route info down the tree (yet)
     static defaultProps = {
-        id: 3
+        id: 3,
+        currentPage: 1,
+        setCurrentPage: () => {},
+        setPrevPageTotal: () => {},
+        prevPageTotal: 1,
+        pageSize: 12
     };
 
     componentDidUpdate(prevProps) {

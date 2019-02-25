@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func, object, shape, string, oneOf } from 'prop-types';
+import { func, object, shape, string, oneOf, number } from 'prop-types';
 
 import classify from 'src/classify';
 import defaultClasses from './deliveryMethods.css';
@@ -30,7 +30,7 @@ class DeliveryMethods extends Component {
         defaultMethod: string,
         selectedStore: object,
         validationMessage: string,
-        product: object.isRequired,
+        productId: number.isRequired,
         onChange: func.isRequired,
         viewMode: oneOf(['product-page', 'cart'])
     };
@@ -50,7 +50,7 @@ class DeliveryMethods extends Component {
     render() {
         const {
             defaultMethod,
-            product,
+            productId,
             currentStore,
             selectedStore,
             validationMessage,
@@ -65,7 +65,7 @@ class DeliveryMethods extends Component {
                 <h2 className={classes.header}>
                     <span>Delivery Methods</span>
                 </h2>
-                <Query query={searchQuery} variables={{ id: product.id }}>
+                <Query query={searchQuery} variables={{ id: productId }}>
                     {({ loading, error, data }) => {
                         if (error)
                             return (

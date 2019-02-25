@@ -4,14 +4,6 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
             sku
             id
             name
-            price {
-                regularPrice {
-                    amount {
-                        currency
-                        value
-                    }
-                }
-            }
             description
             media_gallery_entries {
                 label
@@ -24,6 +16,7 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
                     attribute_code
                     attribute_id
                     id
+                    
                     label
                     values {
                         default_label
@@ -36,8 +29,17 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
                 variants {
                     product {
                         outerwear_size
+                        belt_size
                         color
                         id
+                        price {
+                            regularPrice {
+                                amount {
+                                    currency
+                                    value
+                                }
+                            }
+                        }
                         media_gallery_entries {
                             disabled
                             file

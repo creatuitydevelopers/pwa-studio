@@ -4,10 +4,14 @@ import { Price } from 'src/components/Price';
 import { resourceUrl } from 'src/drivers';
 import Kebab from './kebab';
 import Section from './section';
+import { withRouter } from 'react-router-dom';
 
 import classify from 'src/classify';
 import defaultClasses from './product.css';
 import { Link } from 'react-router-dom';
+
+import { connect } from 'src/drivers';
+import { closeDrawer } from 'src/actions/app';
 
 const imageWidth = 80;
 const imageHeight = 100;
@@ -152,7 +156,14 @@ class Product extends Component {
     };
 
     editItem = () => {
-        this.props.openOptionsDrawer(this.props.item);
+        const { history } = this.props;
+        const { product_type } = this.props.item;
+        if(product_type === 'configurable') {
+            history.push(`\/edit-cart-item\/${this.props.item.item_id}\/product\/${this.props.item.extension_attributes.url_key}`);
+            this.props.closeDrawer();
+        } else {
+            this.props.openOptionsDrawer(this.props.item);
+        }
     };
 
     removeItem = () => {
@@ -163,4 +174,11 @@ class Product extends Component {
     };
 }
 
-export default classify(defaultClasses)(Product);
+const mapDispatchToProps = {
+    closeDrawer
+};
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(withRouter(classify(defaultClasses)(Product)));

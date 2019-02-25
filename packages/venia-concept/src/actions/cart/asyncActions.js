@@ -180,7 +180,8 @@ export const updateItemInCart = (payload = {}, targetItemId) => {
 
             if (productType === 'ConfigurableProduct') {
                 Object.assign(itemPayload, {
-                    sku: parentSku,
+                    parentSku: parentSku,
+                    selected_configurable_option: item.id,
                     product_type: 'configurable',
                     product_option: {
                         extension_attributes: {

@@ -1,22 +1,17 @@
 import React from 'react';
-import {compose} from "redux";
-import {oneOf, object, shape, string} from 'prop-types';
+import { compose } from "redux";
+import { oneOf, object, shape, string, number } from 'prop-types';
 
-import {SimpleProductPrice, ConfigurableProductPrice, GiftCardProductPrice, BoundleProductPrice, TierPrices} from "src/components/RkStore/PriceWrapper";
+import { SimpleProductPrice, ConfigurableProductPrice, GiftCardProductPrice, BoundleProductPrice, TierPrices } from "src/components/RkStore/PriceWrapper";
 
-import gql from 'graphql-tag';
+import getProductPrice from 'src/queries/getProductPrice.graphql'
 import { Query } from 'react-apollo';
 
-const searchQuery = gql`
-    query($ids: [Int]) {
-        priceData(productIds: $ids) {
-            priceData
-        }
-    }
-`;
+import classify from 'src/classify';
+import defaultClasses from './PriceWrapper.css';
 
 const PriceWrapper = (props) => {
-    const {priceConfig, product, viewMode} = props;
+    const { priceConfig, productId, viewMode, placeholderStyle, classes } = props;
 
     const optionsMap = {
         simple: SimpleProductPrice,
@@ -26,17 +21,18 @@ const PriceWrapper = (props) => {
     };
 
     return (
-        <Query query={searchQuery} variables={{ ids: [product.id] }}>
+        <Query query={getProductPrice} variables={{ ids: [productId] }}>
             {({ loading, error, data }) => {
                 if (error) return (<div>Something went wrong. Please refresh page.</div>);
-                if (loading) return (<div>Loading.</div>);
+                if (loading) return (<div className={classes.root_loading} style={placeholderStyle}></div>);
+                let priceData = JSON.parse(data.priceData[0].priceData);
+                
+                const ProductOptionTagName = optionsMap[!!data.priceData[0].type_id ? data.priceData[0].type_id : 'simple'];
 
-                const priceData = JSON.parse(data.priceData[0].priceData);
-                const ProductOptionTagName = optionsMap[!!priceData.type_id ? priceData.type_id : 'simple'];
                 return (
                     <React.Fragment>
-                        <ProductOptionTagName priceData={priceData} {...props}/>
-                        {viewMode == 'product_page' && <TierPrices items={priceData.tier_prices} priceConfig={priceConfig}/>}
+                        <ProductOptionTagName priceData={priceData} {...props} />
+                        {viewMode == 'product_page' && <TierPrices items={priceData.tier_prices} priceConfig={priceConfig} />}
                     </React.Fragment>
                 )
             }}
@@ -50,7 +46,8 @@ PriceWrapper.propsType = {
         partsClasses: object,
         locale: string,
     }),
-    product: object.isRequired,
+    placeholderStyle: object,
+    productId: number.isRequired,
     viewMode: oneOf(['product_page', 'category_page'])
 };
 
@@ -64,7 +61,9 @@ PriceWrapper.defaultProps = {
         },
         locale: `en-US`
     },
-    viewMode: 'product_page'
+    viewMode: 'product_page',
+    placeholderStyle: {}
 };
 
-export default PriceWrapper;
+
+export default classify(defaultClasses)(PriceWrapper);

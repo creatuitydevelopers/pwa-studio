@@ -51,6 +51,10 @@ class Product extends Component {
         })
     };
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     addToCart = async (item, quantity) => {
         const { guestCartId } = this.props;
         await this.props.addItemToCart({ guestCartId, item, quantity });
@@ -67,7 +71,7 @@ class Product extends Component {
                     if (loading) return loadingIndicator;
 
                     const product = data.productDetail.items[0];
-
+                    
                     return (
                         <ProductFullDetail
                             product={product}
