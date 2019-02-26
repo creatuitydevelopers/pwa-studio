@@ -1,7 +1,8 @@
 .root {
     display: grid;
     grid-gap: 0.5rem;
-    grid-template-rows: calc(((100vh - 160px) / 2) - 124px) 60px minmax(30px, auto);
+    grid-template-rows: minmax(200px,calc(((100vh - 160px) / 2) - 124px) ) 60px minmax(30px, auto);
+    
 }
 
 .images {
