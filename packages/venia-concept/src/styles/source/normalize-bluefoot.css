@@ -19,7 +19,7 @@ body[data-model-type="CMS_PAGE"] main > div {
     padding: 0 15px;
 }
 
-body[data-model-type="CMS_PAGE"] h2 {
+body[data-model-type="CMS_PAGE"] main h2 {
     margin-top: 2.5rem;
     margin-bottom: 1rem;
 }

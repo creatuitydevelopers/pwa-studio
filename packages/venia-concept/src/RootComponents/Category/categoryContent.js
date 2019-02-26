@@ -13,6 +13,7 @@ class CategoryContent extends Component {
         const title = data ? data.category.name : null;
         const subtitle = data && !!data.category.product_count ? `Showing ${(currentPage - 1) * pageSize  +1}-${currentPage * pageSize} of ${data.category.products.total_count} Results` : 'No Products found';
         const renderGallery = data === undefined || (data && !!data.category.products.items.length);
+        const renderPagination = data && !!data.category.products.items.length;
 
         return (
             <article className={classes.root}>
@@ -26,17 +27,21 @@ class CategoryContent extends Component {
                     <small>{subtitle}</small>
                 </h1>}
                 {!title && <div className={classes.categoryTitlePlaceholder}></div> }
-                {renderGallery && 
+                { renderGallery && 
                     <React.Fragment>
-                        <div className={classes.topPagination}>
-                            <Pagination pageControl={pageControl} />
-                        </div>
+                        { renderPagination && 
+                            <div className={classes.topPagination}>
+                                <Pagination pageControl={pageControl} />
+                            </div>
+                        }
                         <section className={classes.gallery}>
                             <Gallery data={items} title={title} pageSize={pageSize} />
                         </section>
-                        <div className={classes.pagination}>
-                            <Pagination pageControl={pageControl} />
-                        </div>
+                        { renderPagination && 
+                            <div className={classes.pagination}>
+                                <Pagination pageControl={pageControl} />
+                            </div>
+                        }
                     </React.Fragment>
                 }
             </article>
