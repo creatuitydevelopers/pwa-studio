@@ -83,8 +83,6 @@ class CartOptions extends Component {
         const { configurable_options } = configItem;
         const isConfigurable = Array.isArray(configurable_options);
 
-        console.log(cartItem);
-
         const productType = isConfigurable
             ? 'ConfigurableProduct'
             : 'SimpleProduct';

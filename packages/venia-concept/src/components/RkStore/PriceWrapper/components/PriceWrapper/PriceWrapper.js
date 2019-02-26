@@ -26,7 +26,7 @@ const PriceWrapper = (props) => {
                 if (error) return (<div>Something went wrong. Please refresh page.</div>);
                 if (loading) return (<div className={classes.root_loading} style={placeholderStyle}></div>);
                 let priceData = JSON.parse(data.priceData[0].priceData);
-                
+
                 const ProductOptionTagName = optionsMap[!!data.priceData[0].type_id ? data.priceData[0].type_id : 'simple'];
 
                 return (

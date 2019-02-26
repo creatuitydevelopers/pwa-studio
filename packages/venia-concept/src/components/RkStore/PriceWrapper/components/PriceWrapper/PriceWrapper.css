@@ -1,10 +1,6 @@
-.root {
-    display: flex;
-    line-height: 1;
-}
 
 .root_loading {
     min-width: 50%;
-    composes: root;
+    max-width: 200px;
     composes: placeholder from '../../../../../styles/source/placeholder.css';
 }

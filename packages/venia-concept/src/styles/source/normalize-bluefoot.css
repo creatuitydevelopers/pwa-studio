@@ -14,8 +14,23 @@
     margin-bottom: 15px;
 }
 
+
+body[data-model-type="CMS_PAGE"] main > div {
+    padding: 0 15px;
+}
+
+body[data-model-type="CMS_PAGE"] h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+body[data-model-type="CMS_PAGE"] h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
 @media all and (max-width: 767px) {
-    [data-role="column-group"] [data-role="column"][style]{
+    [data-role="column-group"] [data-role="column"][style] {
         width: 100% !important;
     }
 }
@@ -24,4 +39,13 @@
     [data-role='row'][data-appearance='contained'] {
         max-width: 1440px !important;
     }
+}
+
+[href="/employee/registration"],
+[href="/sales/guest/form/"],
+[href="/giftcard/balance"],
+[href="/gift-card-giveaway"],
+[href="/pet-food-price-guarantee"],
+[href="/faq"] {
+    display: none;
 }

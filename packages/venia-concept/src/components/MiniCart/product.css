@@ -5,6 +5,7 @@
     grid-gap: 0 1rem;
     grid-template-areas:
         'image name'
+        'image deliveryMethod'
         'image options'
         'image quantity';
     grid-template-columns: 80px 1fr;
@@ -47,6 +48,15 @@
     font-weight: 600;
     grid-area: name;
     padding-top: 0.125rem;
+}
+
+.deliveryMethod{
+    font-size: 0.875rem;
+    grid-area: deliveryMethod;
+}
+
+.deliveryMethod span{
+    font-size: 0.875rem;
 }
 
 .options {
