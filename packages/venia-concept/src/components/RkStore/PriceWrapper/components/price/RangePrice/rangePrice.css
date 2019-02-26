@@ -1,28 +1,37 @@
-.root{
+.root {
     display: grid;
     align-items: center;
 }
 
-.root.mode__product_page{
+.root.mode__product_page {
     grid-template-columns: auto 30px auto;
     grid-template-rows: 60px;
-    width: 200px;
+    width: 250px;
 }
-.root.mode__category_page{
+
+@media (max-width: 1023px) {
+    .root.mode__product_page {
+        min-width: 250px;
+        width: auto;
+    }
+}
+
+.root.mode__category_page {
     grid-template-columns: auto 30px;
     width: 60px;
 }
 
-.separator{
+.separator {
     text-align: center;
 }
 
 .minPrice,
-.maxPrice{
+.maxPrice {
     display: inline-flex;
 }
 
 .minPrice > div,
-.maxPrice > div{
+.maxPrice > div {
     display: inline-flex;
 }
+
