@@ -178,7 +178,7 @@ class ProductFullDetail extends Component {
     
         const { configurable_options } = product;
         const isConfigurable = Array.isArray(configurable_options);
-        const productId = isConfigurable && this.hasAllOptionsSet() ? this.getConfiguredProduct().id : product.id;
+        const productSku = isConfigurable && this.hasAllOptionsSet() ? this.getConfiguredProduct().sku : product.sku;
 
         if(isConfigurable && !this.hasAllOptionsSet()) {
             return null;
@@ -186,7 +186,7 @@ class ProductFullDetail extends Component {
 
         return (
             <DeliveryMethods
-                productId={productId}
+                productSku={productSku}
                 defaultMethod={this.state.deliveryMethodType}
                 selectedStore={this.state.deliveryMethodStore}
                 validationMessage={

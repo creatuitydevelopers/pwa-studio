@@ -10,8 +10,8 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
 const searchQuery = gql`
-    query($id: Int) {
-        inStorePickupAvailability(product_id: $id) {
+    query($sku: String) {
+        inStorePickupAvailability(sku: $sku) {
             method
             stores {
                 store_number
@@ -30,7 +30,7 @@ class DeliveryMethods extends Component {
         defaultMethod: string,
         selectedStore: object,
         validationMessage: string,
-        productId: number.isRequired,
+        productSku: string.isRequired,
         onChange: func.isRequired,
         viewMode: oneOf(['product-page', 'cart'])
     };
@@ -50,7 +50,7 @@ class DeliveryMethods extends Component {
     render() {
         const {
             defaultMethod,
-            productId,
+            productSku,
             currentStore,
             selectedStore,
             validationMessage,
@@ -65,7 +65,7 @@ class DeliveryMethods extends Component {
                 <h2 className={classes.header}>
                     <span>Delivery Methods</span>
                 </h2>
-                <Query query={searchQuery} variables={{ id: productId }}>
+                <Query query={searchQuery} variables={{ sku: productSku }}>
                     {({ loading, error, data }) => {
                         if (error)
                             return (
