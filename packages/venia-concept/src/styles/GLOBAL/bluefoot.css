@@ -464,7 +464,7 @@
 .bluefoot-slider {
     float: left;
     width: 100%;
-    background: url('images/loading_36x36.gif') center 15px no-repeat;
+    /*background: url('images/loading_36x36.gif') center 15px no-repeat;*/
     min-height: 66px;
 }
 .bluefoot-slider.bluefoot-slider-with-dots {
