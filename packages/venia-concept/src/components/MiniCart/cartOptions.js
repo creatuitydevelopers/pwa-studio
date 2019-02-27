@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { array, object, func, number, shape, string } from 'prop-types';
 import { Form } from 'informed';
-import { Price } from '@magento/peregrine';
+import { Price } from 'src/components/Price';
 
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import classify from 'src/classify';

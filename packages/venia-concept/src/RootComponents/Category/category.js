@@ -26,11 +26,11 @@ class Category extends Component {
     // the wiring in place to map route info down the tree (yet)
     static defaultProps = {
         id: 3,
-        currentPage: 1,
-        setCurrentPage: () => {},
-        setPrevPageTotal: () => {},
-        prevPageTotal: 1,
-        pageSize: 12
+        // currentPage: 1,
+        // setCurrentPage: () => {},
+        // setPrevPageTotal: () => {},
+        // prevPageTotal: 1,
+        // pageSize: 12
     };
 
     componentDidUpdate(prevProps) {
