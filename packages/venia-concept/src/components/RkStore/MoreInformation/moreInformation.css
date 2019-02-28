@@ -1,0 +1,12 @@
+.root{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: .5rem 1.5rem;
+    width: auto;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.root dt{
+    font-weight: bold;
+}

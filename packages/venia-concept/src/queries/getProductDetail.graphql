@@ -5,6 +5,16 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
             id
             name
             description
+            product_specs
+            product_warranty
+            product_manual
+            product_warnings_restrictions
+            product_qa
+             front_attributes{
+                   name
+                   code
+                   value
+                 }
             media_gallery_entries {
                 label
                 position
