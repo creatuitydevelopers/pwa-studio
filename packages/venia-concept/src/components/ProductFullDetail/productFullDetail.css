@@ -177,6 +177,8 @@
     grid-column-end: 3;
     /*grid-column: 1 / span 1;*/
     grid-row: fold / span 1;
+    border: none;
+    padding-bottom: 0;
 }
 
 @media (min-width: 1024px) {
