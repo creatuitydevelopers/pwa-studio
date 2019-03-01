@@ -10,8 +10,9 @@ import Carousel from 'src/components/ProductImageCarousel';
 import Quantity from 'src/components/ProductQuantity';
 import RichText from 'src/components/RichText';
 import DeliveryMethods from 'src/components/DeliveryMethods';
-import { PriceWrapper } from 'src/components/RkStore';
+import { PriceWrapper, MoreInformation } from 'src/components/RkStore';
 import { SingleRating } from 'src/components/Review';
+import { Tabs, Tab} from 'src/components/Tabs';
 import every from 'lodash/every';
 import isEqual from 'lodash/isEqual';
 import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
@@ -36,6 +37,7 @@ class ProductFullDetail extends Component {
             quantity: string,
             quantityTitle: string,
             root: string,
+            tabs: string,
             title: string
         }),
         product: shape({
@@ -268,11 +270,36 @@ class ProductFullDetail extends Component {
                         <span>{this.props.cartItemId ? 'Update Cart' : 'Add to Cart'}</span>
                     </Button>
                 </section>
-                <section className={classes.description}>
-                    <h2 className={classes.descriptionTitle}>
-                        <span>Details</span>
-                    </h2>
-                    <RichText content={product.description} />
+                <section className={classes.tabs}>
+                    <Tabs>
+                        <Tab title={`Details`}>
+                            <RichText content={product.description} />
+                        </Tab>
+                        {!!product.front_attributes &&
+                        <Tab title={`More Information`}>
+                            <MoreInformation attributes={product.front_attributes}/>
+                        </Tab>}
+                        {!!product.product_specs &&
+                        <Tab title={`Specs`}>
+                            <RichText content={product.product_specs} />
+                        </Tab>}
+                        {!!product.product_warranty &&
+                        <Tab title={`Warranty`}>
+                            <RichText content={product.product_warranty} />
+                        </Tab>}
+                        {!!product.product_manual &&
+                        <Tab title={`Product Manual`}>
+                            <RichText content={product.product_manual} />
+                        </Tab>}
+                        {!!product.product_warnings_restrictions &&
+                        <Tab title={`Warnings & Restrictions`}>
+                            <RichText content={product.product_warnings_restrictions} />
+                        </Tab>}
+                        {!!product.product_qa &&
+                        <Tab title={`Q & A`}>
+                            <RichText content={product.product_qa} />
+                        </Tab>}
+                    </Tabs>
                 </section>
             </Form>
         );
