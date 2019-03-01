@@ -8,6 +8,7 @@ import Search from 'src/RootComponents/Search';
 import EventsPage from 'src/RootComponents/EventsPage';
 import Rebates from 'src/RootComponents/Rebates';
 import EditCartItem from 'src/components/EditCartItem';
+import Weeklyad from 'src/components/Weeklyad';
 
 const renderRoutingError = props => <ErrorView {...props} />;
 
@@ -19,6 +20,7 @@ const renderRoutes = () => (
         <Route path="/edit-cart-item/:cartItem" component={EditCartItem} />
         <Route exact path="/events" component={EventsPage} />
         <Route exact path="/rebates" component={Rebates} />
+        <Route exact path="/weeklyad" component={Weeklyad} />
         <Route render={() => <Page>{renderRoutingError}</Page>} />
     </Switch>
 );
