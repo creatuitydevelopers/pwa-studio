@@ -1,12 +1,13 @@
 import React from 'react';
+import { object, string } from 'prop-types';
 
-import {SpecialPrice, RegularPrice, MsrpPrice, TierPrices} from "src/components/RkStore/PriceWrapper";
+import {SpecialPrice, RegularPrice, MsrpPrice} from "src/components/RkStore/PriceWrapper";
 import {showZeroPrice, isPriceMoreThanZero} from "src/models/Pricing";
 
 const ProductPrice = (props) => {
-    const {children, priceData} = props;
+    const {children, type, priceData} = props;
 
-    if (!showZeroPrice(priceData) && !isPriceMoreThanZero(priceData)) return null;
+    if (!showZeroPrice(type) && !isPriceMoreThanZero(priceData)) return null;
 
     if (!!priceData.msrp) return <MsrpPrice {...props} />;
 
@@ -16,5 +17,14 @@ const ProductPrice = (props) => {
 
     return (<RegularPrice {...props}/>);
 }
+
+ProductPrice.propTypes = {
+    type: string,
+    priceData: object
+};
+
+ProductPrice.defaultProps = {
+    type: 'simple'
+};
 
 export default ProductPrice;

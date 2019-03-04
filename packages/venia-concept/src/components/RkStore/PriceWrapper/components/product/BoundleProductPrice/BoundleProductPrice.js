@@ -6,7 +6,7 @@ const BoundleProductPrice = (props) => {
     const {priceData} = props;
 
     return (
-        <ProductPrice {...props}>
+        <ProductPrice type={`boundle`} {...props}>
             {!!priceData.show_range && <FromPrice {...props}/>}
         </ProductPrice>
     );
