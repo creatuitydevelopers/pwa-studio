@@ -884,7 +884,7 @@ div[data-role='video'] iframe {
 }
 .pagebuilder-accordion > .item.title > .switch {
   border-top: 1px solid #cccccc;
-  height: 40px;
+  /* height: 40px; */
   padding: 1px 10px 1px 10px;
   font-weight: 700;
   line-height: 40px;
