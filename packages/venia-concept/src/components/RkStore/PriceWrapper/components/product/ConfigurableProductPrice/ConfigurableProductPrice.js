@@ -6,7 +6,7 @@ const ConfigurableProductPrice = (props) => {
     const {priceData} = props;
 
     return (
-        <ProductPrice {...props}>
+        <ProductPrice type={`configurable`} {...props}>
             {!!priceData.min_price && !!priceData.max_price && <RangePrice {...props}/>}
         </ProductPrice>
     );

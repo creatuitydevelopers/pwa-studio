@@ -6,7 +6,7 @@ const GiftCardProductPrice = (props) => {
     const {priceData} = props;
 
     return (
-        <ProductPrice {...props}>
+        <ProductPrice type={`giftcard`} {...props}>
             {!!priceData.show_range && <FromPrice {...props}/>}
         </ProductPrice>
     );
