@@ -1,50 +1,20 @@
-.placeholder{
-    background: linear-gradient(
-            -45deg,
-            rgb(var(--venia-grey)),
-            #fff,
-            rgb(var(--venia-grey)),
-            #fff
-    );
-    background-size: 400% 400%;
-    -webkit-animation: Gradient 10s ease infinite;
-    -moz-animation: Gradient 10s ease infinite;
-    animation: Gradient 10s ease infinite;
-}
-
-
-@-webkit-keyframes Gradient {
-    0% {
-        background-position: 0% 50%;
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
     }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
+    100%{
+        background-position: 468px 0
     }
 }
-
-@-moz-keyframes Gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes Gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+.placeholder {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: rgb(var(--rk--color__gray-7));
+    background: linear-gradient(to right, rgb(var(--rk--color__gray-7)) 8%, #fdfdfd 18%, rgb(var(--rk--color__gray-7))33%);
+    background-size: 1000px 104px;
+    position: relative;
+    overflow: hidden;
 }
