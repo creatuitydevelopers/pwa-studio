@@ -27,7 +27,6 @@ class Tabs extends React.Component {
     render() {
         const {classes, children} = this.props;
 
-        console.log();
         return (
             <div className={classes.root}>
                 {

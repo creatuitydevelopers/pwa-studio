@@ -304,6 +304,13 @@
     white-space: normal;
 }
 
+.image-gallery-thumbnail .image-gallery-thumbnail-inner,
+.image-gallery-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .image-gallery-image > img {
     max-width: 100%;
     max-height: 100%;

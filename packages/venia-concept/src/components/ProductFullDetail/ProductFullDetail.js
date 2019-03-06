@@ -24,8 +24,6 @@ import appendOptionsToPayload from 'src/util/appendOptionsToPayload';
 import "./image-gallery.css";
 
 
-
-
 const Options = React.lazy(() => import('../ProductOptions'));
 
 class ProductFullDetail extends Component {
@@ -142,7 +140,7 @@ class ProductFullDetail extends Component {
         if (productType === 'ConfigurableProduct') {
             appendOptionsToPayload(payload, optionSelections, optionCodes);
         }
-    
+
         if (this.props.cartItemId) {
             addToCart(payload, this.props.cartItemId)
                 .then(() => {
@@ -159,6 +157,8 @@ class ProductFullDetail extends Component {
                     this.setState({
                         addToCardLoader: false
                     });
+                }).catch(e => {
+                    console.log(e);
                 });
         }
     };

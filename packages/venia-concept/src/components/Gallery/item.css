@@ -1,8 +1,8 @@
 .root {
     display: grid;
     grid-gap: 0.5rem;
-    grid-template-rows: minmax(200px,calc(((100vh - 160px) / 2) - 124px) ) 60px minmax(30px, auto);
-    
+    grid-template-rows: minmax(200px, calc(((100vh - 160px) / 2) - 124px)) 60px minmax(30px, auto);
+
 }
 
 .images {
@@ -51,7 +51,7 @@
     display: block;
 
     position: absolute;
-    top:  0;
+    top: 0;
     left: 0;
     height: 100%;
     width: 100%;
@@ -90,7 +90,7 @@
     overflow: hidden;
 }
 
-.name:hover{
+.name:hover {
     text-decoration: underline;
 }
 
@@ -113,6 +113,50 @@
 .bottomWrapper {
     display: grid;
     grid-template-columns: auto 90px;
+    grid-gap: 5px;
+    border-bottom: 1px solid rgba(var(--rk--color__gray-2));
+}
+
+.stockAvailable,
+.stockUnavailable {
+    margin: 0 10px 8px 0;
+    font-size: 14px;
+    line-height: 18px;
+    display: inline-block;
+}
+
+.stockAvailable {
+    position: relative;
+    padding-left: 18px;
+    color: rgba(var(--rk--color__green));
+}
+
+.stockUnavailable {
+    color: rgba(var(--rk--color__red));
+}
+
+.stockAvailable:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border: 1px solid rgba(var(--rk--color__green));
+    border-radius: 50%;
+}
+
+.stockAvailable:after {
+    content: 'L';
+    position: absolute;
+    top: -2px;
+    left: -1px;
+    width: 14px;
+    color: rgba(var(--rk--color__green));
+    transform-origin: 50% 50%;
+    transform: scale(-1, 1) rotate(-45deg);
+    font-size: 0.8rem;
+    height: 14px;
 }
 
 /* state: pending */
@@ -146,10 +190,20 @@
 .price_pending {
     composes: price;
     composes: placeholder from '../../styles/source/placeholder.css';
-    width: 3rem;
+    height: 24px;
+    width: 5rem;
+}
+
+.stock_pending {
+    composes: placeholder from '../../styles/source/placeholder.css';
+    height: 18px;
+    width: 5rem;
+    margin-bottom: 8px;
 }
 
 .rating_pending {
     composes: rating;
     composes: placeholder from '../../styles/source/placeholder.css';
+    height: 24px;
+    width: 90px;
 }

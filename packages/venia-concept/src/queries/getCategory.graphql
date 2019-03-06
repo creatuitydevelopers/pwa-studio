@@ -10,13 +10,9 @@ query category($id: Int!, $pageSize: Int!, $currentPage: Int!, $onServer: Boolea
                     name
                     small_image
                     url_key
-                    price {
-                        regularPrice {
-                            amount {
-                                value
-                                currency
-                            }
-                        }
+                    labels{
+                        name
+                        value
                     }
                 }
                 total_count
