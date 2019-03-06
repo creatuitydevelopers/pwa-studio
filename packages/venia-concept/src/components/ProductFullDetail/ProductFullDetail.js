@@ -1,24 +1,30 @@
 import React, { Component, Suspense } from 'react';
 import { arrayOf, bool, func, number, shape, string } from 'prop-types';
 import { Form } from 'informed';
-import getUrlKey from 'src/util/getUrlKey';
 
+import { resourceUrl } from 'src/drivers';
 import classify from 'src/classify';
 import Button from 'src/components/Button';
 import { loadingIndicator } from 'src/components/LoadingIndicator';
-import Carousel from 'src/components/ProductImageCarousel';
+import ImageGallery from 'react-image-gallery';
 import Quantity from 'src/components/ProductQuantity';
 import RichText from 'src/components/RichText';
 import DeliveryMethods from 'src/components/DeliveryMethods';
 import { PriceWrapper, MoreInformation } from 'src/components/RkStore';
 import { SingleRating } from 'src/components/Review';
 import { Tabs, Tab} from 'src/components/Tabs';
+
 import every from 'lodash/every';
 import isEqual from 'lodash/isEqual';
 import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
 
 import defaultClasses from './productFullDetail.css';
 import appendOptionsToPayload from 'src/util/appendOptionsToPayload';
+
+import "./image-gallery.css";
+
+
+
 
 const Options = React.lazy(() => import('../ProductOptions'));
 
@@ -78,6 +84,7 @@ class ProductFullDetail extends Component {
         optionSelections: new Map(),
         optionCodeSelection: new Map,
         quantity: 1,
+        addToCardLoader: false,
         deliveryMethodType: null,
         deliveryMethodStore: null,
         deliveryMethodValidationMessage: ''
@@ -114,6 +121,10 @@ class ProductFullDetail extends Component {
             }
         };
 
+        this.setState({
+            addToCardLoader: true
+        });
+
         if (
             !isDeliveryMethodValid(
                 state.deliveryMethodType,
@@ -121,6 +132,7 @@ class ProductFullDetail extends Component {
             )
         ) {
             this.setState({
+                addToCardLoader: false,
                 deliveryMethodValidationMessage:
                     'Please select delivery method first'
             });
@@ -133,13 +145,21 @@ class ProductFullDetail extends Component {
     
         if (this.props.cartItemId) {
             addToCart(payload, this.props.cartItemId)
-                .then((data) => {
+                .then(() => {
+                    this.setState({
+                        addToCardLoader: false
+                    });
                     this.props.history.goBack();
                 }).catch(e => {
                     console.log(e);
                 });
         } else {
             addToCart(payload)
+                .then(() => {
+                    this.setState({
+                        addToCardLoader: false
+                    });
+                });
         }
     };
 
@@ -225,10 +245,18 @@ class ProductFullDetail extends Component {
     render() {
         const { productOptions, props, deliveryMethods } = this;
         const { classes, product } = props;
+        const { addToCardLoader } = this.state;
     
         const { configurable_options } = product;
         const isConfigurable = Array.isArray(configurable_options);
         const productId = isConfigurable && this.hasAllOptionsSet() ? this.getConfiguredProduct().id : product.id;
+
+        const images = product.media_gallery_entries.map((item) => {
+            return {
+                original: resourceUrl(item.file, { type: 'image-product', width: 640 }),
+                thumbnail: resourceUrl(item.file, { type: 'image-product', width: 240 }),
+            }
+        });
 
         return (
             <Form className={classes.root}>
@@ -245,7 +273,11 @@ class ProductFullDetail extends Component {
                     </div>
                 </section>
                 <section className={classes.imageCarousel}>
-                    <Carousel images={product.media_gallery_entries} />
+                    <ImageGallery items={images}
+                                  thumbnailPosition={`left`}
+                                  showPlayButton={false}
+                                  showBullets={true}
+                    />
                 </section>
                 <section className={classes.options}>{productOptions}</section>
                 {deliveryMethods}
@@ -259,16 +291,20 @@ class ProductFullDetail extends Component {
                     />
                 </section>
                 <section className={classes.cartActions}>
-                    {
-                        this.props.cartItemId && 
+                    {!!addToCardLoader && loadingIndicator}
+                    {!addToCardLoader &&
+                    <React.Fragment>
+                        {
+                            this.props.cartItemId &&
                             <Button priority="normal" size="big" onClick={this.props.history.goBack}>
                                 <span>Cancel</span>
                             </Button>
+                        }
+                        <Button priority="high" size="big" onClick={this.addToCart}>
+                            <span>{this.props.cartItemId ? 'Update Cart' : 'Add to Cart'}</span>
+                        </Button>
+                    </React.Fragment>
                     }
-                    
-                    <Button priority="high" size="big" onClick={this.addToCart}>
-                        <span>{this.props.cartItemId ? 'Update Cart' : 'Add to Cart'}</span>
-                    </Button>
                 </section>
                 <section className={classes.tabs}>
                     <Tabs>
@@ -305,5 +341,4 @@ class ProductFullDetail extends Component {
         );
     }
 }
-
 export default classify(defaultClasses)(ProductFullDetail);

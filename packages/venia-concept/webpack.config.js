@@ -86,7 +86,7 @@ module.exports = async function(env) {
                 },
                 {
                     test: /\.css$/,
-                    exclude: /(global.css|GLOBAL)/,
+                    exclude: /(global.css|GLOBAL|image-gallery.css)/,
                     use: [
                         'style-loader',
                         {
@@ -101,8 +101,8 @@ module.exports = async function(env) {
                     ]
                 },
                 {
-                    test: /global\.css$/,
-                    include: /global.css/,
+                    test: /image-gallery\.css$/,
+                    include: /image-gallery.css/,
                     use: [
                         'style-loader',
                         {

@@ -157,6 +157,10 @@
     justify-content: center;
 }
 
+.cartActions > div{
+    margin: 0;
+}
+
 @media (min-width: 1024px) {
     .cartActions {
         border-bottom-width: 0;
