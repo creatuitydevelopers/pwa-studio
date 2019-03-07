@@ -1,11 +1,11 @@
 {
-  "name": "Venia",
-  "short_name": "Venia",
+  "name": "Rural King",
+  "short_name": "RK",
   "start_url": "/",
   "theme_color": "#ff6334",
   "display": "standalone",
   "background_color": "#fff",
-  "description": "Shop the look",
+  "description": "America's Farm and Home Store",
   "icons": [{
     "src": "/icons/venia_circle_144.png",
     "sizes": "144x144",
