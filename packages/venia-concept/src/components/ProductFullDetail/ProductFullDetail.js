@@ -21,7 +21,7 @@ import { isDeliveryMethodValid } from 'src/models/DeliveryMethods';
 import defaultClasses from './productFullDetail.css';
 import appendOptionsToPayload from 'src/util/appendOptionsToPayload';
 
-import "./image-gallery.css";
+import "./image-gallery.global.css";
 
 
 

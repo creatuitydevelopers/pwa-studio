@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, Suspense } from 'react';
 import { arrayOf, number, func, shape, string } from 'prop-types';
 import { Price } from 'src/components/Price';
 import { DeliveryMethodLabel } from 'src/components/DeliveryMethods';

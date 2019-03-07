@@ -24,7 +24,7 @@ const ItemPlaceholder = ({ children, classes }) => (
 );
 
 // TODO: get productUrlSuffix from graphql when it is ready
-const productUrlSuffix = '';
+const productUrlSuffix = '.html';
 
 class GalleryItem extends Component {
     static propTypes = {

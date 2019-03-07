@@ -8,7 +8,7 @@ const initialState = {
     categories: null,
     rootCategoryId: null,
     currentPage: 1,
-    pageSize: 24,
+    pageSize: 10,
     prevPageTotal: null
 };
 

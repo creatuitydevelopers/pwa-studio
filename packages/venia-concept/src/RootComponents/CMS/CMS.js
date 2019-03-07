@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import CategoryList from 'src/components/CategoryList';
-import classify from 'src/classify';
-
 import { submitOrder } from 'src/actions/checkout';
-
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 import { compose } from 'redux';
 import { connect } from 'src/drivers';
+
+import '../../globals.global.css';
 
 const cmsPageQuery = gql`
     query cmsPage($id: Int!) {

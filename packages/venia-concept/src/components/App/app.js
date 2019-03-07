@@ -1,16 +1,17 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, Suspense } from 'react';
 import { array, bool, func, shape, string } from 'prop-types';
 
 import Main from 'src/components/Main';
 import Mask from 'src/components/Mask';
-import { Helmet } from 'react-helmet';
 import MiniCart from 'src/components/MiniCart';
 import Navigation from 'src/components/Navigation';
-import StoreWidget from 'src/components/StoreWidget';
 import OnlineIndicator from 'src/components/OnlineIndicator';
 import ErrorNotifications from './errorNotifications';
 import renderRoutes from './renderRoutes';
 import errorRecord from 'src/util/createErrorRecord';
+import { loadingIndicator } from 'src/components/LoadingIndicator';
+
+const StoreWidget = React.lazy(() => import('src/components/StoreWidget'));
 
 class App extends Component {
     static propTypes = {
@@ -100,7 +101,9 @@ class App extends Component {
                 <Mask isActive={overlay} dismiss={closeDrawer} />
                 <Navigation isOpen={navIsOpen} />
                 <MiniCart isOpen={cartIsOpen} />
-                <StoreWidget isOpen={storeWidgetIsOpen} />
+                <Suspense fallback={loadingIndicator}>
+                    <StoreWidget isOpen={storeWidgetIsOpen} />
+                </Suspense>
                 <ErrorNotifications
                     errors={unhandledErrors}
                     onDismissError={markErrorHandled}
