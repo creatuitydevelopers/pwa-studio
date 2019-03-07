@@ -22,9 +22,6 @@ response:
     - matches: urlKey
       pattern: '.'
       use: appShell
-    - matches: creatuityUrlKey
-      pattern: '.'
-      use: appShell 
     - matches: request.url.pathname
       pattern: '^/$'
       use: appShell
@@ -113,7 +110,7 @@ resource:
       use:
         inline:
           model: product
-          template: './templates/generic-shell.mst'         
+          template: './templates/product-shell.mst'         
     - matches: urlResolver.type
       pattern: 'STORELOCATOR_DETAILS'
       use:
@@ -195,22 +192,6 @@ cmsPageResult:
     inline:
       onServer: true
       id: urlResolver.id
-
-creatuityUrlKey:
-  when:
-    - matches: request.url.pathname
-      pattern: '^/(?:(.*))?'
-      use: $match.$1
-  default:
-    inline: ''
-
-storelocator: storelocatorResult.data.storeLocator.0
-storelocatorResult:
-  url: magentoGQL
-  query: './src/queries/getStores.graphql'
-  variables:
-    inline:
-      urlKey: urlKey
 
 urlKey:
   when:

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#ff6334">
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="https://use.typekit.net/uca6omh.css" />
 
     {{!
         Apple Specific Tags
@@ -23,6 +22,7 @@
     <link rel="apple-touch-icon" href="/icons/venia_square_57.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css?family=Muli:300" rel="stylesheet">
+    <link href="https://use.typekit.net/uca6omh.css" rel="stylesheet" />
 
     <link rel="preconnect" href="{{env.MAGENTO_BACKEND_URL}}">
     {{#bundles.prefetch}}
