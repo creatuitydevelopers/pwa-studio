@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import CategoryList from 'src/components/CategoryList';
-import classify from 'src/classify';
 
 import { submitOrder } from 'src/actions/checkout';
 
@@ -24,7 +22,7 @@ const cmsPageQuery = gql`
 
 class CMS extends Component {
     render() {
-        const { id, submitOrder } = this.props;
+        const { id } = this.props;
 
         return (
             <Query query={cmsPageQuery} variables={{ id: Number(id) }}>

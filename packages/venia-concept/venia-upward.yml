@@ -113,7 +113,7 @@ resource:
       use:
         inline:
           model: product
-          template: './templates/generic-shell.mst'         
+          template: './templates/product-shell.mst'
     - matches: urlResolver.type
       pattern: 'STORELOCATOR_DETAILS'
       use:
