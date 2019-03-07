@@ -10,7 +10,7 @@
 .items {
     display: grid;
     grid-area: items;
-    grid-gap: 2rem 1rem;
+    grid-gap: 1.5rem 1rem;
     grid-template-columns: repeat(1, 1fr);
     margin-bottom: 10px;
     overflow: hidden;

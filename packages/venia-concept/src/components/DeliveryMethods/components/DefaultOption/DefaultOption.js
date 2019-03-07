@@ -4,9 +4,16 @@ import classify from 'src/classify';
 import { getDefaultMethodCode } from 'src/models/DeliveryMethods';
 import defaultClasses from './defualtOption.css';
 
-const DefaultOption = ({ isChecked, methodInfo, onChange, classes }) => {
+const DefaultOption = ({ isChecked, methodInfo, onChange, suffix, classes }) => {
     const code = getDefaultMethodCode();
-    const inputId = `delivery_method-${code}`;
+    const inputId = `delivery_method-${code}__${suffix}`;
+    const name = `delivery_method__${suffix}`;
+    const qty = !!methodInfo.stores[0] ? methodInfo.stores[0].inventory_level : 0;
+    const ship_time_options = !!methodInfo.delivery_options[0]
+                                && methodInfo.delivery_options[0].name == 'ship_time_options'
+                                && methodInfo.delivery_options[0].value !== 'false'
+                                ? methodInfo.delivery_options[0].value
+                                : '';
 
     return (
         <React.Fragment>
@@ -14,7 +21,7 @@ const DefaultOption = ({ isChecked, methodInfo, onChange, classes }) => {
                 <input
                     id={inputId}
                     type="radio"
-                    name="delivery_method"
+                    name={name}
                     className={classes.radioInput}
                     value={code}
                     checked={isChecked}
@@ -28,14 +35,8 @@ const DefaultOption = ({ isChecked, methodInfo, onChange, classes }) => {
                 </span>
             </label>
             <div className={classes.details}>
-                {!!methodInfo.ship_time_options && (
-                    <p>{methodInfo.ship_time_options}</p>
-                )}
-                {methodInfo.qty <= 5 && methodInfo.qty > 0 && (
-                    <p className={classes.alertMessage}>{`Only ${
-                        methodInfo.qty
-                    } Left Online`}</p>
-                )}
+                {!!ship_time_options && (<p>{ship_time_options}</p>)}
+                {qty <= 5 && qty > 0 && (<p className={classes.alertMessage}>{`Only ${qty} Left Online`}</p>)}
             </div>
         </React.Fragment>
     );

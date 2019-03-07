@@ -18,6 +18,7 @@ const ItemPlaceholder = ({ children, classes }) => (
         <div className={classes.bottomWrapper}>
             <div className={classes.price_pending} />
             <div className={classes.rating_pending} />
+            <div className={classes.stock_pending} />
         </div>
         
     </div>
@@ -42,21 +43,16 @@ class GalleryItem extends Component {
             price_pending: string,
             rating: string,
             root: string,
-            root_pending: string
+            root_pending: string,
+            stockAvailable: string,
+            stockUnavailable: string,
+            stock_pending: string
         }),
         item: shape({
             id: number.isRequired,
             name: string.isRequired,
             small_image: string,
-            url_key: string.isRequired,
-            price: shape({
-                regularPrice: shape({
-                    amount: shape({
-                        value: number.isRequired,
-                        currency: string.isRequired
-                    }).isRequired
-                }).isRequired
-            }).isRequired
+            url_key: string.isRequired
         })
         
     };
@@ -72,9 +68,8 @@ class GalleryItem extends Component {
             );
         }
 
-        const { name, price, url_key } = item;
+        const { name, labels, url_key } = item;
         const productLink = `/${url_key}${productUrlSuffix}`;
-
         return (
             <div className={classes.root}>
                 <Link to={resourceUrl(productLink)} className={classes.images}>
@@ -102,9 +97,32 @@ class GalleryItem extends Component {
                             />
                         )}
                     </div>
+                   {this.stockInfo}
                 </div>
             </div>
         );
+    }
+
+    get stockInfo() {
+        const { classes, item } = this.props;
+        const { labels } = item;
+
+        const map = {
+            isOnline: 'Ship To Home',
+            isInStores: 'In Stores'
+        };
+
+        const htmlLabels = labels.map((item, key) => {
+           return item.value == 'true' && !!map[item.name] ? <span key={key} className={classes.stockAvailable}>{map[item.name]}</span> : null
+        });
+
+        if(htmlLabels.length == 0){
+            htmlLabels.push(<span className={classes.stockUnavailable}>Out of stock</span>)
+        }
+
+        return <div>{htmlLabels.map((item) => item)}</div>
+
+
     }
 
     renderImagePlaceholder = () => {

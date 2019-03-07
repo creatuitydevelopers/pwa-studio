@@ -10,7 +10,7 @@
     align-items: center;
     display: grid;
     grid-template-columns: 1fr;
-    width: 110px;
+    width: 90px;
 }
 
 .label {

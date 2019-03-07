@@ -24,8 +24,6 @@ import appendOptionsToPayload from 'src/util/appendOptionsToPayload';
 import "./image-gallery.global.css";
 
 
-
-
 const Options = React.lazy(() => import('../ProductOptions'));
 
 class ProductFullDetail extends Component {
@@ -142,7 +140,7 @@ class ProductFullDetail extends Component {
         if (productType === 'ConfigurableProduct') {
             appendOptionsToPayload(payload, optionSelections, optionCodes);
         }
-    
+
         if (this.props.cartItemId) {
             addToCart(payload, this.props.cartItemId)
                 .then(() => {
@@ -159,6 +157,8 @@ class ProductFullDetail extends Component {
                     this.setState({
                         addToCardLoader: false
                     });
+                }).catch(e => {
+                    console.log(e);
                 });
         }
     };
@@ -254,7 +254,9 @@ class ProductFullDetail extends Component {
         const images = product.media_gallery_entries.map((item) => {
             return {
                 original: resourceUrl(item.file, { type: 'image-product', width: 640 }),
+                originalAlt: '',
                 thumbnail: resourceUrl(item.file, { type: 'image-product', width: 240 }),
+                thumbnailAlt: ''
             }
         });
 
@@ -300,7 +302,7 @@ class ProductFullDetail extends Component {
                                 <span>Cancel</span>
                             </Button>
                         }
-                        <Button priority="high" size="big" onClick={this.addToCart}>
+                        <Button priority="high" size="big" onClick={this.addToCart} aria-label="Add to Cart">
                             <span>{this.props.cartItemId ? 'Update Cart' : 'Add to Cart'}</span>
                         </Button>
                     </React.Fragment>

@@ -13,6 +13,10 @@ const searchQuery = gql`
     query($sku: String) {
         inStorePickupAvailability(sku: $sku) {
             method
+            delivery_options {
+                name
+                value
+            }
             stores {
                 store_number
                 inventory_level
@@ -81,7 +85,6 @@ class DeliveryMethods extends Component {
                                     )}
                                 />
                             );
-
                         const methods = data.inStorePickupAvailability;
 
                         if (methods.length > 0 && !defaultMethod) {

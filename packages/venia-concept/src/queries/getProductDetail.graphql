@@ -10,11 +10,15 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
             product_manual
             product_warnings_restrictions
             product_qa
-             front_attributes{
-                   name
-                   code
-                   value
-                 }
+            front_attributes{
+                name
+                code
+                value
+            }
+            labels{
+                name
+                value
+            }
             media_gallery_entries {
                 label
                 position

@@ -18,14 +18,7 @@ class GalleryItems extends Component {
             shape({
                 id: number.isRequired,
                 name: string.isRequired,
-                small_image: string,
-                price: shape({
-                    regularPrice: shape({
-                        amount: shape({
-                            value: number.isRequired
-                        }).isRequired
-                    }).isRequired
-                }).isRequired
+                small_image: string
             })
         ).isRequired,
         pageSize: number
