@@ -26,5 +26,5 @@
 
     <link rel="preconnect" href="{{env.MAGENTO_BACKEND_URL}}">
     {{#bundles.prefetch}}
-    <link rel="prefetch script" href="{{.}}">
+    <link rel="prefetch script" href="/{{.}}">
     {{/bundles.prefetch}}
