@@ -37,6 +37,8 @@ function DeliveryMethodsList({
         classes[`mode__${viewMode}`]
     ];
 
+    const componentSuffix = (new Date()).getTime();
+
     return (
         <ul>
             {methods.map((method, index) => {
@@ -56,6 +58,7 @@ function DeliveryMethodsList({
                             methodInfo={method}
                             selectedStore={selectedStore}
                             onChange={onChange}
+                            suffix={componentSuffix}
                         />
                     </li>
                 );

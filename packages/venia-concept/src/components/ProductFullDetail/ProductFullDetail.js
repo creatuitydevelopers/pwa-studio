@@ -254,7 +254,9 @@ class ProductFullDetail extends Component {
         const images = product.media_gallery_entries.map((item) => {
             return {
                 original: resourceUrl(item.file, { type: 'image-product', width: 640 }),
+                originalAlt: '',
                 thumbnail: resourceUrl(item.file, { type: 'image-product', width: 240 }),
+                thumbnailAlt: ''
             }
         });
 
@@ -300,7 +302,7 @@ class ProductFullDetail extends Component {
                                 <span>Cancel</span>
                             </Button>
                         }
-                        <Button priority="high" size="big" onClick={this.addToCart}>
+                        <Button priority="high" size="big" onClick={this.addToCart} aria-label="Add to Cart">
                             <span>{this.props.cartItemId ? 'Update Cart' : 'Add to Cart'}</span>
                         </Button>
                     </React.Fragment>

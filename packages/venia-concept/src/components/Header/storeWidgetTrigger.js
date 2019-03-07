@@ -21,7 +21,11 @@ class Trigger extends Component {
         const classNames = currentStore ? classes.rootFilled : classes.root;
 
         return (
-            <button className={classNames} onClick={openStoreWidget}>
+            <button
+                className={classNames}
+                onClick={openStoreWidget}
+                aria-label="Toggle store picker"
+            >
                 {children}
             </button>
         );

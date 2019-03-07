@@ -16,7 +16,8 @@ const buttonStyles = {
 class Quantity extends Component {
     static propTypes = {
         classes: shape({
-            root: string
+            root: string,
+            label: string
         }),
         items: arrayOf(
             shape({
@@ -32,7 +33,7 @@ class Quantity extends Component {
         };
     }
 
-    handleChange = e => {
+    handleChange = event => {
         let val = event.target.value;
         if (!isNaN(val)) {
             this.setState(
@@ -72,20 +73,20 @@ class Quantity extends Component {
 
         return (
             <div className={classes.root}>
-                <Button onClick={decrease} style={buttonStyles}>
+                <label className={classes.label} htmlFor={`quantity`} aria-label={"Quantity"}>Quantity</label>
+                <Button onClick={decrease} style={buttonStyles} aria-label="Decrease quantity">
                     <Icon src={MinusIcon} size={15} />
                 </Button>
                 <input
                     className={classes.input}
                     type="text"
-                    label={`quantity`}
+                    id={`quantity`}
                     onChange={handleChange}
                     value={this.state.value}
                     pattern="\d{1,5}"
-                    field="quantity"
                     name={`quantity`}
                 />
-                <Button onClick={increase} style={buttonStyles}>
+                <Button onClick={increase} style={buttonStyles} aria-label="Increase quantity">
                     <Icon src={PlusIcon} size={15} />
                 </Button>
             </div>

@@ -207,8 +207,9 @@ class ShipToStoreOption extends Component {
     }
 
     render() {
-        const { methodCode, isChecked, classes } = this.props;
-        const inputId = `delivery_method-${methodCode}`;
+        const { methodCode, isChecked, suffix, classes } = this.props;
+        const inputId = `delivery_method-${methodCode}__${suffix}`;
+        const name = `delivery_method__${suffix}`;
 
         return (
             <React.Fragment>
@@ -216,7 +217,7 @@ class ShipToStoreOption extends Component {
                     <input
                         id={inputId}
                         type="radio"
-                        name="delivery_method"
+                        name={name}
                         className={classes.radioInput}
                         value={methodCode}
                         checked={isChecked}

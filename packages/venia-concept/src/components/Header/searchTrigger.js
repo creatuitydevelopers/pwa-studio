@@ -21,7 +21,11 @@ class SearchTrigger extends Component {
 
         return (
             <Fragment>
-                <button className={searchClass} onClick={toggleSearch}>
+                <button
+                    className={searchClass}
+                    aria-label="Toggle search panel"
+                    onClick={toggleSearch}
+                >
                     {children}
                 </button>
             </Fragment>
