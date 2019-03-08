@@ -22,6 +22,9 @@ response:
     - matches: urlKey
       pattern: '.'
       use: appShell
+    - matches: urlKeyWithoutSuffix
+      pattern: '.'
+      use: appShell
     - matches: request.url.pathname
       pattern: '^/$'
       use: appShell
@@ -197,6 +200,14 @@ urlKey:
   when:
     - matches: request.url.pathname
       pattern: '^/(?:(.*)\.html)?'
+      use: $match.$1
+  default:
+    inline: ''
+
+urlKeyWithoutSuffix:
+  when:
+    - matches: request.url.pathname
+      pattern: '^/(?:(.*))?'
       use: $match.$1
   default:
     inline: ''
