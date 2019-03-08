@@ -28,6 +28,45 @@ export const isRequired = value => {
     return !(value || '').trim() ? 'The field is required.' : null;
 };
 
+export const validatePhone = value => {
+    if (!value) {
+        return null;
+    }
+
+    const regex = /^\d{9,11}$/;
+
+    return !regex.test(value)
+        ? 'Please enter a valid Phone.'
+        : null;
+
+}
+
+export const validateZipCode = value => {
+    if (!value) {
+        return null;
+    }
+
+    const regex = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+
+    return !regex.test(value)
+        ? 'Please enter a valid ZIP.'
+        : null;
+
+}
+
+export const validateCity = value => {
+    if (!value) {
+        return null;
+    }
+
+    const regex = /^[a-zA-Z-\s]+$/;
+
+    return !regex.test(value)
+        ? 'Please enter a valid city name.'
+        : null;
+
+}
+
 export const validateEmail = value => {
     if (!value) {
         return null;

@@ -7,6 +7,9 @@ import classify from 'src/classify';
 import Button from 'src/components/Button';
 import defaultClasses from './addressForm.css';
 import {
+    validatePhone,
+    validateZipCode,
+    validateCity,
     validateEmail,
     isRequired,
     hasLengthExactly,
@@ -93,7 +96,7 @@ class AddressForm extends Component {
         return (
             <Fragment>
                 <div className={classes.body}>
-                    <h2 className={classes.heading}>Shipping Address</h2>
+                    <h2 className={classes.heading}>Shipping Address123</h2>
                     <div className={classes.firstname}>
                         <Field label="First Name">
                             <TextInput
@@ -126,7 +129,7 @@ class AddressForm extends Component {
                             <TextInput
                                 id={classes.city}
                                 field="city"
-                                validate={isRequired}
+                                validate={combine([isRequired, validateCity])}
                             />
                         </Field>
                     </div>
@@ -135,7 +138,7 @@ class AddressForm extends Component {
                             <TextInput
                                 id={classes.postcode}
                                 field="postcode"
-                                validate={isRequired}
+                                validate={combine([isRequired, validateZipCode])}
                             />
                         </Field>
                     </div>
@@ -157,7 +160,7 @@ class AddressForm extends Component {
                             <TextInput
                                 id={classes.telephone}
                                 field="telephone"
-                                validate={isRequired}
+                                validate={combine([isRequired, validatePhone])}
                             />
                         </Field>
                     </div>

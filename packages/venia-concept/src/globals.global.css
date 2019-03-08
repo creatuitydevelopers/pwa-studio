@@ -1,6 +1,400 @@
-/*@import './styles/GLOBAL/normalize.css';*/
-/*@import './styles/GLOBAL/bluefoot.css';*/
-/*@import './styles/GLOBAL/pageBuilder-desktop.css';*/
-/*@import './styles/GLOBAL/pageBuilder-mobile.css';*/
-/*@import './styles/GLOBAL/rktwoCms-desktop.css';*/
-/*@import './styles/GLOBAL/rktwoCms-mobile.css';*/
+
+.footer__banner [data-role="column"] {
+    width: 100%
+}
+
+.footer__banner {
+    background: rgb(var(--rk--color__red));
+    padding: 10px 0;
+    max-width: 100%;
+    margin: 0 auto
+}
+
+
+.footer__banner.bluefoot-row {
+    margin-left: auto;
+    margin-right: auto
+}
+
+.footer__banner [data-role="column"] {
+    position: relative;
+    width: 33.333333%
+}
+
+.footer__banner [data-role="column"]:first-child:after,
+.footer__banner [data-role="column"]:last-child:before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 18px;
+    background: #fff
+}
+
+.footer__banner [data-role="column"]:first-child:after {
+    right: 17px
+}
+
+.footer__banner [data-role="column"]:last-child:before {
+    left: 17px
+}
+
+.footer__banner [data-role="html"] {
+    margin: 0;
+    word-spacing: 2px;
+    font-weight: 700;
+    color: #fff
+}
+
+.footer__banner [data-role="column"]:first-child:after,
+.footer__banner [data-role="column"]:last-child:before {
+    top: 7px
+}
+
+.footer__header {
+    margin: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #a90000
+}
+
+.footer__nav .nav__col ul {
+    list-style: none;
+    margin: 0
+}
+
+.footer__nav .nav__col ul li a {
+    white-space: nowrap;
+    color: #556270
+}
+
+.footer__nav .nav__col ul li a:hover {
+    color: #99a1a9
+}
+
+
+.footer__social .social__header {
+    margin-bottom: 2px;
+    line-height: 40px
+}
+
+.footer__copyright {
+    width: 100%
+}
+
+.footer__copyright .copyright__col {
+    width: 100%;
+    text-align: center
+}
+
+.footer__copyright .copyright__norton {
+    display: inline-block
+}
+
+.footer__social .social__header {
+    text-align: center
+}
+
+.footer__social .social__btn {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    margin: 0 10px;
+    overflow: hidden;
+    text-indent: -9999px;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: url('./styles/social_icon_sprint.png');
+    background-repeat: no-repeat;
+    background-size: 112px auto
+}
+
+.footer__social .social__btn-fb {
+    background-position: -10px -10px
+}
+
+.footer__social .social__btn-twitter {
+    background-position: -66px -66px
+}
+
+.footer__social .social__btn-instagram {
+    background-position: -66px -10px
+}
+
+.footer__social .social__btn-pinterest {
+    background-position: -10px -66px
+}
+
+.footer__copyright {
+    font-size: 13px
+}
+
+.footer__copyright p {
+    margin: 0;
+    color: #000
+}
+
+.footer__copyright a {
+    margin: 0 7px;
+    white-space: nowrap;
+    color: #000;
+    text-decoration: underline
+}
+
+.footer__copyright a:hover {
+    color: #99a1a9
+}
+
+.footer__copyright div.copyright__norton {
+    background-image: url("https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_auto,f_auto,fl_any_format.immutable_cache.lossy.progressive,q_auto,h_89/v1535384423/rk_m2_main_assets/norton_secured_logo.png");
+    display: block;
+    height: 89px;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+    margin: 0 auto
+}
+
+@media only screen and (max-width: 767px) {
+    .footer__banner {
+        padding: 5px 0;
+    }
+
+    div.footer__banner [data-role="column"]:first-child:after,
+    div.footer__banner [data-role="column"]:last-child:before {
+        display: none
+    }
+
+    footer .pagebuilder-column-group{
+        flex-direction: column;
+    }
+
+    .footer__banner [data-role="column"] {
+        width: 50%
+    }
+
+    .footer__banner [data-role="column"]:first-child:after {
+        display: none
+    }
+
+    .footer__banner [data-role="column"]:last-child {
+        width: 100%
+    }
+
+    .footer__banner [data-role="column"]:last-child:before {
+        display: none
+    }
+
+    .footer__banner [data-role="html"] {
+        font-size: 16px;
+        line-height: 20px
+    }
+
+    .footer__nav .nav__header {
+        position: relative;
+        padding: 25px 15px 16px;
+        width: 100%;
+        margin: 0;
+        font-size: 20px;
+        line-height: 22px;
+        border-top: 1px solid #fff;
+        display: inline-block;
+        text-decoration: none;
+        text-align: left !important;
+    }
+
+    .footer__nav .nav__col ul {
+        /*height: 0;*/
+        padding-left: 15px;
+        margin: 0;
+        overflow: hidden;
+        transition: all .5s
+    }
+
+
+    .footer__nav .nav__col ul li {
+        margin-bottom: 15px
+    }
+
+    .footer__nav .nav__col ul li a {
+        font-size: 19px;
+        display: block
+    }
+
+
+    .footer__social {
+        border-top: 1px solid #fff
+    }
+
+    .footer__social .social__header {
+        margin: 10px 0 0;
+        line-height: 40px
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+
+    .footer__copyright {
+        position: relative;
+        padding-top: 115px;
+        border-top: 1px solid #fff
+    }
+
+    .footer__copyright .copyright__col {
+        text-align: center
+    }
+
+
+    .footer__copyright .copyright__norton {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        display: inline-block;
+        width: 105px;
+        margin: 0 auto
+    }
+}
+
+
+@media all and (-webkit-min-device-pixel-ratio: 1), all and (min--moz-device-pixel-ratio: 1), all and (-o-min-device-pixel-ratio: 1/1), all and (min-device-pixel-ratio: 1), all and (min-resolution: 96dpi), all and (min-resolution: 1dppx) {
+    .page-footer .footer__copyright div.copyright__norton {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_1.0,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.3), all and (min--moz-device-pixel-ratio: 1.3), all and (-o-min-device-pixel-ratio: 13/10), all and (min-device-pixel-ratio: 1.3), all and (min-resolution: 124.8dpi), all and (min-resolution: 1.3dppx) {
+    .page-footer .footer__copyright div.copyright__norton {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_1.3,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5), all and (min--moz-device-pixel-ratio: 1.5), all and (-o-min-device-pixel-ratio: 3/2), all and (min-device-pixel-ratio: 1.5), all and (min-resolution: 144dpi), all and (min-resolution: 1.5dppx) {
+    .page-footer .footer__copyright div.copyright__norton {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_1.5,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 2), all and (min--moz-device-pixel-ratio: 2), all and (-o-min-device-pixel-ratio: 2/1), all and (min-device-pixel-ratio: 2), all and (min-resolution: 192dpi), all and (min-resolution: 2dppx) {
+    .page-footer .footer__copyright div.copyright__norton {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_2.0,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 3), all and (min--moz-device-pixel-ratio: 3), all and (-o-min-device-pixel-ratio: 3/1), all and (min-device-pixel-ratio: 3), all and (min-resolution: 288dpi), all and (min-resolution: 3dppx) {
+    .page-footer .footer__copyright div.copyright__norton {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_3.0,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 3.5), all and (min--moz-device-pixel-ratio: 3.5), all and (-o-min-device-pixel-ratio: 3.5/1), all and (min-device-pixel-ratio: 3.5), all and (min-resolution: 336dpi), all and (min-resolution: 3.5dppx) {
+    .page-footer .footer__copyright div.copyright__norton {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_3.5,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 4), all and (min--moz-device-pixel-ratio: 4), all and (-o-min-device-pixel-ratio: 4/1), all and (min-device-pixel-ratio: 4), all and (min-resolution: 384dpi), all and (min-resolution: 4dppx) {
+    .page-footer .footer__copyright div.copyright__norton {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_4.0,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (min-width: 768px), print {
+    .footer__banner [data-role="html"] {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 32px
+    }
+
+    .footer__nav .nav__col {
+        width: 50%
+    }
+
+    .footer__nav .nav__col ul {
+        padding: 0
+    }
+
+
+    .footer__nav .nav__col ul li {
+        font-size: 15px;
+        margin-bottom: 9px
+    }
+
+    .footer__nav .nav__header {
+        text-align: left !important;
+        margin: 0;
+        line-height: 40px
+    }
+
+    .footer__header {
+        font-size: 18px;
+    }
+
+    .footer__social {
+        position: relative
+    }
+}
+
+@media all and (min-width: 1024px), print {
+    .footer__banner [data-role="html"] {
+        font-size: 24px
+    }
+
+    .footer__banner [data-role="column"]:first-child:after,
+    .footer__banner [data-role="column"]:last-child:before {
+        top: 5px
+    }
+
+
+    .footer__header {
+        font-size: 20px;
+        margin-top: 30px
+    }
+
+    .footer__col-left {
+        width: 40%
+    }
+
+    .footer__col-right {
+        width: 60%
+    }
+
+    .footer__nav .nav__header {
+        margin-top: 10px
+    }
+
+    .footer__nav .nav__col {
+        width: 33.33333%;
+        padding: 6px 0 0 25px;
+        font-size: 15px
+    }
+
+    .footer__social .social__btn {
+        margin: 0 15px
+    }
+
+    .footer__copyright [data-role="column-group"] {
+        display: table !important;
+        width: 100%;
+        font-size: 13px;
+        white-space: nowrap;
+        vertical-align: bottom;
+    }
+
+    .footer__copyright .copyright__col {
+        display: table-cell;
+        width: 33.33333%;
+        float: none !important;
+        white-space: nowrap;
+    }
+
+    .footer__copyright .copyright__col-right {
+        position: relative;
+        left: 40px
+    }
+}
+
+@media all and (min-width: 1440px), print {
+    .footer__copyright [data-role="column-group"] {
+        font-size: 16px
+    }
+}

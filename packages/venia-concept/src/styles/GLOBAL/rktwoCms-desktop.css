@@ -58,39 +58,7 @@
         height: 50px;
     }
 
-    .footer__banner [data-role="html"] {
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 32px
-    }
 
-    .footer__nav .nav__col {
-        width: 50%
-    }
-
-    .footer__nav .nav__col ul {
-        padding: 0
-    }
-
-
-    .footer__nav .nav__col ul li {
-        font-size: 15px;
-        margin-bottom: 9px
-    }
-
-    .footer__nav .nav__header {
-        text-align: left !important;
-        margin: 0;
-        line-height: 40px
-    }
-
-    .footer__header {
-        font-size: 18px;
-    }
-
-    .footer__social {
-        position: relative
-    }
 }
 
 @media all and (min-width: 992px), print {
@@ -173,62 +141,7 @@
         margin-bottom: 25px;
     }
 
-    .footer__banner [data-role="html"] {
-        font-size: 24px
-    }
 
-    .footer__banner [data-role="column"]:first-child:after,
-    .footer__banner [data-role="column"]:last-child:before {
-        top: 5px
-    }
-
-
-    .footer__header {
-        font-size: 20px;
-        margin-top: 30px
-    }
-
-    .footer__col-left {
-        width: 40%
-    }
-
-    .footer__col-right {
-        width: 60%
-    }
-
-    .footer__nav .nav__header {
-        margin-top: 10px
-    }
-
-    .footer__nav .nav__col {
-        width: 33.33333%;
-        padding: 6px 0 0 25px;
-        font-size: 15px
-    }
-
-    .footer__social .social__btn {
-        margin: 0 15px
-    }
-
-    .footer__copyright [data-role="column-group"] {
-        display: table !important;
-        width: 100%;
-        font-size: 13px;
-        white-space: nowrap;
-        vertical-align: bottom;
-    }
-
-    .footer__copyright .copyright__col {
-        display: table-cell;
-        width: 33.33333%;
-        float: none !important;
-        white-space: nowrap;
-    }
-
-    .footer__copyright .copyright__col-right {
-        position: relative;
-        left: 40px
-    }
 }
 
 @media all and (min-width: 1440px), print {
@@ -261,9 +174,5 @@
     .homepage__box-style1 h2 {
         font-size: 48px;
         line-height: 1;
-    }
-
-    .footer__copyright [data-role="column-group"] {
-        font-size: 16px
     }
 }
