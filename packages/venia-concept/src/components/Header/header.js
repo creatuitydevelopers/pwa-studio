@@ -11,10 +11,11 @@ import NavTrigger from './navTrigger';
 import StoreWidgetTrigger from './storeWidgetTrigger';
 import defaultClasses from './header.css';
 import logo from './logo.png';
-import { StoreWidgetHeaderLabel } from 'src/components/StoreWidget';
+import mapPin from 'react-feather/dist/icons/map-pin';
 
 import SearchTrigger from './searchTrigger';
 const SearchBar = React.lazy(() => import('src/components/SearchBar'));
+const StoreWidgetHeaderLabel = React.lazy(() => import('src/components/StoreWidget/components/StoreWidgetHeaderLabel'));
 
 class Header extends Component {
     static propTypes = {
@@ -64,7 +65,9 @@ class Header extends Component {
                     </div>
                     <div className={classes.secondaryActions}>
                         <StoreWidgetTrigger>
-                            <StoreWidgetHeaderLabel />
+                            <Suspense fallback={<Icon src={mapPin} className={classes.icon} />}>
+                                <StoreWidgetHeaderLabel />
+                            </Suspense>
                         </StoreWidgetTrigger>
                         <SearchTrigger
                             searchOpen={searchOpen}

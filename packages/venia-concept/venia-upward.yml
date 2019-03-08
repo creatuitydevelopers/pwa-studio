@@ -119,7 +119,7 @@ resource:
       use:
         inline:
           model: storelocator
-          template: './templates/generic-shell.mst'          
+          template: './templates/storelocator-shell.mst'
     - matches: urlResolver.type
       pattern: '.'
       use:

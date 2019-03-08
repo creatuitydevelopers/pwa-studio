@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-
 import { submitOrder } from 'src/actions/checkout';
-
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 import { compose } from 'redux';
 import { connect } from 'src/drivers';
+
+import '../../globals.global.css';
 
 const cmsPageQuery = gql`
     query cmsPage($id: Int!) {
@@ -22,7 +22,7 @@ const cmsPageQuery = gql`
 
 class CMS extends Component {
     render() {
-        const { id } = this.props;
+        const { id, submitOrder } = this.props;
 
         return (
             <Query query={cmsPageQuery} variables={{ id: Number(id) }}>
@@ -33,6 +33,8 @@ class CMS extends Component {
                     const {
                         cmsPage: { content }
                     } = data;
+
+                    console.log(content);
 
                     return (
                         <div dangerouslySetInnerHTML={{ __html: content }} />

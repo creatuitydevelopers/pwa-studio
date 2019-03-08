@@ -8,7 +8,6 @@ import classify from 'src/classify';
 import defaultClasses from './cartOptions.css';
 import Button from 'src/components/Button';
 import Quantity from 'src/components/ProductQuantity';
-import DeliveryMethods from 'src/components/DeliveryMethods';
 
 import appendOptionsToPayload from 'src/util/appendOptionsToPayload';
 
@@ -16,6 +15,7 @@ import appendOptionsToPayload from 'src/util/appendOptionsToPayload';
 const currencyCode = 'USD';
 
 const Options = React.lazy(() => import('../ProductOptions'));
+const DeliveryMethods = React.lazy(() => import('src/components/DeliveryMethods'));
 
 class CartOptions extends Component {
     static propTypes = {
@@ -133,14 +133,17 @@ class CartOptions extends Component {
                 </div>
                 <div className={classes.form}>
                     {options}
-                    <DeliveryMethods
-                        productSku={product.sku}
-                        defaultMethod={this.state.deliveryMethodType}
-                        selectedStore={this.state.deliveryMethodStore}
-                        validationMessage={''}
-                        viewMode={'cart'}
-                        onChange={this.setDeliveryMethod}
-                    />
+                    <Suspense fallback={LoadingIndicator}>
+                        <DeliveryMethods
+                            productSku={product.sku}
+                            defaultMethod={this.state.deliveryMethodType}
+                            selectedStore={this.state.deliveryMethodStore}
+                            validationMessage={''}
+                            viewMode={'cart'}
+                            onChange={this.setDeliveryMethod}
+                        />
+                    </Suspense>
+                    
                     <section className={classes.quantity}>
                         <h2 className={classes.quantityTitle}>
                             <span>Quantity</span>

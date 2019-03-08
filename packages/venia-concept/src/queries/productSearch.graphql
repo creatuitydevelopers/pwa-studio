@@ -5,13 +5,9 @@ query productSearch($inputText: String!, $categoryId: String) {
             name
             small_image
             url_key
-            price {
-                regularPrice {
-                    amount {
-                        value
-                        currency
-                    }
-                }
+            labels {
+                name
+                value
             }
         }
         total_count

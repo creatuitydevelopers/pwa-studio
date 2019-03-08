@@ -1,5 +1,5 @@
 {{> templates/open-document}}
-    <title>Venia -- Not Found</title>
+    <title>Rural King - Not Found</title>
   {{> templates/open-body }}
     <div id="root">
         Not found!

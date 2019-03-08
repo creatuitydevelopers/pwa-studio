@@ -1,1 +1,1 @@
-export { default as StoreWidgetHeaderLabel } from './container';
+export { default } from './container';

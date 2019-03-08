@@ -25,7 +25,7 @@ const ItemPlaceholder = ({ children, classes }) => (
 );
 
 // TODO: get productUrlSuffix from graphql when it is ready
-const productUrlSuffix = '';
+const productUrlSuffix = '.html';
 
 class GalleryItem extends Component {
     static propTypes = {
@@ -112,12 +112,14 @@ class GalleryItem extends Component {
             isInStores: 'In Stores'
         };
 
-        const htmlLabels = labels.map((item, key) => {
-           return item.value == 'true' && !!map[item.name] ? <span key={key} className={classes.stockAvailable}>{map[item.name]}</span> : null
-        });
+        const htmlLabels = !!labels
+            ? labels.map((item, key) => {
+               return item.value == 'true' && !!map[item.name] ? <span key={key} className={classes.stockAvailable}>{map[item.name]}</span> : null
+            })
+            : [];
 
         if(htmlLabels.length == 0){
-            htmlLabels.push(<span className={classes.stockUnavailable}>Out of stock</span>)
+            htmlLabels.push(<span key={99} className={classes.stockUnavailable}>Out of stock</span>)
         }
 
         return <div>{htmlLabels.map((item) => item)}</div>

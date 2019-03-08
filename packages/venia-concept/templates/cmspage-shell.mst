@@ -7,7 +7,28 @@
     {{/model}}
   {{> templates/open-body }}
     <div id="root">
-        Loading {{model.title}}...
+    <img class="rkClosed" src="./RkLogo.png">
+            <p>Loading {{model.title}}...</p>
+            <style>
+                #root{
+                    font-family: Muli, -apple-system, BlinkMacSystemFont, sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    height: 100vh;
+                    overflow: hidden;
+                    padding: 0 15px;
+                    font-size: 1.25rem;
+                    font-weight: 300;
+                    line-height: 1.75rem;
+                    color: #444444;
+                }
+                #root img{
+                    display:block;
+                    margin-bottom: 20px;
+                }
+            </style>
     </div>
   {{> templates/seed-bundles}}
 {{> templates/close-document}}

@@ -78,7 +78,7 @@ class StoreDetails extends Component {
                     if (loading) return loadingIndicator;
 
                     const store = data.storeLocator[0];
-
+                    console.log(store);
                     return (
                         <DetailsPage
                             store={store}

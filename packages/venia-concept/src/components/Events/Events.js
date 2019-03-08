@@ -13,7 +13,7 @@ import { EventList } from 'src/components/Events';
 import { SORT_DEFAULT } from 'src/components/Events/consts';
 import Pagination from 'src/components/Pagination';
 
-import defaultClasses from "./eventsPage.css";
+import defaultClasses from "./events.css";
 
 const searchQuery = gql`
     query($currentPage: Int!, $pageSize: Int!) {

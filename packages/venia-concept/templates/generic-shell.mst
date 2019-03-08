@@ -1,6 +1,6 @@
 {{> templates/open-document}}
     {{#model}}
-    <title>{{title}}</title>
+    <title>{{title}} - Rural King</title>
     {{/model}}
     {{^model}}
     <title>Rural King</title>
