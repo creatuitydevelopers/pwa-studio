@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Icon from 'src/components/Icon';
+import ChevronDownIcon from 'react-feather/dist/icons/chevron-down';
+
 import classify from 'src/classify';
 import defaultClasses from './footer.css';
 
@@ -11,12 +14,14 @@ class Footer extends Component {
         classes: PropTypes.shape({
             banner: PropTypes.string,
             bottom: PropTypes.string,
+            col: PropTypes.string,
             root: PropTypes.string,
             nav: PropTypes.string,
             navSection: PropTypes.string,
             navHeader: PropTypes.string,
             navContent: PropTypes.string,
             navList: PropTypes.string,
+            openTab: PropTypes.string,
             social: PropTypes.string,
             socialHeader: PropTypes.string,
             socialLinks: PropTypes.string,
@@ -31,7 +36,17 @@ class Footer extends Component {
         })
     };
 
+    state = {
+        openedTab: null,
+    };
+
+    handleTabClick = tab => {
+        console.log(tab);
+        this.setState(prevState => ({ openedTab: prevState.openedTab != tab ? tab : null }));
+    };
+
     render() {
+        const {state} = this;
         const { classes } = this.props;
 
         return (
@@ -42,52 +57,68 @@ class Footer extends Component {
                     <div>Over 100,000 Products</div>
                 </section>
                 <section className={classes.nav}>
-                    <section className={classes.navSection}>
-                        <header className={classes.navHeader}>Company Information</header>
+                    <div className={classes.col}>
+                    <section className={[classes.navSection, state.openedTab == 'company_info' ? classes.openTab : null].join(' ')}>
+                        <header className={classes.navHeader}>
+                            <button onClick={() => this.handleTabClick('company_info')}>
+                                Company Information
+                                <Icon src={ChevronDownIcon} size={18} />
+                            </button>
+                        </header>
                         <div className={classes.navContent}>
                             <ul className={classes.navList}>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
+                                <li><a href="/events" title="Events & Workshops">Events & Workshops</a></li>
                             </ul>
                         </div>
                     </section>
-                    <section className={classes.navSection}>
-                        <header className={classes.navHeader}>Customer Service</header>
+                    </div>
+                    <div className={classes.col}>
+                    <section className={[classes.navSection, state.openedTab == 'custom_service' ? classes.openTab : null].join(' ')}>
+                        <header className={classes.navHeader}>
+                            <button onClick={() => this.handleTabClick('custom_service')}>
+                                Customer Service
+                                <Icon src={ChevronDownIcon} size={18} />
+                            </button>
+                        </header>
                         <div className={classes.navContent}>
                             <ul className={classes.navList}>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
+                                <li><a href="/rebates" title=">Manufacturer Rebates">Manufacturer Rebates</a></li>
                             </ul>
                         </div>
                     </section>
-                    <section className={classes.navSection}>
-                        <header className={classes.navHeader}>Shop with confidence</header>
+                    </div>
+                    <div className={classes.col}>
+                    <section className={[classes.navSection, state.openedTab == 'shop_with' ? classes.openTab : null].join(' ')}>
+                        <header className={classes.navHeader}>
+                            <button onClick={() => this.handleTabClick('shop_with')}>
+                                Shop with confidence
+                                <Icon src={ChevronDownIcon} size={18} />
+                            </button>
+                        </header>
                         <div className={classes.navContent}>
                             <ul className={classes.navList}>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                            </ul>
-                        </div>
-                        <header className={classes.navHeader}>Resources</header>
-                        <div className={classes.navContent}>
-                            <ul className={classes.navList}>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
-                                <li><a href="#" title="">Lorem ipsum</a></li>
+                                <li><a rel="nofollow" target="_blank" href="https://nortonshoppingguarantee.symantec.com/shoppers/" title="Norton Shopping Guarantee">Norton Shopping Guarantee</a></li>
+                                <li><a rel="nofollow" target="_blank" href="http://www.shopperapproved.com/customer-review/ruralking.com/3833460" title="Customer Reviews">Customer Reviews</a></li>
                             </ul>
                         </div>
                     </section>
+                        <section className={[classes.navSection, state.openedTab == 'resources' ? classes.openTab : null].join(' ')}>
+                        <header className={classes.navHeader}>
+                            <button onClick={() => this.handleTabClick('resources')}>
+                                Resources
+                                <Icon src={ChevronDownIcon} size={18} />
+                            </button>
+                        </header>
+                        <div className={classes.navContent}>
+                            <ul className={classes.navList}>
+                                <li><a href="#"  rel="nofollow" target="_blank" title="Rural King Blog">Rural King Blog</a></li>
+                                <li><a href="/battery-finder" title="Battery Finder">Battery Finder</a></li>
+                                <li><a href="/belt-finder" title="Belt Finder">Belt Finder</a></li>
+                                <li><a href="/notice-of-sales-and-use-tax-information-for-customers" title="Sales and Use Tax Info">Sales and Use Tax Info</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                    </div>
                 </section>
                 <section className={classes.social}>
                     <h3 className={classes.socialHeader}>Connect with us Socially</h3>
