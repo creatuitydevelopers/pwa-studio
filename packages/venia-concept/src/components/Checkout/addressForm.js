@@ -11,6 +11,7 @@ import {
     validateZipCode,
     validateCity,
     validateEmail,
+    validateNoNumberString,
     isRequired,
     hasLengthExactly,
     validateRegionCode
@@ -102,7 +103,7 @@ class AddressForm extends Component {
                             <TextInput
                                 id={classes.firstname}
                                 field="firstname"
-                                validate={isRequired}
+                                validate={combine([isRequired, validateNoNumberString])}
                             />
                         </Field>
                     </div>

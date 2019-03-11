@@ -4,6 +4,7 @@ import { Link, resourceUrl } from 'src/drivers';
 import classify from 'src/classify';
 import { Rating } from 'src/components/Review';
 import {PriceWrapper} from 'src/components/RkStore';
+import ImageLoader from 'src/components/ImageLoader';
 
 import { transparentPlaceholder } from 'src/shared/images';
 import defaultClasses from './item.css';
@@ -159,7 +160,7 @@ class GalleryItem extends Component {
         const { small_image, name } = item;
 
         return (
-            <img
+            <ImageLoader
                 className={classes.image}
                 src={resourceUrl(small_image, {
                     type: 'image-product',

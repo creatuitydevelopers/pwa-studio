@@ -3,6 +3,7 @@ import classify from 'src/classify';
 import moment from 'moment';
 import { func, oneOf, object, shape, string } from 'prop-types';
 
+import ImageLoader from 'src/components/ImageLoader';
 import RichText from 'src/components/RichText';
 
 import { BACKEND_URL, IMAGE_PATH } from 'src/components/Rebates/consts';
@@ -75,7 +76,11 @@ class Item extends Component {
             return null;
         }
 
-        return <img className={classes.image} src={image} alt={item.title} />;
+        return <ImageLoader
+            className={classes.image}
+            src={image}
+            alt={item.title}
+        />;
     };
 }
 
