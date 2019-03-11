@@ -6,7 +6,6 @@ import { loadingIndicator } from 'src/components/LoadingIndicator';
 
 import { compose } from 'redux';
 import { connect } from 'src/drivers';
-
 import '../../globals.global.css';
 
 const cmsPageQuery = gql`
