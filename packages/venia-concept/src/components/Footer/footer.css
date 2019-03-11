@@ -1,6 +1,7 @@
 .root {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'banner' 'nav' 'social' 'bottom';
     background-color: rgb(var(--rk--color__gray-5));
     border-top: 1px solid rgb(var(--rk--color__gray-5));
     color: black;
@@ -9,50 +10,336 @@
     padding: 0 0 30px;
 }
 
-.nav > div,
-.social > div {
-    margin: 0;
-}
-
-.copyright > div {
-    margin: 0 1rem;
-}
-
-.nav > div {
-    max-width: 1024px;
-    margin: 0 auto;
-}
-
-.banner,
-.nav,
-.social,
-.copyright {
-    grid-column: 1/3;
+@media (min-width: 1024px) {
+    .root {
+        grid-template-columns: minmax(auto, 3fr) minmax(300px, 2fr);
+        grid-template-areas: 'banner banner' 'nav social' 'bottom bottom';
+    }
 }
 
 .banner {
-    margin: -1rem;
+    grid-area: banner;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 0;
+    background-color: rgb(var(--rk--color__red));
+    color: #fff;
 }
 
 
 @media (min-width: 768px) {
-
-
-    .nav > div {
-        padding: 15px;
+    .banner {
+        grid-column: 1/3;
+        flex-direction: row;
     }
+
+    .banner > div {
+        font-weight: bold;
+        padding: 5px 0;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .banner {
+        padding: 0;
+    }
+
+    .banner > div {
+        padding: 15px 0;
+        font-size: 1.2rem;
+    }
+}
+
+.nav {
+    grid-area: nav;
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1024px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.nav section {
+    margin-bottom: -1px;
+}
+
+.navHeader button {
+    padding: 15px;
+    width: 100%;
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 20px;
+    line-height: 22px;
+    color: rgb(var(--rk--color__red));
+    border-top: 1px solid #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navHeader button span{
+    transition: transform .2s ease;
+}
+
+.navContent {
+    padding: 0 15px;
+    border-bottom: 1px solid #fff;
+    transition: max-height .2s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.openTab .navContent{
+    max-height: 300px;
+}
+
+.openTab .navHeader button span{
+    transform: rotate(180deg);
+}
+
+.navList {
+
+}
+
+.navList li {
+    margin-bottom: 10px;
+}
+
+.navList li a {
+    color: rgb(var(--rk--color__gray));
+}
+
+.navList li a:hover{
+    text-decoration: underline;
+    color: rgb(153, 161, 169);
+}
+
+@media (min-width: 768px) {
+    .nav {
+        grid-column: 1/2;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+        padding: 0 1rem;
+        margin-right: 0;
+    }
+
+    .navHeader button{
+        padding: 20px 0 10px;
+        font-size: 18px;
+        border: none;
+    }
+
+    .navHeader button span{
+        display: none;
+    }
+
+    .navContent {
+        padding: 0;
+        max-height: none !important;
+        border: none;
+    }
+
+
+}
+
+
+.social {
+    grid-area: social;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.socialHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    width: 100%;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: center;
+    line-height: 22px;
+    color: rgb(var(--rk--color__red));
+}
+
+
+.socialLinks {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.socialIconFacebook,
+.socialIconTwitter,
+.socialIconInstagram,
+.socialIconPinterest{
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    text-indent: -9999px;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: url('./social_icon_sprint.png');
+    background-repeat: no-repeat;
+    background-size: 112px auto
+}
+
+.socialIconFacebook {
+    background-position: -10px -10px
+}
+
+.socialIconTwitter {
+    background-position: -66px -66px
+}
+
+.socialIconInstagram {
+    background-position: -66px -10px
+}
+
+.socialIconPinterest {
+    background-position: -10px -66px
 }
 
 @media (min-width: 1024px) {
     .social {
-        grid-column: 1/2;
+        margin-top: 0;
+    }
+}
+
+
+.bottom {
+    grid-area: bottom;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'norton' 'bottomNav' 'copyright';
+}
+
+.bottomNav {
+    grid-area: bottomNav;
+    text-align: center;
+    font-size: 13px;
+}
+
+.bottomNav ul li {
+    display: inline-block;
+    margin: 15px;
+}
+
+.bottomNav ul li:not(:last-child):after{
+    content: "|";
+    position: relative;
+    right: -15px;
+}
+
+.bottomNav ul li a {
+    font-size: 13px;
+}
+
+.copyright {
+    grid-area: copyright;
+    text-align: center;
+    font-size: 13px;
+}
+
+.norton {
+    grid-area: norton;
+    align-self: self-end;
+}
+
+.nortonBox{
+    display: block;
+    height: 89px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_auto,f_auto,fl_any_format.immutable_cache.lossy.progressive,q_auto,h_89/v1535384423/rk_m2_main_assets/norton_secured_logo.png");
+}
+
+@media (min-width: 1024px) {
+    .bottom {
+
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'norton norton' 'bottomNav copyright';
     }
 
-    .copyright {
-        grid-column: 2/3;
+    .bottomNav{
+        align-self: self-end;
     }
 
-    .copyright > div {
-        margin: 1rem;
+    .bottomNav ul li{
+        margin: 0 10px;
+    }
+
+    .bottomNav ul li:not(:last-child):after{
+        right: -10px;
+    }
+
+    .bottomNav ul li a,
+    .copyright{
+        font-size: 16px;
+    }
+
+    .copyright{
+        align-self: self-end;
+    }
+}
+
+
+@media (min-width: 1440px) {
+    .bottom {
+        grid-template-columns: minmax(400px, auto) minmax(275px, 1fr) 340px;
+        grid-template-areas: 'bottomNav copyright norton';
+    }
+}
+
+
+@media all and (-webkit-min-device-pixel-ratio: 1), all and (min--moz-device-pixel-ratio: 1), all and (-o-min-device-pixel-ratio: 1/1), all and (min-device-pixel-ratio: 1), all and (min-resolution: 96dpi), all and (min-resolution: 1dppx) {
+    .nortonBox {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_1.0,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.3), all and (min--moz-device-pixel-ratio: 1.3), all and (-o-min-device-pixel-ratio: 13/10), all and (min-device-pixel-ratio: 1.3), all and (min-resolution: 124.8dpi), all and (min-resolution: 1.3dppx) {
+    .nortonBox {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_1.3,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5), all and (min--moz-device-pixel-ratio: 1.5), all and (-o-min-device-pixel-ratio: 3/2), all and (min-device-pixel-ratio: 1.5), all and (min-resolution: 144dpi), all and (min-resolution: 1.5dppx) {
+    .nortonBox {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_1.5,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 2), all and (min--moz-device-pixel-ratio: 2), all and (-o-min-device-pixel-ratio: 2/1), all and (min-device-pixel-ratio: 2), all and (min-resolution: 192dpi), all and (min-resolution: 2dppx) {
+    .nortonBox {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_2.0,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 3), all and (min--moz-device-pixel-ratio: 3), all and (-o-min-device-pixel-ratio: 3/1), all and (min-device-pixel-ratio: 3), all and (min-resolution: 288dpi), all and (min-resolution: 3dppx) {
+    .nortonBox {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_3.0,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 3.5), all and (min--moz-device-pixel-ratio: 3.5), all and (-o-min-device-pixel-ratio: 3.5/1), all and (min-device-pixel-ratio: 3.5), all and (min-resolution: 336dpi), all and (min-resolution: 3.5dppx) {
+    .nortonBox {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_3.5,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 4), all and (min--moz-device-pixel-ratio: 4), all and (-o-min-device-pixel-ratio: 4/1), all and (min-device-pixel-ratio: 4), all and (min-resolution: 384dpi), all and (min-resolution: 4dppx) {
+    .nortonBox {
+        background-image: url('https://res.cloudinary.com/rkm2/image/upload/c_scale,dpr_4.0,f_auto,fl_any_format.immutable_cache.lossy.progressive,h_89,q_auto/v1535384423/rk_m2_main_assets/norton_secured_logo.png')
     }
 }
