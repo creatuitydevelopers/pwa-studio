@@ -1,22 +1,20 @@
 import React from 'react';
 import { string, object, array } from 'prop-types';
-import groupBy from 'lodash/groupBy';
-import toPairs from 'lodash/toPairs';
 import StoreDetails from './StoreDetails';
+
+import {getName, isToShopMethod} from 'src/models/DeliveryMethods';
+
+
 import classify from 'src/classify';
 import defaultClasses from './deliveryMethods.css';
+import groupBy from 'lodash/groupBy';
+import toPairs from 'lodash/toPairs';
 
 class DeliveryMethods extends React.Component {
-    getCarrierTitleByCode = code => {
-        const { availableShippingMethods } = this.props;
-        const carrier = availableShippingMethods.find(el => {
-            return el.carrier_code == code;
-        });
-        return carrier.carrier_title;
-    };
+
 
     render() {
-        const { storeCode, currencyCode, items, classes } = this.props;
+        const { availableShippingMethods, currencyCode, items, classes, methodCode } = this.props;
         const dataGroupedByStoreNumber = toPairs(
             groupBy(items, item => item.extension_attributes.store_number)
         );
@@ -24,9 +22,9 @@ class DeliveryMethods extends React.Component {
         return (
             <div>
                 <h3 className={classes.name}>
-                    <strong>{this.getCarrierTitleByCode(storeCode)}</strong>
+                    <strong>{getName(methodCode)}</strong>
                 </h3>
-                {dataGroupedByStoreNumber.map((store, idx) => {
+                {!!isToShopMethod(methodCode) && dataGroupedByStoreNumber.map((store, idx) => {
                     const [storeNumber, items] = store;
                     return (
                         <StoreDetails
@@ -37,6 +35,12 @@ class DeliveryMethods extends React.Component {
                         />
                     );
                 })}
+
+                {!isToShopMethod(methodCode)
+                    && !availableShippingMethods.length
+                    && <p className={classes.noMethods}>Sorry, no quotes are available for this order right now.</p>}
+                {!isToShopMethod(methodCode) && !!availableShippingMethods.length && <p>Here wile be select</p>}
+
             </div>
         );
     }

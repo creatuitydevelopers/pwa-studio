@@ -20,29 +20,25 @@ class ShippingInformation extends React.Component {
     };
 
     get content() {
-        const {cart, classes, availableShippingMethods} = this.props;
-
-        if (!availableShippingMethods.length) {
-            return <p className={classes.noMethods}>There is no available Shipping Methods</p>;
-        }
-
+        const {cart, availableShippingMethods} = this.props;
         const {
             details: {
                 items,
                 currency: {quote_currency_code}
             }
         } = cart;
+
         const data = toPairs(
             groupBy(items, item => item.extension_attributes.delivery_method)
         );
 
         return data.map((el, idx) => {
-            const [storeCode, items] = el;
+            const [methodCode, items] = el;
             return (
                 <DeliveryMethods
                     key={idx}
                     availableShippingMethods={availableShippingMethods}
-                    storeCode={storeCode}
+                    methodCode={methodCode}
                     currencyCode={quote_currency_code}
                     items={items}
                 />

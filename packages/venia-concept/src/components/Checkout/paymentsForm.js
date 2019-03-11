@@ -171,12 +171,12 @@ class PaymentsForm extends Component {
                             onSuccess={this.setPaymentNonce}
                         />
                     </div>
-                   <div className={classes.address_check}>
+                    {!isOrderOnlyToStores && <div className={classes.address_check}>
                         <Checkbox
                             field="addresses_same"
                             label="Billing address same as shipping address"
                         />
-                    </div>
+                    </div>}
                     {!formState.values.addresses_same &&
                         this.billingAddressFields()}
                 </div>
