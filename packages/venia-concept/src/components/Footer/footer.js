@@ -97,6 +97,8 @@ class Footer extends Component {
                         </header>
                         <div className={classes.navContent}>
                             <ul className={classes.navList}>
+                                <li><a href="/security" title="Security &amp; Privacy">Security &amp; Privacy</a></li>
+                                <li><a href="/terms" title="Terms &amp; Conditions">Terms &amp; Conditions</a></li>
                                 <li><a rel="nofollow" target="_blank" href="https://nortonshoppingguarantee.symantec.com/shoppers/" title="Norton Shopping Guarantee">Norton Shopping Guarantee</a></li>
                                 <li><a rel="nofollow" target="_blank" href="http://www.shopperapproved.com/customer-review/ruralking.com/3833460" title="Customer Reviews">Customer Reviews</a></li>
                             </ul>
@@ -134,12 +136,6 @@ class Footer extends Component {
                     </div>
                 </section>
                 <section className={classes.bottom}>
-                    <div className={classes.bottomNav}>
-                        <ul>
-                            <li><a href="#" title={`Security & Privacy`}>Security & Privacy</a></li>
-                            <li><a href="#" title={`Terms & Conditions`}>Terms & Conditions</a></li>
-                        </ul>
-                    </div>
                     <div className={classes.copyright}>© 2019 Rural King. All Rights Reserved.</div>
                     <div className={classes.norton}>
                         <div className={classes.nortonBox}></div>

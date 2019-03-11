@@ -5,7 +5,7 @@ import { func, shape, string } from 'prop-types';
 import classify from 'src/classify';
 import defaultClasses from './categoryLeaf.css';
 
-const urlSuffix = '.html';
+const urlSuffix = '';
 
 class Leaf extends Component {
     static propTypes = {
