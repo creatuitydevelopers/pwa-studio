@@ -11,7 +11,7 @@ import { Query } from 'react-apollo';
 
 const searchQuery = gql`
     query($sku: String) {
-        inStorePickupAvailability(sku: $sku) {
+        deliveryMethods(sku: $sku) {
             method
             delivery_options {
                 name
@@ -85,7 +85,7 @@ class DeliveryMethods extends Component {
                                     )}
                                 />
                             );
-                        const methods = data.inStorePickupAvailability;
+                        const methods = data.deliveryMethods;
 
                         if (methods.length > 0 && !defaultMethod) {
                             methods.every(method => {

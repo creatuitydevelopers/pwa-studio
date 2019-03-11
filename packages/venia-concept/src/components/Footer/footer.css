@@ -109,6 +109,8 @@
 }
 
 .navList li a {
+    display: block;
+    padding: 5px 0;
     color: rgb(var(--rk--color__gray));
 }
 
@@ -220,29 +222,9 @@
     grid-area: bottom;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'norton' 'bottomNav' 'copyright';
+    grid-template-areas: 'norton' 'copyright';
 }
 
-.bottomNav {
-    grid-area: bottomNav;
-    text-align: center;
-    font-size: 13px;
-}
-
-.bottomNav ul li {
-    display: inline-block;
-    margin: 15px;
-}
-
-.bottomNav ul li:not(:last-child):after{
-    content: "|";
-    position: relative;
-    right: -15px;
-}
-
-.bottomNav ul li a {
-    font-size: 13px;
-}
 
 .copyright {
     grid-area: copyright;
@@ -265,11 +247,6 @@
 }
 
 @media (min-width: 1024px) {
-    .bottom {
-
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 'norton norton' 'bottomNav copyright';
-    }
 
     .bottomNav{
         align-self: self-end;
