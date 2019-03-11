@@ -9,6 +9,7 @@ import ShippingForm from './shippingForm';
 import SubmitButton from './submitButton';
 import ShippingInformation from './ShippingInformation';
 
+import { isOrderOnlyToStores } from 'src/models/DeliveryMethods';
 import classify from 'src/classify';
 import Button from 'src/components/Button';
 import defaultClasses from './form.css';
@@ -83,7 +84,6 @@ class Form extends Component {
         submitShippingMethod: func.isRequired,
         submitting: bool.isRequired
     };
-
     /*
      *  Class Properties.
      */
@@ -96,7 +96,9 @@ class Form extends Component {
             cart,
             directory
         } = this.props;
+
         const { countries } = directory;
+        //const isOrderOnlyToStores = isOrderOnlyToStores(cart.details.items);
 
         switch (editing) {
             case 'address': {
@@ -111,6 +113,7 @@ class Form extends Component {
                         submit={this.submitShippingAddress}
                         isAddressIncorrect={isAddressIncorrect}
                         incorrectAddressMessage={incorrectAddressMessage}
+                        isOrderOnlyToStores={isOrderOnlyToStores(cart.details.items)}
                     />
                 );
             }
@@ -122,6 +125,7 @@ class Form extends Component {
                         cancel={this.stopEditing}
                         initialValues={billingAddress}
                         submit={this.submitPaymentMethodAndBillingAddress}
+                        isOrderOnlyToStores={isOrderOnlyToStores(cart.details.items)}
                         submitting={submitting}
                         countries={countries}
                     />
@@ -129,13 +133,16 @@ class Form extends Component {
             }
             case 'shippingMethod': {
                 const { availableShippingMethods, shippingMethod } = this.props;
-
                 return (
-                    <ShippingInformation
-                        cart={cart}
-                        availableShippingMethods={availableShippingMethods}
-                        cancel={this.stopEditing}
-                    />
+                        <ShippingInformation
+                            cart={cart}
+                            availableShippingMethods={availableShippingMethods}
+                            shippingMethod={shippingMethod}
+                            isOrderOnlyToStores={isOrderOnlyToStores(cart.details.items)}
+                            submitShippingMethod={this.submitShippingMethod}
+                            submitting={submitting}
+                            cancel={this.stopEditing}
+                        />
                 );
             }
             default: {
@@ -161,7 +168,7 @@ class Form extends Component {
             <Fragment>
                 <div className={classes.body}>
                     <Section
-                        label="Ship To"
+                        label={!isOrderOnlyToStores(cart.details.items) ? "Ship To" : "Bill To"}
                         onClick={this.editAddress}
                         showEditIcon={hasShippingAddress}
                     >

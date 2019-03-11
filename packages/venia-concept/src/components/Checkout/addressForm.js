@@ -58,7 +58,8 @@ class AddressForm extends Component {
         incorrectAddressMessage: string,
         submit: func.isRequired,
         submitting: bool,
-        countries: array
+        countries: array,
+        isOrderOnlyToStores: bool
     };
 
     static defaultProps = {
@@ -91,12 +92,12 @@ class AddressForm extends Component {
     }
 
     children = () => {
-        const { classes, submitting, countries } = this.props;
+        const { classes, submitting, countries, isOrderOnlyToStores } = this.props;
 
         return (
             <Fragment>
                 <div className={classes.body}>
-                    <h2 className={classes.heading}>Shipping Address123</h2>
+                    <h2 className={classes.heading}>{isOrderOnlyToStores ? `Billing Address` : `Shipping Address`}</h2>
                     <div className={classes.firstname}>
                         <Field label="First Name">
                             <TextInput

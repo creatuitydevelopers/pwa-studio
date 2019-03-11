@@ -79,8 +79,11 @@ export const isDeliveryMethodValid = (method, store) => {
 };
 
 export const isOrderOnlyToStores = items => {
-    //extension_attributes.delivery_method
-    return true;
 
+    if (items.some(item => item.extension_attributes.delivery_method == DEFAULT_METHOD_CODE)){
+        return false;
+    }
+
+    return true;
 }
 

@@ -148,6 +148,22 @@ export const submitShippingAddress = payload =>
         let { formValues: address } = payload;
         try {
             address = formatAddress(address, countries);
+
+
+            await request(
+                `/rest/V1/guest-carts/${guestCartId}/shipping-information`,
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        addressInformation: {
+                            billing_address: {},
+                            shipping_address: address
+                        }
+                    })
+                }
+            );
+
+
         } catch (error) {
             dispatch(
                 actions.shippingAddress.reject({
@@ -207,20 +223,9 @@ export const submitOrder = () =>
 
         try {
             // POST to shipping-information to submit the shipping address and shipping method.
-            await request(
-                `/rest/V1/guest-carts/${guestCartId}/shipping-information`,
-                {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        addressInformation: {
-                            billing_address,
-                            shipping_address
-                        }
-                    })
-                }
-            );
 
-            console.log(paymentMethod);
+
+            //console.log(paymentMethod);
 
             // POST to payment-information to submit the payment details and billing address,
             // Note: this endpoint also actually submits the order.

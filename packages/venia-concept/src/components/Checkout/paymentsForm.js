@@ -49,7 +49,8 @@ class PaymentsForm extends Component {
         }),
         submit: func.isRequired,
         submitting: bool,
-        countries: array
+        countries: array,
+        isOrderOnlyToStores: bool
     };
 
     static defaultProps = {
@@ -154,7 +155,7 @@ class PaymentsForm extends Component {
      *  Class Functions.
      */
     formChildren = ({ formState }) => {
-        const { classes, submitting } = this.props;
+        const { classes, submitting, isOrderOnlyToStores } = this.props;
 
         return (
             <Fragment>
@@ -170,7 +171,7 @@ class PaymentsForm extends Component {
                             onSuccess={this.setPaymentNonce}
                         />
                     </div>
-                    <div className={classes.address_check}>
+                   <div className={classes.address_check}>
                         <Checkbox
                             field="addresses_same"
                             label="Billing address same as shipping address"

@@ -1,26 +1,35 @@
 import React from 'react';
 import classify from 'src/classify';
-import { func, object, array } from 'prop-types';
-import { getStoreByNumber } from 'src/actions/store';
+import {bool, string, func, object, array} from 'prop-types';
+import {getStoreByNumber} from 'src/actions/store';
+
+import {Form} from 'informed';
 import Button from 'src/components/Button';
-import defaultClasses from './shippingInformation.css';
+import ShippingForm from 'src/components/Checkout/shippingForm';
 import DeliveryMethods from './DeliveryMethods';
-import { loadingIndicator } from 'src/components/LoadingIndicator';
+import defaultClasses from './shippingInformation.css';
 
 import groupBy from 'lodash/groupBy';
 import toPairs from 'lodash/toPairs';
 
+
 class ShippingInformation extends React.Component {
+
     getStoreDetailsByNumber = async storeNumber => {
         return getStoreByNumber(storeNumber);
     };
 
     get content() {
-        const { cart, availableShippingMethods } = this.props;
+        const {cart, classes, availableShippingMethods} = this.props;
+
+        if (!availableShippingMethods.length) {
+            return <p className={classes.noMethods}>There is no available Shipping Methods</p>;
+        }
+
         const {
             details: {
                 items,
-                currency: { quote_currency_code }
+                currency: {quote_currency_code}
             }
         } = cart;
         const data = toPairs(
@@ -42,21 +51,37 @@ class ShippingInformation extends React.Component {
     }
 
     render() {
-        const { classes, availableShippingMethods, cancel } = this.props;
-        if (!availableShippingMethods.length) {
-            return loadingIndicator;
-        }
-        const { content } = this;
+
+        const {
+            availableShippingMethods,
+            cancel,
+            classes,
+            isOrderOnlyToStores,
+            shippingMethod,
+            submitShippingMethod,
+            submitting,
+        } = this.props;
+
+        const {content} = this;
 
         return (
-            <div className={classes.root}>
+            <Form
+                className={classes.root}
+                onSubmit={submitShippingMethod}
+            >
                 <div className={classes.body}>
-                    <div>{content}</div>
+                    <h2 className={classes.heading}>Shipping Information</h2>
+                    {content}
                 </div>
                 <div className={classes.footer}>
-                    <Button onClick={cancel}>Back</Button>
+                    <Button onClick={cancel}>{isOrderOnlyToStores ? `Back` : `Cancel`}</Button>
+                    {!isOrderOnlyToStores && !!availableShippingMethods.length && <Button
+                            className={classes.button}
+                            priority="high"
+                            type="submit"
+                            disabled={submitting}>Use Method</Button>}
                 </div>
-            </div>
+            </Form>
         );
     }
 }
@@ -64,7 +89,11 @@ class ShippingInformation extends React.Component {
 ShippingInformation.propTypes = {
     cancel: func,
     cart: object,
-    availableShippingMethods: array
+    availableShippingMethods: array,
+    shippingMethod: string,
+    submitShippingMethod: func.isRequired,
+    submitting: bool,
+    isOrderOnlyToStores: bool
 };
 
 export default classify(defaultClasses)(ShippingInformation);
