@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { submitOrder } from 'src/actions/checkout';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { loadingIndicator } from 'src/components/LoadingIndicator';
-
-import { compose } from 'redux';
-import { connect } from 'src/drivers';
 import '../../globals.global.css';
 
 const cmsPageQuery = gql`
@@ -21,7 +17,7 @@ const cmsPageQuery = gql`
 
 class CMS extends Component {
     render() {
-        const { id, submitOrder } = this.props;
+        const { id } = this.props;
 
         return (
             <Query query={cmsPageQuery} variables={{ id: Number(id) }}>
@@ -42,11 +38,4 @@ class CMS extends Component {
     }
 }
 
-const mapDispatchToProps = { submitOrder };
-
-export default compose(
-    connect(
-        null,
-        mapDispatchToProps
-    )
-)(CMS);
+export default CMS;
