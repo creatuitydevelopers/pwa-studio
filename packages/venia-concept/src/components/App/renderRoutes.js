@@ -19,7 +19,7 @@ const renderRoutes = () => (
     <Switch>
         <Route exact path="/search.html" component={Search} />
         <Route exact path="/create-account" component={CreateAccountPage} />
-        <Route exact path="/storelocator" render={() => {
+        <Route exact path="/storelocator.html" render={() => {
             return (
                 <Suspense fallback={loadingIndicator}>
                     <StoreLocator />
@@ -34,21 +34,21 @@ const renderRoutes = () => (
             )
         }} />
 
-        <Route exact path="/events" component={() => {
+        <Route exact path="/events.html" component={() => {
             return (
                 <Suspense fallback={loadingIndicator}>
                     <Events />
                 </Suspense>
             )
         }} />
-        <Route exact path="/rebates" component={() => {
+        <Route exact path="/rebates.html" component={() => {
              return (
                 <Suspense fallback={loadingIndicator}>
                     <Rebates />
                 </Suspense>
             )
         }} />
-        <Route exact path="/weeklyad" component={() => {
+        <Route exact path="/weeklyad.html" component={() => {
             return (
                 <Suspense fallback={loadingIndicator}>
                     <Weeklyad />
