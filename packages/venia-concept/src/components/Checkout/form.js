@@ -73,6 +73,7 @@ class Form extends Component {
             region_id: string,
             region_code: string,
             region: string,
+            sectionTotal: string,
             street: array,
             telephone: string
         }),
@@ -189,12 +190,7 @@ class Form extends Component {
                         {this.shippingMethodSummary}
                     </Section>
                     <Section label="TOTAL">
-                        <Price
-                            currencyCode={cart.totals.quote_currency_code}
-                            value={cart.totals.subtotal}
-                        />
-                        <br />
-                        <span>{cart.details.items_qty} Items</span>
+                        {this.totalSummary}
                     </Section>
                 </div>
                 <div className={classes.footer}>
@@ -265,11 +261,51 @@ class Form extends Component {
     }
 
     get shippingMethodSummary() {
+        const { cart, classes, hasShippingMethod, shippingTitle } = this.props;
+
+        if(!!isOrderOnlyToStores(cart.details.items) || !hasShippingMethod){
+            return (<span className={classes.informationPrompt}>Show Shipping Information</span>);
+        }
+
         return (
             <Fragment>
                 <strong>Show Shipping Information</strong>
+                <br />
+                <span>{shippingTitle}</span>
             </Fragment>
         )
+    }
+
+    get totalSummary() {
+        const {
+            cart,
+            classes,
+            hasShippingMethod
+        } = this.props;
+
+        //console.log(this.props.cart);
+
+        return (
+            <div className={classes.sectionTotal}>
+                <span>Subtotal ({cart.details.items_qty} Items):</span>
+                <Price
+                    currencyCode={cart.totals.quote_currency_code}
+                    value={cart.totals.subtotal}
+                />
+                {!!hasShippingMethod && <Fragment>
+                    <span>Shipping:</span>
+                    <Price
+                        currencyCode={cart.totals.quote_currency_code}
+                        value={21.01}
+                    />
+                </Fragment>}
+                <span>Total:</span>
+                <Price
+                    currencyCode={cart.totals.quote_currency_code}
+                    value={cart.totals.subtotal}
+                />
+            </div>
+        );
     }
 
     /*

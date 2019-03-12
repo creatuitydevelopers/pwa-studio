@@ -142,6 +142,7 @@ class Flow extends Component {
                     billingAddress,
                     cancelCheckout,
                     cart,
+                    checkout,
                     directory,
                     editOrder,
                     editing,

@@ -11,12 +11,14 @@ import {
     submitPaymentMethodAndBillingAddress,
     submitShippingMethod
 } from 'src/actions/checkout';
+import { isOrderOnlyToStores } from 'src/models/DeliveryMethods';
+
 
 import Flow from './flow';
 
 const hasData = value => !!value;
 const isCartReady = cart => cart.details.items_count > 0;
-const isCheckoutReady = checkout => {
+const isCheckoutReady = (checkout, cart) => {
     const {
         billingAddress,
         paymentData,
@@ -24,7 +26,13 @@ const isCheckoutReady = checkout => {
         shippingMethod
     } = checkout;
 
-    return [billingAddress, paymentData, shippingAddress].every(
+    let sections = [billingAddress, paymentData, shippingAddress];
+
+    if(!isOrderOnlyToStores(cart.details.items)){
+        sections.push(shippingMethod);
+    }
+
+    return sections.every(
         hasData
     );
 };
@@ -136,7 +144,7 @@ export class CheckoutWrapper extends Component {
             hasShippingAddress: hasData(shippingAddress),
             hasShippingMethod: hasData(shippingMethod),
             isCartReady: isCartReady(cart),
-            isCheckoutReady: isCheckoutReady(checkout)
+            isCheckoutReady: isCheckoutReady(checkout, cart)
         };
 
         const flowProps = { actions, cart, checkout, directory, ...miscProps };

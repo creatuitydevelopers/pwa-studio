@@ -161,8 +161,8 @@ export const submitShippingAddress = payload =>
         }
 
         await saveShippingAddress(address);
-        dispatch(getShippingMethods());
         dispatch(actions.shippingAddress.accept(address));
+        dispatch(getShippingMethods());
     };
 
 export const submitShippingMethod = payload =>
@@ -219,8 +219,8 @@ export const submitOrder = () =>
                         addressInformation: {
                             billing_address,
                             shipping_address,
-                            shipping_carrier: shipping_method.carrier,
-                            shipping_method_code: shipping_method.method
+                            shipping_carrier_code: !!shipping_method ? shipping_method.carrier : null,
+                            shipping_method_code: !!shipping_method ? shipping_method.method : null
                         }
                     })
                 }

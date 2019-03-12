@@ -37,9 +37,9 @@ const reducerMap = {
             paymentData: storedPaymentMethod && storedPaymentMethod.data,
             shippingAddress: storedShippingAddress,
             shippingMethod:
-                storedShippingMethod && storedShippingMethod.carrier_code,
+                storedShippingMethod && storedShippingMethod.carrier,
             shippingTitle:
-                storedShippingMethod && storedShippingMethod.carrier_title,
+                storedShippingMethod && `${storedShippingMethod.carrier_title} (${storedShippingMethod.method_title})`,
             editing: null,
             step: 'form'
         };
@@ -136,8 +136,8 @@ const reducerMap = {
         return {
             ...state,
             editing: null,
-            shippingMethod: payload.carrier_code,
-            shippingTitle: payload.carrier_title,
+            shippingMethod: payload.carrier,
+            shippingTitle: `${payload.carrier_title} (${payload.method_title})`,
             step: 'form',
             submitting: false,
             isAddressIncorrect: false,
