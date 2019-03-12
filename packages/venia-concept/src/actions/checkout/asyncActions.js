@@ -161,6 +161,7 @@ export const submitShippingAddress = payload =>
         }
 
         await saveShippingAddress(address);
+        dispatch(getShippingMethods());
         dispatch(actions.shippingAddress.accept(address));
     };
 
