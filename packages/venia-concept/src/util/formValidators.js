@@ -102,3 +102,16 @@ export const validateRegionCode = (value, values, countries) => {
 
     return null;
 };
+
+
+export const validateNoNumberString = value => {
+    if (!value) {
+        return null;
+    }
+
+    const regex = /^([^0-9]*)$/;
+
+    return !regex.test(value)
+        ? 'Please enter a valid string.'
+        : null;
+};

@@ -1,8 +1,10 @@
 {{> templates/open-document}}
-    <title>Rural King - Not Found</title>
+    <title>Rural King</title>
+    <meta name="keywords" content="Rural King, farm supplies, farm supply store, farm and home supply, agriculture supplies, farm store, farm supply, farmers supply">
+    <meta name="description" content="Rural King is America's Farm and Home Store. Our product offering includes all types of farm supplies, clothing, housewares, tools, fencing, and more.">
   {{> templates/open-body }}
     <div id="root">
-        Not found!
+        Loading ...
     </div>
   {{> templates/seed-bundles}}
 {{> templates/close-document}}
