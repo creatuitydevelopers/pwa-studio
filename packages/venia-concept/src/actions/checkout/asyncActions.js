@@ -37,7 +37,7 @@ export const editOrder = section =>
 
 export const getShippingMethods = () => {
     return async function thunk(dispatch, getState) {
-        const { cart } = getState();
+        const { cart, checkout } = getState();
         const { guestCartId } = cart;
 
         try {
@@ -48,6 +48,12 @@ export const getShippingMethods = () => {
                 return thunk(...arguments);
             }
 
+            const address=  {
+                country_id: 'US',
+                postcode: null,
+                ...checkout.shippingAddress
+            };
+
             dispatch(actions.getShippingMethods.request(guestCartId));
 
             const response = await request(
@@ -55,10 +61,7 @@ export const getShippingMethods = () => {
                 {
                     method: 'POST',
                     body: JSON.stringify({
-                        address: {
-                            country_id: 'US',
-                            postcode: null
-                        }
+                        address: address
                     })
                 }
             );
