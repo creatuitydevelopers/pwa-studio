@@ -3,6 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { loadingIndicator } from 'src/components/LoadingIndicator';
 import '../../globals.global.css';
+import Homepage from './Homepage.js';
 
 const cmsPageQuery = gql`
     query cmsPage($id: Int!) {
@@ -19,6 +20,12 @@ class CMS extends Component {
     render() {
         const { id } = this.props;
 
+        if(id == 8) {
+            return (
+                <div dangerouslySetInnerHTML={{ __html: Homepage }} />
+            )
+        }
+
         return (
             <Query query={cmsPageQuery} variables={{ id: Number(id) }}>
                 {({ loading, error, data }) => {
@@ -28,7 +35,7 @@ class CMS extends Component {
                     const {
                         cmsPage: { content }
                     } = data;
-
+                    console.log(content);
                     return (
                         <div dangerouslySetInnerHTML={{ __html: content }} />
                     );
