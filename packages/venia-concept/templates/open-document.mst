@@ -21,7 +21,8 @@
     }}
     <link rel="apple-touch-icon" href="/icons/venia_square_57.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-    <link href="https://use.typekit.net/uca6omh.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://use.typekit.net">
+    <link href="https://use.typekit.net/uca6omh.css" rel="stylesheet" defer />
 
     <link rel="preconnect" href="{{env.MAGENTO_BACKEND_URL}}">
     {{#bundles.prefetch}}
