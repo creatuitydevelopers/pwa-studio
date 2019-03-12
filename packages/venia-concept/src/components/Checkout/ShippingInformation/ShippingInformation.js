@@ -12,7 +12,6 @@ import defaultClasses from './shippingInformation.css';
 import groupBy from 'lodash/groupBy';
 import toPairs from 'lodash/toPairs';
 
-
 class ShippingInformation extends React.Component {
 
     getStoreDetailsByNumber = async storeNumber => {
@@ -20,7 +19,7 @@ class ShippingInformation extends React.Component {
     };
 
     get content() {
-        const {cart, availableShippingMethods} = this.props;
+        const {cart, submitShippingMethod, shippingMethod, availableShippingMethods} = this.props;
         const {
             details: {
                 items,
@@ -41,6 +40,7 @@ class ShippingInformation extends React.Component {
                     methodCode={methodCode}
                     currencyCode={quote_currency_code}
                     items={items}
+                    shippingMethod={shippingMethod}
                 />
             );
         });
@@ -53,8 +53,6 @@ class ShippingInformation extends React.Component {
             cancel,
             classes,
             isOrderOnlyToStores,
-            shippingMethod,
-            submitShippingMethod,
             submitting,
         } = this.props;
 
@@ -63,7 +61,7 @@ class ShippingInformation extends React.Component {
         return (
             <Form
                 className={classes.root}
-                onSubmit={submitShippingMethod}
+                onSubmit={this.submit}
             >
                 <div className={classes.body}>
                     <h2 className={classes.heading}>Shipping Information</h2>
@@ -80,6 +78,23 @@ class ShippingInformation extends React.Component {
             </Form>
         );
     }
+
+    submit = ({ shippingMethod }) => {
+
+        const selectedShippingMethod = this.props.availableShippingMethods.find(
+            ({ carrier_code }) => carrier_code === shippingMethod
+        );
+
+        if (!selectedShippingMethod) {
+            console.warn(
+                `Could not find the selected shipping method ${selectedShippingMethod} in the list of available shipping methods.`
+            );
+            this.props.cancel();
+            return;
+        }
+
+        this.props.submitShippingMethod({ shippingMethod: selectedShippingMethod });
+    };
 }
 
 ShippingInformation.propTypes = {
