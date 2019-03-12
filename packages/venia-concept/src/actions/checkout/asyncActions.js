@@ -211,7 +211,6 @@ export const submitOrder = () =>
 
         try {
             // POST to shipping-information to submit the shipping address and shipping method.
-
             await request(
                 `/rest/V1/guest-carts/${guestCartId}/shipping-information`,
                 {
@@ -220,8 +219,8 @@ export const submitOrder = () =>
                         addressInformation: {
                             billing_address,
                             shipping_address,
-                            shipping_carrier_code: shipping_method.carrier_code,
-                            shipping_method_code: shipping_method.method_code
+                            shipping_carrier: shipping_method.carrier,
+                            shipping_method_code: shipping_method.method
                         }
                     })
                 }
