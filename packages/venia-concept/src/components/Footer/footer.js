@@ -5,6 +5,9 @@ import { Link } from 'src/drivers';
 import Icon from 'src/components/Icon';
 import ChevronDownIcon from 'react-feather/dist/icons/chevron-down';
 
+import {FaFacebook, FaInstagram, FaPinterestSquare, FaTwitterSquare} from "react-icons/fa";
+
+
 import classify from 'src/classify';
 import defaultClasses from './footer.css';
 
@@ -26,10 +29,8 @@ class Footer extends Component {
             social: PropTypes.string,
             socialHeader: PropTypes.string,
             socialLinks: PropTypes.string,
-            socialIconFacebook: PropTypes.string,
-            socialIconTwitter: PropTypes.string,
-            socialIconInstagram: PropTypes.string,
-            socialIconPinterest: PropTypes.string,
+            socialIcon: PropTypes.string,
+            socialIconLabel:PropTypes.string,
             bottomNav: PropTypes.string,
             copyright: PropTypes.string,
             norton: PropTypes.string,
@@ -137,14 +138,25 @@ class Footer extends Component {
                 <section className={classes.social}>
                     <h3 className={classes.socialHeader}>Connect with us Socially</h3>
                     <div className={classes.socialLinks}>
-                        <a href="http://www.facebook.com/ruralking" target="_blank" rel="noreferrer"
-                           className={classes.socialIconFacebook}>Facebook</a>
+                        <a href="http://www.facebook.com/ruralking" target="_blank" rel="noreferrer" className={classes.socialIcon}>
+                            <Icon src={FaFacebook} size={36} />
+                            <span className={classes.socialIconLabel}>Facebook</span>
+                        </a>
                         <a href="http://twitter.com/ruralkingsupply" target="_blank" rel="noreferrer"
-                           className={classes.socialIconTwitter}>Twitter</a>
+                           className={classes.socialIcon}>
+                            <Icon src={FaTwitterSquare} size={36} />
+                            <span className={classes.socialIconLabel}>Twitter</span>
+                        </a>
                         <a href="https://www.instagram.com/ruralkingsupply/?hl=en" target="_blank" rel="noreferrer"
-                           className={classes.socialIconInstagram}>Instagram</a>
+                           className={classes.socialIcon}>
+                            <Icon src={FaInstagram} size={36} />
+                            <span className={classes.socialIconLabel}>Instagram</span>
+                        </a>
                         <a href="https://www.pinterest.com/ruralkingsupply/" target="_blank" rel="noreferrer"
-                           className={classes.socialIconPinterest}>Pinterest</a>
+                           className={classes.socialIcon}>
+                            <Icon src={FaPinterestSquare} size={36} />
+                            <span className={classes.socialIconLabel}>Pinterest</span>
+                        </a>
                     </div>
                 </section>
                 <section className={classes.bottom}>
