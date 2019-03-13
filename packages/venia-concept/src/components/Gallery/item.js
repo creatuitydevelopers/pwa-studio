@@ -5,6 +5,8 @@ import classify from 'src/classify';
 import { Rating } from 'src/components/Review';
 import {PriceWrapper} from 'src/components/RkStore';
 import ImageLoader from 'src/components/ImageLoader';
+import AnyComponent from './anyComponent';
+
 
 import { transparentPlaceholder } from 'src/shared/images';
 import defaultClasses from './item.css';
@@ -71,8 +73,9 @@ class GalleryItem extends Component {
 
         const { name, labels, url_key } = item;
         const productLink = `/${url_key}${productUrlSuffix}`;
+
         return (
-            <div className={classes.root}>
+            <AnyComponent className={classes.root} urlKey={url_key}>
                 <Link to={resourceUrl(productLink)} className={classes.images}>
                     {this.renderImagePlaceholder()}
                     {this.renderImage()}
@@ -98,9 +101,9 @@ class GalleryItem extends Component {
                             />
                         )}
                     </div>
-                   {this.stockInfo}
+                {this.stockInfo}
                 </div>
-            </div>
+            </AnyComponent>
         );
     }
 

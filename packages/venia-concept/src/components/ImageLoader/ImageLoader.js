@@ -27,6 +27,10 @@ class ImageLoader extends Component {
         this.setState(() => ({ loaded: true }));
     };
 
+    complete = () => {
+        console.log('wjezdza');
+    }
+
 
     render() {
 
