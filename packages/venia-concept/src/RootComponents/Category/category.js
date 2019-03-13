@@ -70,6 +70,9 @@ class Category extends Component {
             >
                 {({ loading, error, data }) => {
                     if (error) return <div>Data Fetch Error</div>;
+                    // If our pagination component has mounted, then we have
+                    // a total page count in the store, so we continue to render
+                    // with our last known total
                     if (loading)
                         return (
                             <CategoryContent
@@ -78,7 +81,7 @@ class Category extends Component {
                             />
                         );
 
-                    // Retrieve the total page count from GraphQL when ready
+                    // TODO: Retrieve the page total from GraphQL when ready
                     const pageCount =
                         data.category.products.total_count / pageSize;
                     const totalPages = Math.ceil(pageCount);

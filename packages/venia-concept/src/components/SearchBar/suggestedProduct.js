@@ -8,13 +8,20 @@ import defaultClasses from './suggestedProduct.css';
 
 const productUrlSuffix = '.html';
 
-class suggestedProduct extends Component {
+class SuggestedProduct extends Component {
     static propTypes = {
         handleOnProductOpen: PropTypes.func.isRequired,
         url_key: PropTypes.string.isRequired,
         small_image: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        price: PropTypes.object.isRequired,
+        // price: PropTypes.shape({
+        //     regularPrice: PropTypes.shape({
+        //         amount: PropTypes.shape({
+        //             currency: PropTypes.string,
+        //             value: PropTypes.number
+        //         })
+        //     })
+        // }).isRequired,
         classes: PropTypes.shape({
             root: PropTypes.string,
             productName: PropTypes.string,
@@ -53,15 +60,9 @@ class suggestedProduct extends Component {
                 >
                     {name}
                 </Link>
-                <Link onClick={handleOnProductOpen} to={productLink}>
-                    <Price
-                        currencyCode={price.regularPrice.amount.currency}
-                        value={price.regularPrice.amount.value}
-                    />
-                </Link>
             </li>
         );
     }
 }
 
-export default classify(defaultClasses)(suggestedProduct);
+export default classify(defaultClasses)(SuggestedProduct);

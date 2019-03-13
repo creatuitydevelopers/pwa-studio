@@ -45,7 +45,7 @@ const Tile = props => {
             <div className={classes.photo}>
                 {store.baseimage && (
                     <ImageLoader
-                        src={`https://ruralking.com/media/${store.baseimage}`}
+                        src={`https://creatuitypwa-backend.site/media/${store.baseimage}`}
                         alt={`${store.city}, ${store.state}`}
                     />
                 )}
