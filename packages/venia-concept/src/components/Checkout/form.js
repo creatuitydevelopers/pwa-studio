@@ -280,10 +280,10 @@ class Form extends Component {
         const {
             cart,
             classes,
-            hasShippingMethod
+            hasShippingMethod,
+            availableShippingMethods,
+            shippingMethod
         } = this.props;
-
-        //console.log(this.props.cart);
 
         return (
             <div className={classes.sectionTotal}>
@@ -292,17 +292,33 @@ class Form extends Component {
                     currencyCode={cart.totals.quote_currency_code}
                     value={cart.totals.subtotal}
                 />
-                {!!hasShippingMethod && <Fragment>
-                    <span>Shipping:</span>
-                    <Price
-                        currencyCode={cart.totals.quote_currency_code}
-                        value={21.01}
-                    />
-                </Fragment>}
+                {!!hasShippingMethod
+                    && availableShippingMethods
+                        .filter(method => method.carrier == shippingMethod)
+                        .map((method, key) => {
+
+                            return <Fragment key={key}>
+                                        <span>Shipping:</span>
+                                        <Price
+                                            currencyCode={cart.totals.quote_currency_code}
+                                            value={parseFloat(method.price.replace( (cart.totals.quote_currency_code == 'USD' ? '$': '') , ''))}
+                                        />
+                                    </Fragment>
+                        }
+                        )
+
+                }
                 <span>Total:</span>
                 <Price
                     currencyCode={cart.totals.quote_currency_code}
-                    value={cart.totals.subtotal}
+                    value={cart.totals.subtotal
+                                + availableShippingMethods
+                                    .filter(method => method.carrier == shippingMethod)
+                                    .reduce(
+                                        (previousValue, method) => previousValue + parseFloat(method.price.replace( (cart.totals.quote_currency_code == 'USD' ? '$': '') , ''))
+                                        , 0
+                                    )
+                    }
                 />
             </div>
         );
