@@ -75,7 +75,7 @@ class GalleryItem extends Component {
         const productLink = `/${url_key}${productUrlSuffix}`;
 
         return (
-            <AnyComponent className={classes.root} urlKey={url_key}>
+            <div className={classes.root} >
                 <Link to={resourceUrl(productLink)} className={classes.images}>
                     {this.renderImagePlaceholder()}
                     {this.renderImage()}
@@ -103,7 +103,10 @@ class GalleryItem extends Component {
                     </div>
                 {this.stockInfo}
                 </div>
-            </AnyComponent>
+            </div>
+            // <AnyComponent className={classes.root} urlKey={url_key}>
+                
+            // </AnyComponent>
         );
     }
 

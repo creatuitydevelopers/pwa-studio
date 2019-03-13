@@ -35,11 +35,6 @@ function makeResizedUrl(url, width) {
 function formatUrl(url = '', opts = {}) {
     const { type, width } = opts;
 
-    /* Creatuity FIX for loading images from current live site */
-    if (mediaPathPrefixes.hasOwnProperty(type)) {
-        url = joinUrls(mediaPathPrefixes[type], url);
-    }
-
     if (absoluteUrl.test(url) || !(type || width)) {
         // Absolute URLs shouldn't be resized
         // Without a type or a width, we don't know how to transform this url

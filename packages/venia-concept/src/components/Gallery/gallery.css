@@ -11,32 +11,7 @@
     display: grid;
     grid-area: items;
     grid-gap: 1.5rem 1rem;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     margin-bottom: 10px;
     overflow: hidden;
-}
-
-@media (min-width: 480px) {
-    .items {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 640px) {
-    .items {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-
-@media (min-width: 768px) {
-    .items {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .items {
-        grid-template-columns: repeat(5, 1fr);
-    }
 }
