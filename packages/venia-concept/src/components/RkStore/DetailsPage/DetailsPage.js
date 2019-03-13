@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import classify from 'src/classify';
 import defaultClasses from './detailsPage.css';
 import storeImage from './image.jpg';
+
+import ImageLoader from 'src/components/ImageLoader';
 import { Title, ChooseStoreButton } from 'src/components/RkStore';
 import { object, func } from 'prop-types';
 import { Rating } from 'src/components/Review';
@@ -64,7 +66,7 @@ const DetailsPage = props => {
     return (
         <div className={classes.root}>
             <figure className={classes.header}>
-                <img className={classes.image} src={storeImage} />
+                <ImageLoader className={classes.image} src={storeImage} />
                 <figcaption className={classes.caption}>
                     <Title store={store} tag={`h1`} className={classes.title} />
                     <ChooseStoreButton
@@ -222,10 +224,7 @@ const DetailsPage = props => {
                                 {tags.map((tag, idx) => (
                                     <li key={idx}>
                                         {tag.tag_icon && (
-                                            <img
-                                                src={tag.tag_icon}
-                                                alt={tag.tag_name}
-                                            />
+                                            <ImageLoader  src={tag.tag_icon} alt={tag.tag_name} />
                                         )}
                                         <p>{tag.tag_name}</p>
                                     </li>

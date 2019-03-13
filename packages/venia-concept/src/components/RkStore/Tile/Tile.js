@@ -1,6 +1,6 @@
 import React from 'react';
 import classify from 'src/classify';
-import defaultClasses from './tile.css';
+import ImageLoader from 'src/components/ImageLoader';
 import {
     Title,
     Info,
@@ -8,6 +8,8 @@ import {
     StoreDetailsButton
 } from 'src/components/RkStore';
 import { Link } from 'react-router-dom';
+
+import defaultClasses from './tile.css';
 
 const Tile = props => {
     const {
@@ -42,8 +44,9 @@ const Tile = props => {
             </Link>
             <div className={classes.photo}>
                 {store.baseimage && (
-                    <img
+                    <ImageLoader
                         src={`https://ruralking.com/media/${store.baseimage}`}
+                        alt={`${store.city}, ${store.state}`}
                     />
                 )}
             </div>
