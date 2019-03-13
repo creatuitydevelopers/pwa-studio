@@ -11,7 +11,8 @@
         <p>Loading {{model.name}}...</p>
         <style>
             #root{
-                font-family: Muli, -apple-system, BlinkMacSystemFont, sans-serif;
+                font-display: auto;
+                font-family: korolev, -apple-system, BlinkMacSystemFont, sans-serif;
                 display: flex;
                 justify-content: center;
                 align-items: center;

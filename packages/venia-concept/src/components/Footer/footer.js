@@ -110,8 +110,6 @@ class Footer extends Component {
                                 <ul className={classes.navList}>
                                     <li><Link to={`/security`} title="100% Secure Ordering">100% Secure Ordering</Link></li>
                                     <li><Link to={`/terms`} title="Terms &amp; Conditions">Terms &amp; Conditions</Link></li>
-                                    <li><a rel="nofollow" target="_blank" href="https://nortonshoppingguarantee.symantec.com/shoppers/" title="Norton Shopping Guarantee">Norton Shopping Guarantee</a></li>
-                                    <li><a rel="nofollow" target="_blank" href="http://www.shopperapproved.com/customer-review/ruralking.com/3833460" title="Customer Reviews">Customer Reviews</a></li>
                                 </ul>
                             </div>
                         </section>

@@ -1,4 +1,3 @@
-<link href="https://fonts.googleapis.com/css?family=Muli:300" rel="stylesheet">
 <noscript>
     <div class="container">
         <img class="rkClosed" src="./RkLogo.png">
@@ -21,7 +20,8 @@
             flex-direction: column;
             align-items: center;
             padding-top: 2.5rem;
-            font-family: Muli, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-display: auto;
+            font-family: korolev, -apple-system, BlinkMacSystemFont, sans-serif;
         }
         .rkClosed{
             margin: 50px 0;

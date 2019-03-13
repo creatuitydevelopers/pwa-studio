@@ -133,7 +133,7 @@ class StoreWidget extends PureComponent {
     handleViewAll = () => {
         const { closeDrawer } = this.props;
         closeDrawer();
-        this.props.history.push('/storelocator');
+        this.props.history.push('/storelocator.html');
     };
 
     handleBack = () => {
