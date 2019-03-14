@@ -11,7 +11,7 @@ import defaultClasses from './storeWidgetHeaderLabel.css';
 const StoreWidgetHeaderLabel = ({ classes, currentStore }) => {
     return (
         <React.Fragment>
-            <Icon src={mapPin} className={classes.icon} />
+            <Icon src={mapPin} />
             <div className={classes.label}>
                 {!!currentStore ? (
                     <Title store={currentStore} />
