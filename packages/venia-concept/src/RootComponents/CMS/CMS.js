@@ -29,6 +29,7 @@ class CMS extends Component {
         return (
             <Query query={cmsPageQuery} variables={{ id: Number(id) }}>
                 {({ loading, error, data }) => {
+                    window.scrollTo(0, 0);
                     if (error) return <div>Data Fetch Error</div>;
                     if (loading) return loadingIndicator;
 

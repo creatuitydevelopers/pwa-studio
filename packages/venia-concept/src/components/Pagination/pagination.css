@@ -14,6 +14,7 @@
 .tileButton {
     grid-row-start: 1;
     outline: none;
+    margin: 0;
 }
 
 .tileMarker {

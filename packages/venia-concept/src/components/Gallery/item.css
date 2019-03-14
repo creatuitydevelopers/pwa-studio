@@ -8,7 +8,7 @@
 .images {
     display: grid;
     grid-template-areas: 'main';
-    border: 1px solid rgba(var(--rk--color__gray-2));
+    border: 1px solid rgb(var(--rk--color__gray-2));
 }
 
 .imagesWrapper {
@@ -84,8 +84,8 @@
     line-height: 1.2rem;
     text-align: justify;
     min-height: 1rem;
-    color: rgba(var(--rk--color__blue));
-    border-bottom: 1px solid rgba(var(--rk--color__gray-2));
+    color: rgb(var(--rk--color__blue));
+    border-bottom: 1px solid rgb(var(--rk--color__gray-2));
     overflow: hidden;
 }
 
@@ -98,7 +98,7 @@
     min-height: 1rem;
     font-size: 1.5rem;
     line-height: 1.5rem;
-    color: rgba(var(--rk--color__blue));
+    color: rgb(var(--rk--color__blue));
 }
 
 .rating {
@@ -113,7 +113,7 @@
     display: grid;
     grid-template-columns: auto 90px;
     grid-gap: 5px;
-    border-bottom: 1px solid rgba(var(--rk--color__gray-2));
+    border-bottom: 1px solid rgb(var(--rk--color__gray-2));
 }
 
 .stockAvailable,
@@ -127,11 +127,11 @@
 .stockAvailable {
     position: relative;
     padding-left: 18px;
-    color: rgba(var(--rk--color__green));
+    color: rgb(var(--rk--color__green));
 }
 
 .stockUnavailable {
-    color: rgba(var(--rk--color__red));
+    color: rgb(var(--rk--color__red));
 }
 
 .stockAvailable:before {
@@ -141,7 +141,7 @@
     left: 0;
     width: 13px;
     height: 13px;
-    border: 1px solid rgba(var(--rk--color__green));
+    border: 1px solid rgb(var(--rk--color__green));
     border-radius: 50%;
 }
 
@@ -151,7 +151,7 @@
     top: -2px;
     left: -1px;
     width: 14px;
-    color: rgba(var(--rk--color__green));
+    color: rgb(var(--rk--color__green));
     transform-origin: 50% 50%;
     transform: scale(-1, 1) rotate(-45deg);
     font-size: 0.8rem;

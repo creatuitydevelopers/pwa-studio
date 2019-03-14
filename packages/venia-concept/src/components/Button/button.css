@@ -46,7 +46,7 @@
 
 .rootSecondary:focus {
     /* box-shadow: 0 0 0 2px rgb(var(--rk--color__gray)),
-        0 0 0.5rem 2px rgba(var(--rk--color__gray), 0.2); */
+        0 0 0.5rem 2px rgb(var(--rk--color__gray), 0.2); */
     --color: var(--rk--color__gray);
 }
 

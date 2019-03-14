@@ -55,6 +55,10 @@ export class EventsPage extends Component {
         sort: SORT_DEFAULT
     };
 
+    componentDidMount() {
+            window.scrollTo(0, 0);
+    }
+
     handleSortChange = sort => {
         this.setState({ sort });
     };
