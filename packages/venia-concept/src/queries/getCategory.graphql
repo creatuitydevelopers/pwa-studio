@@ -10,6 +10,7 @@ query category($id: Int!, $pageSize: Int!, $currentPage: Int!, $onServer: Boolea
                     name
                     small_image
                     url_key
+                    sku         
                     labels{
                         name
                         value

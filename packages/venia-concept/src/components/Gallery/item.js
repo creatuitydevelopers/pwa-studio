@@ -112,6 +112,7 @@ class GalleryItem extends Component {
 
     get stockInfo() {
         const { classes, item } = this.props;
+        
         const { labels } = item;
 
         const map = {
@@ -120,8 +121,8 @@ class GalleryItem extends Component {
         };
 
         const htmlLabels = !!labels
-            ? labels.map((item, key) => {
-               return item.value == 'true' && !!map[item.name] ? <span key={key} className={classes.stockAvailable}>{map[item.name]}</span> : null
+            ? labels.map((label, key) => {
+               return label.value == "1" && !!map[label.name] ? <span key={key} className={classes.stockAvailable}>{map[label.name]}</span> : null
             })
             : [];
 
