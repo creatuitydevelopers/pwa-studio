@@ -38,7 +38,7 @@ export const editOrder = section =>
 
 export const getShippingMethods = () => {
     return async function thunk(dispatch, getState) {
-        const { cart } = getState();
+        const { cart, checkout } = getState();
         const { guestCartId } = cart;
 
         try {
@@ -49,6 +49,12 @@ export const getShippingMethods = () => {
                 return thunk(...arguments);
             }
 
+            const address=  {
+                country_id: 'US',
+                postcode: null,
+                ...checkout.shippingAddress
+            };
+
             dispatch(actions.getShippingMethods.request(guestCartId));
 
             const response = await request(
@@ -56,10 +62,7 @@ export const getShippingMethods = () => {
                 {
                     method: 'POST',
                     body: JSON.stringify({
-                        address: {
-                            country_id: 'US',
-                            postcode: null
-                        }
+                        address: address
                     })
                 }
             );
@@ -160,6 +163,7 @@ export const submitShippingAddress = payload =>
 
         await saveShippingAddress(address);
         dispatch(actions.shippingAddress.accept(address));
+        dispatch(getShippingMethods());
     };
 
 export const submitShippingMethod = payload =>
@@ -215,13 +219,14 @@ export const submitOrder = () =>
                     body: JSON.stringify({
                         addressInformation: {
                             billing_address,
-                            shipping_address
+                            shipping_address,
+                            shipping_carrier_code: !!shipping_method ? shipping_method.carrier : null,
+                            shipping_method_code: !!shipping_method ? shipping_method.method : null
                         }
                     })
                 }
             );
-
-            console.log(paymentMethod);
+            //console.log(paymentMethod);
 
             // POST to payment-information to submit the payment details and billing address,
             // Note: this endpoint also actually submits the order.

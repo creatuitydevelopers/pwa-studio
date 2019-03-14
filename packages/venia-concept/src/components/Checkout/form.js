@@ -9,6 +9,7 @@ import ShippingForm from './shippingForm';
 import SubmitButton from './submitButton';
 import ShippingInformation from './ShippingInformation';
 
+import { isOrderOnlyToStores } from 'src/models/DeliveryMethods';
 import classify from 'src/classify';
 import Button from 'src/components/Button';
 import defaultClasses from './form.css';
@@ -72,6 +73,7 @@ class Form extends Component {
             region_id: string,
             region_code: string,
             region: string,
+            sectionTotal: string,
             street: array,
             telephone: string
         }),
@@ -83,7 +85,6 @@ class Form extends Component {
         submitShippingMethod: func.isRequired,
         submitting: bool.isRequired
     };
-
     /*
      *  Class Properties.
      */
@@ -96,7 +97,9 @@ class Form extends Component {
             cart,
             directory
         } = this.props;
+
         const { countries } = directory;
+        //const isOrderOnlyToStores = isOrderOnlyToStores(cart.details.items);
 
         switch (editing) {
             case 'address': {
@@ -111,6 +114,7 @@ class Form extends Component {
                         submit={this.submitShippingAddress}
                         isAddressIncorrect={isAddressIncorrect}
                         incorrectAddressMessage={incorrectAddressMessage}
+                        isOrderOnlyToStores={isOrderOnlyToStores(cart.details.items)}
                     />
                 );
             }
@@ -122,6 +126,7 @@ class Form extends Component {
                         cancel={this.stopEditing}
                         initialValues={billingAddress}
                         submit={this.submitPaymentMethodAndBillingAddress}
+                        isOrderOnlyToStores={isOrderOnlyToStores(cart.details.items)}
                         submitting={submitting}
                         countries={countries}
                     />
@@ -129,13 +134,16 @@ class Form extends Component {
             }
             case 'shippingMethod': {
                 const { availableShippingMethods, shippingMethod } = this.props;
-
                 return (
-                    <ShippingInformation
-                        cart={cart}
-                        availableShippingMethods={availableShippingMethods}
-                        cancel={this.stopEditing}
-                    />
+                        <ShippingInformation
+                            cart={cart}
+                            availableShippingMethods={availableShippingMethods}
+                            shippingMethod={shippingMethod}
+                            isOrderOnlyToStores={isOrderOnlyToStores(cart.details.items)}
+                            submitShippingMethod={this.submitShippingMethod}
+                            submitting={submitting}
+                            cancel={this.stopEditing}
+                        />
                 );
             }
             default: {
@@ -161,7 +169,7 @@ class Form extends Component {
             <Fragment>
                 <div className={classes.body}>
                     <Section
-                        label="Ship To"
+                        label={!isOrderOnlyToStores(cart.details.items) ? "Ship To" : "Bill To"}
                         onClick={this.editAddress}
                         showEditIcon={hasShippingAddress}
                     >
@@ -182,12 +190,7 @@ class Form extends Component {
                         {this.shippingMethodSummary}
                     </Section>
                     <Section label="TOTAL">
-                        <Price
-                            currencyCode={cart.totals.quote_currency_code}
-                            value={cart.totals.subtotal}
-                        />
-                        <br />
-                        <span>{cart.details.items_qty} Items</span>
+                        {this.totalSummary}
                     </Section>
                 </div>
                 <div className={classes.footer}>
@@ -258,11 +261,67 @@ class Form extends Component {
     }
 
     get shippingMethodSummary() {
+        const { cart, classes, hasShippingMethod, shippingTitle } = this.props;
+
+        if(!!isOrderOnlyToStores(cart.details.items) || !hasShippingMethod){
+            return (<span className={classes.informationPrompt}>Show Shipping Information</span>);
+        }
+
         return (
             <Fragment>
                 <strong>Show Shipping Information</strong>
+                <br />
+                <span>{shippingTitle}</span>
             </Fragment>
         )
+    }
+
+    get totalSummary() {
+        const {
+            cart,
+            classes,
+            hasShippingMethod,
+            availableShippingMethods,
+            shippingMethod
+        } = this.props;
+
+        return (
+            <div className={classes.sectionTotal}>
+                <span>Subtotal ({cart.details.items_qty} Items):</span>
+                <Price
+                    currencyCode={cart.totals.quote_currency_code}
+                    value={cart.totals.subtotal}
+                />
+                {!!hasShippingMethod
+                    && availableShippingMethods
+                        .filter(method => method.carrier == shippingMethod)
+                        .map((method, key) => {
+
+                            return <Fragment key={key}>
+                                        <span>Shipping:</span>
+                                        <Price
+                                            currencyCode={cart.totals.quote_currency_code}
+                                            value={parseFloat(method.price.replace( (cart.totals.quote_currency_code == 'USD' ? '$': '') , ''))}
+                                        />
+                                    </Fragment>
+                        }
+                        )
+
+                }
+                <span>Total:</span>
+                <Price
+                    currencyCode={cart.totals.quote_currency_code}
+                    value={cart.totals.subtotal
+                                + availableShippingMethods
+                                    .filter(method => method.carrier == shippingMethod)
+                                    .reduce(
+                                        (previousValue, method) => previousValue + parseFloat(method.price.replace( (cart.totals.quote_currency_code == 'USD' ? '$': '') , ''))
+                                        , 0
+                                    )
+                    }
+                />
+            </div>
+        );
     }
 
     /*

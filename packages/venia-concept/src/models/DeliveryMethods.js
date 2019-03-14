@@ -52,7 +52,9 @@ export const getStoreListForStsMethod = ({
         .sort((a, b) => (a.distance >= b.distance ? 1 : -1));
 };
 
-export const isStsMethod = (method)  => STS_METHOD_CODE == method || VSTS_METHOD_CODE == method;
+export const isToShopMethod = (methodCode)  => STS_METHOD_CODE == methodCode || VSTS_METHOD_CODE == methodCode;
+
+export const isStsMethod = (methodCode)  => STS_METHOD_CODE == methodCode || VSTS_METHOD_CODE == methodCode;
 
 export const isCurrentStoreEnabledForSts = ({ allowedStores, store }) => {
     if (!store) {
@@ -79,8 +81,25 @@ export const isDeliveryMethodValid = (method, store) => {
 };
 
 export const isOrderOnlyToStores = items => {
-    //extension_attributes.delivery_method
-    return true;
 
+    if(!items){
+        return false;
+    }
+
+    if (items.some(item => item.extension_attributes.delivery_method == DEFAULT_METHOD_CODE)){
+        return false;
+    }
+
+    return true;
+}
+
+export const getName = methodCode => {
+    const map = {
+        default: 'Ship to Home',
+        sts: 'Ship to Store',
+        vsts: 'Ship to Store'
+    };
+
+    return !!map[methodCode] ? map[methodCode] : '';
 }
 

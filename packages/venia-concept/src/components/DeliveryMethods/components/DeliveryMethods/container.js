@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import DeliveryMethods from './DeliveryMethods';
 
-const mapStateToProps = ({ store }) => {
+const mapStateToProps = ({ cart, store }) => {
     const { currentStore } = store;
 
     return {
+        cart,
         currentStore
     };
 };

@@ -33,6 +33,28 @@
     text-transform: uppercase;
 }
 
+.sectionTotal{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 0.5rem 0;
+}
+
+.sectionTotal > div{
+    justify-content: flex-end;
+    font-weight: bold;
+}
+.sectionTotal > span:last-of-type{
+    font-weight: bold;
+}
+.sectionTotal > span:last-of-type,
+.sectionTotal > div:last-of-type{
+    font-size: 1rem;
+    line-height: 24px;
+    border-top: 1px solid rgb(var(--venia-border));
+}
+
 @keyframes enter {
     from {
         opacity: 0;
