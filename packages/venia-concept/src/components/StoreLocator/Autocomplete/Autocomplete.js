@@ -38,7 +38,7 @@ const LocatorAutocomplete = props => {
             }) => (
                 <div className={classes.actionBar}>
                     <input
-                        autoFocus={true}
+                        autoFocus={false}
                         {...getInputProps({
                             placeholder: inputPlaceholder,
                             className: classes.locationSearchInput
