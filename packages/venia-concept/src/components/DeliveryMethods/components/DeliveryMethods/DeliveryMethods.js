@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { func, object, shape, string, oneOf, number } from 'prop-types';
+import React, {Component} from 'react';
+import {func, object, shape, string, oneOf, number} from 'prop-types';
 
 import classify from 'src/classify';
 import defaultClasses from './deliveryMethods.css';
 import DeliveryMethodsList from 'src/components/DeliveryMethods/components/DeliveryMethodsList';
-import { isStsMethod, isCurrentStoreEnabledForSts, isDeliveryMethodValid } from 'src/models/DeliveryMethods';
+import {isStsMethod, isCurrentStoreEnabledForSts, isDeliveryMethodValid} from 'src/models/DeliveryMethods';
 
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import {Query} from 'react-apollo';
 
 const searchQuery = gql`
     query($sku: String) {
@@ -69,8 +69,8 @@ class DeliveryMethods extends Component {
                 <h2 className={classes.header}>
                     <span>Delivery Methods</span>
                 </h2>
-                <Query query={searchQuery} variables={{ sku: productSku }}>
-                    {({ loading, error, data }) => {
+                <Query query={searchQuery} variables={{sku: productSku}}>
+                    {({loading, error, data}) => {
                         if (error)
                             return (
                                 <div>
@@ -80,30 +80,32 @@ class DeliveryMethods extends Component {
                         if (loading)
                             return (
                                 <DeliveryMethodsList
-                                    methods={Array.from({ length: 1 }).fill(
+                                    methods={Array.from({length: 1}).fill(
                                         null
                                     )}
                                 />
                             );
-
                         //Temporary, until checkout process on backend size would resolve problem with one product with multi delivery methods
                         // const methods = data.deliveryMethods;
                         const methods = data.deliveryMethods.filter((method) => {
-                            if(
-                                typeof this.props.cart.details.items === 'undefined'
-                                || this.props.cart.details.items.length == 0
-                            ){
+                            const cartItems = this.props.cart.details.items;
+                            if (typeof cartItems === 'undefined' || cartItems.length == 0) {
                                 return true;
                             }
 
-                            return this.props.cart.details.items.some((item) => {
-                                return item.sku != productSku || method.method == item.extension_attributes.delivery_method
+                            const productItems =  cartItems.filter((item) => item.sku == productSku)
+                            if(!productItems.length){
+                                return true;
+                            }
+
+                            return productItems.some((item) => {
+                                return method.method == item.extension_attributes.delivery_method
                             });
                         });
 
                         if (methods.length > 0 && !defaultMethod) {
                             methods.every(method => {
-                                if(isStsMethod(method.method) && !isCurrentStoreEnabledForSts(method.stores, store)) return true;
+                                if (isStsMethod(method.method) && !isCurrentStoreEnabledForSts(method.stores, store)) return true;
                                 if (!isDeliveryMethodValid(method.method, store)) return true;
 
                                 onChange(method.method, store);

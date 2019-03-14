@@ -2,20 +2,21 @@ import React, { Component, Fragment, Suspense } from 'react';
 import { arrayOf, number, func, shape, string } from 'prop-types';
 import { Price } from 'src/components/Price';
 import { DeliveryMethodLabel } from 'src/components/DeliveryMethods';
-import { resourceUrl } from 'src/drivers';
+import { Link, resourceUrl } from 'src/drivers';
 import Kebab from './kebab';
 import Section from './section';
 import { withRouter } from 'react-router-dom';
 
 import classify from 'src/classify';
 import defaultClasses from './product.css';
-import { Link } from 'react-router-dom';
 
 import { connect } from 'src/drivers';
 import { closeDrawer } from 'src/actions/app';
 
 const imageWidth = 80;
 const imageHeight = 100;
+
+const productUrlSuffix = '.html';
 
 class Product extends Component {
     static propTypes = {
@@ -101,6 +102,7 @@ class Product extends Component {
             ? classes.root + ' ' + classes.root_masked
             : classes.root;
         const favoritesFill = { fill: 'rgb(var(--venia-teal))' };
+        const productLink = `/${item.extension_attributes.url_key}${productUrlSuffix}`;
 
         return (
             <li className={rootClasses}>
@@ -109,7 +111,7 @@ class Product extends Component {
                     style={this.styleImage(item.image)}
                 />
                 <div className={classes.name}>
-                    <Link to={`${item.extension_attributes.url_key}`}>
+                    <Link to={resourceUrl(productLink)}>
                         {item.name}
                     </Link>
                 </div>
@@ -132,14 +134,6 @@ class Product extends Component {
                 {modal}
                 <Kebab>
                     <Section
-                        text="Add to favorites"
-                        onClick={this.favoriteItem}
-                        icon="Heart"
-                        iconAttributes={
-                            this.state.isFavorite ? favoritesFill : {}
-                        }
-                    />
-                    <Section
                         text="Edit item"
                         onClick={this.editItem}
                         icon="Edit2"
@@ -161,13 +155,15 @@ class Product extends Component {
     };
 
     editItem = () => {
-        const { history } = this.props;
-        const { product_type } = this.props.item;
+        const { history, item } = this.props;
+        const { product_type } = item;
+        const productLink = `${item.extension_attributes.url_key}${productUrlSuffix}`;
+
         if(product_type === 'configurable') {
-            history.push(`\/edit-cart-item\/${this.props.item.item_id}\/product\/${this.props.item.extension_attributes.url_key}`);
+            history.push(`\/edit-cart-item\/${item.item_id}\/product\/${productLink}`);
             this.props.closeDrawer();
         } else {
-            this.props.openOptionsDrawer(this.props.item);
+            this.props.openOptionsDrawer(item);
         }
     };
 
