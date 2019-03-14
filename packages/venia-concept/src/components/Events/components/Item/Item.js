@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import classify from 'src/classify';
 import moment from 'moment';
-import { func, oneOf, object, shape, string } from 'prop-types';
+import { func, object, shape, string } from 'prop-types';
 
+import { resourceUrl } from 'src/drivers';
 import ImageLoader from 'src/components/ImageLoader';
 import RichText from 'src/components/RichText';
 import Title from 'src/components/RkStore/Title/Title';
 
-import { BACKEND_URL, IMAGE_PATH } from 'src/components/Events/consts';
 
 import defaultClasses from './item.css';
 
@@ -35,7 +35,7 @@ class Item extends Component {
 
     render() {
         const { classes, item, stores } = this.props;
-        const { id, name, date_start, description } = item;
+        const { name, date_start, description } = item;
 
         const date = moment(new Date(date_start));
 
@@ -128,7 +128,10 @@ class Item extends Component {
         return (
             <ImageLoader
                 className={classes.image}
-                src={`${BACKEND_URL}/${IMAGE_PATH}/${image.file}`}
+                src={resourceUrl(image.file, {
+                    type: 'image-events',
+                    width: 400
+                })}
                 alt={item.name}
             />
         );

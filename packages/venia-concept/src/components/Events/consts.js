@@ -9,6 +9,3 @@ export const SORT_DROPDOWN_OPTIONS = [
         label: 'Event Name'
     }
 ];
-
-export const BACKEND_URL = `https://rkpwa.preview2.creatuity.com`;
-export const IMAGE_PATH = `pub/media/events_workshops/image`;

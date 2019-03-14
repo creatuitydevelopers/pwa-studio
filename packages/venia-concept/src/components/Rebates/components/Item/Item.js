@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import classify from 'src/classify';
 import moment from 'moment';
-import { func, oneOf, object, shape, string } from 'prop-types';
+import { object, shape, string } from 'prop-types';
+
+import { resourceUrl } from 'src/drivers';
 
 import ImageLoader from 'src/components/ImageLoader';
 import RichText from 'src/components/RichText';
-
-import { BACKEND_URL, IMAGE_PATH } from 'src/components/Rebates/consts';
 
 import defaultClasses from './item.css';
 
@@ -78,7 +78,10 @@ class Item extends Component {
 
         return <ImageLoader
             className={classes.image}
-            src={image}
+            src={resourceUrl(`/${image.split('/').pop()}`, {
+                type: 'image-rebates',
+                width: 400
+            })}
             alt={item.title}
         />;
     };

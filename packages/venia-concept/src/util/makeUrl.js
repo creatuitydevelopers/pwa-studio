@@ -16,7 +16,13 @@ const mediaPathPrefixes = {
         '/media/catalog/product',
     'image-category':
         process.env.MAGENTO_BACKEND_MEDIA_PATH_CATALOG ||
-        '/media/catalog/category'
+        '/media/catalog/category',
+    'image-events':
+        process.env.MAGENTO_BACKEND_MEDIA_PATH_EVENTS ||
+        '/media/events_workshops/image',
+    'image-rebates':
+        process.env.MAGENTO_BACKEND_MEDIA_PATH_REBATES ||
+        '/media/manufacturer-rebates/item/image'
 };
 
 // Should produce `/img/resize` in the default case

@@ -25,6 +25,3 @@ export const PAGE_SIZE_OPTIONS = [
         label: '36'
     }
 ];
-
-export const BACKEND_URL = `https://rkpwa.preview2.creatuity.com`;
-export const IMAGE_PATH = `pub/media/manufacturer-rebates/item/image`;

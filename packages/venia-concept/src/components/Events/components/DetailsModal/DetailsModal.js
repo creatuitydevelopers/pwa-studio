@@ -3,10 +3,11 @@ import classify from 'src/classify';
 import moment from 'moment';
 import { bool, func, oneOf, object, shape, string } from 'prop-types';
 import Modal from 'react-responsive-modal';
+
+import { resourceUrl } from 'src/drivers';
 import ImageLoader from 'src/components/ImageLoader';
 import RichText from 'src/components/RichText';
 import { Title } from 'src/components/RkStore';
-import { BACKEND_URL, IMAGE_PATH } from 'src/components/Events/consts';
 
 import defaultClasses from './detailsModal.css';
 
@@ -105,7 +106,10 @@ class DetailsModal extends Component {
         return (
             <ImageLoader
                 className={classes.image}
-                src={`${BACKEND_URL}/${IMAGE_PATH}/${image.file}`}
+                src={resourceUrl(image.file, {
+                    type: 'image-events',
+                    width: 150
+                })}
                 alt={item.name}
             />
         );
