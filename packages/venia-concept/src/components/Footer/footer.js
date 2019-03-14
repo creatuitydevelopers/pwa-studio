@@ -70,7 +70,7 @@ class Footer extends Component {
                             <div className={classes.navContent}>
                                 <ul className={classes.navList}>
                                     <li><Link to={`/about-us`} title="About Us">About Us</Link></li>
-                                    <li><Link to={`/events`} title="Events & Workshops">Events & Workshops</Link></li>
+                                    <li><Link to={`/events.html`} title="Events & Workshops">Events & Workshops</Link></li>
                                     <li><Link to={`/weeklyad`} title="Current Ad">Current Ad</Link></li>
                                     <li><Link to={`/privacy-policy`} title="Privacy Policy">Privacy Policy</Link></li>
                                     <li><Link to={`/pricing-promise`} title=" Pricing Promise"> Pricing Promise</Link></li>
@@ -91,7 +91,7 @@ class Footer extends Component {
                                     <li><Link to={`/returns`} title="Return Policy">Return Policy</Link></li>
                                     <li><Link to={`/shipping`} title="Shipping">Shipping</Link></li>
                                     <li><Link to={`/warranty`} title="Warranty">Warranty</Link></li>
-                                    <li><Link to={`/rebates`} title="Manufacturer Rebates">Manufacturer Rebates</Link></li>
+                                    <li><Link to={`/rebates.html`} title="Manufacturer Rebates">Manufacturer Rebates</Link></li>
                                     <li><Link to={`/recall`} title="Safety Recall Information">Safety Recall Information</Link></li>
                                     <li><Link to={`/tax-exempt`} title="Tax Exempt Information">Tax Exempt Information</Link></li>
                                 </ul>

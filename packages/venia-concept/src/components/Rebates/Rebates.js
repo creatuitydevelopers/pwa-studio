@@ -41,7 +41,7 @@ class Rebates extends Component {
             pagination: string
         }),
         history: object,
-        location: object.isRequired,
+        location: object,
         match: object
     };
 
