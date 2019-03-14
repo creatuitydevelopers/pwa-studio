@@ -56,8 +56,9 @@ class MsrpPrice extends Component {
                     <Button
                         className={classes.button}
                         size={`small`}
+                        aria-label="Show price information"
                         onClick={this.handleOpenModalClick}>
-                        <Icon src={Info}/>
+                        <Icon src={Info} />
                     </Button>
                 </label>
                 <Modal

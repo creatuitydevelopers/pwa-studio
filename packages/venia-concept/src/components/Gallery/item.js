@@ -5,6 +5,8 @@ import classify from 'src/classify';
 import { Rating } from 'src/components/Review';
 import {PriceWrapper} from 'src/components/RkStore';
 import ImageLoader from 'src/components/ImageLoader';
+import AnyComponent from './anyComponent';
+
 
 import { transparentPlaceholder } from 'src/shared/images';
 import defaultClasses from './item.css';
@@ -71,8 +73,9 @@ class GalleryItem extends Component {
 
         const { name, labels, url_key } = item;
         const productLink = `/${url_key}${productUrlSuffix}`;
+
         return (
-            <div className={classes.root}>
+            <div className={classes.root} >
                 <Link to={resourceUrl(productLink)} className={classes.images}>
                     {this.renderImagePlaceholder()}
                     {this.renderImage()}
@@ -98,14 +101,18 @@ class GalleryItem extends Component {
                             />
                         )}
                     </div>
-                   {this.stockInfo}
+                {this.stockInfo}
                 </div>
             </div>
+            // <AnyComponent className={classes.root} urlKey={url_key}>
+                
+            // </AnyComponent>
         );
     }
 
     get stockInfo() {
         const { classes, item } = this.props;
+        
         const { labels } = item;
 
         const map = {
@@ -114,8 +121,8 @@ class GalleryItem extends Component {
         };
 
         const htmlLabels = !!labels
-            ? labels.map((item, key) => {
-               return item.value == 'true' && !!map[item.name] ? <span key={key} className={classes.stockAvailable}>{map[item.name]}</span> : null
+            ? labels.map((label, key) => {
+               return label.value == "1" && !!map[label.name] ? <span key={key} className={classes.stockAvailable}>{map[label.name]}</span> : null
             })
             : [];
 

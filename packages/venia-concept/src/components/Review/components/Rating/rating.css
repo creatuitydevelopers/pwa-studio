@@ -24,7 +24,7 @@
     height: 25px;
     width: 90px;
     padding: 0;
-    color: rgb(var(--rk--color__gray-1));
+    color: rgb(var(--rk--color__gray-8));
     text-shadow: 0px 1px 0 rgb(var(--rk--color__gray-7));
 }
 

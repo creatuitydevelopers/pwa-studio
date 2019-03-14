@@ -46,7 +46,7 @@ ReactDOM.render(
 if (process.env.SERVICE_WORKER && 'serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker
-            .register(process.env.SERVICE_WORKER)
+            .register(`/${process.env.SERVICE_WORKER}`)
             .then(registration => {
                 console.log('Service worker registered: ', registration);
             })

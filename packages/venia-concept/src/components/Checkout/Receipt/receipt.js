@@ -15,9 +15,6 @@ class Receipt extends Component {
             root: string
         }),
         continueShopping: func.isRequired,
-        order: shape({
-            id: string
-        }).isRequired,
         createAccount: func.isRequired,
         reset: func.isRequired
     };

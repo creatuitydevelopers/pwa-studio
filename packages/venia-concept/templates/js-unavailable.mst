@@ -1,6 +1,6 @@
 <noscript>
     <div class="container">
-        <img class="rkClosed" src="./RkLogo.png">
+        <img class="rkClosed" src="/RkLogo.png">
         <div class="textBlock">
             <h2 class="header">Oops! JavaScript is disabled</h2>
             <div class="main">

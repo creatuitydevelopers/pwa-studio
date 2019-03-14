@@ -32,17 +32,8 @@ class Header extends Component {
         toggleSearch: PropTypes.func.isRequired
     };
 
-    get searchIcon() {
-        return <Icon src={SearchIcon} />;
-    }
-
     render() {
-        const {
-            autocompleteOpen,
-            searchOpen,
-            classes,
-            toggleSearch
-        } = this.props;
+        const { searchOpen, classes, toggleSearch } = this.props;
 
         const rootClass = searchOpen ? classes.open : classes.closed;
 
@@ -73,16 +64,15 @@ class Header extends Component {
                             searchOpen={searchOpen}
                             toggleSearch={toggleSearch}
                         >
-                            {this.searchIcon}
+                            <Icon src={SearchIcon} />
                         </SearchTrigger>
                         <CartTrigger />
                     </div>
                 </div>
-                <Suspense fallback={this.searchIcon}>
+                <Suspense fallback={<Icon src={SearchIcon} className={classes.iconFallback} />}>
                     <Route
                         render={({ history, location }) => (
                             <SearchBar
-                                autocompleteOpen={autocompleteOpen}
                                 isOpen={searchOpen}
                                 history={history}
                                 location={location}

@@ -36,8 +36,9 @@ class MiniCart extends Component {
             details: object,
             guestCartId: string,
             totals: object,
+            isLoading: bool,
             isOptionsDrawerOpen: bool,
-            isLoading: bool
+            isUpdatingItem: bool
         }),
         classes: shape({
             body: string,
@@ -186,7 +187,7 @@ class MiniCart extends Component {
                             cartItem={focusItem}
                             configItem={itemWithOptions}
                             closeOptionsDrawer={closeOptionsDrawer}
-                            isLoading={cart.isLoading}
+                            isUpdatingItem={cart.isUpdatingItem}
                             updateCart={updateItemInCart}
                         />
                     );
@@ -202,7 +203,7 @@ class MiniCart extends Component {
                 cartItem={focusItem}
                 configItem={{}}
                 closeOptionsDrawer={closeOptionsDrawer}
-                isLoading={cart.isLoading}
+                isUpdatingItem={cart.isUpdatingItem}
                 updateCart={updateItemInCart}
             />
         );
@@ -243,7 +244,7 @@ class MiniCart extends Component {
         const { miniCartInner, productOptions, props } = this;
         const {
             cancelCheckout,
-            cart: { isOptionsDrawerOpen, loading },
+            cart: { isOptionsDrawerOpen, isLoading },
             classes,
             isMiniCartMaskOpen,
             isOpen
@@ -263,7 +264,7 @@ class MiniCart extends Component {
                         <Icon src={CloseIcon} />
                     </Trigger>
                 </div>
-                {loading ? loadingIndicator : body}
+                {isLoading ? loadingIndicator : body}
                 <Mask isActive={isMiniCartMaskOpen} dismiss={cancelCheckout} />
             </aside>
         );

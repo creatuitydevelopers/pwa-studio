@@ -7,7 +7,7 @@
     {{/model}}
   {{> templates/open-body }}
     <div id="root">
-        <img class="rkClosed" src="./RkLogo.png">
+        <img class="rkClosed" src="/RkLogo.png">
         Loading {{model.city}}, {{model.state}}...
         <style>
             #root{

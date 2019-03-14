@@ -35,7 +35,7 @@ class CMS extends Component {
                     const {
                         cmsPage: { content }
                     } = data;
-                    console.log(content);
+
                     return (
                         <div dangerouslySetInnerHTML={{ __html: content }} />
                     );

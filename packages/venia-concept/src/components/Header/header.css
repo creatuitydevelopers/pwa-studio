@@ -20,6 +20,10 @@
     composes: root;
 }
 
+.iconFallback {
+    display: none;
+}
+
 .toolbar {
     align-content: center;
     align-items: center;
