@@ -85,7 +85,18 @@ class DeliveryMethods extends Component {
                                     )}
                                 />
                             );
-                        const methods = data.deliveryMethods;
+
+                        //Temporary, until checkout process on backend size would resolve problem with one product with multi delivery methods
+                        //const methods = data.deliveryMethods;
+                        const methods = data.deliveryMethods.filter((method) => {
+                            if(typeof this.props.cart.details.items === 'undefined'){
+                                return true;
+                            }
+
+                            return this.props.cart.details.items.some((item) => {
+                                return item.sku !=productSku || method.method == item.extension_attributes.delivery_method
+                            });
+                        });
 
                         if (methods.length > 0 && !defaultMethod) {
                             methods.every(method => {
