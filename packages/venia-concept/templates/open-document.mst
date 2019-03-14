@@ -19,12 +19,14 @@
         Apple Icons for Homescreen
         Sizes: https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/
     }}
-    <link rel="apple-touch-icon" href="/icons/venia_square_57.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
     {{!
-        <link rel="preconnect" href="https://use.typekit.net">
+        <link rel="apple-touch-icon" href="/icons/rk-57x57.png.png">
+    }}
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    {{!  
         <link href="https://use.typekit.net/uca6omh.css" rel="stylesheet" defer />
     }}
+    <link rel="preconnect" href="https://use.typekit.net">
     <style>
         @import url("https://p.typekit.net/p.css?s=1&k=uca6omh&ht=tk&f=27887.27970.28026.27919.27920.27925.27993.27999.27954.27958.27921.38215.38216.38218.38221&a=14474365&app=typekit&e=css");
 
@@ -132,12 +134,6 @@
         src:url("https://use.typekit.net/af/b65f5a/00000000000000003b9b1a7e/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/b65f5a/00000000000000003b9b1a7e/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/b65f5a/00000000000000003b9b1a7e/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
         font-style:normal;font-weight:700;
         }
-
-        .tk-korolev-compressed { font-family: "korolev-compressed",sans-serif; }
-        .tk-korolev { font-family: "korolev",sans-serif; }
-        .tk-korolev-condensed { font-family: "korolev-condensed",sans-serif; }
-        .tk-korolev-military-stencil { font-family: "korolev-military-stencil",sans-serif; }
-        .tk-korolev-rounded { font-family: "korolev-rounded",sans-serif; }
     </style>
 
     <link rel="preconnect" href="{{env.MAGENTO_BACKEND_URL}}">
