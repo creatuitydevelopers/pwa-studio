@@ -12,7 +12,7 @@ import RichText from 'src/components/RichText';
 import DeliveryMethods from 'src/components/DeliveryMethods';
 import { PriceWrapper, MoreInformation } from 'src/components/RkStore';
 import { SingleRating } from 'src/components/Review';
-import { Tabs, Tab} from 'src/components/Tabs';
+import { Tabs, Tab } from 'src/components/Tabs';
 
 import every from 'lodash/every';
 import isEqual from 'lodash/isEqual';
@@ -178,7 +178,7 @@ class ProductFullDetail extends Component {
 
     hasAllOptionsSet = () => {
         return isEqual(
-            Array.from(this.state.optionCodeSelection.keys()).sort(), 
+            Array.from(this.state.optionCodeSelection.keys()).sort(),
             Array.from(this.state.optionCodes.values()).sort()
         );
     }
@@ -197,12 +197,12 @@ class ProductFullDetail extends Component {
     get deliveryMethods() {
         const { props } = this;
         const { product } = props;
-    
+
         const { configurable_options } = product;
         const isConfigurable = Array.isArray(configurable_options);
         const productSku = isConfigurable && this.hasAllOptionsSet() ? this.getConfiguredProduct().sku : product.sku;
 
-        if(isConfigurable && !this.hasAllOptionsSet()) {
+        if (isConfigurable && !this.hasAllOptionsSet()) {
             return null;
         }
 
@@ -228,14 +228,39 @@ class ProductFullDetail extends Component {
         const { configurable_options } = props.product;
         const isConfigurable = Array.isArray(configurable_options);
 
+
         if (!isConfigurable) {
             return null;
         }
+     
+        const selections = Array.from(this.state.optionCodeSelection.entries());
 
+        const availableOptions = this.props.product.variants.filter(variant => {
+            let matched = [];
+            selections.forEach(selection => {
+                let [code, value] = selection;
+                matched.push(variant.product[code] === value);
+            })
+            return every(matched, Boolean);
+        });
+
+        const updatedConfigurableOptions = configurable_options.map(option => {
+            const { attribute_code } = option;
+            const updatedValues = option.values.map(value => {
+                value.enabled = !!availableOptions.find(el => {
+                    return el.product[attribute_code] === value.value_index;
+                })
+                return value;
+            });
+
+            option.values = updatedValues;
+            return option;
+        })
+     
         return (
             <Suspense fallback={fallback}>
                 <Options
-                    options={configurable_options}
+                    options={updatedConfigurableOptions}
                     onSelectionChange={handleSelectionChange}
                 />
             </Suspense>
@@ -246,7 +271,7 @@ class ProductFullDetail extends Component {
         const { productOptions, props, deliveryMethods } = this;
         const { classes, product } = props;
         const { addToCardLoader } = this.state;
-    
+
         const { configurable_options } = product;
         const isConfigurable = Array.isArray(configurable_options);
         const productId = isConfigurable && this.hasAllOptionsSet() ? this.getConfiguredProduct().id : product.id;
@@ -267,7 +292,7 @@ class ProductFullDetail extends Component {
                         <strong>{product.name}</strong>
                     </h1>
                     <div className={classes.productPrice}>
-                        <PriceWrapper productId={productId} placeholderStyle={{minHeight: '58px'}} />
+                        <PriceWrapper productId={productId} placeholderStyle={{ minHeight: '58px' }} />
                     </div>
                     <div className={classes.productRating}>
                         <SingleRating item={product} />
@@ -276,9 +301,9 @@ class ProductFullDetail extends Component {
                 </section>
                 <section className={classes.imageCarousel}>
                     <ImageGallery items={images}
-                                  thumbnailPosition={`left`}
-                                  showPlayButton={false}
-                                  showBullets={true}
+                        thumbnailPosition={`left`}
+                        showPlayButton={false}
+                        showBullets={true}
                     />
                 </section>
                 <section className={classes.options}>{productOptions}</section>
@@ -295,17 +320,17 @@ class ProductFullDetail extends Component {
                 <section className={classes.cartActions}>
                     {!!addToCardLoader && loadingIndicator}
                     {!addToCardLoader &&
-                    <React.Fragment>
-                        {
-                            this.props.cartItemId &&
-                            <Button priority="normal" size="big" onClick={this.props.history.goBack}>
-                                <span>Cancel</span>
+                        <React.Fragment>
+                            {
+                                this.props.cartItemId &&
+                                <Button priority="normal" size="big" onClick={this.props.history.goBack}>
+                                    <span>Cancel</span>
+                                </Button>
+                            }
+                            <Button priority="high" size="big" onClick={this.addToCart} aria-label="Add to Cart">
+                                <span>{this.props.cartItemId ? 'Update Cart' : 'Add to Cart'}</span>
                             </Button>
-                        }
-                        <Button priority="high" size="big" onClick={this.addToCart} aria-label="Add to Cart">
-                            <span>{this.props.cartItemId ? 'Update Cart' : 'Add to Cart'}</span>
-                        </Button>
-                    </React.Fragment>
+                        </React.Fragment>
                     }
                 </section>
                 <section className={classes.tabs}>
@@ -314,29 +339,29 @@ class ProductFullDetail extends Component {
                             <RichText content={product.description} />
                         </Tab>
                         {!!product.front_attributes &&
-                        <Tab title={`More Information`}>
-                            <MoreInformation attributes={product.front_attributes}/>
-                        </Tab>}
+                            <Tab title={`More Information`}>
+                                <MoreInformation attributes={product.front_attributes} />
+                            </Tab>}
                         {!!product.product_specs &&
-                        <Tab title={`Specs`}>
-                            <RichText content={product.product_specs} />
-                        </Tab>}
+                            <Tab title={`Specs`}>
+                                <RichText content={product.product_specs} />
+                            </Tab>}
                         {!!product.product_warranty &&
-                        <Tab title={`Warranty`}>
-                            <RichText content={product.product_warranty} />
-                        </Tab>}
+                            <Tab title={`Warranty`}>
+                                <RichText content={product.product_warranty} />
+                            </Tab>}
                         {!!product.product_manual &&
-                        <Tab title={`Product Manual`}>
-                            <RichText content={product.product_manual} />
-                        </Tab>}
+                            <Tab title={`Product Manual`}>
+                                <RichText content={product.product_manual} />
+                            </Tab>}
                         {!!product.product_warnings_restrictions &&
-                        <Tab title={`Warnings & Restrictions`}>
-                            <RichText content={product.product_warnings_restrictions} />
-                        </Tab>}
+                            <Tab title={`Warnings & Restrictions`}>
+                                <RichText content={product.product_warnings_restrictions} />
+                            </Tab>}
                         {!!product.product_qa &&
-                        <Tab title={`Q & A`}>
-                            <RichText content={product.product_qa} />
-                        </Tab>}
+                            <Tab title={`Q & A`}>
+                                <RichText content={product.product_qa} />
+                            </Tab>}
                     </Tabs>
                 </section>
             </Form>

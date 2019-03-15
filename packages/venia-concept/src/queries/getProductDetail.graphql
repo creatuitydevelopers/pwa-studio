@@ -44,6 +44,8 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
                     product {
                         outerwear_size
                         belt_size
+                        shoe_width
+                        shoe_size
                         size
                         color
                         id

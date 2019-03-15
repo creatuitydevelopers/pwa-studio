@@ -35,11 +35,12 @@ class Tile extends Component {
             itemIndex,
             ...restProps
         } = this.props;
+        console.log(this.props.item.enabled);
         const className = classes[getClassName('root', isSelected, hasFocus)];
         const { label } = item;
 
         return (
-            <button {...restProps} className={className}>
+            <button {...restProps} className={className} disabled={!this.props.item.enabled}>
                 <span>{label}</span>
             </button>
         );
