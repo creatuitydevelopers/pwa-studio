@@ -12,13 +12,13 @@ const StoreWidgetHeaderLabel = ({ classes, currentStore }) => {
     return (
         <React.Fragment>
             <Icon src={mapPin} />
-            <div className={classes.label}>
+            {/* <div className={classes.label}>
                 {!!currentStore ? (
                     <Title store={currentStore} />
                 ) : (
                     <span>Choose Store</span>
                 )}
-            </div>
+            </div> */}
         </React.Fragment>
     );
 };
