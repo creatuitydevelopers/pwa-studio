@@ -4,7 +4,7 @@
 }
 
 .requiredSymbol {
-    background-color: black;
+    background-color: rgb(var(--rk--color__red));
     width: 0.4em;
     height: 0.4em;
     border-radius: 50%;
@@ -43,12 +43,12 @@
     font-size: 0.85rem;
 }
 
-.labelFocused {
-    color: rgb(var(--venia-teal));
-    transition: 200ms;
-}
+/*.labelFocused {*/
+    /*color: rgb(var(--venia-teal));*/
+    /*transition: 200ms;*/
+/*}*/
 
-.rootFocused {
-    background-color: rgb(var(--venia-teal-alt));
-    transition: 200ms;
-}
+/*.rootFocused {*/
+    /*background-color: rgb(var(--venia-teal-alt));*/
+    /*transition: 200ms;*/
+/*}*/

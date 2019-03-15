@@ -42,7 +42,6 @@ class SignIn extends Component {
                 <Form onSubmit={onSignIn}>
                     <Input
                         onChange={this.updateUsername}
-                        helpText={'example help text'}
                         label={'Username or Email'}
                         required={true}
                         autoComplete={'username'}
@@ -52,7 +51,6 @@ class SignIn extends Component {
                         onChange={this.updatePassword}
                         label={'Password'}
                         type={'password'}
-                        helpText={'example help text'}
                         required={true}
                         autoComplete={'current-password'}
                         field="password"
