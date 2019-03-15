@@ -71,7 +71,7 @@ class Footer extends Component {
                                 <ul className={classes.navList}>
                                     <li><Link to={`/about-us`} title="About Us">About Us</Link></li>
                                     <li><Link to={`/events.html`} title="Events & Workshops">Events & Workshops</Link></li>
-                                    <li><Link to={`/weeklyad`} title="Current Ad">Current Ad</Link></li>
+                                    <li><Link to={`/weeklyad.html`} title="Current Ad">Current Ad</Link></li>
                                     <li><Link to={`/privacy-policy`} title="Privacy Policy">Privacy Policy</Link></li>
                                     <li><Link to={`/pricing-promise`} title=" Pricing Promise"> Pricing Promise</Link></li>
                                 </ul>
