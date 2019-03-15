@@ -233,7 +233,7 @@ const Homepage = `<div class="homepage__content" data-role="row" data-appearance
             </div>
             <div class="pagebuilder-column" data-role="column" data-appearance="full-height" data-background-images="{}"
                 data-element="main" style="display: flex; flex-direction: column; width: 50%; align-self: stretch;">
-                <div data-role="html" data-appearance="default" data-element="main"><a href="/catalogsearch/result/?q=tumbler%2030lo"><img
+                <div data-role="html" data-appearance="default" data-element="main"><a href="/search.html?query=tumbler%2030lo"><img
                             src="https://res.cloudinary.com/rkm2/image/upload/dpr_auto,f_auto,fl_any_format.immutable_cache.lossy.progressive,q_auto/v1550089637/rk-hp-2019/vol-9/lo-tumblers-2.jpg"
                             alt="Lincoln Outfitters Stainless Tumblers"></a></div>
             </div>
@@ -259,9 +259,8 @@ const Homepage = `<div class="homepage__content" data-role="row" data-appearance
                 data-element="main" style="display: flex; flex-direction: column; width: 33.3333%; align-self: stretch;">
                 <div data-role="html" data-appearance="default" data-element="main">
                     <div data-v-1cc92ef2="" class="bluefoot-row bluefoot-structural hp-pet-food">
-                        <div data-v-1cc92ef2="" class="bluefoot-column bluefoot-structural bluefoot-column-12"><a
-                                data-v-1cc92ef2="" href="/pet-food.html" title="Pet Food"><img data-v-1cc92ef2="" src="https://res.cloudinary.com/rkm2/image/upload/dpr_auto,f_auto,fl_any_format.immutable_cache.lossy.progressive,q_auto/v1541716626/rk-hp-default/pet-food.jpg"
-                                    alt="Pet Food"></a></div>
+                        <div data-v-1cc92ef2="" class="bluefoot-column bluefoot-structural bluefoot-column-12"<img data-v-1cc92ef2="" src="https://res.cloudinary.com/rkm2/image/upload/dpr_auto,f_auto,fl_any_format.immutable_cache.lossy.progressive,q_auto/v1541716626/rk-hp-default/pet-food.jpg"
+                                    alt="Pet Food"></div>
                     </div>
                     <style type="text/css">
                         .bluefoot-row.bluefoot-structural.hp-pet-food[data-v-1cc92ef2] {
