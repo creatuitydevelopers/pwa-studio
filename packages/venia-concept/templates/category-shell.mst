@@ -3,10 +3,7 @@
     {{#model}}
     <meta name="title" content="{{name}}">
     <meta name="keywords" content="{{meta_keyword}}">
-    {{!
-        <meta name="description" content="{{#meta_description}}{{.}}{{/meta_description}}{{^meta_description}}Rural King is America's Farm and Home Store. Our product offering includes all types of farm supplies, clothing, housewares, tools, fencing, and more.{{/meta_description}}">
-    }}
-    <meta name="description" content="Rural King is America's Farm and Home Store. Our product offering includes all types of farm supplies, clothing, housewares, tools, fencing, and more.">
+    <meta name="description" content="{{#meta_description}}{{.}}{{/meta_description}}{{^meta_description}}Rural King is America's Farm and Home Store. Our product offering includes all types of farm supplies, clothing, housewares, tools, fencing, and more.{{/meta_description}}">
     {{/model}}
   {{> templates/open-body }}
     <div id="root">
