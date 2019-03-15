@@ -69,11 +69,11 @@ class Footer extends Component {
                             </header>
                             <div className={classes.navContent}>
                                 <ul className={classes.navList}>
-                                    <li><Link to={`/about-us`} title="About Us">About Us</Link></li>
+                                    <li><Link to={`/about-us.html`} title="About Us">About Us</Link></li>
                                     <li><Link to={`/events.html`} title="Events & Workshops">Events & Workshops</Link></li>
                                     <li><Link to={`/weeklyad.html`} title="Current Ad">Current Ad</Link></li>
-                                    <li><Link to={`/privacy-policy`} title="Privacy Policy">Privacy Policy</Link></li>
-                                    <li><Link to={`/pricing-promise`} title=" Pricing Promise"> Pricing Promise</Link></li>
+                                    <li><Link to={`/privacy-policy.html`} title="Privacy Policy">Privacy Policy</Link></li>
+                                    <li><Link to={`/pricing-promise.html`} title=" Pricing Promise"> Pricing Promise</Link></li>
                                 </ul>
                             </div>
                         </section>
@@ -88,12 +88,12 @@ class Footer extends Component {
                             </header>
                             <div className={classes.navContent}>
                                 <ul className={classes.navList}>
-                                    <li><Link to={`/returns`} title="Return Policy">Return Policy</Link></li>
-                                    <li><Link to={`/shipping`} title="Shipping">Shipping</Link></li>
-                                    <li><Link to={`/warranty`} title="Warranty">Warranty</Link></li>
+                                    <li><Link to={`/returns.html`} title="Return Policy">Return Policy</Link></li>
+                                    <li><Link to={`/shipping.html`} title="Shipping">Shipping</Link></li>
+                                    <li><Link to={`/warranty.html`} title="Warranty">Warranty</Link></li>
                                     <li><Link to={`/rebates.html`} title="Manufacturer Rebates">Manufacturer Rebates</Link></li>
-                                    <li><Link to={`/recall`} title="Safety Recall Information">Safety Recall Information</Link></li>
-                                    <li><Link to={`/tax-exempt`} title="Tax Exempt Information">Tax Exempt Information</Link></li>
+                                    <li><Link to={`/recall.html`} title="Safety Recall Information">Safety Recall Information</Link></li>
+                                    <li><Link to={`/tax-exempt.html`} title="Tax Exempt Information">Tax Exempt Information</Link></li>
                                 </ul>
                             </div>
                         </section>
@@ -108,8 +108,8 @@ class Footer extends Component {
                             </header>
                             <div className={classes.navContent}>
                                 <ul className={classes.navList}>
-                                    <li><Link to={`/security`} title="100% Secure Ordering">100% Secure Ordering</Link></li>
-                                    <li><Link to={`/terms`} title="Terms &amp; Conditions">Terms &amp; Conditions</Link></li>
+                                    <li><Link to={`/security.html`} title="100% Secure Ordering">100% Secure Ordering</Link></li>
+                                    <li><Link to={`/terms.html`} title="Terms &amp; Conditions">Terms &amp; Conditions</Link></li>
                                 </ul>
                             </div>
                         </section>
@@ -125,9 +125,9 @@ class Footer extends Component {
                         <div className={classes.navContent}>
                             <ul className={classes.navList}>
                                 <li><a href="#"  rel="nofollow" target="_blank" title="Rural King Blog">Rural King Blog</a></li>
-                                <li><Link to={`/battery-finder`} title="100% Secure Ordering">Battery Finder</Link></li>
-                                <li><Link to={`/belt-finder`} title="100% Secure Ordering">Belt Finder</Link></li>
-                                <li><Link to={`/notice-of-sales-and-use-tax-information-for-customers`} title="Sales and Use Tax Info">Sales and Use Tax Info</Link></li>
+                                <li><Link to={`/battery-finder.html`} title="100% Secure Ordering">Battery Finder</Link></li>
+                                <li><Link to={`/belt-finder.html`} title="100% Secure Ordering">Belt Finder</Link></li>
+                                <li><Link to={`/notice-of-sales-and-use-tax-information-for-customers.html`} title="Sales and Use Tax Info">Sales and Use Tax Info</Link></li>
                             </ul>
                         </div>
                     </section>

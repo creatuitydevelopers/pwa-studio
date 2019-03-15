@@ -237,10 +237,10 @@ class ProductFullDetail extends Component {
             const newValues = option.values.map((value) => {
                 value.disabled = false;
                 return value;
-            });
+            }).sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
             option.values = newValues;
             return option;
-        });
+        })
 
         if(optionCodeSelection.size > 0){
             const optionsToFiltr = configurable_options.filter((option) => {
