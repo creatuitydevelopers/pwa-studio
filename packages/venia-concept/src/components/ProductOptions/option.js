@@ -23,6 +23,8 @@ class Option extends Component {
 
     handleSelectionChange = selection => {
         const { attribute_id, onSelectionChange, attribute_code } = this.props;
+        console.log(this.props);
+        console.log(attribute_id, attribute_code, selection);
         if (onSelectionChange) {
             onSelectionChange(attribute_id, attribute_code, selection);
         }

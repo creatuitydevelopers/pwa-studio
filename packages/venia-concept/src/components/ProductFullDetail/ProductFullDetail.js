@@ -225,17 +225,60 @@ class ProductFullDetail extends Component {
 
     get productOptions() {
         const { fallback, handleSelectionChange, props } = this;
-        const { configurable_options } = props.product;
+        const { configurable_options, variants } = props.product;
         const isConfigurable = Array.isArray(configurable_options);
+        const {optionCodeSelection, optionSelections } = this.state;
 
         if (!isConfigurable) {
             return null;
         }
 
+        let configurableOptions = configurable_options.map((option) => {
+            const newValues = option.values.map((value) => {
+                value.disabled = false;
+                return value;
+            });
+            option.values = newValues;
+            return option;
+        });
+
+        if(optionCodeSelection.size > 0){
+            const optionsToFiltr = configurable_options.filter((option) => {
+                return !optionSelections.get(option.attribute_id);
+            }).map((option) => option.attribute_code);
+
+            const availableVariants = variants.filter((variant) => {
+                for (var key of optionCodeSelection.keys()) {
+                   if(variant.product.hasOwnProperty(key) && variant.product[key] == optionCodeSelection.get(key)){
+                       return true;
+                   }
+                }
+                return false;
+            });
+
+            configurableOptions = configurable_options.map((option) => {
+                if(!optionsToFiltr.includes(option.attribute_code)){
+                    return option;
+                }
+
+                const newValues = option.values.map((value) => {
+                    const index = value.value_index;
+
+                    value.disabled = availableVariants.every((variant) => {
+                       return variant.product.hasOwnProperty(option.attribute_code) && variant.product[option.attribute_code] != index;
+                    });
+
+                    return value;
+                });
+
+                option.values = newValues;
+                return option;
+            });
+        }
         return (
             <Suspense fallback={fallback}>
                 <Options
-                    options={configurable_options}
+                    options={configurableOptions}
                     onSelectionChange={handleSelectionChange}
                 />
             </Suspense>
