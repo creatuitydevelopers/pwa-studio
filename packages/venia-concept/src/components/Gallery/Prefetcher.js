@@ -32,18 +32,23 @@ class Prefetcher extends React.Component {
     }
 
     componentDidMount() {
-        window.requestIdleCallback(this.fetchOnIdle);
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(this.fetchOnIdle);
+        }
+        
     }
 
     componentWillUnmount() {
-        window.requestIdleCallback(this.fetchOnIdle);
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(this.fetchOnIdle);
+        }
     }
 
     render() {
         const {children, urlKey, ...rest} = this.props;
 
         return (
-            <div {...rest} onMouseEnter={this.onMouseEnter}>
+            <div {...rest} >
                 {children}
             </div>
         )
