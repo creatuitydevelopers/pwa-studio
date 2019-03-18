@@ -6,6 +6,11 @@ import resolveUnknownRoute from '@magento/peregrine/dist/Router/resolveUnknownRo
 import gql from 'graphql-tag';
 import productQuery from 'src/queries/getProductDetail.graphql';
 
+import { persistCache } from 'apollo-cache-persist';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+import { ApolloConsumer } from 'react-apollo';
+
 
 class Prefetcher extends React.Component {
     state = {
@@ -15,31 +20,28 @@ class Prefetcher extends React.Component {
 
     fetchOnIdle = () => {
         const {urlKey, client} = this.props;
-        resolveUnknownRoute({route: `/${urlKey}.html`, apiBase: new URL('/graphql', location.origin).toString() })
+
+        resolveUnknownRoute({route: `/${urlKey}.html`, apiBase: new URL('/graphql', location.origin).toString()})
             .then(data => {
-                client.query({query: productQuery, fetchPolicy: 'cache-first', variables: {urlKey: urlKey, onServer: false}});
+                    try {
+                        client.readQuery({ query: productQuery, variables: {urlKey: urlKey, onServer: false}});
+                    } catch (e) {
+                        client.query({query: productQuery, fetchPolicy: 'cache-first', variables: {urlKey: urlKey, onServer: false}});
+                    }
             });
     }
 
     componentDidMount() {
-        window.requestIdleCallback(this.fetchOnIdle, {timeout:3000 });
+        window.requestIdleCallback(this.fetchOnIdle);
     }
 
     componentWillUnmount() {
         window.requestIdleCallback(this.fetchOnIdle);
     }
 
-    onMouseEnter = () => {
-        // const {urlKey, client} = this.props;
-        // resolveUnknownRoute({route: `/${urlKey}.html`, apiBase: new URL('/graphql', location.origin).toString() })
-        //     .then(data => {
-        //         console.log(data);
-        //     });
-        // client.query({query: productQuery, fetchPolicy: 'cache-first', variables: {urlKey: urlKey, onServer: false}});
-    }
-
     render() {
         const {children, urlKey, ...rest} = this.props;
+
         return (
             <div {...rest} onMouseEnter={this.onMouseEnter}>
                 {children}
