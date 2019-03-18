@@ -30,6 +30,7 @@ class DeliveryMethodLabel extends Component {
         return (
             <div className={classes.root}>
                 {isStsMethod(methodCode) && <span><span>Ship to Store - </span><Title store={store} tag={`span`}/></span> }
+                {!isStsMethod(methodCode) && <span><span>Ship to Home</span></span> }
             </div>
         );
     }

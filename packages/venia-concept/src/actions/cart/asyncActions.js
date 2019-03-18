@@ -175,7 +175,7 @@ export const updateItemInCart = (payload = {}, targetItemId) => {
                 name: item.name,
                 quote_id: guestCartId,
                 delivery_method: delivery_method.type,
-                store_number: delivery_method.store.store_number
+                store_number: !!delivery_method.store ? delivery_method.store.store_number : null
             };
 
             if (productType === 'ConfigurableProduct') {
