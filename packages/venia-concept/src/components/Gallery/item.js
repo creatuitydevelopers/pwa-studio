@@ -75,9 +75,6 @@ class GalleryItem extends Component {
         const productLink = `/${url_key}${productUrlSuffix}`;
 
         return (
-            // <div className={classes.root} >
-
-            // </div>
             <Prefetcher className={classes.root} urlKey={url_key}>
                 <Link to={resourceUrl(productLink)} className={classes.images}>
                     {this.renderImagePlaceholder()}

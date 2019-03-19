@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { arrayOf, string, number, shape } from 'prop-types';
 import GalleryItem from './item';
 
+import { initialState } from 'src/reducers/catalog';
+
 import { MultiRating } from 'src/components/Review';
 
-const pageSize = 12;
+const pageSize = initialState.pageSize;
 const emptyData = Array.from({ length: pageSize }).fill(null);
 
 // inline the placeholder elements, since they're constant
@@ -29,10 +31,10 @@ class GalleryItems extends Component {
 
         return pageSize
             ? Array.from({ length: pageSize })
-                  .fill(null)
-                  .map((_, index) => (
-                      <GalleryItem key={index} placeholder={true} />
-                  ))
+                .fill(null)
+                .map((_, index) => (
+                    <GalleryItem key={index} placeholder={true} />
+                ))
             : defaultPlaceholders;
     }
 
