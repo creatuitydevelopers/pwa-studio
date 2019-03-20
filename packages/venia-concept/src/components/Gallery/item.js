@@ -3,9 +3,9 @@ import { string, number, shape } from 'prop-types';
 import { Link, resourceUrl } from 'src/drivers';
 import classify from 'src/classify';
 import { Rating } from 'src/components/Review';
-import {PriceWrapper} from 'src/components/RkStore';
+import { PriceWrapper } from 'src/components/RkStore';
 import ImageLoader from 'src/components/ImageLoader';
-import AnyComponent from './anyComponent';
+import Prefetcher from './Prefetcher';
 
 
 import { transparentPlaceholder } from 'src/shared/images';
@@ -23,7 +23,7 @@ const ItemPlaceholder = ({ children, classes }) => (
             <div className={classes.rating_pending} />
             <div className={classes.stock_pending} />
         </div>
-        
+
     </div>
 );
 
@@ -57,7 +57,7 @@ class GalleryItem extends Component {
             small_image: string,
             url_key: string.isRequired
         })
-        
+
     };
 
     render() {
@@ -75,7 +75,7 @@ class GalleryItem extends Component {
         const productLink = `/${url_key}${productUrlSuffix}`;
 
         return (
-            <div className={classes.root} >
+            <Prefetcher className={classes.root} urlKey={url_key}>
                 <Link to={resourceUrl(productLink)} className={classes.images}>
                     {this.renderImagePlaceholder()}
                     {this.renderImage()}
@@ -85,9 +85,9 @@ class GalleryItem extends Component {
                 </Link>
                 <div className={classes.bottomWrapper}>
                     <div className={classes.price}>
-                        <PriceWrapper 
-                            productId={item.id} 
-                            placeholderStyle={{minHeight: '24px', maxWidth: '100px'}} 
+                        <PriceWrapper
+                            productId={item.id}
+                            placeholderStyle={{ minHeight: '24px', maxWidth: '100px' }}
                             viewMode={'category_page'}
                         />
                     </div>
@@ -97,22 +97,19 @@ class GalleryItem extends Component {
                                 showAverage={rating.showAverage}
                                 avgRating={rating.avgRating}
                                 overallRating={rating.overallRating}
-                                error = {!!rating.error  ? rating.error : null}
+                                error={!!rating.error ? rating.error : null}
                             />
                         )}
                     </div>
-                {this.stockInfo}
+                    {this.stockInfo}
                 </div>
-            </div>
-            // <AnyComponent className={classes.root} urlKey={url_key}>
-                
-            // </AnyComponent>
+            </Prefetcher>
         );
     }
 
     get stockInfo() {
         const { classes, item } = this.props;
-        
+
         const { labels } = item;
 
         const map = {
@@ -122,11 +119,11 @@ class GalleryItem extends Component {
 
         const htmlLabels = !!labels
             ? labels.map((label, key) => {
-               return label.value == "1" && !!map[label.name] ? <span key={key} className={classes.stockAvailable}>{map[label.name]}</span> : null
+                return label.value == "1" && !!map[label.name] ? <span key={key} className={classes.stockAvailable}>{map[label.name]}</span> : null
             })
             : [];
 
-        if(htmlLabels.length == 0){
+        if (htmlLabels.length == 0) {
             htmlLabels.push(<span key={99} className={classes.stockUnavailable}>Out of stock</span>)
         }
 
