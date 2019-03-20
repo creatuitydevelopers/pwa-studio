@@ -1,5 +1,5 @@
-query productSearch($inputText: String!, $categoryId: String) {
-    products(search: $inputText, filter: { category_id: { eq: $categoryId } }) {
+query productSearch($inputText: String!, $pageSize: Int!, $currentPage: Int!, $categoryId: String) {
+    products(search: $inputText, pageSize: $pageSize, currentPage: $currentPage, filter: { category_id: { eq: $categoryId } }) {
         items {
             id
             name

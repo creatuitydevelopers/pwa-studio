@@ -9,6 +9,7 @@ import user from './user';
 import purchaseDetails from './purchaseDetails';
 import checkoutReceipt from './checkoutReceipt';
 import purchaseHistory from './purchaseHistory';
+import search from './search';
 import store from './store';
 import rebates from './rebates';
 import upcomingEvents from './upcomingEvents';
@@ -24,6 +25,7 @@ export default combineReducers({
     directory,
     purchaseDetails,
     purchaseHistory,
+    search,
     upcomingEvents,
     user
 });

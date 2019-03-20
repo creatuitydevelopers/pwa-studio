@@ -3,6 +3,9 @@ import { Query, Redirect } from 'src/drivers';
 import { bool, func, object, shape, string } from 'prop-types';
 import gql from 'graphql-tag';
 
+
+import { setCurrentPage, setPrevPageTotal } from 'src/actions/search';
+import Pagination from 'src/components/Pagination';
 import Gallery from 'src/components/Gallery';
 import classify from 'src/classify';
 import Icon from 'src/components/Icon';
@@ -11,6 +14,8 @@ import CloseIcon from 'react-feather/dist/icons/x';
 import { loadingIndicator } from 'src/components/LoadingIndicator';
 import defaultClasses from './search.css';
 import PRODUCT_SEARCH from '../../queries/productSearch.graphql';
+import {compose} from "redux";
+import connect from "react-redux/es/connect/connect";
 
 const getCategoryName = gql`
     query getCategoryName($id: Int!) {
@@ -90,8 +95,25 @@ export class Search extends Component {
     };
 
     render() {
-        const { classes, location } = this.props;
+
+        const {
+            classes,
+            location,
+            currentPage,
+            prevPageTotal,
+            pageSize,
+            setCurrentPage,
+            setPrevPageTotal
+        } = this.props;
+
         const { getCategoryName } = this;
+
+        const pageControl = {
+            currentPage: currentPage,
+            setPage: setCurrentPage,
+            updateTotalPages: setPrevPageTotal,
+            totalPages: prevPageTotal
+        };
 
         const inputText = getQueryParameterValue({
             location,
@@ -110,8 +132,19 @@ export class Search extends Component {
             ? { inputText, categoryId }
             : { inputText };
 
+        // const pageCount = data.products.total_count / 15;
+        // const totalPages = Math.ceil(pageCount);
+        // const totalWrapper = {
+        //     ...pageControl,
+        //     totalPages: totalPages
+        // };
+
         return (
-            <Query query={PRODUCT_SEARCH} variables={queryVariable}>
+            <Query query={PRODUCT_SEARCH} variables={{
+                pageSize: Number(pageSize),
+                currentPage: Number(currentPage),
+                ...queryVariable
+            }}>
                 {({ loading, error, data }) => {
                     if (error) return <div>Data Fetch Error</div>;
                     if (loading) return loadingIndicator;
@@ -123,18 +156,35 @@ export class Search extends Component {
                             </div>
                         );
 
+                    const totalPageControlWrapper = {
+                        ...pageControl,
+                        totalPages: Math.ceil(
+                            data.products.total_count / Number(pageSize)
+                        )
+                    };
+
                     return (
                         <article className={classes.root}>
                             <div className={classes.categoryTop}>
                                 <div className={classes.totalPages}>
-                                    {data.products.total_count} items{' '}
+                                    Search: {inputText} - Showing {(Number(currentPage) -1) * Number(pageSize) + 1} - {Number(currentPage) * Number(pageSize)} of {data.products.total_count} items{' '}
                                 </div>
                                 {categoryId &&
                                     getCategoryName(categoryId, classes)}
                             </div>
+                            <div className={classes.topPagination}>
+                                <Pagination
+                                    pageControl={totalPageControlWrapper}
+                                />
+                            </div>
                             <section className={classes.gallery}>
                                 <Gallery data={data.products.items} />
                             </section>
+                            <div className={classes.pagination}>
+                                <Pagination
+                                    pageControl={totalPageControlWrapper}
+                                />
+                            </div>
                         </article>
                     );
                 }}
@@ -143,4 +193,19 @@ export class Search extends Component {
     }
 }
 
-export default classify(defaultClasses)(Search);
+const mapStateToProps = ({ search }) => {
+    return {
+        currentPage: search.currentPage,
+        pageSize: search.pageSize,
+        prevPageTotal: search.prevPageTotal
+    };
+};
+const mapDispatchToProps = { setCurrentPage, setPrevPageTotal };
+
+export default compose(
+    classify(defaultClasses),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )
+)(Search);
