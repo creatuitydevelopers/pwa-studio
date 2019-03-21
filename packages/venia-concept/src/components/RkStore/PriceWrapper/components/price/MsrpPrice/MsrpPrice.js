@@ -51,7 +51,7 @@ class MsrpPrice extends Component {
 
         return (
             <div className={rootClassName.join(' ')}>
-                {viewMode ==  'product_page' && <div className={classes.msrpPrice}><Price value={priceData.msrp_price} {...priceConfig}/></div>}
+                {/* {viewMode ==  'product_page' && <div className={classes.msrpPrice}><Price value={priceData.msrp_price} {...priceConfig}/></div>} */}
                 <label className={classes.label}>{`See in cart.`}
                     <Button
                         className={classes.button}
@@ -70,7 +70,7 @@ class MsrpPrice extends Component {
                     <p>Our price is lower than the manufacturer's "minimum advertised price." As a result, we cannot show you the price in catalog or the product page.</p>
                     <p>You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart.</p>
                 </Modal>
-                {viewMode == 'product_page' && <MetaData price={priceData.msrp_price} currencyCode={priceConfig.currencyCode}/>}
+                {/* {viewMode == 'product_page' && <MetaData price={priceData.msrp_price} currencyCode={priceConfig.currencyCode}/>} */}
             </div>
         );
     }
