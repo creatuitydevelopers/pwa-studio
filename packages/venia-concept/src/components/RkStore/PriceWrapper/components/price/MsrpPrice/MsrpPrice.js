@@ -43,7 +43,7 @@ class MsrpPrice extends Component {
     render() {
         const {priceData, priceConfig, viewMode, classes} = this.props;
         const {modalOpen} = this.state;
-
+        
         const rootClassName = [
             classes.root,
             classes[`mode__${viewMode}`]
@@ -51,7 +51,7 @@ class MsrpPrice extends Component {
 
         return (
             <div className={rootClassName.join(' ')}>
-                {viewMode ==  'product_page' && <div className={classes.msrpPrice}><Price value={priceData.msrp_price} {...priceConfig}/></div>}
+                {viewMode ==  'product_page' && <div className={classes.msrpPrice}><Price value={parseFloat(priceData.msrp_price)} {...priceConfig}/></div>}
                 <label className={classes.label}>{`See in cart.`}
                     <Button
                         className={classes.button}
