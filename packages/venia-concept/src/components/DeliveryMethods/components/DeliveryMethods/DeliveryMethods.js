@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {func, object, shape, string, oneOf} from 'prop-types';
+import {func, object, shape, string, oneOf, bool} from 'prop-types';
 import classify from 'src/classify';
 
 import {withApollo} from 'react-apollo';
@@ -36,12 +36,14 @@ class DeliveryMethods extends Component {
         defaultMethod: string,
         selectedStore: object,
         validationMessage: string,
+        reloadData: bool,
         productSku: string.isRequired,
         onChange: func.isRequired,
         viewMode: oneOf(['product-page', 'cart'])
     };
 
     static defaultProps = {
+        reloadData: false,
         viewMode: 'product-page'
     };
 
@@ -52,8 +54,23 @@ class DeliveryMethods extends Component {
     };
 
     async componentDidMount() {
-        const {client, defaultMethod, onChange, selectedStore, currentStore, productSku} = this.props;
+        await this.loadDeliveryMethods();
+    }
 
+    async componentDidUpdate(prevProps) {
+        const {currentStore, onChange} = this.props;
+
+        if(prevProps.productSku !== this.props.productSku){
+            await this.loadDeliveryMethods();
+        }
+
+        if (!!prevProps.currentStore && !!currentStore && prevProps.currentStore.store_number !== currentStore.store_number) {
+            onChange(null, null);
+        }
+    };
+
+    async loadDeliveryMethods() {
+        const {client, defaultMethod, onChange, selectedStore, currentStore, productSku} = this.props;
         client.query({
             query: searchQuery,
             variables: {
@@ -84,14 +101,6 @@ class DeliveryMethods extends Component {
             });
         });
     }
-
-    async componentDidUpdate(prevProps) {
-        const {currentStore, onChange} = this.props;
-
-        if (!!prevProps.currentStore && !!currentStore && prevProps.currentStore.store_number !== currentStore.store_number) {
-            onChange(null, null);
-        }
-    };
 
     get content(){
         const {
