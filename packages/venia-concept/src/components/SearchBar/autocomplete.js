@@ -76,7 +76,9 @@ class SearchAutocomplete extends Component {
             <Query
                 query={PRODUCT_SEARCH}
                 variables={{
-                    inputText: autocompleteQuery
+                    inputText: autocompleteQuery,
+                    pageSize: 12,
+                    currentPage: 1,
                 }}
             >
                 {({ loading, error, data }) => {

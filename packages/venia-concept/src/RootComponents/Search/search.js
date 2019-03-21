@@ -16,6 +16,7 @@ import defaultClasses from './search.css';
 import PRODUCT_SEARCH from '../../queries/productSearch.graphql';
 import {compose} from "redux";
 import connect from "react-redux/es/connect/connect";
+import CategoryContent from "src/RootComponents/Category/category";
 
 const getCategoryName = gql`
     query getCategoryName($id: Int!) {
@@ -30,6 +31,7 @@ export class Search extends Component {
         classes: shape({
             noResult: string,
             root: string,
+            title: string,
             totalPages: string
         }),
         executeSearch: func.isRequired,
@@ -132,13 +134,6 @@ export class Search extends Component {
             ? { inputText, categoryId }
             : { inputText };
 
-        // const pageCount = data.products.total_count / 15;
-        // const totalPages = Math.ceil(pageCount);
-        // const totalWrapper = {
-        //     ...pageControl,
-        //     totalPages: totalPages
-        // };
-
         return (
             <Query query={PRODUCT_SEARCH} variables={{
                 pageSize: Number(pageSize),
@@ -147,7 +142,13 @@ export class Search extends Component {
             }}>
                 {({ loading, error, data }) => {
                     if (error) return <div>Data Fetch Error</div>;
-                    if (loading) return loadingIndicator;
+                    if (loading)
+                        return (
+                            <CategoryContent
+                                pageControl={pageControl}
+                                pageSize={pageSize}
+                            />
+                        );
 
                     if (data.products.items.length === 0)
                         return (
@@ -166,11 +167,10 @@ export class Search extends Component {
                     return (
                         <article className={classes.root}>
                             <div className={classes.categoryTop}>
-                                <div className={classes.totalPages}>
-                                    Search: {inputText} - Showing {(Number(currentPage) -1) * Number(pageSize) + 1} - {Number(currentPage) * Number(pageSize)} of {data.products.total_count} items{' '}
-                                </div>
-                                {categoryId &&
-                                    getCategoryName(categoryId, classes)}
+                                <h1 className={classes.title}>
+                                    <strong>Search: "{inputText}" {categoryId && `in ${getCategoryName(categoryId, classes)}`}</strong>
+                                    <small>Showing {(Number(currentPage) -1) * Number(pageSize) + 1} - {Number(currentPage) * Number(pageSize)} of {data.products.total_count} items</small>
+                                </h1>
                             </div>
                             <div className={classes.topPagination}>
                                 <Pagination

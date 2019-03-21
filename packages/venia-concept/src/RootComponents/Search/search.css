@@ -4,10 +4,6 @@
 
 .categoryTop {
     display: flex;
-    padding: 0 0 1rem 0;
-    color: rgb(var(--venia-text-alt));
-    justify-content: center;
-    align-items: center;
 }
 
 .categoryFilters {
@@ -29,4 +25,36 @@
 
 .noResult {
     display: flex;
+}
+
+.title {
+    composes: title from '../Category/category.css';
+}
+
+.title > span{
+    text-transform: uppercase;
+}
+
+.title > small{
+    display: block;
+}
+
+
+@media (min-width: 640px) {
+    .title > small{
+        display: inline-block;
+    }
+    .title > small:before{
+        content:'-';
+        margin: 0 5px;
+    }
+}
+
+
+.topPagination{
+    composes: topPagination from '../Category/category.css';
+}
+
+.pagination {
+    composes: pagination from '../Category/category.css';
 }

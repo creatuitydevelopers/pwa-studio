@@ -6,7 +6,7 @@ export const name = 'search';
 
 const initialState = {
     currentPage: 1,
-    pageSize: 16,
+    pageSize: 15,
     prevPageTotal: null
 };
 

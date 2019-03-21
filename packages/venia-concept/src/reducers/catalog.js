@@ -8,7 +8,7 @@ export const initialState = {
     categories: null,
     rootCategoryId: null,
     currentPage: 1,
-    pageSize: 12,
+    pageSize: 15,
     prevPageTotal: null
 };
 
